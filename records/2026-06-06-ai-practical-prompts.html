@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恩送り AI実践プロンプト集 ｜ 実用的なプロンプト事例共有</title>
+<style>
+  :root{
+    --bg:#f7f5f0;
+    --card:#ffffff;
+    --ink:#23211c;
+    --sub:#6b6757;
+    --accent:#9a3b2e;
+    --accent-soft:#c66a58;
+    --line:#e4e0d6;
+    --code-bg:#2b2723;
+    --code-ink:#f3efe6;
+    --ok:#2e7d52;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px 120px;}
+
+  /* Header */
+  header.hero{
+    background:linear-gradient(135deg,#8e2f23,#b9543f);
+    color:#fff;
+    padding:64px 20px 56px;
+    text-align:center;
+  }
+  header.hero .inner{max-width:920px;margin:0 auto;}
+  header.hero .eyebrow{
+    letter-spacing:.35em;
+    font-size:.78rem;
+    opacity:.85;
+    margin:0 0 14px;
+  }
+  header.hero h1{
+    font-size:2.1rem;
+    margin:0 0 10px;
+    font-weight:800;
+    letter-spacing:.02em;
+  }
+  header.hero p.lead{
+    margin:18px auto 0;
+    max-width:640px;
+    font-size:1.02rem;
+    opacity:.95;
+  }
+  .badge-row{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .badge{
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.35);
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:.82rem;
+  }
+
+  /* Intro */
+  .intro{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:30px 30px 8px;
+    margin:-32px auto 40px;
+    max-width:880px;
+    box-shadow:0 10px 30px rgba(60,45,30,.08);
+  }
+  .intro h2{margin-top:0;}
+
+  /* TOC */
+  nav.toc{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 28px;
+    margin:0 0 48px;
+  }
+  nav.toc h2{margin:0 0 14px;font-size:1.1rem;color:var(--accent);}
+  nav.toc ol{margin:0;padding-left:1.3em;columns:2;column-gap:34px;}
+  @media(max-width:640px){nav.toc ol{columns:1;}}
+  nav.toc li{margin:5px 0;break-inside:avoid;}
+  nav.toc a{text-decoration:none;color:var(--ink);}
+  nav.toc a:hover{color:var(--accent);text-decoration:underline;}
+
+  /* Chapters */
+  section.chapter{margin:0 0 56px;scroll-margin-top:20px;}
+  .chapter-tag{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    font-size:.78rem;
+    letter-spacing:.12em;
+    padding:4px 12px;
+    border-radius:6px;
+    margin-bottom:12px;
+  }
+  section.chapter > h2{
+    font-size:1.55rem;
+    margin:6px 0 18px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--line);
+  }
+  section.chapter h3{font-size:1.18rem;margin:30px 0 10px;color:#3a342c;}
+  section.chapter h4{font-size:1.02rem;margin:22px 0 6px;color:var(--accent);}
+  p{margin:0 0 14px;}
+  .muted{color:var(--sub);}
+  ul,ol{margin:0 0 16px;padding-left:1.4em;}
+  li{margin:4px 0;}
+
+  .note-box{
+    background:#fbf3ec;
+    border-left:4px solid var(--accent-soft);
+    border-radius:0 10px 10px 0;
+    padding:14px 18px;
+    margin:16px 0;
+  }
+  .note-box.warn{background:#fdeeea;border-color:var(--accent);}
+  .note-box.bad{background:#f3f1ec;border-color:#9b9684;}
+  .note-box.bad code{color:#7a7363;}
+
+  /* Prompt cards */
+  .prompt-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    margin:18px 0 28px;
+    box-shadow:0 4px 14px rgba(60,45,30,.05);
+  }
+  .prompt-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 18px;
+    background:#f3f0e8;
+    border-bottom:1px solid var(--line);
+  }
+  .prompt-head h3,.prompt-head h4{margin:0;font-size:1.05rem;color:#2c2820;}
+  .copy-btn{
+    flex:0 0 auto;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:8px 16px;
+    font-size:.85rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:background .15s,transform .05s;
+    font-family:inherit;
+  }
+  .copy-btn:hover{background:#7f2a20;}
+  .copy-btn:active{transform:scale(.96);}
+  .copy-btn.done{background:var(--ok);}
+  pre.prompt-text{
+    margin:0;
+    padding:20px 22px;
+    background:var(--code-bg);
+    color:var(--code-ink);
+    font-family:"SFMono-Regular",Consolas,"Noto Sans Mono CJK JP","Hiragino Sans",Menlo,monospace;
+    font-size:.92rem;
+    line-height:1.7;
+    white-space:pre-wrap;
+    word-break:break-word;
+    overflow-x:auto;
+  }
+
+  /* Worksheet */
+  .worksheet{
+    background:var(--card);
+    border:1px dashed var(--accent-soft);
+    border-radius:14px;
+    padding:22px 24px;
+    margin:18px 0;
+  }
+  .worksheet .line{
+    border-bottom:1px solid var(--line);
+    padding:10px 0 4px;
+    color:var(--sub);
+  }
+  .worksheet .line::after{content:"";display:inline-block;}
+
+  /* Closing */
+  .closing{
+    background:linear-gradient(135deg,#2c2820,#43392d);
+    color:#f5f1e8;
+    border-radius:18px;
+    padding:40px 36px;
+    margin:60px 0 40px;
+    text-align:center;
+  }
+  .closing h2{color:#fff;border:none;margin-top:0;}
+  .closing p{font-size:1.05rem;opacity:.95;}
+  .closing .big{font-size:1.3rem;font-weight:700;margin:18px 0;}
+
+  footer.factcheck{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 26px;
+    font-size:.9rem;
+    color:var(--sub);
+  }
+  footer.factcheck h2{font-size:1.1rem;color:var(--ink);margin-top:0;}
+
+  .back-top{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    background:var(--accent);
+    color:#fff;
+    text-decoration:none;
+    width:46px;height:46px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px rgba(0,0,0,.25);
+    font-size:1.2rem;
+    opacity:.9;
+  }
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:30px;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--ok);
+    color:#fff;
+    padding:10px 22px;
+    border-radius:999px;
+    font-size:.9rem;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s,transform .2s;
+    z-index:50;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <p class="eyebrow">恩 送 り　A I 実 践 セ ミ ナ ー</p>
+    <h1>実用的なプロンプト事例共有</h1>
+    <p class="lead">JC活動、自社事業、SNS発信、資料作成、動画制作、議事録整理、協賛依頼、採用、営業まで。<br>明日からそのまま使える実践プロンプト集です。</p>
+    <div class="badge-row">
+      <span class="badge">全25プロンプト</span>
+      <span class="badge">コピーして即利用</span>
+      <span class="badge">恩送りとして自由に使用OK</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="intro">
+    <h2>はじめに</h2>
+    <p>この資料は、単なるAIプロンプト集ではありません。</p>
+    <p>JC活動、自社事業、SNS発信、資料作成、動画制作、議事録整理、協賛依頼、採用、営業など、<strong>明日からそのまま使える実践資料</strong>です。</p>
+    <p>AIは、楽をするためだけの道具ではありません。自分の想いを、より早く、より深く、より多くの人に届けるための道具です。</p>
+    <p>JCで学ぶことは、AI時代にも必ず活きます。なぜなら、AIがどれだけ進化しても、<strong>人を動かすのは最後は人の想い</strong>だからです。</p>
+  </div>
+
+  <nav class="toc">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#ch1">最強プロンプトの考え方</a></li>
+      <li><a href="#ch2">まず全員に使ってほしいプロンプト</a></li>
+      <li><a href="#ch3">JC活動で使えるプロンプト</a></li>
+      <li><a href="#ch4">自社事業で使えるプロンプト</a></li>
+      <li><a href="#ch5">SNS・発信で使えるプロンプト</a></li>
+      <li><a href="#ch6">画像・動画・音楽制作で使えるプロンプト</a></li>
+      <li><a href="#ch7">NotebookLMで使えるプロンプト</a></li>
+      <li><a href="#ch8">Notion・Obsidianで使えるプロンプト</a></li>
+      <li><a href="#ch9">開発系AIで使えるプロンプト</a></li>
+      <li><a href="#ch10">セミナー参加者用ワーク</a></li>
+      <li><a href="#ch11">AIを使う時の注意点</a></li>
+      <li><a href="#ch12">最後に</a></li>
+    </ol>
+  </nav>
+
+  <!-- 第1章 -->
+  <section class="chapter" id="ch1">
+    <span class="chapter-tag">第1章</span>
+    <h2>最強プロンプトの考え方</h2>
+
+    <h3>最強プロンプトとは</h3>
+    <p>最強プロンプトとは、AIに短い命令を出すことではありません。</p>
+    <p>優秀な部下に、仕事の目的・背景・条件・完成イメージを伝える<strong>業務指示書</strong>です。</p>
+    <p>つまり、良いプロンプトには次の5つが入っています。</p>
+    <ol>
+      <li>役割</li>
+      <li>背景</li>
+      <li>目的</li>
+      <li>条件</li>
+      <li>出力形式</li>
+    </ol>
+
+    <h3>基本の型</h3>
+    <p>以下の型を覚えれば、ほとんどの仕事に応用できます。</p>
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>基本の型</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、〇〇の専門家です。
+以下の内容をもとに、〇〇を作成してください。
+【背景】
+【目的】
+【対象者】
+【伝えたいこと】
+【条件】
+【出力形式】
+不足している情報があれば、最初に質問してください。
+その後、実務でそのまま使える形で出力してください。</pre>
+    </div>
+
+    <h3>AIに渡すべき情報</h3>
+    <p>AIは、情報が多いほど精度が上がります。特に大事なのは以下です。</p>
+    <ul>
+      <li>誰に向けているのか</li>
+      <li>何を伝えたいのか</li>
+      <li>なぜそれをやるのか</li>
+      <li>どんな雰囲気にしたいのか</li>
+      <li>どこで使う文章なのか</li>
+      <li>最後に相手にどう動いてほしいのか</li>
+    </ul>
+
+    <h3>やってはいけない使い方</h3>
+    <div class="note-box bad">
+      <p style="margin:0;"><code>SNS投稿を作って</code></p>
+    </div>
+    <p>これだけでは弱いです。AIは作ってくれますが、浅い文章になります。</p>
+
+    <h3>良い使い方</h3>
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>SNS投稿（良い例）</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、地域活動と経営者の想いを言語化するSNS編集者です。
+以下の内容をもとに、名古屋青年会議所の会員に向けたInstagram投稿文を作ってください。
+【テーマ】
+恩送り
+【背景】
+私はJCライフ11年目で、これまで多くの先輩・仲間・後輩に育てていただいた。
+【伝えたいこと】
+AIの使い方を教えるだけではなく、JCでいただいた学びを次の世代に渡したい。
+【対象者】
+名古屋青年会議所の現役会員
+【条件】
+・熱すぎず、誠実に
+・感謝が伝わる文章
+・最後にセミナー参加への期待感を入れる
+【出力形式】
+1. Instagram投稿文
+2. 短い告知文
+3. ストーリーズ用一言</pre>
+    </div>
+  </section>
+
+  <!-- 第2章 -->
+  <section class="chapter" id="ch2">
+    <span class="chapter-tag">第2章</span>
+    <h2>まず全員に使ってほしいプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>1. 何でも整理プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、優秀な編集者であり、経営者の右腕です。
+以下のメモを整理してください。
+【メモ】
+ここに音声入力や箇条書きのメモを貼る
+出力してください。
+1. 要点
+2. 目的
+3. 誰に伝えるべきか
+4. 今すぐやること
+5. 後でやること
+6. 相手に送る文章
+7. SNS投稿にするならどうするか
+8. 資料化するなら見出し構成</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>2. 音声入力整理プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、経営者の話を整理するプロの編集者です。
+以下は、私が音声入力で話した内容です。
+話が飛んでいても構いません。
+内容を整理し、実務で使える形にしてください。
+【音声入力メモ】
+ここに貼る
+出力形式：
+1. 何を言いたいのか
+2. 重要なキーワード
+3. 文章として整えた版
+4. SNS投稿版
+5. LINEで送る短文版
+6. 次にやるべき行動</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>3. 壁打ちプロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、私の思考を深める壁打ち相手です。
+以下のアイデアについて、賛成だけでなく、厳しめの視点も含めて整理してください。
+【アイデア】
+ここに記入
+出力してください。
+1. 良い点
+2. 弱い点
+3. 見落としているリスク
+4. もっと良くする改善案
+5. すぐやるべきこと
+6. 誰に相談すべきか
+7. 30日以内の行動計画</pre>
+    </div>
+  </section>
+
+  <!-- 第3章 -->
+  <section class="chapter" id="ch3">
+    <span class="chapter-tag">第3章</span>
+    <h2>JC活動で使えるプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>4. JC事業整理プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、青年会議所の事業構築と広報に強いプロデューサーです。
+以下のJC事業を、一般市民、協賛企業、行政、メンバーに伝わる形に整理してください。
+【事業名】
+【開催日時】
+【開催場所】
+【対象者】
+【事業の目的】
+【背景にある社会課題】
+【参加者に得てほしいこと】
+【協賛企業のメリット】
+【主催者の想い】
+【現在の課題】
+出力してください。
+1. 事業目的の整理
+2. 社会課題の言語化
+3. 参加者に伝える文章
+4. 協賛企業に伝える文章
+5. 行政に伝える文章
+6. メンバー向け説明文
+7. Instagram投稿文
+8. プレスリリース冒頭文
+9. タイトル案10個
+10. 改善点</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>5. 例会告知プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、青年会議所の例会告知に強い広報担当です。
+以下の例会について、参加したくなる告知文を作成してください。
+【例会名】
+【日時】
+【場所】
+【対象者】
+【講師】
+【内容】
+【参加するメリット】
+【担当委員会の想い】
+【申込方法】
+条件：
+・身内ノリになりすぎない
+・事業の意義が伝わる
+・忙しい会員でも参加したくなる
+・熱量と品格のバランスを取る
+出力：
+1. 公式案内文
+2. LINE告知文
+3. Instagram投稿文
+4. ストーリーズ用短文
+5. 委員長挨拶文
+6. 参加を促す一言</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>6. 協賛依頼プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、協賛営業に強いプロの文章作成者です。
+以下の事業について、企業に協賛をお願いする文章を作成してください。
+【事業名】
+【主催】
+【開催日】
+【場所】
+【目的】
+【社会的意義】
+【参加予定者】
+【協賛金額】
+【協賛メリット】
+【主催者の想い】
+【相手企業との接点】
+条件：
+・押し売り感を出さない
+・社会的意義を伝える
+・企業側のメリットも明確にする
+・丁寧で誠実な文章にする
+・相手を尊重する
+出力：
+1. メール文
+2. LINE文
+3. 口頭説明トーク
+4. 協賛メリット一覧
+5. 断られた時の返信文
+6. 再提案する時の文章</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>7. 議事録整理プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、優秀な事務局長です。
+以下の議事録メモをもとに、次にやるべきことが明確になる正式な議事録を作成してください。
+【議事録メモ】
+ここに貼る
+出力してください。
+1. 会議概要
+2. 決定事項
+3. 未決定事項
+4. 担当者ごとのタスク
+5. 期限
+6. 次回までに確認すること
+7. 関係者へ送る共有文
+8. 正式な議事録</pre>
+    </div>
+  </section>
+
+  <!-- 第4章 -->
+  <section class="chapter" id="ch4">
+    <span class="chapter-tag">第4章</span>
+    <h2>自社事業で使えるプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>8. 会社紹介プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、経営者の想いを言語化するブランドコピーライターです。
+以下の情報をもとに、会社紹介文を作成してください。
+【会社名】
+【業種】
+【商品・サービス】
+【創業のきっかけ】
+【大切にしている価値観】
+【お客様に喜ばれていること】
+【他社との違い】
+【今後実現したい未来】
+出力してください。
+1. 30秒紹介文
+2. 1分紹介文
+3. ホームページ冒頭文
+4. SNSプロフィール文
+5. 営業資料に使える紹介文
+6. 代表メッセージ
+7. 採用向けメッセージ</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>9. 商品・サービス紹介プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、売れる商品紹介文を作るマーケティング担当者です。
+以下の商品・サービスについて、お客様に魅力が伝わる紹介文を作成してください。
+【商品・サービス名】
+【価格】
+【ターゲット】
+【お客様の悩み】
+【商品の特徴】
+【他社との違い】
+【購入後のメリット】
+【代表の想い】
+【申込・購入方法】
+出力：
+1. 商品紹介文
+2. Instagram投稿文
+3. LP冒頭文
+4. 販売ページ本文
+5. よくある質問
+6. 購入を促す一言
+7. 30秒動画台本</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>10. 採用投稿プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、採用広報に強い編集者です。
+以下の会社について、求人媒体やSNSで使える採用文章を作成してください。
+【会社名】
+【募集職種】
+【仕事内容】
+【求める人物像】
+【働く魅力】
+【代表の想い】
+【職場の雰囲気】
+【条件】
+【応募方法】
+条件：
+・きれいごとだけにしない
+・働くイメージが湧くようにする
+・人柄が伝わる文章にする
+・応募のハードルを下げる
+出力：
+1. 求人本文
+2. Instagram採用投稿
+3. ストーリーズ用短文
+4. 代表メッセージ
+5. 応募前によくある質問
+6. 応募を促す一言</pre>
+    </div>
+  </section>
+
+  <!-- 第5章 -->
+  <section class="chapter" id="ch5">
+    <span class="chapter-tag">第5章</span>
+    <h2>SNS・発信で使えるプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>11. SNS投稿作成プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、SNS運用に強い編集者です。
+以下の内容をもとに、Instagram、Threads、Facebook向けの投稿を作成してください。
+【投稿テーマ】
+【誰に届けたいか】
+【伝えたい想い】
+【具体的な出来事】
+【最終的にしてほしい行動】
+【文章の雰囲気】
+出力：
+1. Instagram投稿文
+2. Threads投稿文
+3. Facebook投稿文
+4. ストーリーズ用短文
+5. ハッシュタグ案
+6. 投稿タイトル案
+7. コメントを促す一言</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>12. リール台本プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、ショート動画の構成作家です。
+以下の内容をもとに、30秒のリール台本を作成してください。
+【テーマ】
+【目的】
+【ターゲット】
+【伝えたいこと】
+【使いたい素材】
+【最後の導線】
+条件：
+・最初の3秒で興味を引く
+・短い言葉で伝える
+・1文を長くしない
+・画面テロップも作る
+・最後に行動を促す
+出力：
+1. タイトル
+2. 0〜3秒のつかみ
+3. ナレーション
+4. 画面テロップ
+5. 必要素材
+6. BGMイメージ
+7. サムネイル文言</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>13. YouTube企画プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、YouTube番組の構成作家です。
+以下のテーマで、5分のYouTube台本を作成してください。
+【テーマ】
+【話し手】
+【視聴者】
+【伝えたい結論】
+【具体例】
+【最後のメッセージ】
+構成：
+1. 冒頭のつかみ
+2. 問題提起
+3. 本題
+4. 具体例
+5. まとめ
+6. 視聴者への問いかけ
+7. タイトル案10個
+8. サムネイル文言10個</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>14. note記事プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、思想や体験を文章にする編集者です。
+以下の内容をもとに、note記事を作成してください。
+【テーマ】
+【きっかけ】
+【体験談】
+【学び】
+【読者に伝えたいこと】
+【最後のメッセージ】
+出力：
+1. タイトル案10個
+2. 冒頭文
+3. 本文
+4. 締めの文章
+5. SNS告知文
+6. 読後に残る一文</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>15. ラジオ配信プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、音声配信番組の構成作家です。
+以下のテーマで、10分のラジオ配信用台本を作ってください。
+【番組テーマ】
+【話す人の雰囲気】
+【伝えたいこと】
+【実体験】
+【聞いた人に感じてほしいこと】
+条件：
+・自然な話し言葉
+・あたたかい雰囲気
+・一人語りで使える
+・最後に余韻を残す
+出力：
+1. 番組タイトル
+2. オープニング
+3. 本編構成
+4. 話す台本
+5. 締めの言葉
+6. SNS告知文</pre>
+    </div>
+  </section>
+
+  <!-- 第6章 -->
+  <section class="chapter" id="ch6">
+    <span class="chapter-tag">第6章</span>
+    <h2>画像・動画・音楽制作で使えるプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>16. 画像生成プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、画像生成AIのプロンプト作成者です。
+以下の投稿テーマに合う画像生成プロンプトを作成してください。
+【投稿テーマ】
+【使う媒体】
+【雰囲気】
+【色味】
+【入れたい要素】
+【避けたい要素】
+【ターゲット】
+出力：
+1. 日本語プロンプト
+2. 英語プロンプト
+3. 構図案
+4. 文字を入れる場合の文言
+5. SNS投稿との組み合わせ案</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>17. パース作成プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、店舗・イベント空間のビジュアルディレクターです。
+以下の空間イメージを、画像生成AIで使えるプロンプトにしてください。
+【用途】
+【場所】
+【雰囲気】
+【色】
+【入れたい要素】
+【ターゲット】
+【参考イメージ】
+出力：
+1. 日本語プロンプト
+2. 英語プロンプト
+3. 画像の構図案
+4. 追加すると良い要素
+5. 避けるべき要素</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>18. AI動画制作プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、AI動画制作のディレクターです。
+以下の内容をもとに、AI動画制作ツールで使える企画とプロンプトを作成してください。
+【動画テーマ】
+【目的】
+【ターゲット】
+【動画の長さ】
+【雰囲気】
+【入れたい場面】
+【伝えたい感情】
+【最後の導線】
+出力：
+1. 動画コンセプト
+2. シーン構成
+3. 各シーンの映像プロンプト
+4. ナレーション
+5. テロップ
+6. BGMイメージ
+7. サムネイル文言</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>19. 音楽制作プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、AI音楽制作のプロンプト作成者です。
+以下のテーマで、動画やイベントに使える音楽制作プロンプトを作成してください。
+【使う場面】
+【雰囲気】
+【テンポ】
+【ジャンル】
+【伝えたい感情】
+【参考イメージ】
+【長さ】
+出力：
+1. 日本語プロンプト
+2. 英語プロンプト
+3. 曲タイトル案
+4. 歌詞が必要な場合の歌詞案
+5. BGMとして使う場合の指示</pre>
+    </div>
+  </section>
+
+  <!-- 第7章 -->
+  <section class="chapter" id="ch7">
+    <span class="chapter-tag">第7章</span>
+    <h2>NotebookLMで使えるプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>20. 資料読解プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">この資料をもとに、以下を整理してください。
+1. 重要ポイント
+2. 専門用語の解説
+3. 初心者にも分かる要約
+4. 実務で使うべきポイント
+5. 見落としてはいけない注意点
+6. 関係者に共有する文章
+7. セミナー資料にする場合の見出し構成</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>21. 過去資料活用プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">この資料は、過去に実施した事業の資料です。
+次回の事業に活かすために、以下を整理してください。
+1. 良かった点
+2. 改善すべき点
+3. 次回も使える内容
+4. 次回は変更すべき内容
+5. 引き継ぎ事項
+6. 新担当者向けの要約
+7. 次回事業のたたき台</pre>
+    </div>
+  </section>
+
+  <!-- 第8章 -->
+  <section class="chapter" id="ch8">
+    <span class="chapter-tag">第8章</span>
+    <h2>Notion・Obsidianで使えるプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>22. 記録すべき情報の判断プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">以下のメモについて、NotionやObsidianに保存すべきか判断してください。
+【メモ】
+ここに貼る
+出力してください。
+1. 保存すべきか
+2. 理由
+3. 保存先の候補
+4. タグ案
+5. タイトル案
+6. 後から検索しやすい要約
+7. 次に活かす行動</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>23. Obsidian用ノート化プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">以下の内容を、Obsidianに保存しやすいMarkdown形式で整理してください。
+【内容】
+ここに貼る
+出力形式：
+# タイトル
+## 概要
+## 重要ポイント
+## 気づき
+## 次にやること
+## 関連キーワード
+## 関連しそうなノート
+## タグ</pre>
+    </div>
+  </section>
+
+  <!-- 第9章 -->
+  <section class="chapter" id="ch9">
+    <span class="chapter-tag">第9章</span>
+    <h2>開発系AIで使えるプロンプト</h2>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>24. 業務ツール作成プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、業務効率化に強いシステム設計者です。
+以下の業務を効率化するための簡単なツールを作りたいです。
+【現在の業務】
+【困っていること】
+【使う人】
+【入力したい情報】
+【出力したい情報】
+【スマホで使うか】
+【パソコンで使うか】
+【Googleスプレッドシートで足りるか】
+【将来的に拡張したいこと】
+出力してください。
+1. 必要な機能
+2. 画面イメージ
+3. データ項目
+4. 最小構成
+5. 作成手順
+6. Googleフォームで作る場合
+7. スプレッドシートで作る場合
+8. Webアプリにする場合
+9. 開発AIに渡す指示文</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-head"><h3>25. 開発AIへの依頼プロンプト</h3><button class="copy-btn" onclick="copyPrompt(this)">コピー</button></div>
+      <pre class="prompt-text">あなたは、実務で使える小さな業務アプリを作るエンジニアです。
+以下の条件で、初心者でも運用できるシンプルなツールを作ってください。
+【作りたいツール】
+【目的】
+【使う人】
+【必要な入力項目】
+【必要な出力】
+【管理者が見たい情報】
+【スマホ対応の必要性】
+【デザインの雰囲気】
+【使いたい技術】
+【注意点】
+まず最初に、作成方針を説明してください。
+その後、必要なファイル構成、コード、使い方、修正方法を順番に提示してください。
+専門用語はできるだけ分かりやすく説明してください。</pre>
+    </div>
+  </section>
+
+  <!-- 第10章 -->
+  <section class="chapter" id="ch10">
+    <span class="chapter-tag">第10章</span>
+    <h2>セミナー参加者用ワーク</h2>
+
+    <h3>ワーク1　自社でAIに働かせたいこと</h3>
+    <p>以下を埋めてください。</p>
+    <div class="worksheet">
+      <div class="line">私の会社名：</div>
+      <div class="line">業種：</div>
+      <div class="line">今一番時間がかかっている仕事：</div>
+      <div class="line">AIに任せたい仕事：</div>
+      <div class="line">AIで発信したい商品・サービス：</div>
+      <div class="line">AIで改善したい社内業務：</div>
+      <div class="line">今日から使うプロンプト番号：</div>
+    </div>
+
+    <h3>ワーク2　JC活動でAIに働かせたいこと</h3>
+    <div class="worksheet">
+      <div class="line">所属委員会：</div>
+      <div class="line">現在担当している事業：</div>
+      <div class="line">困っていること：</div>
+      <div class="line">AIに手伝わせたいこと：</div>
+      <div class="line">発信したい対象：</div>
+      <div class="line">作りたい資料：</div>
+      <div class="line">今日から使うプロンプト番号：</div>
+    </div>
+  </section>
+
+  <!-- 第11章 -->
+  <section class="chapter" id="ch11">
+    <span class="chapter-tag">第11章</span>
+    <h2>AIを使う時の注意点</h2>
+
+    <div class="note-box warn">
+      <h4 style="margin-top:0;">1. 機密情報を入れすぎない</h4>
+      <p style="margin:0;">社外秘情報、個人情報、契約情報、未公開の財務情報などは、取り扱いに注意してください。</p>
+    </div>
+
+    <div class="note-box warn">
+      <h4 style="margin-top:0;">2. AIの答えをそのまま信じない</h4>
+      <p style="margin:0;">AIは便利ですが、間違えることがあります。数字、法律、制度、固有名詞、日程、料金、公式情報は必ず確認してください。</p>
+    </div>
+
+    <div class="note-box warn">
+      <h4 style="margin-top:0;">3. 最後は人間が判断する</h4>
+      <p style="margin:0;">AIはたたき台を作る道具です。最後に、誰に届けるのか、本当に伝わるのか、人として誠実かを判断するのは自分自身です。</p>
+    </div>
+  </section>
+
+  <!-- 第12章 -->
+  <section class="chapter" id="ch12">
+    <span class="chapter-tag">第12章</span>
+    <h2>最後に</h2>
+    <div class="closing">
+      <h2>AIを使う時代から、AIを働かせる時代へ。</h2>
+      <p>でも、本質はAIではありません。</p>
+      <p class="big">本質は、人の思いを人にどう伝えるかです。</p>
+      <p>JCで学んだこと。<br>
+      会社で大切にしていること。<br>
+      地域のために実現したいこと。<br>
+      仲間に伝えたいこと。<br>
+      次の世代へ残したいこと。</p>
+      <p>その想いを、AIという道具を使って、より早く、より深く、より多くの人へ届けていく。<br>
+      それが、これからの時代の経営であり、JC活動です。</p>
+      <p>この資料が、皆さんの会社、委員会、地域活動の一助になれば幸いです。</p>
+      <p class="big">恩送りとして、ぜひ自由に使ってください。</p>
+    </div>
+  </section>
+
+  <footer class="factcheck">
+    <h2>ファクトチェック・参照メモ</h2>
+    <p>資料内で扱う主要ツールについて、公式情報ベースで確認しました。</p>
+    <ul>
+      <li><strong>NotebookLM</strong>：GoogleのAIリサーチ／思考支援ツール。Audio Overview機能があります。</li>
+      <li><strong>Google Flow</strong>：Google LabsのAI映像制作ツール。動画・画像・ストーリー制作に使えるAIクリエイティブスタジオです。</li>
+      <li><strong>Claude Code</strong>：Anthropicのagentic coding tool。コードベースの読み取り、ファイル編集、コマンド実行、開発ツール連携を行います。</li>
+      <li><strong>OpenAI Codex</strong>：コード作成、コードベースへの質問回答、バグ修正、プルリクエスト提案などを行うクラウド型ソフトウェアエンジニアリングエージェントです。</li>
+      <li><strong>Google Antigravity</strong>：Googleのagentic development platformとして公式に案内されています。</li>
+      <li><strong>Cursor</strong>：AIコーディングエージェント／開発環境として整理できます。</li>
+      <li><strong>Notion</strong>：AIワークスペース。<strong>Obsidian</strong>：個人ノート・知識ベース・プロジェクト管理にも使える思考整理ツールとして公式に説明されています。</li>
+    </ul>
+  </footer>
+
+</div>
+
+<a href="#" class="back-top" title="トップへ戻る">↑</a>
+<div class="toast" id="toast">コピーしました</div>
+
+<script>
+  function copyPrompt(btn){
+    var card = btn.closest('.prompt-card');
+    var pre = card.querySelector('.prompt-text');
+    var text = pre.innerText;
+    function done(){
+      btn.classList.add('done');
+      btn.textContent = 'コピーしました';
+      showToast();
+      setTimeout(function(){ btn.classList.remove('done'); btn.textContent = 'コピー'; }, 1600);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text, done); });
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+  function fallbackCopy(text, cb){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+    if(cb) cb();
+  }
+  var toastTimer;
+  function showToast(){
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 1600);
+  }
+</script>
+
+</body>
+</html>
