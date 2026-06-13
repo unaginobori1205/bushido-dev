@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロンプト練習ページ — AIに語りかけて学ぶ</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#5b6470; --line:#e6e3dc; --bg:#faf8f3;
+    --accent:#9a2b2b; --accent2:#c0703a; --card:#fff; --gold:#b8893b; --code:#2b2b2b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.75; -webkit-text-size-adjust:100%}
+  .wrap{max-width:780px; margin:0 auto; padding:0 18px 90px}
+  header{background:linear-gradient(135deg,#7a1f1f,#9a2b2b 60%,#b8503a); color:#fff; padding:42px 20px 36px; text-align:center}
+  header .back{display:inline-block; color:#fff; opacity:.85; text-decoration:none; font-size:13px; margin-bottom:14px}
+  header h1{margin:0; font-size:23px; font-weight:800}
+  header p{margin:12px auto 0; max-width:560px; font-size:14px; opacity:.94}
+
+  /* AI quick launch */
+  .launch{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:24px}
+  .launch a{display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.35); color:#fff; text-decoration:none; font-size:13px;
+    padding:9px 15px; border-radius:999px; transition:background .15s}
+  .launch a:hover{background:rgba(255,255,255,.28)}
+
+  .tip{background:#fffdf7; border:1px solid var(--line); border-left:4px solid var(--gold);
+    border-radius:10px; padding:14px 18px; margin:30px 0 8px; font-size:13.5px; color:#4a4036}
+  .tip b{color:var(--accent)}
+
+  h2{font-size:17px; margin:46px 0 4px; padding-bottom:8px; border-bottom:2px solid var(--line)}
+  .lv{display:inline-block; background:var(--accent); color:#fff; font-size:11px; font-weight:700;
+    padding:2px 9px; border-radius:6px; margin-right:8px; vertical-align:2px; letter-spacing:.04em}
+  .desc{color:var(--sub); font-size:13.5px; margin:8px 0 4px}
+
+  /* 4要素 table */
+  .four{width:100%; border-collapse:collapse; margin:14px 0 4px; background:var(--card);
+    border:1px solid var(--line); border-radius:10px; overflow:hidden; font-size:13.5px}
+  .four th,.four td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line)}
+  .four th{background:#f3ece2; color:var(--accent); font-weight:700; width:62px}
+  .four tr:last-child td{border-bottom:none}
+
+  .prompt{background:var(--card); border:1px solid var(--line); border-radius:12px;
+    margin:14px 0; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.03)}
+  .prompt .ph{display:flex; align-items:center; gap:10px; padding:11px 14px; background:#f7f2ea; border-bottom:1px solid var(--line)}
+  .prompt .ph .label{font-size:13px; font-weight:700; color:var(--accent)}
+  .prompt .ph .copy{margin-left:auto; border:none; background:var(--accent); color:#fff; cursor:pointer;
+    font-size:12.5px; font-weight:700; padding:7px 14px; border-radius:8px; transition:background .15s; white-space:nowrap}
+  .prompt .ph .copy:hover{background:#7a1f1f}
+  .prompt .ph .copy.done{background:#2f7d4f}
+  .prompt pre{margin:0; padding:15px 16px; white-space:pre-wrap; word-break:break-word;
+    font-family:"SFMono-Regular",Consolas,"Hiragino Kaku Gothic ProN",monospace; font-size:13px;
+    color:#33312e; background:#fff; line-height:1.85}
+  .prompt pre .ph-fill{color:var(--accent2); font-weight:700}
+  .learn{font-size:13px; color:var(--sub); margin:4px 2px 0}
+  .learn b{color:var(--ink)}
+
+  footer{text-align:center; color:var(--sub); font-size:12px; margin-top:56px; line-height:1.9}
+  .toast{position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px);
+    background:#2f7d4f; color:#fff; padding:11px 22px; border-radius:999px; font-size:13.5px; font-weight:700;
+    opacity:0; pointer-events:none; transition:all .25s; box-shadow:0 6px 20px rgba(0,0,0,.2); z-index:50}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+  @media(max-width:560px){header h1{font-size:19px} .prompt pre{font-size:12.5px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← 学習システムTOPへ</a>
+  <h1>🎙️ プロンプト練習ページ</h1>
+  <p>各カードの「コピー」を押して、下のAIに貼るだけ。<br>〔　〕は自分の事業に置きかえてください。一発で完璧を狙わず、AIと往復しながら磨きます。</p>
+  <div class="launch">
+    <a href="https://chatgpt.com/" target="_blank" rel="noopener">💬 ChatGPTを開く</a>
+    <a href="https://claude.ai/" target="_blank" rel="noopener">🧡 Claudeを開く</a>
+    <a href="https://gemini.google.com/" target="_blank" rel="noopener">✦ Geminiを開く</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="tip">💡 <b>上達のコツ</b>：上手な質問より「<b>会話を続けること</b>」。AIは「優秀だが、たまに嘘をつく新人」。出力は<b>たたき台</b>として、必ず自分の言葉に直す。</div>
+
+  <h2>0. まずこれだけ — プロンプトの4要素</h2>
+  <p class="desc">迷ったら、この4つを上から順に埋めるだけ。</p>
+  <table class="four">
+    <tr><th>① 役割</th><td>AIに立場を与える 「あなたは○○です」</td></tr>
+    <tr><th>② 前提</th><td>背景・条件を渡す 「私は○○で、相手は○○」</td></tr>
+    <tr><th>③ 指示</th><td>やってほしいこと 「○○して」</td></tr>
+    <tr><th>④ 形式</th><td>出力の形 「○字で・箇条書きで」</td></tr>
+  </table>
+
+  <h2><span class="lv">LV.1</span>語りかけてみる</h2>
+  <p class="desc">まずは気軽に話しかけて、感触をつかむ。</p>
+
+  <div class="prompt" data-copy="SNS初心者の経営者に、「保存される投稿」とは何かを、たとえ話を使って、小学生にもわかるように説明して。">
+    <div class="ph"><span class="label">やってみる①</span><button class="copy">コピー</button></div>
+    <pre>SNS初心者の経営者に、「保存される投稿」とは何かを、
+たとえ話を使って、小学生にもわかるように説明して。</pre>
+  </div>
+
+  <div class="prompt" data-copy="なるほど。では、私の事業（〔自由に記入〕）の場合、「保存される投稿」の具体例を3つ出して。">
+    <div class="ph"><span class="label">やってみる②（深掘り）</span><button class="copy">コピー</button></div>
+    <pre>なるほど。では、私の事業（<span class="ph-fill">〔自由に記入〕</span>）の場合、
+「保存される投稿」の具体例を3つ出して。</pre>
+  </div>
+  <p class="learn">👉 <b>学び</b>：1回で終わらせず「で、私の場合は？」と返すと、急に自分ごとになる。</p>
+
+  <h2><span class="lv">LV.2</span>4要素で組み立てる</h2>
+  <p class="desc">同じお願いを「雑」と「4要素」で投げて、違いを体感する。</p>
+
+  <div class="prompt" data-copy="うちの宣伝文を書いて。">
+    <div class="ph"><span class="label">Before（雑）</span><button class="copy">コピー</button></div>
+    <pre>うちの宣伝文を書いて。</pre>
+  </div>
+
+  <div class="prompt" data-copy="①役割：あなたはプロのコピーライターです。
+②前提：私は〔事業〕を営み、届けたい相手は〔具体的な人物像〕です。
+③指示：その人の心が動く宣伝文を3案つくってください。
+④形式：各案80字以内・絵文字なし・最後に各案の狙いを1行。">
+    <div class="ph"><span class="label">After（4要素）</span><button class="copy">コピー</button></div>
+    <pre>①役割：あなたはプロのコピーライターです。
+②前提：私は<span class="ph-fill">〔事業〕</span>を営み、届けたい相手は<span class="ph-fill">〔具体的な人物像〕</span>です。
+③指示：その人の心が動く宣伝文を3案つくってください。
+④形式：各案80字以内・絵文字なし・最後に各案の狙いを1行。</pre>
+  </div>
+  <p class="learn">仕上げにAIへ：「BeforeとAfterの差を解説して。私のプロンプトをさらに良くする改善案を1つ教えて。」</p>
+
+  <h2><span class="lv">LV.3</span>AIを“自分の先生”にする</h2>
+  <p class="desc">このシステムの肝。AIを家庭教師・壁打ち相手・お客さん役にして、会話で定着させる。</p>
+
+  <div class="prompt" data-copy="あなたは、私専属の「AI×SNS」家庭教師です。
+今日のテーマは「〔章のタイトル。例：発見→信頼→蓄積〕」。
+
+進め方：
+1. まず、このテーマを3行で簡単に教えてください。
+2. 次に、私に理解度を試す質問を1問ずつ出してください（一度に1問）。
+3. 私の答えに、◎/△/✕ と短いフィードバックを返してください。
+4. 3問終わったら、私の弱点をまとめ、復習用の一言をください。
+
+では、3行の説明からお願いします。">
+    <div class="ph"><span class="label">3-A 家庭教師（どの章でも使える）</span><button class="copy">コピー</button></div>
+    <pre>あなたは、私専属の「AI×SNS」家庭教師です。
+今日のテーマは「<span class="ph-fill">〔章のタイトル。例：発見→信頼→蓄積〕</span>」。
+
+進め方：
+1. まず、このテーマを3行で簡単に教えてください。
+2. 次に、私に理解度を試す質問を1問ずつ出してください（一度に1問）。
+3. 私の答えに、◎/△/✕ と短いフィードバックを返してください。
+4. 3問終わったら、私の弱点をまとめ、復習用の一言をください。
+
+では、3行の説明からお願いします。</pre>
+  </div>
+
+  <div class="prompt" data-copy="あなたは率直な壁打ち相手です。私のSNSのアイデアに、賛成ではなく「もっと良くする質問」を返してください。
+私のアイデア：「〔　　　〕」
+まず、私が見落としていそうな点を3つ質問してください。">
+    <div class="ph"><span class="label">3-B 壁打ち</span><button class="copy">コピー</button></div>
+    <pre>あなたは率直な壁打ち相手です。私のSNSのアイデアに、
+賛成ではなく「もっと良くする質問」を返してください。
+私のアイデア：「<span class="ph-fill">〔　　　〕</span>」
+まず、私が見落としていそうな点を3つ質問してください。</pre>
+  </div>
+
+  <div class="prompt" data-copy="あなたは、私の理想のお客さん（〔人物像を記入〕）です。
+私がこれから投稿文を読み上げます。それを聞いて、「保存する／しない」と、その理由を本音で答えてください。
+では投稿文です：「〔　　　〕」">
+    <div class="ph"><span class="label">3-C ロールプレイ（お客さん役）</span><button class="copy">コピー</button></div>
+    <pre>あなたは、私の理想のお客さん（<span class="ph-fill">〔人物像を記入〕</span>）です。
+私がこれから投稿文を読み上げます。それを聞いて、
+「保存する／しない」と、その理由を本音で答えてください。
+では投稿文です：「<span class="ph-fill">〔　　　〕</span>」</pre>
+  </div>
+
+  <h2><span class="lv">LV.4</span>AIの“嘘”を見抜く</h2>
+  <p class="desc">AIは事実を間違える（ハルシネーション）。鵜呑みにしない筋肉を鍛える。</p>
+
+  <div class="prompt" data-copy="SNSマーケティングについて、もっともらしいけれど「実は間違っている説」を3つ作ってください。
+そのあと、それぞれのどこが間違いかを解説してください。">
+    <div class="ph"><span class="label">嘘あて練習</span><button class="copy">コピー</button></div>
+    <pre>SNSマーケティングについて、もっともらしいけれど
+「実は間違っている説」を3つ作ってください。
+そのあと、それぞれのどこが間違いかを解説してください。</pre>
+  </div>
+  <p class="learn">👉 <b>学び</b>：AIの出力はたたき台。「本当？」「出典は？」「私の業界でも同じ？」と一度疑う。</p>
+
+  <h2>実践プロンプト（よく使う型）</h2>
+  <p class="desc">仕事に直結する3本。〔　〕を埋めてコピー。</p>
+
+  <div class="prompt" data-copy="①役割：あなたはプロのSNS編集者です。
+②前提：私の事業は〔　　　〕、届けたい相手は〔　　　〕。
+③指示：その人が思わず「保存」したくなる投稿文を、切り口を変えて3案ください。
+④形式：各案120字以内・日本語・絵文字なし。各案に「狙い」を1行添える。
+作ったあと、私に1つずつ「ここは響く／弱い」を聞きながら一緒に磨いてください。">
+    <div class="ph"><span class="label">A. 保存される投稿文を3案</span><button class="copy">コピー</button></div>
+    <pre>①役割：あなたはプロのSNS編集者です。
+②前提：私の事業は<span class="ph-fill">〔　　　〕</span>、届けたい相手は<span class="ph-fill">〔　　　〕</span>。
+③指示：その人が思わず「保存」したくなる投稿文を、切り口を変えて3案ください。
+④形式：各案120字以内・日本語・絵文字なし。各案に「狙い」を1行添える。
+作ったあと、私に1つずつ「ここは響く／弱い」を聞きながら一緒に磨いてください。</pre>
+  </div>
+
+  <div class="prompt" data-copy="あなたはバズるショート動画の構成作家です。
+テーマは「〔　　　〕」。最初の2秒で指が止まる「フック（最初の一言）」を20案ください。
+・各案15文字以内
+・煽りすぎ／誇大表現はNG
+20案出したら、あなたのおすすめトップ3と、その理由を教えてください。">
+    <div class="ph"><span class="label">B. 15秒ショートのフックを20案</span><button class="copy">コピー</button></div>
+    <pre>あなたはバズるショート動画の構成作家です。
+テーマは「<span class="ph-fill">〔　　　〕</span>」。最初の2秒で指が止まる「フック（最初の一言）」を20案ください。
+・各案15文字以内
+・煽りすぎ／誇大表現はNG
+20案出したら、あなたのおすすめトップ3と、その理由を教えてください。</pre>
+  </div>
+
+  <div class="prompt" data-copy="あなたは、私の事業の「思い」を言語化してくれる対話コーチです。
+私はSNSやAIを使う前に、まず「誰に・何を・なぜ届けたいか」をはっきりさせたいです。
+
+ルール：
+- 一度にたくさん聞かず、質問を1つずつ投げかけてください。
+- 私の答えを受けて、深掘りの質問を返してください。
+- 最後に、私の「思い」を3行のメッセージにまとめてください。
+
+では、最初の質問からお願いします。">
+    <div class="ph"><span class="label">C. 事業の「思い」を言語化する</span><button class="copy">コピー</button></div>
+    <pre>あなたは、私の事業の「思い」を言語化してくれる対話コーチです。
+私はSNSやAIを使う前に、まず「誰に・何を・なぜ届けたいか」を
+はっきりさせたいです。
+
+ルール：
+- 一度にたくさん聞かず、質問を1つずつ投げかけてください。
+- 私の答えを受けて、深掘りの質問を返してください。
+- 最後に、私の「思い」を3行のメッセージにまとめてください。
+
+では、最初の質問からお願いします。</pre>
+  </div>
+
+  <footer>
+    道具に使われず、道具を使う。<br>
+    出典：JCI NAGOYA SNS戦略部会 講師資料ライブラリ／講師：上岡 賢輔
+  </footer>
+</div>
+
+<div class="toast" id="toast">✓ コピーしました</div>
+
+<script>
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(){
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>toast.classList.remove('show'), 1600);
+  }
+  document.querySelectorAll('.prompt').forEach(card=>{
+    const btn = card.querySelector('.copy');
+    const text = card.getAttribute('data-copy');
+    btn.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(text);
+      }catch(e){
+        const ta=document.createElement('textarea');
+        ta.value=text; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); ta.remove();
+      }
+      btn.textContent='✓ コピー済'; btn.classList.add('done');
+      showToast();
+      setTimeout(()=>{btn.textContent='コピー'; btn.classList.remove('done');}, 1600);
+    });
+  });
+</script>
+</body>
+</html>
