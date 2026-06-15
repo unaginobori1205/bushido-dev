@@ -68,12 +68,14 @@
 
 ## ⑦ Market（市場）
 
-> Japan's inbound tourism has reached record highs, with tens of millions of annual visitors and record visitor spending, and government targets aiming far higher by 2030. High-value, experience-seeking and HNW travelers — especially from Singapore and ASEAN — are the fastest-growing, highest-margin segment, and they specifically want authentic, in-depth, personalized experiences rather than mass tourism.
+> Japan's inbound tourism is at an all-time high. In 2025, Japan welcomed a record **42.7 million** international visitors — the first time ever above 40 million (+15.8% YoY) — and visitor spending hit a record **¥9.5 trillion** (+16.4% YoY, ~¥229,000 per visitor). The government targets **60 million visitors and ¥15 trillion in spending by 2030**, with an explicit shift from quantity to quality: 40 million repeat visitors and 130 million overnight stays in regional areas.
+>
+> This national pivot toward high-value, repeat, regional, experience-driven tourism is exactly the wave BUSHIDO AI rides. HNW and experience-seeking travelers — especially from Singapore and ASEAN — are the fastest-growing, highest-margin segment, and they want authentic, in-depth, personalized experiences, not mass tourism.
 >
 > Beachhead: inbound travelers, schools, and corporates from Singapore & ASEAN.
 > Expansion: all of Japan, then Japanese-culture programs delivered into ASEAN markets.
 >
-> 【要記入：最新の訪日外客数・消費額の公式数字を確認して挿入（JNTO / 観光庁）】
+> Source: JNTO / Japan Tourism Agency (JTA), 2025 figures; "Tourism Nation Promotion Basic Plan" 2030 targets.
 
 ---
 
