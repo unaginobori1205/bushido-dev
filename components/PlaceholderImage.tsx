@@ -7,12 +7,16 @@ import Image from "next/image";
  *
  * TODO(assets): As real photos arrive, point the slot at the new file here.
  * Provided photos (commit to /public/images with these exact names):
- *   hero.jpg     — kyudo dojo, group lesson (wide)            ✅ wired
- *   kyudo.jpg    — kyudo one-on-one instruction               ✅ wired
- *   zen.jpg      — seated meditation, Honmaru Palace           ✅ wired
- *   shrine.jpg   — couple in wedding kimono at a shrine        ✅ wired
- *   samurai.jpg  — samurai armor at Nagoya Castle              ✅ wired (Corporates)
- * Still placeholders (awaiting real photos): tea, calligraphy, founder.
+ *   hero.jpg        — kyudo dojo, group lesson (wide)
+ *   kyudo.jpg       — kyudo one-on-one instruction
+ *   tea.jpg         — tea ceremony
+ *   calligraphy.jpg — calligraphy
+ *   zen.jpg         — seated meditation
+ *   shrine.jpg      — couple in wedding kimono at a shrine
+ *   samurai.jpg     — samurai armor at Nagoya Castle (Corporates block)
+ *   founder.jpg     — portrait of Kensuke Ueoka (上岡賢輔.jpg)
+ * All 8 are wired. Until a .jpg is committed the live site 404s that slot;
+ * `npm run preview` falls back to the matching .svg placeholder.
  */
 export type ImageSlot =
   | "hero"
@@ -28,13 +32,13 @@ export type ImageSlot =
 const SLOTS: Record<ImageSlot, string> = {
   hero: "/images/hero.jpg",
   kyudo: "/images/kyudo.jpg",
+  tea: "/images/tea.jpg",
+  calligraphy: "/images/calligraphy.jpg",
   zen: "/images/zen.jpg",
   shrine: "/images/shrine.jpg",
   samurai: "/images/samurai.jpg",
-  // Awaiting real photography — elegant generated placeholders for now.
-  tea: "/images/tea.svg",
-  calligraphy: "/images/calligraphy.svg",
-  founder: "/images/founder.svg",
+  founder: "/images/founder.jpg",
+  // Decorative only — no real photo planned; keeps the generated placeholder.
   sakura: "/images/sakura.svg",
 };
 
