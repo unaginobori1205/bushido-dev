@@ -59,6 +59,17 @@ export interface TimelineItem {
   body: string;
 }
 
+export interface AiAgent {
+  /** Stable key, also used to pick the agent's icon. */
+  key: string;
+  name: string;
+  role: string;
+  /** Short tagline shown on the card before it is expanded. */
+  summary: string;
+  /** The concrete tasks this AI "staff member" handles. */
+  tasks: string[];
+}
+
 export interface SiteContent {
   nav: {
     links: { label: string; href: string }[];
@@ -89,6 +100,14 @@ export interface SiteContent {
     h2: string;
     tagline: string;
     steps: Step[];
+  };
+  aiTeam: {
+    eyebrow: string;
+    h2: string;
+    intro: string;
+    hint: string;
+    tasksLabel: string;
+    agents: AiAgent[];
   };
   experiences: {
     eyebrow: string;
@@ -165,6 +184,7 @@ const en: SiteContent = {
     links: [
       { label: "Problem", href: "#problem" },
       { label: "How it works", href: "#how" },
+      { label: "AI Team", href: "#ai-team" },
       { label: "Experiences", href: "#experiences" },
       { label: "Why BUSHIDO", href: "#why" },
       { label: "Traction", href: "#traction" },
@@ -225,6 +245,87 @@ const en: SiteContent = {
         index: "03",
         title: "Experience trusted, authentic Japan",
         body: "Quality-assured and orchestrated end-to-end, so you step straight into the real thing — nothing lost in translation.",
+      },
+    ],
+  },
+  aiTeam: {
+    eyebrow: "Our AI team",
+    h2: "Meet the AI staff behind every journey.",
+    intro: "BUSHIDO AI runs on a team of specialised AI agents. Each one owns a part of the journey — working alongside our human trust network. Select a member to see what they handle.",
+    hint: "Click a member to see their responsibilities",
+    tasksLabel: "Responsibilities",
+    agents: [
+      {
+        key: "designer",
+        name: "AI Journey Designer",
+        role: "Itinerary architect",
+        summary: "Turns your intent into a coherent, day-by-day journey.",
+        tasks: [
+          "Interprets your purpose, interests, budget, and learning goals",
+          "Builds an optimally paced day-by-day itinerary",
+          "Balances depth, travel time, and rest",
+          "Adapts the plan instantly as your preferences change",
+        ],
+      },
+      {
+        key: "matcher",
+        name: "AI Master Matcher",
+        role: "Talent & trust matching",
+        summary: "Pairs you with the right verified master.",
+        tasks: [
+          "Scores master fit by craft, region, level, and language",
+          "Checks real-time availability and capacity",
+          "Confirms each master's verified status in the network",
+          "Proposes alternatives that protect authenticity",
+        ],
+      },
+      {
+        key: "bridge",
+        name: "AI Culture & Interpreter Bridge",
+        role: "Language & cultural mediation",
+        summary: "Makes sure nothing is lost in translation.",
+        tasks: [
+          "Assigns the right interpreter for the experience",
+          "Prepares cultural-context briefings for both sides",
+          "Provides real-time translation support on the day",
+          "Explains etiquette so guests feel confident, not lost",
+        ],
+      },
+      {
+        key: "logistics",
+        name: "AI Logistics Orchestrator",
+        role: "Transport & scheduling",
+        summary: "Keeps every moving part in sync.",
+        tasks: [
+          "Coordinates transport between venues and masters",
+          "Sequences reservations, timing, and buffers",
+          "Handles changes and last-minute contingencies",
+          "Optimises routes across Nagoya and beyond",
+        ],
+      },
+      {
+        key: "guardian",
+        name: "AI Trust & Quality Guardian",
+        role: "Quality assurance",
+        summary: "Protects authenticity and safety end-to-end.",
+        tasks: [
+          "Verifies partners and monitors quality feedback",
+          "Flags risks before they reach the guest",
+          "Maintains standards across every experience",
+          "Closes the loop with post-experience review",
+        ],
+      },
+      {
+        key: "concierge",
+        name: "AI Concierge",
+        role: "24/7 guest support",
+        summary: "Always on, in your language.",
+        tasks: [
+          "Answers questions any time, before and during the trip",
+          "Handles itinerary changes and special requests",
+          "Provides multilingual, always-on support",
+          "Escalates to a human partner the moment it matters",
+        ],
       },
     ],
   },
@@ -417,6 +518,7 @@ const ja: SiteContent = {
     links: [
       { label: "課題", href: "#problem" },
       { label: "仕組み", href: "#how" },
+      { label: "AIチーム", href: "#ai-team" },
       { label: "体験", href: "#experiences" },
       { label: "強み", href: "#why" },
       { label: "実績", href: "#traction" },
@@ -477,6 +579,87 @@ const ja: SiteContent = {
         index: "03",
         title: "信頼できる本物の日本を体験する",
         body: "品質を保証し、端から端までオーケストレーション。翻訳で失われるものなく、本物へ直接踏み込めます。",
+      },
+    ],
+  },
+  aiTeam: {
+    eyebrow: "私たちのAIチーム",
+    h2: "すべての旅を支えるAI社員たち。",
+    intro: "BUSHIDO AIは、専門特化したAIエージェントのチームで動いています。それぞれが旅の一部を担当し、人の信頼ネットワークと協働します。メンバーを選ぶと、担当業務が表示されます。",
+    hint: "メンバーをクリックすると担当業務が表示されます",
+    tasksLabel: "担当業務",
+    agents: [
+      {
+        key: "designer",
+        name: "AIジャーニーデザイナー",
+        role: "行程の設計者",
+        summary: "あなたの意図を、一貫した日程の旅へと変換します。",
+        tasks: [
+          "目的・興味・予算・学びの目標を読み解く",
+          "最適なペースの日程を一日単位で設計",
+          "深さ・移動時間・休息のバランスを調整",
+          "ご希望の変化に応じて即座にプランを再構成",
+        ],
+      },
+      {
+        key: "matcher",
+        name: "AIマスターマッチング",
+        role: "人材と信頼のマッチング",
+        summary: "最適な検証済みの達人とつなぎます。",
+        tasks: [
+          "技・地域・レベル・言語で達人の適合度を採点",
+          "リアルタイムの空き状況・受入可否を確認",
+          "ネットワーク内の検証済みステータスを確認",
+          "本物らしさを守る代替案を提案",
+        ],
+      },
+      {
+        key: "bridge",
+        name: "AI文化・通訳ブリッジ",
+        role: "言語と文化の橋渡し",
+        summary: "翻訳で何も失われないようにします。",
+        tasks: [
+          "体験に最適な通訳をアサイン",
+          "双方への文化的背景ブリーフィングを準備",
+          "当日のリアルタイム通訳をサポート",
+          "作法を解説し、ゲストが迷わず安心できるように",
+        ],
+      },
+      {
+        key: "logistics",
+        name: "AIロジスティクス",
+        role: "移動とスケジューリング",
+        summary: "すべての可動部を同期させます。",
+        tasks: [
+          "会場と達人の間の移動を調整",
+          "予約・時間・余裕の順序立て",
+          "変更や直前の不測事態に対応",
+          "名古屋および全国の動線を最適化",
+        ],
+      },
+      {
+        key: "guardian",
+        name: "AI品質・信頼ガーディアン",
+        role: "品質保証",
+        summary: "本物らしさと安全を端から端まで守ります。",
+        tasks: [
+          "パートナーを検証し、品質フィードバックを監視",
+          "ゲストに届く前にリスクを検知",
+          "すべての体験で基準を維持",
+          "体験後レビューでループを完結",
+        ],
+      },
+      {
+        key: "concierge",
+        name: "AIコンシェルジュ",
+        role: "24時間ゲストサポート",
+        summary: "いつでも、あなたの言語で。",
+        tasks: [
+          "旅行前・旅行中いつでも質問に回答",
+          "行程変更や特別なご要望に対応",
+          "多言語・常時対応のサポート",
+          "重要な場面では即座に人のパートナーへ引き継ぎ",
+        ],
       },
     ],
   },

@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { SocialProof } from "@/components/SocialProof";
 import { Problem } from "@/components/Problem";
 import { HowItWorks } from "@/components/HowItWorks";
+import { AiTeam } from "@/components/AiTeam";
 import { Experiences } from "@/components/Experiences";
 import { WhyBushido } from "@/components/WhyBushido";
 import { ForWhom } from "@/components/ForWhom";
@@ -26,6 +27,7 @@ export default function HomePage() {
         <SocialProof />
         <Problem />
         <HowItWorks />
+        <AiTeam />
         <Experiences />
         <WhyBushido />
         <ForWhom />

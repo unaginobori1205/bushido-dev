@@ -111,12 +111,13 @@ function render() {
 
   document.getElementById("app").innerHTML = [
     heroSection(t), socialSection(t), problemSection(t), howSection(t),
-    experiencesSection(t), whySection(t), forWhomSection(t), tractionSection(t),
-    visionSection(t), plannerSection(t),
+    aiTeamSection(t), experiencesSection(t), whySection(t), forWhomSection(t),
+    tractionSection(t), visionSection(t), plannerSection(t),
   ].join("");
 
   document.getElementById("footer").innerHTML = footerSection(t);
   bindForm();
+  bindAiTeam();
 }
 
 function heroSection(t){const h=t.hero;return \`
@@ -162,6 +163,24 @@ function howSection(t){const h=t.how;return \`
   <div class="mx-auto max-w-3xl text-center"><p class="eyebrow justify-center">\${esc(h.eyebrow)}</p><h2 class="mt-4 text-3xl font-semibold text-cream sm:text-4xl lg:text-5xl">\${esc(h.h2)}</h2></div>
   <ol class="relative mt-16 grid gap-8 md:grid-cols-3">\${h.steps.map((s)=>\`<li><div class="flex flex-col items-center text-center md:items-start md:text-left"><div class="flex h-16 w-16 items-center justify-center rounded-full border border-gold/40 bg-navy"><span class="font-serif text-2xl font-semibold text-gold">\${esc(s.index)}</span></div><h3 class="mt-5 text-xl font-semibold text-cream">\${esc(s.title)}</h3><p class="mt-3 text-base leading-relaxed text-cream/70">\${esc(s.body)}</p></div></li>\`).join("")}</ol>
   <p class="mt-16 text-center font-serif text-2xl italic text-gold sm:text-3xl">“\${esc(h.tagline)}”</p>
+</div></section>\`;}
+
+function aiTeamSection(t){const a=t.aiTeam;return \`
+<section id="ai-team" class="py-20 sm:py-28"><div class="container-content">
+  <div class="mx-auto max-w-3xl text-center">
+    <p class="eyebrow justify-center">\${esc(a.eyebrow)}</p>
+    <h2 class="mt-4 text-3xl font-semibold text-cream sm:text-4xl lg:text-5xl">\${esc(a.h2)}</h2>
+    <p class="mt-6 text-lg leading-relaxed text-cream/70">\${esc(a.intro)}</p>
+    <p class="mt-3 inline-flex items-center gap-2 text-sm text-gold">👆 \${esc(a.hint)}</p>
+  </div>
+  <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">\${a.agents.map((ag,i)=>\`<li><div class="ai-card card card-hover h-full overflow-hidden" data-i="\${i}">
+    <button type="button" class="ai-btn flex w-full items-start gap-4 p-6 text-left" aria-expanded="false" aria-controls="aip-\${ag.key}">
+      <span class="ai-ico flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-gold/30 text-gold font-serif text-lg">◆</span>
+      <span class="flex-1"><span class="block font-serif text-xl font-semibold text-cream">\${esc(ag.name)}</span><span class="mt-0.5 block text-xs uppercase tracking-wider text-gold/80">\${esc(ag.role)}</span><span class="mt-2 block text-sm leading-relaxed text-cream/65">\${esc(ag.summary)}</span></span>
+      <span class="ai-chev flex-none text-gold transition-transform duration-300"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </button>
+    <div id="aip-\${ag.key}" class="ai-panel grid grid-rows-[0fr] opacity-0 transition-all duration-300"><div class="overflow-hidden"><div class="px-6 pb-6"><p class="mb-3 text-xs font-semibold uppercase tracking-wider text-cream/45">\${esc(a.tasksLabel)}</p><ul class="space-y-2.5">\${ag.tasks.map((tk)=>\`<li class="flex gap-2.5 text-sm leading-relaxed text-cream/80"><span class="mt-1.5 h-1.5 w-1.5 flex-none rotate-45 bg-gold"></span>\${esc(tk)}</li>\`).join("")}</ul></div></div></div>
+  </div></li>\`).join("")}</ul>
 </div></section>\`;}
 
 function experiencesSection(t){const e=t.experiences;return \`
@@ -242,6 +261,34 @@ function bindForm(){
     const p=CONTENT[lang].planner;
     // NOTE: standalone preview has no backend — the live Next.js app POSTs to /api/waitlist.
     document.getElementById("planner-card").innerHTML='<div class="flex flex-col items-center py-8 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 text-gold text-2xl">✓</span><h3 class="mt-5 font-serif text-2xl font-semibold text-cream">'+esc(p.success.title)+'</h3><p class="mt-2 max-w-md text-cream/70">'+esc(p.success.body)+'</p></div>';
+  });
+}
+
+function bindAiTeam(){
+  const cards=[...document.querySelectorAll(".ai-card")];
+  cards.forEach((card)=>{
+    const btn=card.querySelector(".ai-btn");
+    const panel=card.querySelector(".ai-panel");
+    const chev=card.querySelector(".ai-chev");
+    const ico=card.querySelector(".ai-ico");
+    btn.addEventListener("click",()=>{
+      const isOpen=btn.getAttribute("aria-expanded")==="true";
+      // single-open accordion: close all first
+      cards.forEach((c)=>{
+        c.querySelector(".ai-btn").setAttribute("aria-expanded","false");
+        c.querySelector(".ai-panel").className="ai-panel grid grid-rows-[0fr] opacity-0 transition-all duration-300";
+        c.querySelector(".ai-chev").style.transform="";
+        c.querySelector(".ai-ico").className="ai-ico flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-gold/30 text-gold font-serif text-lg";
+        c.className="ai-card card card-hover h-full overflow-hidden";
+      });
+      if(!isOpen){
+        btn.setAttribute("aria-expanded","true");
+        panel.className="ai-panel grid grid-rows-[1fr] opacity-100 transition-all duration-300";
+        chev.style.transform="rotate(180deg)";
+        ico.className="ai-ico flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-gold bg-gold/15 text-gold font-serif text-lg";
+        card.className="ai-card card h-full overflow-hidden border-gold/50 bg-white/[0.05]";
+      }
+    });
   });
 }
 
