@@ -75,6 +75,11 @@ const motifs = {
     <circle cx="640" cy="380" r="130" fill="none" stroke="${CREAM}" stroke-width="2.5" opacity="0.7"/>
     <path d="M430 760 q210 -240 420 0" fill="none" stroke="${CREAM}" stroke-width="2.5" opacity="0.7"/>
     <circle cx="640" cy="380" r="200" fill="none" stroke="${GOLD}" stroke-width="1.5" opacity="0.4"/>`,
+  samurai: () => `
+    <path d="M520 360 q120 -90 240 0 l30 60 q-150 70 -300 0 z" fill="none" stroke="${CREAM}" stroke-width="3" opacity="0.85"/>
+    <path d="M560 300 q80 -150 -40 -210 M720 300 q-80 -150 40 -210" fill="none" stroke="${GOLD}" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M540 420 q100 60 200 0 l-20 160 q-80 50 -160 0 z" fill="none" stroke="${CREAM}" stroke-width="2.5" opacity="0.7"/>
+    <line x1="640" y1="430" x2="640" y2="560" stroke="${GOLD}" stroke-width="1.6" opacity="0.6"/>`,
   sakura: () => `
     ${Array.from({ length: 7 })
       .map((_, i) => {
@@ -92,16 +97,21 @@ const motifs = {
       .join("")}`,
 };
 
+// Escape text for safe embedding in XML/SVG (raw & < > are invalid).
+const xml = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
 function makeSvg(id, label, w, h) {
   const motif = motifs[id] ? motifs[id]() : "";
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 1280 900" role="img" aria-label="${label}">
+  const safe = xml(label);
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 1280 900" role="img" aria-label="${safe}">
   ${defs(id)}
   <rect width="1280" height="900" fill="url(#bg-${id})"/>
   <rect width="1280" height="900" fill="url(#glow-${id})"/>
   ${motif}
   <rect width="1280" height="900" fill="transparent" filter="url(#grain-${id})"/>
   <rect x="1" y="1" width="1278" height="898" fill="none" stroke="${GOLD}" stroke-width="1" opacity="0.25"/>
-  <text x="60" y="840" font-family="Georgia, serif" font-size="34" fill="${CREAM}" opacity="0.55">${label}</text>
+  <text x="60" y="840" font-family="Georgia, serif" font-size="34" fill="${CREAM}" opacity="0.55">${safe}</text>
   <text x="60" y="876" font-family="Helvetica, Arial, sans-serif" font-size="18" letter-spacing="3" fill="${GOLD}" opacity="0.7">BUSHIDO AI · PLACEHOLDER</text>
 </svg>`;
 }
@@ -115,6 +125,7 @@ const slots = [
   ["shrine", "Shrine Culture"],
   ["founder", "Kensuke Ueoka, Founder & CEO"],
   ["sakura", "Cherry blossoms"],
+  ["samurai", "Samurai armor — bushido & culture training"],
 ];
 
 for (const [id, label] of slots) {

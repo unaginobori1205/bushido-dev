@@ -29,14 +29,34 @@ const dataUrl =
   "data:text/javascript;base64," + Buffer.from(js).toString("base64");
 const { content } = await import(dataUrl);
 
-// --- 2. Inline placeholder SVGs as data URIs ---------------------------------
+// --- 2. Inline imagery as data URIs (prefer real photos over placeholders) ---
 const imgDir = resolve(root, "public/images");
+const MIME = {
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
+  ".svg": "image/svg+xml",
+};
+// Real photos win over the .svg placeholder for the same slot name.
+const PRIORITY = { ".jpg": 3, ".jpeg": 3, ".png": 3, ".webp": 3, ".svg": 1 };
 const images = {};
+const chosenExt = {};
 for (const file of readdirSync(imgDir)) {
-  if (!file.endsWith(".svg")) continue;
-  const svg = readFileSync(resolve(imgDir, file), "utf8");
-  images[basename(file, ".svg")] =
-    "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  const ext = file.slice(file.lastIndexOf(".")).toLowerCase();
+  if (!MIME[ext]) continue;
+  const slot = basename(file, ext);
+  if (chosenExt[slot] && PRIORITY[chosenExt[slot]] >= PRIORITY[ext]) continue;
+  if (ext === ".svg") {
+    images[slot] =
+      "data:image/svg+xml;utf8," +
+      encodeURIComponent(readFileSync(resolve(imgDir, file), "utf8"));
+  } else {
+    images[slot] =
+      `data:${MIME[ext]};base64,` +
+      readFileSync(resolve(imgDir, file)).toString("base64");
+  }
+  chosenExt[slot] = ext;
 }
 
 // --- 3. Emit the self-contained HTML -----------------------------------------
@@ -159,7 +179,7 @@ function whySection(t){const w=t.why;return \`
 function forWhomSection(t){const f=t.forWhom;return \`
 <section id="for-whom" class="py-20 sm:py-28"><div class="container-content">
   <div class="mx-auto max-w-3xl text-center"><p class="eyebrow justify-center">\${esc(f.eyebrow)}</p><h2 class="mt-4 text-3xl font-semibold text-cream sm:text-4xl lg:text-5xl">\${esc(f.h2)}</h2></div>
-  <div class="mt-14 grid gap-6 sm:grid-cols-2">\${f.blocks.map((b)=>\`<article class="card card-hover flex h-full flex-col p-7"><h3 class="font-serif text-2xl font-semibold text-cream">\${esc(b.title)}</h3><p class="mt-3 flex-1 text-base leading-relaxed text-cream/70">\${esc(b.value)}</p><a href="#planner" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-soft">\${esc(b.cta)} →</a></article>\`).join("")}</div>
+  <div class="mt-14 grid items-start gap-6 sm:grid-cols-2">\${f.blocks.map((b)=>\`<article class="card card-hover flex h-full flex-col overflow-hidden">\${b.slot&&IMAGES[b.slot]?\`<div class="relative aspect-[16/9] overflow-hidden"><img src="\${IMAGES[b.slot]}" alt="\${esc(b.title)}" class="h-full w-full object-cover" /><div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy-deep/80 to-transparent"></div></div>\`:""}<div class="flex flex-1 flex-col p-7"><h3 class="font-serif text-2xl font-semibold text-cream">\${esc(b.title)}</h3><p class="mt-3 flex-1 text-base leading-relaxed text-cream/70">\${esc(b.value)}</p><a href="#planner" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-soft">\${esc(b.cta)} →</a></div></article>\`).join("")}</div>
 </div></section>\`;}
 
 function tractionSection(t){const tr=t.traction;return \`

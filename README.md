@@ -80,12 +80,22 @@ npm run lint
 
 ## ✅ Replace before launch (search the codebase for `TODO`)
 
-1. **Photography / video** — `public/images/*.svg` are placeholders. Drop real
-   licensed photos (kyudo, tea room, calligraphy, Zen, shrine, founder portrait,
-   hero) into `public/images/` using the same slot keys, then point
-   `SLOTS` in `components/PlaceholderImage.tsx` at the new files and remove
-   `dangerouslyAllowSVG` from `next.config.mjs`. The hero can become a looping
-   `<video>` (see TODO in `components/Hero.tsx`).
+1. **Photography / video** — drop real photos into `public/images/` using these
+   exact filenames (slots already wired in `components/PlaceholderImage.tsx`):
+   | File | Used for | Status |
+   | --- | --- | --- |
+   | `hero.jpg` | Hero — kyudo dojo group lesson | wired ✅ |
+   | `kyudo.jpg` | Kyudo card — one-on-one instruction | wired ✅ |
+   | `zen.jpg` | Zen card — seated meditation | wired ✅ |
+   | `shrine.jpg` | Shrine card — wedding kimono | wired ✅ |
+   | `samurai.jpg` | Corporates block — armor at Nagoya Castle | wired ✅ |
+   | `tea.svg` · `calligraphy.svg` · `founder.svg` | Tea / Calligraphy / Founder | placeholder — awaiting real photos |
+
+   Until a real `*.jpg` is present those slots 404 on the live site; regenerate
+   `preview.html` with `npm run preview`, which falls back to the matching
+   `*.svg` placeholder. Once all real photos are in, remove `dangerouslyAllowSVG`
+   from `next.config.mjs`. The hero can become a looping `<video>` (see TODO in
+   `components/Hero.tsx`).
 2. **Partner logos** — `components/SocialProof.tsx` renders text labels. Swap in
    real monochrome logos (Nagoya Inbound Summit, Nihon Ryoko, hotels, government,
    media).

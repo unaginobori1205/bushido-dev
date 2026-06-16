@@ -1,10 +1,18 @@
 import Image from "next/image";
 
 /**
- * Named image slots. Each maps to /public/images/<slot>.svg today.
+ * Named image slots. Slots that have real photography point at the dropped-in
+ * file (.jpg); slots still awaiting a real photo point at the generated
+ * /public/images/<slot>.svg placeholder.
  *
- * TODO(assets): Drop real photography into /public/images using these exact
- * keys (e.g. hero.jpg) and update `SLOTS` below to point at the new file.
+ * TODO(assets): As real photos arrive, point the slot at the new file here.
+ * Provided photos (commit to /public/images with these exact names):
+ *   hero.jpg     — kyudo dojo, group lesson (wide)            ✅ wired
+ *   kyudo.jpg    — kyudo one-on-one instruction               ✅ wired
+ *   zen.jpg      — seated meditation, Honmaru Palace           ✅ wired
+ *   shrine.jpg   — couple in wedding kimono at a shrine        ✅ wired
+ *   samurai.jpg  — samurai armor at Nagoya Castle              ✅ wired (Corporates)
+ * Still placeholders (awaiting real photos): tea, calligraphy, founder.
  */
 export type ImageSlot =
   | "hero"
@@ -13,16 +21,19 @@ export type ImageSlot =
   | "calligraphy"
   | "zen"
   | "shrine"
+  | "samurai"
   | "founder"
   | "sakura";
 
 const SLOTS: Record<ImageSlot, string> = {
-  hero: "/images/hero.svg",
-  kyudo: "/images/kyudo.svg",
+  hero: "/images/hero.jpg",
+  kyudo: "/images/kyudo.jpg",
+  zen: "/images/zen.jpg",
+  shrine: "/images/shrine.jpg",
+  samurai: "/images/samurai.jpg",
+  // Awaiting real photography — elegant generated placeholders for now.
   tea: "/images/tea.svg",
   calligraphy: "/images/calligraphy.svg",
-  zen: "/images/zen.svg",
-  shrine: "/images/shrine.svg",
   founder: "/images/founder.svg",
   sakura: "/images/sakura.svg",
 };

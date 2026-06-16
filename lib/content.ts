@@ -49,6 +49,8 @@ export interface AudienceBlock {
   title: string;
   value: string;
   cta: string;
+  /** Optional image slot key — renders a photo header on that card. */
+  slot?: string;
 }
 
 export interface TimelineItem {
@@ -313,6 +315,7 @@ const en: SiteContent = {
         title: "Corporates",
         value: "Bushido and culture-based leadership training — discipline, focus, and presence, taught by real masters.",
         cta: "Explore training",
+        slot: "samurai",
       },
       {
         title: "Masters & Regional Partners",
@@ -564,6 +567,7 @@ const ja: SiteContent = {
         title: "企業",
         value: "武士道と文化に基づくリーダーシップ研修 — 規律、集中、所作を本物の達人が伝えます。",
         cta: "研修を見る",
+        slot: "samurai",
       },
       {
         title: "達人 ・ 地域パートナー",
