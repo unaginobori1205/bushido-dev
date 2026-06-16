@@ -30,3 +30,6 @@ next-env.d.ts
 
 # local data (waitlist submissions written by the dev API route)
 /data/waitlist.json
+
+# temporary build artifacts from scripts/gen-preview.mjs
+/.preview.*
