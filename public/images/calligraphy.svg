@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" role="img" aria-label="Calligraphy">
+  
+  <defs>
+    <linearGradient id="bg-calligraphy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1320"/>
+      <stop offset="0.55" stop-color="#0F1B2D"/>
+      <stop offset="1" stop-color="#0A1320"/>
+    </linearGradient>
+    <radialGradient id="glow-calligraphy" cx="0.7" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#C9A24B" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#C9A24B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain-calligraphy">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.04"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="900" fill="url(#bg-calligraphy)"/>
+  <rect width="1280" height="900" fill="url(#glow-calligraphy)"/>
+  
+    <path d="M360 230 C520 360 540 520 720 640" fill="none" stroke="#F4ECDD" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+    <path d="M500 300 C620 380 600 520 540 660" fill="none" stroke="#C9A24B" stroke-width="7" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="760" cy="690" r="14" fill="#F4ECDD" opacity="0.7"/>
+  <rect width="1280" height="900" fill="transparent" filter="url(#grain-calligraphy)"/>
+  <rect x="1" y="1" width="1278" height="898" fill="none" stroke="#C9A24B" stroke-width="1" opacity="0.25"/>
+  <text x="60" y="840" font-family="Georgia, serif" font-size="34" fill="#F4ECDD" opacity="0.55">Calligraphy</text>
+  <text x="60" y="876" font-family="Helvetica, Arial, sans-serif" font-size="18" letter-spacing="3" fill="#C9A24B" opacity="0.7">BUSHIDO AI · PLACEHOLDER</text>
+</svg>

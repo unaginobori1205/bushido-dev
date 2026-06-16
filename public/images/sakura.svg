@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" role="img" aria-label="Cherry blossoms">
+  
+  <defs>
+    <linearGradient id="bg-sakura" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1320"/>
+      <stop offset="0.55" stop-color="#0F1B2D"/>
+      <stop offset="1" stop-color="#0A1320"/>
+    </linearGradient>
+    <radialGradient id="glow-sakura" cx="0.7" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#C9A24B" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#C9A24B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain-sakura">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.04"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="900" fill="url(#bg-sakura)"/>
+  <rect width="1280" height="900" fill="url(#glow-sakura)"/>
+  
+    <g transform="translate(200 200)" opacity="0.7">
+        <ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(0)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(72)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(144)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(216)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(288)"/>
+        <circle r="6" fill="#F4ECDD"/></g><g transform="translate(370 380)" opacity="0.7">
+        <ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(0)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(72)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(144)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(216)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(288)"/>
+        <circle r="6" fill="#F4ECDD"/></g><g transform="translate(460 560)" opacity="0.7">
+        <ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(0)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(72)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(144)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(216)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(288)"/>
+        <circle r="6" fill="#F4ECDD"/></g><g transform="translate(630 200)" opacity="0.7">
+        <ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(0)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(72)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(144)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(216)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(288)"/>
+        <circle r="6" fill="#F4ECDD"/></g><g transform="translate(720 380)" opacity="0.7">
+        <ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(0)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(72)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(144)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(216)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(288)"/>
+        <circle r="6" fill="#F4ECDD"/></g><g transform="translate(890 560)" opacity="0.7">
+        <ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(0)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(72)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(144)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(216)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(288)"/>
+        <circle r="6" fill="#F4ECDD"/></g><g transform="translate(980 200)" opacity="0.7">
+        <ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(0)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(72)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(144)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(216)"/><ellipse cx="0" cy="-26" rx="13" ry="24" fill="#C9A24B" opacity="0.5" transform="rotate(288)"/>
+        <circle r="6" fill="#F4ECDD"/></g>
+  <rect width="1280" height="900" fill="transparent" filter="url(#grain-sakura)"/>
+  <rect x="1" y="1" width="1278" height="898" fill="none" stroke="#C9A24B" stroke-width="1" opacity="0.25"/>
+  <text x="60" y="840" font-family="Georgia, serif" font-size="34" fill="#F4ECDD" opacity="0.55">Cherry blossoms</text>
+  <text x="60" y="876" font-family="Helvetica, Arial, sans-serif" font-size="18" letter-spacing="3" fill="#C9A24B" opacity="0.7">BUSHIDO AI · PLACEHOLDER</text>
+</svg>

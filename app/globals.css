@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor jumps so sections aren't hidden behind the fixed nav. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-navy text-cream font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+    text-wrap: balance;
+  }
+
+  /* Visible, on-brand focus ring for keyboard users. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-navy;
+  }
+
+  ::selection {
+    background-color: rgba(201, 162, 75, 0.35);
+    color: #f4ecdd;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-gold;
+  }
+
+  /* Primary gold CTA. */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy-deep
+      transition-all duration-300 hover:bg-gold-soft hover:shadow-[0_8px_30px_rgba(201,162,75,0.35)]
+      focus-visible:ring-gold;
+  }
+
+  /* Outlined secondary CTA. */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full border border-cream/30 px-6 py-3 text-sm font-semibold
+      text-cream transition-all duration-300 hover:border-gold hover:text-gold;
+  }
+
+  .card {
+    @apply rounded-2xl border border-cream/10 bg-white/[0.03] backdrop-blur-sm transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-gold/40 hover:bg-white/[0.05]
+      hover:shadow-[0_18px_50px_-20px_rgba(0,0,0,0.7)];
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent;
+  }
+}
