@@ -20,9 +20,13 @@ LINEで「愛、◯◯して」と頼むと、愛（Claude）が働いて返し�
 1. [console.anthropic.com](https://console.anthropic.com/) → API Keys → 作成して控える ＝ `ANTHROPIC_API_KEY`
 
 ### 3. n8n に取り込む
-1. n8nの環境変数に `ANTHROPIC_API_KEY` と `LINE_CHANNEL_ACCESS_TOKEN` を設定
-   （n8n Cloud等で環境変数が使えない場合は、各ノードのヘッダーに直接トークンを入れるか、Credentialsを使う）
-2. `n8n-workflow.json` を **Workflows → Import from File** で取り込む
+1. `n8n-workflow.json` を **⋮（三点メニュー）→ Import from File** で取り込む
+2. トークンを設定する（環境による）
+   - **self-hosted**：環境変数に `ANTHROPIC_API_KEY` と `LINE_CHANNEL_ACCESS_TOKEN` を設定（ワークフローは `$env` 参照済み）
+   - **n8n Cloud**：環境変数（`$env`）は使えない。インポート後に値を直接書き換える
+     - 「愛（Claude）」ノード → Headers の `x-api-key` を `={{ $env.ANTHROPIC_API_KEY }}` から実際の `sk-ant-...` に
+     - 「LINE返信」ノード → Headers の `Authorization` を `=Bearer {{ $env.LINE_CHANNEL_ACCESS_TOKEN }}` から `Bearer 〈LINEトークン〉` に
+     - （より安全にするなら Credentials の Header Auth を使う）
 3. 「愛（Claude）」ノードの `system` を `愛_persona.md` の本文に差し替え（より丁寧にしたい場合）
 4. ワークフローを **Active** にして、「LINE受信」ノードの **Production Webhook URL** をコピー
 
