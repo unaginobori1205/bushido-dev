@@ -37,7 +37,8 @@ const SLOTS: Record<ImageSlot, string> = {
   zen: "/images/zen.jpg",
   shrine: "/images/shrine.jpg",
   samurai: "/images/samurai.jpg",
-  founder: "/images/founder.jpg",
+  // Awaiting a real portrait of the founder — placeholder for now.
+  founder: "/images/founder.svg",
   // Decorative only — no real photo planned; keeps the generated placeholder.
   sakura: "/images/sakura.svg",
 };
