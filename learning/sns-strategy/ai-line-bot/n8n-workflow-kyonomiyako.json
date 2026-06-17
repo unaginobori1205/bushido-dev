@@ -1,0 +1,70 @@
+{
+  "name": "京の都 相談AI (LINE / 省コスト)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kyonomiyako",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "11111111-1111-4111-8111-aaaaaaaaaaaa",
+      "name": "LINE受信",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "kyonomiyako"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "ここにsk-antキーを貼る" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-haiku-4-5-20251001\",\n  \"max_tokens\": 800,\n  \"system\": \"あなたは『グループホーム京の都』の相談窓口AIです。福祉サービスの利用を検討する方やご家族の最初の相談に、やさしく丁寧に対応します。役割：グループホームや福祉サービスの一般的な質問（利用の流れ・見学体験・暮らしのイメージ・よくある質問）にわかりやすく答え、次の一歩（見学予約・スタッフ相談・行政や相談支援事業所の案内）につなぐ。必ず守るルール：あなたは情報案内役で診断・医療・法律・お金の最終判断はしない、個別の判断はスタッフや主治医・相談支援専門員・市区町村窓口に確認するよう必ず案内する／料金・空き状況・制度の詳細など確証のないことは断定せず『最新は京の都スタッフにご確認ください』と添える／緊急時（体調急変・事故・命の危険）は救急119や直接連絡を優先するよう案内する／病歴など機微な個人情報はここに書かないようやさしく促し復唱も保存もしない／差別や偏見のない尊厳を大切にした言葉づかいで、やさしく簡潔に安心できるトーンで答える。【京の都の基礎情報】提供サービス・対象・連絡先・受付時間・よくある質問はスタッフが設定。不明な点は無理に答えずスタッフ確認を案内すること。\",\n  \"messages\": [\n    { \"role\": \"user\", \"content\": {{ JSON.stringify($json.body.events[0].message.text) }} }\n  ]\n}",
+        "options": {}
+      },
+      "id": "22222222-2222-4222-8222-bbbbbbbbbbbb",
+      "name": "京の都AI（Claude Haiku）",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer ここにLINEトークンを貼る" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"replyToken\": {{ JSON.stringify($('LINE受信').item.json.body.events[0].replyToken) }},\n  \"messages\": [ { \"type\": \"text\", \"text\": {{ JSON.stringify($json.content[0].text) }} } ]\n}",
+        "options": {}
+      },
+      "id": "33333333-3333-4333-8333-cccccccccccc",
+      "name": "LINE返信",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [800, 300]
+    }
+  ],
+  "connections": {
+    "LINE受信": { "main": [[ { "node": "京の都AI（Claude Haiku）", "type": "main", "index": 0 } ]] },
+    "京の都AI（Claude Haiku）": { "main": [[ { "node": "LINE返信", "type": "main", "index": 0 } ]] }
+  },
+  "settings": {},
+  "active": false
+}
