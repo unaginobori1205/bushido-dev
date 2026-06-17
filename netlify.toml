@@ -1,0 +1,19 @@
+# Netlify configuration for the full BUSHIDO AI site (Next.js App Router).
+#
+# Use this when you connect the GitHub repo to Netlify ("Add new site →
+# Import from Git"). The official Next.js plugin enables SSR, the
+# /api/waitlist route, next/image optimization, and SEO routes.
+#
+# (If you instead just drag-drop static-export/index.html onto
+#  https://app.netlify.com/drop, you do NOT need this file — that path is a
+#  zero-build static deploy with no server-side form storage.)
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"

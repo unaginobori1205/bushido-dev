@@ -110,6 +110,27 @@ npm run lint
    `app/layout.tsx`.
 6. **Copy** — all wording lives in `lib/content.ts` (`en` / `ja`). Edit there only.
 
+## Deploy to Netlify
+
+Two options:
+
+**A. Instant static drop (no build, no account login needed)**
+1. Grab `static-export/index.html` (a fully self-contained single file — CSS,
+   JS, and all images inlined).
+2. Go to <https://app.netlify.com/drop> and drag the file in.
+3. It's live in seconds. The JP/EN toggle, AI-team accordion, and the form's
+   success state all work. Note: the form is demo-only here (no server storage).
+   Regenerate this file anytime with `npm run preview && cp preview.html
+   static-export/index.html`.
+
+**B. Full Next.js site via Git (recommended for production)**
+1. Push this repo to GitHub (already done on the working branch).
+2. On Netlify: **Add new site → Import an existing project** → pick the repo.
+3. `netlify.toml` is already configured (`@netlify/plugin-nextjs`), so SSR, the
+   `/api/waitlist` lead-capture route, `next/image` optimization, and the
+   sitemap/robots/OG routes all work. No manual build settings needed.
+4. Set any env vars (e.g. `WAITLIST_FORWARD_URL`) under Site settings → Env.
+
 ## Accessibility & performance notes
 
 - Semantic landmarks (`header`/`main`/`footer`/`nav`/`section`), labelled form
