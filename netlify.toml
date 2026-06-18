@@ -1,0 +1,5 @@
+# Netlify deploy config for the hydrogen LP
+# Publishes the static LP in /lp as the site root.
+[build]
+  publish = "lp"
+  command = ""

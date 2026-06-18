@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>水素吸引サービス 導入プラン｜カーサカラー オーナー様向け</title>
+<meta name="description" content="カラー専門店の待ち時間を収益に変える。Suifeel高濃度水素吸入器をレンタルで低リスク導入。週5日・1台2席からの具体的な事業プランとシミュレーション。" />
+<style>
+  :root{
+    --ink:#16243a; --sub:#5a6b82; --line:#e6ebf2;
+    --brand:#0a8a8a; --brand2:#16b8a6; --accent:#ff7a59;
+    --bg:#f6f9fb; --card:#ffffff; --gold:#c9a227;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:var(--bg);line-height:1.75;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  h2{font-size:clamp(22px,4vw,32px);line-height:1.3;margin-bottom:10px}
+  h2 .lead{display:block;font-size:14px;color:var(--brand);letter-spacing:.12em;font-weight:700;margin-bottom:6px}
+  section{padding:64px 0}
+  .muted{color:var(--sub)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-weight:800;letter-spacing:.02em}
+  .logo span{color:var(--brand)}
+  .nav a.cta{background:var(--accent);color:#fff;padding:9px 16px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px}
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg,#063b4a 0%,#0a8a8a 55%,#16b8a6 100%);color:#fff;padding:84px 0 72px}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.06em;margin-bottom:18px}
+  .hero h1{font-size:clamp(28px,6vw,48px);line-height:1.25;font-weight:800;letter-spacing:.01em}
+  .hero h1 em{font-style:normal;color:#ffe27a}
+  .hero p.sub{margin-top:18px;font-size:clamp(15px,2.4vw,18px);opacity:.95;max-width:680px}
+  .hero .btns{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:800;border-radius:999px;padding:14px 26px;font-size:15px}
+  .btn-primary{background:#fff;color:var(--brand)}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+  .hero .kpis{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:680px}
+  .kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:16px}
+  .kpi b{display:block;font-size:clamp(20px,4vw,28px);font-weight:800;color:#ffe27a}
+  .kpi small{opacity:.9;font-size:12px}
+
+  /* Cards / grid */
+  .grid{display:grid;gap:18px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 6px 24px rgba(20,40,70,.04)}
+  .card h3{font-size:18px;margin-bottom:8px}
+  .icon{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+
+  /* Problem */
+  .prob{background:#fff}
+  .prob ul{list-style:none}
+  .prob li{padding-left:30px;position:relative;margin-bottom:10px}
+  .prob li::before{content:"✓";position:absolute;left:0;top:0;color:var(--brand);font-weight:800}
+
+  /* Plan timeline */
+  .phase{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start;border-left:3px solid var(--brand2);padding:0 0 26px 22px;margin-left:8px;position:relative}
+  .phase::before{content:"";position:absolute;left:-9px;top:4px;width:15px;height:15px;border-radius:50%;background:var(--brand);border:3px solid #fff;box-shadow:0 0 0 2px var(--brand)}
+  .phase .when{font-weight:800;color:var(--brand);font-size:15px}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line);font-size:14px}
+  th,td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line)}
+  thead th{background:#eef6f6;color:var(--ink);font-weight:800}
+  tbody tr:last-child td{border-bottom:none}
+  td.r,th.r{text-align:right}
+  .hot{color:var(--accent);font-weight:800}
+
+  /* sim cards */
+  .sim{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .sim .card{text-align:center}
+  .sim .big{font-size:26px;font-weight:800;color:var(--brand)}
+  .sim .plus{color:#1c9c63}
+  .badge{display:inline-block;background:#eef6f6;color:var(--brand);font-weight:800;font-size:12px;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+
+  /* steps */
+  .steps{counter-reset:s;display:grid;gap:14px}
+  .step{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+  .step .n{counter-increment:s;width:44px;height:44px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .step .n::before{content:counter(s)}
+
+  /* CTA */
+  .ctaSec{background:linear-gradient(135deg,#063b4a,#0a8a8a);color:#fff;text-align:center}
+  .ctaSec h2{color:#fff}
+  .ctaSec .btn-primary{margin-top:18px}
+  .contact{margin-top:16px;font-size:15px;opacity:.95}
+
+  /* compliance / footer */
+  .note{background:#fff7ed;border:1px solid #ffe2c7;border-radius:14px;padding:18px 20px;font-size:13px;color:#7a4706}
+  footer{background:#0c1722;color:#9fb0c2;padding:34px 0;font-size:13px}
+  footer a{color:#9fb0c2}
+
+  @media(max-width:760px){
+    .g3,.g2,.sim,.hero .kpis{grid-template-columns:1fr}
+    .phase{grid-template-columns:1fr}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">CASA COLOR × <span>H₂ 水素吸引</span></div>
+    <a class="cta" href="#contact">導入を相談する</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="tag">カーサカラー オーナー様向け 導入プラン</span>
+    <h1>カラーの<em>「待ち時間」</em>を、<br>そのまま<em>利益</em>に変える。</h1>
+    <p class="sub">医療レベルの高濃度水素吸入器「Suifeel」を<strong>レンタルで低リスク導入</strong>。施術の待ち時間・放置時間にお客様へ水素吸引をご提供し、客単価・滞在価値・リピートを引き上げます。週5日・1台2席からの、現実的なスモールスタートプランです。</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="#sim">収支シミュレーションを見る</a>
+      <a class="btn btn-ghost" href="#plan">導入プランを見る</a>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>月19.6万円〜</b><small>1台2席の月間固定費（レンタル含む）</small></div>
+      <div class="kpi"><b>会員18名+α</b><small>でも黒字化が狙える損益分岐</small></div>
+      <div class="kpi"><b>3ヶ月〜</b><small>レンタル最短で気軽にテスト導入</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="prob">
+  <div class="wrap">
+    <h2><span class="lead">WHY NOW</span>なぜ今、カラー専門店に水素吸引なのか</h2>
+    <div class="grid g3" style="margin-top:26px">
+      <div class="card">
+        <div class="icon">⏱️</div>
+        <h3>待ち時間が「収益」になる</h3>
+        <p class="muted">放置時間・乾燥待ちの15〜60分が、そのまま有料の水素吸引メニューに。空席だった時間が売上に変わります。</p>
+      </div>
+      <div class="card">
+        <div class="icon">💗</div>
+        <h3>客単価とリピートが上がる</h3>
+        <p class="muted">「キレイ＋整う」体験で満足度UP。月額通い放題で“水素だけ通う”常連が生まれ、来店頻度が上がります。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎁</div>
+        <h3>物販・ギフトの新しい柱</h3>
+        <p class="muted">家庭用水素吸入器・水素風呂の受注販売、家族・社員へのギフト需要。物販1件で吸引数十回分の利益に。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MACHINE -->
+<section>
+  <div class="wrap">
+    <h2><span class="lead">EQUIPMENT</span>導入機種：Suifeel（高濃度水素吸入器）</h2>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div class="card">
+        <h3>医療レベルの発生量</h3>
+        <table>
+          <tbody>
+            <tr><td>ガス発生量</td><td class="r">3,000ml/分（水素2,000＋酸素1,000）</td></tr>
+            <tr><td>水素純度</td><td class="r">99.99%</td></tr>
+            <tr><td>同時吸入</td><td class="r">1台＝最大2人（専用カニューレ）</td></tr>
+            <tr><td>1人あたり水素量</td><td class="r">約1,000ml/分（2人利用時）と高濃度</td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="margin-top:12px;font-size:13px">※理想の「4人同時」は2台構成で実現。まず1台2席で需要を検証し、段階的に増設します。</p>
+      </div>
+      <div class="card">
+        <h3>レンタルで低リスク導入</h3>
+        <table>
+          <tbody>
+            <tr><td>月額</td><td class="r">66,000〜88,000円/台</td></tr>
+            <tr><td>プラン</td><td class="r">3ヶ月／6ヶ月／12ヶ月</td></tr>
+            <tr><td>最低利用</td><td class="r">3ヶ月から</td></tr>
+            <tr><td>保証金</td><td class="r">80,000円（返却時精算）</td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="margin-top:12px;font-size:13px">まず3ヶ月プランでテスト → 軌道に乗れば12ヶ月プランで月額圧縮＋2台目で4席へ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan" style="background:#fff">
+  <div class="wrap">
+    <h2><span class="lead">ROADMAP</span>段階導入プラン（スモールスタート設計）</h2>
+    <div style="margin-top:28px">
+      <div class="phase">
+        <div class="when">Phase 0<br>〜1ヶ月</div>
+        <div><strong>準備</strong><br><span class="muted">Suifeelレンタル申込（3ヶ月プラン）／スタッフ研修／公式LINE・Googleプロフィール開設／メニューPOP・無料体験導線の設計。</span></div>
+      </div>
+      <div class="phase">
+        <div class="when">Phase 1<br>1〜3ヶ月</div>
+        <div><strong>1台＝2席でテスト導入</strong><br><span class="muted">無料体験キャンペーンで新規獲得 → 月額会員・回数券へ転換。客数・単価・稼働率を計測し、損益分岐（会員18名+単発）を目指す。</span></div>
+      </div>
+      <div class="phase">
+        <div class="when">Phase 2<br>3〜6ヶ月</div>
+        <div><strong>採算確認 → 4席化</strong><br><span class="muted">12ヶ月プランへ切替で月額圧縮。2台目を追加して理想の4席運用へ。家庭用機・水素風呂の受注販売を本格化。</span></div>
+      </div>
+      <div class="phase">
+        <div class="when">Phase 3<br>6〜12ヶ月</div>
+        <div><strong>ブランド化・横展開</strong><br><span class="muted">接客・衛生・集客マニュアルをパッケージ化。成功事例として他店舗・FC展開、水素サロン専門店の独立出店も視野に。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section>
+  <div class="wrap">
+    <h2><span class="lead">PRICING</span>料金設計（サブスク主軸で安定収益）</h2>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div>
+        <h3 style="margin-bottom:12px">単発メニュー（新規の入口）</h3>
+        <table>
+          <thead><tr><th>メニュー</th><th class="r">料金</th></tr></thead>
+          <tbody>
+            <tr><td>初回お試し 15分 <span class="muted">※初回限定</span></td><td class="r">500円</td></tr>
+            <tr><td>30分</td><td class="r">1,000円</td></tr>
+            <tr><td>おすすめ 60分 <span class="muted">＋水素水500ml</span></td><td class="r">2,000円</td></tr>
+            <tr><td>じっくり 90分</td><td class="r">3,000円</td></tr>
+            <tr><td>マイチューブ <span class="muted">仕入500円</span></td><td class="r hot">1,000円</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">★サブスク・回数券（収益の柱）</h3>
+        <table>
+          <thead><tr><th>プラン</th><th class="r">料金</th></tr></thead>
+          <tbody>
+            <tr><td>平日通い放題ライト <span class="muted">1日60分</span></td><td class="r">9,800円/月</td></tr>
+            <tr><td>平日通い放題プラス <span class="muted">1日90分</span></td><td class="r">14,800円/月</td></tr>
+            <tr><td>60分回数券（6回）</td><td class="r">9,800円</td></tr>
+            <tr><td>ギフト券（60分×5回）</td><td class="r">9,000円</td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="margin-top:12px;font-size:13px">無料体験：初回15分＋LINE登録10分＋クチコミ10分＝<strong>最大35分無料（初回限定）</strong>。「水素だけ通う」常連を会員化して空席を埋めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIM -->
+<section id="sim" style="background:#fff">
+  <div class="wrap">
+    <h2><span class="lead">SIMULATION</span>収支シミュレーション（週5日・月22日／1台2席）</h2>
+
+    <h3 style="margin:24px 0 10px">月間固定費：約 <span class="hot">196,320円</span></h3>
+    <table>
+      <thead><tr><th>費目</th><th class="r">月額</th></tr></thead>
+      <tbody>
+        <tr><td>人件費（神谷さん 4時間 × 時給1,140円 × 22日）</td><td class="r">100,320円</td></tr>
+        <tr><td>Suifeelレンタル（1台・12ヶ月換算）</td><td class="r">66,000円</td></tr>
+        <tr><td>消耗品（精製水・水素水ペット・カニューレ原価）</td><td class="r">15,000円</td></tr>
+        <tr><td>販促・光熱・雑費</td><td class="r">15,000円</td></tr>
+        <tr><td><strong>合計</strong></td><td class="r"><strong>約196,320円</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:30px 0 14px">3シナリオ（月間粗利）</h3>
+    <div class="sim">
+      <div class="card">
+        <span class="badge">保守</span>
+        <p class="muted">会員12名＋単発90件＋物販</p>
+        <p class="big">月商 25.5万</p>
+        <p class="plus" style="font-weight:800">粗利 ＋約5.8万円</p>
+      </div>
+      <div class="card" style="border:2px solid var(--brand2)">
+        <span class="badge">標準（目標）</span>
+        <p class="muted">会員25名＋単発110件＋物販</p>
+        <p class="big">月商 42.3万</p>
+        <p class="plus" style="font-weight:800">粗利 ＋約22.7万円</p>
+      </div>
+      <div class="card">
+        <span class="badge">成長（2台4席）</span>
+        <p class="muted">会員50名＋単発180件＋物販</p>
+        <p class="big">月商 79万</p>
+        <p class="plus" style="font-weight:800">粗利 ＋45万円超</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:16px;font-size:13px">損益分岐の目安＝<strong>月額会員18〜20名＋単発1日4件</strong>。物販・ギフトはこの上に積み上がる利益（家庭用機1台で吸引数十回分）。<br>※数値は前提条件に基づく試算であり、収益を保証するものではありません。</p>
+  </div>
+</section>
+
+<!-- GROWTH -->
+<section>
+  <div class="wrap">
+    <h2><span class="lead">MARKETING</span>集客・リピートの仕組み</h2>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="card"><div class="icon">📱</div><h3>公式LINE</h3><p class="muted">登録特典で+10分無料。回数券・誕生日クーポン・ギフト案内を配信し、再来を自動化。</p></div>
+      <div class="card"><div class="icon">⭐</div><h3>クチコミ導線</h3><p class="muted">退店時にQR提示で+10分無料を案内（内容は指定しない）。GoogleプロフィールとSNSで評判を可視化。</p></div>
+      <div class="card"><div class="icon">📦</div><h3>受注販売</h3><p class="muted">店頭体験→家庭用機・水素風呂を受注で販売。在庫リスクを抑えつつ高単価の物販利益を確保。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section style="background:#fff">
+  <div class="wrap">
+    <h2><span class="lead">SUPPORT</span>オーナー様へのサポート（パッケージ＆マニュアル）</h2>
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card"><h3>運営マニュアル一式</h3><p class="muted">接客スクリプト・無料体験誘導・物販クロージング・衛生/機器運用手順・法令順守チェックリストを提供。</p></div>
+      <div class="card"><h3>横展開のしやすさ</h3><p class="muted">ブランド・メニュー・販促テンプレをパッケージ化。多店舗・FC展開、水素サロン専門店の独立出店まで再現可能に。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section>
+  <div class="wrap">
+    <h2><span class="lead">HOW TO START</span>導入までの5ステップ</h2>
+    <div class="steps" style="margin-top:24px">
+      <div class="step"><div class="n"></div><div><strong>ヒアリング・無料相談</strong><br><span class="muted">店舗状況・席数・電源・換気を確認し、最適な台数とプランをご提案。</span></div></div>
+      <div class="step"><div class="n"></div><div><strong>Suifeelレンタル申込（3ヶ月プラン）</strong><br><span class="muted">最短・低リスクでテスト導入。設置・初期設定までサポート。</span></div></div>
+      <div class="step"><div class="n"></div><div><strong>スタッフ研修・販促準備</strong><br><span class="muted">接客マニュアル、LINE・Googleプロフィール、メニューPOPを整備。</span></div></div>
+      <div class="step"><div class="n"></div><div><strong>無料体験キャンペーンで開始</strong><br><span class="muted">新規を会員・回数券へ転換し、稼働を立ち上げる。</span></div></div>
+      <div class="step"><div class="n"></div><div><strong>採算確認 → 4席化・物販拡大</strong><br><span class="muted">12ヶ月プラン＋2台目、受注販売とギフトで利益を伸ばす。</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="note">
+      <strong>表示・広告に関するお願い：</strong>当サービスは医療機関ではありません。「治る」「効く」等の断定的・医療的効能表現は使用せず、研究・報告は事実の引用（出典明記）に留めます（薬機法・景品表示法）。有名人の実名・写真は<strong>本人が公表済みかつ書面許諾を得た場合のみ</strong>掲載します（パブリシティ権）。クチコミ特典は「投稿の事実」に対する特典とし、内容や星数は指定しません。
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="ctaSec">
+  <div class="wrap">
+    <h2 style="border:none">まずは無料相談から。<br>あなたの店舗に合う台数とプランをご提案します。</h2>
+    <a class="btn btn-primary" href="mailto:ken.pp.1205@gmail.com?subject=水素吸引サービス導入の相談">無料で相談する</a>
+    <p class="contact">カーサカラーバロー東海支店　担当：神谷／ご連絡：ken.pp.1205@gmail.com</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>CASA COLOR × H₂ 水素吸引サービス 導入プラン</p>
+    <p style="margin-top:6px;opacity:.7">本ページは事業導入提案資料です。記載の数値は一定の前提に基づく試算であり、効果・収益を保証するものではありません。</p>
+  </div>
+</footer>
+
+</body>
+</html>
