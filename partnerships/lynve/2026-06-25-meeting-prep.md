@@ -33,8 +33,17 @@ quiet luxury, meaningful travel between Switzerland and Japan. Very high.
 
 ## 3. Documents to have open / 当日開いておく資料
 - `meeting-script-en.md` — English talk track (this is your guide). / 英語台本。
-- `nagoya-1day-vip-model-plan.md` — the model plan to screen-share. / モデルプラン。
+- `nagoya-1day-vip-model-plan.md` — the flagship model plan to screen-share. / モデルプラン。
+- `seasonal-vip-plans.md` — year-round plans (sakura / autumn / beach / ski). / 季節別プラン。
 - 1–2 photos (kyudo / Atsuta Shrine / tea ceremony) if available. / 写真。
+
+## 3b. Our credibility & access — say this if asked "why you?" / 信頼の根拠
+- Founder's own discipline: **kyudo 30y, calligraphy 30y, tea 3y, yabusame 2y.** / 創業者の鍛錬。
+- Masters of kyudo, tea, calligraphy, iaido, pottery are **personal friends**. / 師匠は友人。
+- Owners of Nagoya's iconic restaurants are friends/seniors. / 名店の店主も友人。
+- Direct **Nagoya City** connection → **private Nagoya Castle tour (≤8).** / 名古屋城貸切（8名まで）。
+- City / prefectural / national assembly connections → special access when appropriate. / 政界とのつながり。
+- **BUSHIDO RIDE**: Alphard hire pickup at airport (ninja/kimono welcome option). / 空港送迎＋演出。
 
 ---
 
