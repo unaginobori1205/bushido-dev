@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>名古屋JC AI・SNS実演マニュアル</title>
+<style>
+  :root{
+    --navy:#0E1B2E; --navy2:#16263d; --gold:#C9A24B; --gold2:#e3c373;
+    --accent:#1F6F8B; --ink:#222A35; --gray:#5B6674; --line:#e7e2d6;
+    --bg:#f7f5ef; --card:#ffffff; --soft:#f4f1ea; --code:#0f2030;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+  a{color:var(--accent);text-decoration:none}
+  /* ---- top nav ---- */
+  header.top{position:sticky;top:0;z-index:50;background:rgba(14,27,46,.96);
+    backdrop-filter:blur(6px);border-bottom:2px solid var(--gold)}
+  .top-inner{max-width:1000px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand{color:#fff;font-weight:800;font-size:15px;letter-spacing:.02em;white-space:nowrap}
+  .brand b{color:var(--gold2)}
+  nav.menu{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  nav.menu a{color:#d8dde4;font-size:12.5px;padding:5px 10px;border-radius:999px;border:1px solid transparent}
+  nav.menu a:hover{background:rgba(255,255,255,.08);border-color:rgba(201,162,75,.5);color:#fff}
+  /* ---- hero ---- */
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:54px 20px 48px;text-align:center;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:auto 0 0 0;height:5px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold))}
+  .hero .kicker{color:var(--gold2);font-weight:700;letter-spacing:.12em;font-size:13px;margin-bottom:14px}
+  .hero h1{margin:0;font-size:clamp(26px,5vw,40px);font-weight:900;letter-spacing:.01em}
+  .hero p{margin:14px auto 0;max-width:640px;color:#cdd5df;font-size:15px}
+  .hero .meta{margin-top:18px;font-size:12.5px;color:#8fa0b4}
+  /* ---- layout ---- */
+  main{max-width:1000px;margin:0 auto;padding:30px 18px 60px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px 24px;margin:18px 0;box-shadow:0 2px 14px rgba(14,27,46,.05);scroll-margin-top:80px}
+  .sec-head{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+  .sec-no{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--navy);color:var(--gold2);
+    font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .sec-head h2{margin:0;font-size:20px;font-weight:800;color:var(--navy)}
+  .lead{color:var(--gray);font-size:14.5px;margin:.2em 0 1em}
+  ul.clean{list-style:none;padding:0;margin:0}
+  ul.clean li{position:relative;padding:6px 0 6px 22px}
+  ul.clean li:before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+  /* ---- level stepper ---- */
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 4px}
+  .lv{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--soft);position:relative}
+  .lv .tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--gray);border-radius:999px;padding:2px 10px;margin-bottom:8px}
+  .lv h4{margin:0 0 4px;font-size:15px;color:var(--navy)}
+  .lv p{margin:0;font-size:12.5px;color:var(--gray)}
+  .lv.goal{background:linear-gradient(135deg,#fff7e6,#fdeccf);border-color:var(--gold)}
+  .lv.goal .tag{background:var(--gold);color:#3a2c08}
+  /* ---- flow loop ---- */
+  .flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .flow .node{background:var(--navy);color:#fff;border-radius:10px;padding:10px 16px;font-weight:700;font-size:13.5px}
+  .flow .node.alt{background:var(--accent)}
+  .flow .arrow{color:var(--gold);font-size:20px;font-weight:900}
+  /* ---- tables ---- */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px;overflow:hidden;border-radius:10px}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:700}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--soft)}
+  tbody td:first-child{font-weight:800;color:var(--accent);width:46px;text-align:center}
+  /* ---- prompt card ---- */
+  .prompt{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:14px 0;background:#fff}
+  .prompt .ph{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--soft);border-bottom:1px solid var(--line)}
+  .prompt .ph .ttl{font-weight:800;font-size:13.5px;color:var(--navy)}
+  .prompt .ph .badge{font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:999px;padding:2px 9px}
+  .copy{margin-left:auto;border:0;cursor:pointer;background:var(--navy);color:#fff;font-weight:700;
+    font-size:12px;padding:7px 14px;border-radius:8px;display:flex;align-items:center;gap:6px;transition:.15s}
+  .copy:hover{background:var(--accent)}
+  .copy.done{background:#2e9e5b}
+  pre{margin:0;padding:14px 16px;background:var(--code);color:#e7eef7;font-size:12.5px;line-height:1.7;
+    overflow-x:auto;white-space:pre-wrap;word-break:break-word;
+    font-family:"SFMono-Regular",Consolas,"Yu Gothic",Meiryo,monospace}
+  .tip{background:#fff7e6;border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:13px;margin:12px 0}
+  .tip b{color:#8a6d1f}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mini{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--soft)}
+  .mini h4{margin:0 0 8px;font-size:14px;color:var(--navy)}
+  .pill{display:inline-block;background:#eef3f5;color:var(--accent);border:1px solid #d6e3e7;
+    border-radius:999px;font-size:12px;font-weight:700;padding:3px 11px;margin:3px 4px 0 0}
+  footer{text-align:center;color:var(--gray);font-size:12.5px;padding:26px 16px 50px}
+  .toTop{position:fixed;right:16px;bottom:16px;background:var(--navy);color:#fff;border-radius:50%;
+    width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+  .toTop.show{opacity:1;pointer-events:auto}
+  @media(max-width:680px){
+    .levels{grid-template-columns:1fr}.two{grid-template-columns:1fr}
+    nav.menu{display:none}.hero{padding:40px 16px}
+  }
+  @media print{header.top,.toTop{display:none}section{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">名古屋JC <b>AI・SNS実演マニュアル</b></div>
+    <nav class="menu">
+      <a href="#s2">基本思想</a>
+      <a href="#s4">NotebookLM</a>
+      <a href="#s5">動画</a>
+      <a href="#s6">パワポ</a>
+      <a href="#s8">LP</a>
+      <a href="#s9">Code</a>
+      <a href="#s12">活用例</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="kicker">セミナー参加者限定 ｜ プロンプト・ショートカット・スキル集</div>
+  <h1>名古屋JC AI・SNS実演マニュアル</h1>
+  <p>セミナー「AIに働かせ、想いを届ける時代へ」連動。読むためではなく、<b style="color:#fff">使う</b>ためのマニュアルです。各プロンプトは右上のボタンで丸ごとコピーできます。</p>
+  <div class="meta">発行：2026年6月19日 ／ 名古屋JC SNS戦略部会</div>
+</div>
+
+<main>
+
+  <!-- 1 -->
+  <section id="s1">
+    <div class="sec-head"><div class="sec-no">1</div><h2>はじめに</h2></div>
+    <p class="lead">このマニュアルは、セミナーで実演したAI活用を「あなた自身の社業とJC活動で今日から使える」ようにまとめたものです。まずは1つ、自分の担当例会か自社の課題で試してください。</p>
+    <div class="tip">使い方：各プロンプトカードの <b>「コピー」ボタン</b> を押す → お使いのAI（ChatGPT / Claude / Gemini / NotebookLM 等）に貼り付け → <b>〇〇</b> をご自身の情報に置き換えるだけ。</div>
+  </section>
+
+  <!-- 2 -->
+  <section id="s2">
+    <div class="sec-head"><div class="sec-no">2</div><h2>AI活用の基本思想</h2></div>
+    <p class="lead">AIは「検索の代わり」ではなく「働かせる部下」。下の3段階で、レベルを上げていきます。</p>
+    <div class="levels">
+      <div class="lv"><span class="tag">Lv.1</span><h4>調べる</h4><p>検索の代わりに使う段階。</p></div>
+      <div class="lv"><span class="tag">Lv.2</span><h4>書かせる</h4><p>文章・資料の作業を任せる段階。</p></div>
+      <div class="lv goal"><span class="tag">Lv.3 ★ゴール</span><h4>働かせる</h4><p>仕組みにして自動で回す段階。</p></div>
+    </div>
+    <p class="lead" style="margin-top:18px">そして、SNS・AI・事業・想いは<b>一体（ゲシュタルト）</b>。つなげた瞬間に力になります。</p>
+    <div class="flow">
+      <span class="node">想い</span><span class="arrow">→</span>
+      <span class="node alt">発信(SNS)</span><span class="arrow">→</span>
+      <span class="node alt">AIで増幅</span><span class="arrow">→</span>
+      <span class="node">事業に還る</span><span class="arrow">↻</span>
+    </div>
+    <div class="tip" style="margin-top:16px"><b>良い指示の型：</b> ①役割を与える（あなたは〇〇のプロ）→ ②前提・材料を渡す → ③出力の形を指定（番号・表・文字数）→ ④条件を足す（トーン・対象）。</div>
+  </section>
+
+  <!-- 3 -->
+  <section id="s3">
+    <div class="sec-head"><div class="sec-no">3</div><h2>音声入力ショートカット</h2></div>
+    <div class="two">
+      <div class="mini"><h4>📱 スマホ</h4><ul class="clean"><li>キーボードのマイクボタンで話すだけ</li><li>移動中の議事メモ・投稿下書きに最適</li></ul></div>
+      <div class="mini"><h4>💻 PC</h4><ul class="clean"><li>Mac：<b>fnキー2回</b>で音声入力ON</li><li>Windows：<b>Windowsキー + H</b></li></ul></div>
+    </div>
+    <div class="tip">使いどころ：頭の中のアイデアを話して吐き出す → AIに「整えて」と渡すと一気に速い。</div>
+  </section>
+
+  <!-- 4 -->
+  <section id="s4">
+    <div class="sec-head"><div class="sec-no">4</div><h2>NotebookLM実演プロンプト</h2></div>
+    <p class="lead">担当例会を5分で“伝わる事業”に変える。NotebookLMは読み込んだ資料への要約・整理・質問回答が得意で、<b>JCの議案書・例会資料・事業計画書と相性が抜群</b>です。</p>
+
+    <table>
+      <thead><tr><th>手順</th><th>やること</th><th>見せる成果</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>担当例会資料を読み込む</td><td>AIが内容を理解</td></tr>
+        <tr><td>2</td><td>例会の目的を3行要約</td><td>本質を可視化</td></tr>
+        <tr><td>3</td><td>参加対象者への訴求を整理</td><td>誰に何を届けるか明確化</td></tr>
+        <tr><td>4</td><td>SNS投稿案を作成</td><td>告知にそのまま使える</td></tr>
+        <tr><td>5</td><td>当日スピーチ原稿を作成</td><td>委員長挨拶に使える</td></tr>
+        <tr><td>6</td><td>想定質問を作成</td><td>理事会・委員会対策</td></tr>
+      </tbody>
+    </table>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">基本</span><span class="ttl">資料を多面的に整理する</span>
+        <button class="copy">コピー</button></div>
+      <pre>この資料を読み込み、以下の形式で整理してください。
+1. 3行要約
+2. 重要ポイント5つ
+3. 会議で確認すべき論点
+4. SNS投稿に使える切り口3つ
+5. 30秒スピーチ原稿
+6. 想定質問と回答</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">実演メイン</span><span class="ttl">担当例会を“伝わる事業”に変える</span>
+        <button class="copy">コピー</button></div>
+      <pre>あなたは、青年会議所の例会設計・広報・SNS発信に強いプロの編集者です。
+以下の例会資料を読み込み、
+この例会の価値が会員・参加者・地域に正しく伝わるように整理してください。
+
+出力してください。
+1. この例会の目的を3行で要約
+2. この例会で一番伝えるべきメッセージ
+3. 参加対象者が「参加したい」と感じる理由
+4. 例会告知に使えるキャッチコピー5案
+5. Instagram投稿文
+6. Facebook投稿文
+7. 30秒の告知スピーチ原稿
+8. 委員長挨拶の冒頭文
+9. 理事会で聞かれそうな質問と回答
+10. この例会をさらに良くする改善提案</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">応用①</span><span class="ttl">理事会上程対策</span>
+        <button class="copy">コピー</button></div>
+      <pre>この例会資料を、理事会上程の視点で確認してください。
+以下を出してください。
+1. 目的と手法が一致しているか
+2. 予算と効果の説明に不足がないか
+3. 参加者メリットが明確か
+4. 地域・社会への波及効果が説明できているか
+5. 理事から突っ込まれそうなポイント
+6. 修正した方がよい表現
+7. 上程時に使える説明原稿</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">応用②</span><span class="ttl">SNS告知強化</span>
+        <button class="copy">コピー</button></div>
+      <pre>この例会をSNSで告知するために、参加したくなる投稿案を作ってください。
+条件：
+・売り込み感を出さない
+・JCらしい公益性を伝える
+・会員がシェアしたくなる
+・冒頭1行で興味を引く
+・Instagram、Facebook、Xで使える形にする
+出力：
+1. Instagram投稿文
+2. Facebook投稿文
+3. X投稿文
+4. ストーリーズ用短文
+5. 30秒リール台本
+6. ハッシュタグ10個</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">応用③</span><span class="ttl">委員長挨拶作成</span>
+        <button class="copy">コピー</button></div>
+      <pre>この例会の委員長挨拶を作成してください。
+条件：
+・時間は1分
+・感謝から入る
+・なぜこの例会をやるのかを伝える
+・会員に行動を促す
+・最後は前向きに締める
+・堅すぎず、青年会議所らしい熱量を出す</pre>
+    </div>
+
+    <div class="tip"><b>実演の注意：</b>使う資料は事前に協力者1名から入手しておく（その場募集は「開けない・内容が薄い・個人情報混入」のリスク）。当日は会場から1名だけ軽く追加で取り上げる<b>二段構え</b>が安全。</div>
+  </section>
+
+  <!-- 5 -->
+  <section id="s5">
+    <div class="sec-head"><div class="sec-no">5</div><h2>Google Flow 動画制作プロンプト</h2></div>
+    <p class="lead">Google Flowは Veo・Imagen・Gemini 向けに設計されたAI映像制作ツール。文字より映像が心を動かします。</p>
+    <div class="prompt">
+      <div class="ph"><span class="badge">30秒・縦型</span><span class="ttl">想いを動画にする</span>
+        <button class="copy">コピー</button></div>
+      <pre>30秒の縦型動画を作りたいです。
+テーマ：
+JC活動を通じて、地域に想いを届ける若手経営者たち。
+雰囲気：
+感動的、前向き、映画の予告編風。
+構成：
+冒頭3秒で引き込む
+中盤で仲間・地域・挑戦を見せる
+最後に「想いは、届けてこそ力になる」で締める</pre>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="s6">
+    <div class="sec-head"><div class="sec-no">6</div><h2>パワポ作成プロンプト</h2></div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">構成案</span><span class="ttl">10枚のPowerPoint構成を作る</span>
+        <button class="copy">コピー</button></div>
+      <pre>以下の内容をもとに、10枚のPowerPoint構成案を作ってください。
+目的：
+名古屋青年会議所会員に、AIとSNS活用の必要性を伝える。
+対象：
+経営者・役員・委員長経験者を含むJC会員約50名。
+構成：
+問題提起
+事例
+実演
+明日からの行動
+締めのメッセージ
+各スライドに、
+タイトル・要点3つ・話す内容・ビジュアル案を入れてください。</pre>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="s7">
+    <div class="sec-head"><div class="sec-no">7</div><h2>SNS投稿作成プロンプト</h2></div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">投稿</span><span class="ttl">媒体別に投稿を一括生成</span>
+        <button class="copy">コピー</button></div>
+      <pre>あなたはSNS運用のプロです。以下のテーマで投稿を作ってください。
+テーマ：〇〇
+媒体：Instagram / Facebook / X
+条件：
+・冒頭1行で手を止めさせる
+・売り込み感を出さない
+・最後に行動（保存・参加・問い合わせ）を促す
+出力：
+1. 本文（媒体ごと）
+2. ハッシュタグ10個
+3. リール用30秒台本</pre>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section id="s8">
+    <div class="sec-head"><div class="sec-no">8</div><h2>LP制作プロンプト</h2></div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">LP構成</span><span class="ttl">事業からLP構成を作る</span>
+        <button class="copy">コピー</button></div>
+      <pre>以下の事業について、LP構成を作ってください。
+事業名：〇〇
+対象顧客：〇〇
+悩み：〇〇
+提供価値：〇〇
+作成内容：
+1. ファーストビュー
+2. キャッチコピー
+3. 課題提起
+4. 解決策
+5. 実績
+6. お客様の声
+7. 料金
+8. 申込導線
+9. FAQ
+10. 最後のCTA</pre>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section id="s9">
+    <div class="sec-head"><div class="sec-no">9</div><h2>Claude Code / Codex / Cursor 活用</h2></div>
+    <p class="lead">Claude Codeはコードベースを読み、ファイル編集・テスト実行・修正まで支援するエージェント型コーディングシステム。CodexはOpenAIのコーディングエージェント。</p>
+    <div class="prompt">
+      <div class="ph"><span class="badge">実装</span><span class="ttl">LP構成をその場でコード化</span>
+        <button class="copy">コピー</button></div>
+      <pre>このLP構成をもとに、シンプルで高級感のある1ページLPを作成してください。
+条件：
+・スマホ対応
+・ファーストビュー重視
+・問い合わせボタンあり
+・日本語
+・信頼感のあるデザイン
+・HTML/CSS/JavaScriptで作成</pre>
+    </div>
+  </section>
+
+  <!-- 10 / 11 -->
+  <section id="s10">
+    <div class="sec-head"><div class="sec-no">10</div><h2>Notion / Obsidian テンプレート</h2></div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">Notion</span><span class="ttl">セミナー内容をDB化</span>
+        <button class="copy">コピー</button></div>
+      <pre>このセミナー内容をNotionに整理してください。
+データベース項目：
+・カテゴリ
+・ツール名
+・使い方
+・実演内容
+・プロンプト
+・社業での活用例
+・JC事業での活用例
+・難易度
+・明日やること</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">Obsidian</span><span class="ttl">学びをノート化</span>
+        <button class="copy">コピー</button></div>
+      <pre>以下の学びを、Obsidian用にノート化してください。
+形式：
+# タイトル
+## 一言で言うと
+## 使う場面
+## 手順
+## プロンプト
+## 関連リンク（[[ ]]で他ノートに接続）
+## 次に試すこと</pre>
+    </div>
+  </section>
+
+  <!-- 12 / 13 -->
+  <section id="s12">
+    <div class="sec-head"><div class="sec-no">12</div><h2>JC事業・社業に使える実践例</h2></div>
+    <div class="two">
+      <div class="mini">
+        <h4>🏛 JC事業</h4>
+        <ul class="clean">
+          <li>担当例会：目的要約／告知文／委員長挨拶／理事会想定QA</li>
+          <li>議案書チェック：目的と手法の整合・予算対効果・波及効果</li>
+          <li>広報：例会・事業の告知文を3媒体に一括生成</li>
+          <li>動画：周年・例会の予告編を30秒に</li>
+        </ul>
+      </div>
+      <div class="mini">
+        <h4>🏢 社業</h4>
+        <ul class="clean">
+          <li>営業資料・提案書の構成案を数分で</li>
+          <li>自社サービスのLP骨子 → そのままコード化</li>
+          <li>採用：求人原稿・スカウト文・面接質問</li>
+          <li>顧客対応：返信テンプレ化・議事録の自動要約</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:14px">
+      <span class="pill">音声入力</span><span class="pill">NotebookLM</span><span class="pill">Google Flow</span>
+      <span class="pill">パワポ生成</span><span class="pill">LP制作</span><span class="pill">Claude Code</span>
+      <span class="pill">Notion</span><span class="pill">Obsidian</span>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section id="s14">
+    <div class="sec-head"><div class="sec-no">14</div><h2>アンケート・次回案内</h2></div>
+    <ul class="clean">
+      <li>本日の感想／個別相談／今後聞きたいテーマを、アンケートQRからご回答ください。</li>
+      <li>今日で終わりではなく、ここから皆さんの社業とJC活動で<b>実際に使ってください。</b></li>
+    </ul>
+    <div class="tip" style="text-align:center"><b>人の想いを、人に届ける。</b> 道具に使われず、道具を使う側に立とう。</div>
+  </section>
+
+</main>
+
+<footer>
+  （部会員限定資料）名古屋JC SNS戦略部会 ／ AI・SNS実演マニュアル<br>
+  セミナー「AIに働かせ、想いを届ける時代へ」連動 — 2026.06.19
+</footer>
+
+<a href="#" class="toTop" aria-label="トップへ">↑</a>
+
+<script>
+  // copy buttons
+  document.querySelectorAll('.prompt').forEach(card=>{
+    const btn=card.querySelector('.copy');
+    const text=card.querySelector('pre').innerText;
+    btn.addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText(text);
+      }catch(e){
+        const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);
+        ta.select();document.execCommand('copy');ta.remove();
+      }
+      const old=btn.textContent;btn.textContent='✓ コピー完了';btn.classList.add('done');
+      setTimeout(()=>{btn.textContent=old;btn.classList.remove('done');},1600);
+    });
+  });
+  // back to top
+  const top=document.querySelector('.toTop');
+  addEventListener('scroll',()=>{top.classList.toggle('show',scrollY>500)});
+</script>
+</body>
+</html>
