@@ -40,6 +40,14 @@
     font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
   .sec-head h2{margin:0;font-size:20px;font-weight:800;color:var(--navy)}
   .lead{color:var(--gray);font-size:14.5px;margin:.2em 0 1em}
+  .subhead{display:flex;align-items:center;gap:8px;margin:26px 0 10px;font-size:16px;
+    font-weight:800;color:var(--navy);padding-bottom:7px;border-bottom:2px solid var(--soft)}
+  .subhead .ic{font-size:18px}
+  .goldbox{background:linear-gradient(135deg,#fff7e6,#fdeccf);border:1px solid var(--gold);border-radius:14px;padding:16px 18px;margin:16px 0}
+  .goldbox .gb-ttl{font-weight:800;color:#8a6d1f;font-size:15px;margin-bottom:6px}
+  .goldbox p{margin:12px 0 0;font-size:13px;color:#5e4f2a}
+  .flow .node small{display:block;font-weight:600;font-size:10.5px;opacity:.88;margin-top:2px}
+  table.kv td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:700}
   ul.clean{list-style:none;padding:0;margin:0}
   ul.clean li{position:relative;padding:6px 0 6px 22px}
   ul.clean li:before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
@@ -103,6 +111,7 @@
       <a href="#s4">NotebookLM</a>
       <a href="#s5">動画</a>
       <a href="#s6">パワポ</a>
+      <a href="#s7">SNS/YT</a>
       <a href="#s8">LP</a>
       <a href="#s9">Code</a>
       <a href="#s12">活用例</a>
@@ -160,6 +169,7 @@
     <div class="sec-head"><div class="sec-no">4</div><h2>NotebookLM実演プロンプト</h2></div>
     <p class="lead">担当例会を5分で“伝わる事業”に変える。NotebookLMは読み込んだ資料への要約・整理・質問回答が得意で、<b>JCの議案書・例会資料・事業計画書と相性が抜群</b>です。</p>
 
+    <div class="subhead"><span class="ic">🗂</span>① 資料を整理して“伝わる事業”にする</div>
     <table>
       <thead><tr><th>手順</th><th>やること</th><th>見せる成果</th></tr></thead>
       <tbody>
@@ -250,6 +260,71 @@
 ・堅すぎず、青年会議所らしい熱量を出す</pre>
     </div>
 
+    <div class="subhead"><span class="ic">📊</span>② NotebookLMで“スライド”を作る（ここを多用）</div>
+    <p class="lead">NotebookLMはStudioパネルから、資料をそのまま<b>スライド（.pptx／話者ノート付き）</b>に生成できます（2026年2月〜PPTX書き出し対応）。議案書・事業計画書を入れれば、たたき台が一発で出ます。</p>
+    <div class="two">
+      <div class="mini"><h4>📄 Detailed Deck（配布・上程用）</h4><ul class="clean"><li>文字多め・資料単体で伝わる</li><li>理事会上程／欠席者共有／引き継ぎ向き</li></ul></div>
+      <div class="mini"><h4>🎤 Presenter Slides（発表用）</h4><ul class="clean"><li>ビジュアル重視・話す前提でシンプル</li><li>例会・セミナー・プレゼン投影向き</li></ul></div>
+    </div>
+    <table>
+      <thead><tr><th>手順</th><th>やること</th><th>ポイント</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>ソースをアップロード</td><td>議案書・事業計画書・例会資料</td></tr>
+        <tr><td>2</td><td>Studioパネルで「スライド」を生成</td><td>用途で Detailed / Presenter を選ぶ</td></tr>
+        <tr><td>3</td><td>生成時にカスタム指示を添える</td><td>枚数・対象・トーンを指定（下のプロンプト）</td></tr>
+        <tr><td>4</td><td>鉛筆(Revise)で1枚ずつ修正</td><td>「3枚目をもっと簡潔に」等を自然文で</td></tr>
+        <tr><td>5</td><td>.pptx でダウンロード</td><td>PowerPoint／Googleスライドで仕上げ</td></tr>
+      </tbody>
+    </table>
+
+    <div class="goldbox">
+      <div class="gb-ttl">★ 黄金ワークフロー：構成はAI、清書はNotebookLM</div>
+      <div class="flow">
+        <span class="node">ChatGPT / Claude<small>で構成案を作る</small></span><span class="arrow">→</span>
+        <span class="node alt">NotebookLM<small>に投入（ソース化）</small></span><span class="arrow">→</span>
+        <span class="node">スライド生成<small>.pptxで書き出し</small></span>
+      </div>
+      <p>ChatGPT/Claudeは“構成・言葉づくり”が得意、NotebookLMは“資料に忠実なスライド化”が得意。<b>構成案をChatGPT/Claudeで作り込み → その文章をNotebookLMにソースとして読み込ませてスライド化</b>すると、速くて精度も高い。（＝「構成案をぶち込む」スタイル）</p>
+    </div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">発表用</span><span class="ttl">Presenter Slides を生成する指示</span><button class="copy">コピー</button></div>
+      <pre>あなたはプレゼン設計のプロです。
+このノートブックの資料から、発表用スライド（Presenter Slides）を作ってください。
+前提：
+・対象：青年会議所の会員（経営者中心・約50名）
+・目的：この例会／事業の意義が伝わり、参加・協力したくなる
+・枚数：10枚前後
+各スライド：
+・短いタイトル
+・要点は3つまで（話す前提なので文字は少なく）
+・必要なら図・表で見せる
+・話者ノートに、登壇時に話す内容を1枚ずつ入れる
+最後に、告知用の1枚（日時・対象・申込）を加えてください。</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">配布・上程用</span><span class="ttl">Detailed Deck を生成する指示</span><button class="copy">コピー</button></div>
+      <pre>このノートブックの資料から、配布用スライド（Detailed Deck）を作ってください。
+用途：理事会上程・欠席者への共有でも、これ単体で内容が伝わること。
+各スライド：
+・タイトル＋本文（読んで理解できる詳しさ）
+・根拠となる数字・予算・効果を明記
+最後に「想定質問と回答」のスライドを付けてください。</pre>
+    </div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">1枚修正</span><span class="ttl">鉛筆(Revise)で直す</span><button class="copy">コピー</button></div>
+      <pre>（修正したいスライドの鉛筆ボタン → 以下を入力）
+このスライドをもっと簡潔にしてください。
+・要点は3つまで
+・専門用語を平易に
+・冒頭に一言キャッチを追加
+・トーンは前向きで、JCらしい熱量で</pre>
+    </div>
+
+    <div class="tip"><b>応用：</b>同じ資料から <b>Video Overview</b>（ナレーション付きスライド動画）も生成可能。短く伝える「Brief」と、しっかり説明する「Explainer」を使い分け。締め動画やSNS告知の素材に。</div>
+
     <div class="tip"><b>実演の注意：</b>使う資料は事前に協力者1名から入手しておく（その場募集は「開けない・内容が薄い・個人情報混入」のリスク）。当日は会場から1名だけ軽く追加で取り上げる<b>二段構え</b>が安全。</div>
   </section>
 
@@ -257,6 +332,23 @@
   <section id="s5">
     <div class="sec-head"><div class="sec-no">5</div><h2>Google Flow 動画制作プロンプト</h2></div>
     <p class="lead">Google Flowは Veo・Imagen・Gemini 向けに設計されたAI映像制作ツール。文字より映像が心を動かします。</p>
+
+    <div class="tip"><b>いちばんのおすすめ：画像は“一気に4枚同時生成”。</b> Google Flowは同じ指示から構図・色味の違う画像を<b>4枚まとめて</b>出せます。<b>「1枚を粘る」より「4枚出して選ぶ」</b>方が速く、当たりが見つかる。気に入った1枚をベースに、さらに4枚と展開していくのがコツです。</div>
+
+    <div class="prompt">
+      <div class="ph"><span class="badge">画像・4枚同時</span><span class="ttl">サムネ／投稿画像のたたき台を一気に</span>
+        <button class="copy">コピー</button></div>
+      <pre>以下のテーマで画像を4枚、構図違いで出してください。
+テーマ：〇〇（例：地域の祭りで挑戦する若手経営者）
+用途：SNS投稿／YouTubeサムネイル
+雰囲気：力強い・前向き・実写風
+条件：
+・人物の表情がはっきり分かる
+・上部に文字を入れるスペースを空ける
+・4枚はアングルと色味を変える
+気に入った1枚を選んだら、それをベースにさらに4枚展開してください。</pre>
+    </div>
+
     <div class="prompt">
       <div class="ph"><span class="badge">30秒・縦型</span><span class="ttl">想いを動画にする</span>
         <button class="copy">コピー</button></div>
@@ -296,7 +388,68 @@ JC活動を通じて、地域に想いを届ける若手経営者たち。
 
   <!-- 7 -->
   <section id="s7">
-    <div class="sec-head"><div class="sec-no">7</div><h2>SNS投稿作成プロンプト</h2></div>
+    <div class="sec-head"><div class="sec-no">7</div><h2>SNS・YouTube：リサーチ→台本→投稿</h2></div>
+    <p class="lead">伸びるかどうかは、投稿を作る前の<b>「リサーチ」と「台本」で9割決まります。</b>いきなり書かず、この順番で。</p>
+    <div class="flow">
+      <span class="node">① リサーチ<small>何が伸びてる？</small></span><span class="arrow">→</span>
+      <span class="node alt">② 台本<small>フックと構成</small></span><span class="arrow">→</span>
+      <span class="node">③ 投稿<small>媒体別に展開</small></span>
+    </div>
+
+    <div class="subhead"><span class="ic">🔎</span>① リサーチ（まず武器をそろえる）</div>
+    <p class="lead">競合の動画・投稿を“文字起こし”して中身を分解すると、勝ち筋が一瞬で見えます。下のChrome拡張が効きます。</p>
+    <table class="kv">
+      <thead><tr><th>Chrome拡張</th><th>役割（これに使う）</th></tr></thead>
+      <tbody>
+        <tr><td>Glasp（YouTube Summary with ChatGPT &amp; Claude）</td><td>YouTube動画の文字起こし＋AI要約。競合リサーチを一瞬で。ハイライト保存も可</td></tr>
+        <tr><td>YouTube to Text</td><td>動画を文字起こしして検索・保存。台本の参考素材づくりに</td></tr>
+        <tr><td>vidIQ ／ TubeBuddy</td><td>YouTubeのキーワード・競合・伸びている動画の分析</td></tr>
+        <tr><td>Keywords Everywhere</td><td>検索ボリューム・関連キーワードをブラウザ上に表示</td></tr>
+        <tr><td>Sider ／ Merlin（AIサイドパネル）</td><td>どのページでもChatGPT/Claude/Geminiを呼び出し、その場で要約・下書き</td></tr>
+        <tr><td>Notion Web Clipper</td><td>リサーチ結果をワンクリック保存。ネタを資産として貯める</td></tr>
+      </tbody>
+    </table>
+    <div class="tip"><b>流れ：</b>Glaspで競合動画を文字起こし → Sider等でAIに「この動画の構成と勝ち筋を分解して」と要約させる → Notionに保存。これだけで“ネタ切れ”が消えます。</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">リサーチ</span><span class="ttl">テーマの勝ち筋を洗い出す</span><button class="copy">コピー</button></div>
+      <pre>あなたはSNS／YouTubeのリサーチャーです。
+テーマ「〇〇」について、投稿前のリサーチをまとめてください。
+1. いまこのテーマで伸びている切り口・型を5つ
+2. 視聴者が抱える悩み・知りたいことトップ5
+3. 競合がまだ言えていない“穴”
+4. 反応が取れそうなフック（最初の1行）案を10個
+5. このテーマで作るべきコンテンツ案を5本</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">競合分解</span><span class="ttl">文字起こしを貼って分析させる</span><button class="copy">コピー</button></div>
+      <pre>以下は競合動画の文字起こしです。構成と勝ち筋を分解してください。
+1. この動画の構成（冒頭フック→本編→締め）を箇条書きで
+2. 視聴者を引き込んでいる工夫
+3. 真似すべき点／逆に改善できる点
+4. 自分が作るなら、どう差別化するか
+---
+（ここに文字起こしを貼り付け）</pre>
+    </div>
+
+    <div class="subhead"><span class="ic">📝</span>② 台本（フックと構成を作り込む）</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">台本</span><span class="ttl">リサーチを台本に変換</span><button class="copy">コピー</button></div>
+      <pre>あなたは再生される動画の構成作家です。
+以下のリサーチをもとに、動画の台本を作ってください。
+テーマ：〇〇
+尺：（例）YouTube 8分 ／ ショート 45秒
+構成：
+1. フック（最初の3秒で離脱させない一言）
+2. 問題提起（視聴者の悩みを言語化）
+3. 本編（具体・事例・手順を3〜5ブロック）
+4. 山場（一番伝えたい主張）
+5. CTA（チャンネル登録・保存・コメント誘導）
+各ブロックに「話すセリフ」と「画面・テロップ案」を付けてください。
+---
+（ここにリサーチ結果を貼り付け）</pre>
+    </div>
+
+    <div class="subhead"><span class="ic">📤</span>③ 投稿（媒体別に一括展開）</div>
     <div class="prompt">
       <div class="ph"><span class="badge">投稿</span><span class="ttl">媒体別に投稿を一括生成</span>
         <button class="copy">コピー</button></div>
