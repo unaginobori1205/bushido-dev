@@ -48,6 +48,26 @@
   .goldbox p{margin:12px 0 0;font-size:13px;color:#5e4f2a}
   .flow .node small{display:block;font-weight:600;font-size:10.5px;opacity:.88;margin-top:2px}
   table.kv td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:700}
+  /* ---- hub / toc / levels ---- */
+  .lvtag{display:inline-block;font-size:11px;font-weight:800;color:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap}
+  .lvtag.beg{background:#2e9e5b}.lvtag.mid{background:var(--accent)}
+  .lvtag.adv{background:#b9842b}.lvtag.must{background:var(--navy)}
+  .sec-head .lvtag{margin-left:auto}
+  .picker{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 4px}
+  .pick{display:block;border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:var(--soft);transition:.15s}
+  .pick:hover{border-color:var(--gold);background:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,27,46,.08)}
+  .pick b{display:block;color:var(--navy);font-size:14px}
+  .pick span{display:block;color:var(--gray);font-size:12px;margin-top:3px}
+  .levels3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0}
+  .lvbox{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .lvbox .lvh{padding:10px 14px;color:#fff;font-weight:800;font-size:15px}
+  .lvbox .lvh small{font-weight:600;font-size:11px;opacity:.9;margin-left:6px}
+  .lvbox.beg .lvh{background:#2e9e5b}.lvbox.mid .lvh{background:var(--accent)}.lvbox.adv .lvh{background:#b9842b}
+  .lvbox ul.clean{padding:12px 14px}.lvbox ul.clean li{padding:5px 0 5px 18px}.lvbox ul.clean li:before{top:12px}
+  .toc{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:26px}
+  .toc li{break-inside:avoid;padding:7px 0;border-bottom:1px solid var(--soft);display:flex;align-items:center;gap:8px;font-size:13.5px}
+  .toc li a{font-weight:700;color:var(--ink)}.toc li a:hover{color:var(--accent)}
+  .toc .lvtag{margin-left:auto}
   ul.clean{list-style:none;padding:0;margin:0}
   ul.clean li{position:relative;padding:6px 0 6px 22px}
   ul.clean li:before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
@@ -96,6 +116,7 @@
   .toTop.show{opacity:1;pointer-events:auto}
   @media(max-width:680px){
     .levels{grid-template-columns:1fr}.two{grid-template-columns:1fr}
+    .picker{grid-template-columns:1fr}.levels3{grid-template-columns:1fr}.toc{columns:1}
     nav.menu{display:none}.hero{padding:40px 16px}
   }
   @media print{header.top,.toTop{display:none}section{break-inside:avoid;box-shadow:none}}
@@ -107,6 +128,7 @@
   <div class="top-inner">
     <div class="brand">名古屋JC <b>AI・SNS実演マニュアル</b></div>
     <nav class="menu">
+      <a href="#hub">目次</a>
       <a href="#s2">基本思想</a>
       <a href="#s4">NotebookLM</a>
       <a href="#s5">動画</a>
@@ -128,6 +150,67 @@
 
 <main>
 
+  <!-- HUB / 目次 -->
+  <section id="hub">
+    <div class="sec-head"><div class="sec-no">◎</div><h2>使い方ガイド・目次</h2></div>
+    <p class="lead">やりたいことが決まっているなら「目的から選ぶ」、ゼロから学ぶなら「レベル別」、全体を見るなら「目次」からどうぞ。</p>
+
+    <div class="subhead"><span class="ic">🎯</span>目的から選ぶ（クリックでマニュアルへ）</div>
+    <div class="picker">
+      <a class="pick" href="#s4"><b>例会・資料をまとめたい</b><span>NotebookLMで整理</span></a>
+      <a class="pick" href="#s4"><b>スライドを作りたい</b><span>NotebookLM／パワポ</span></a>
+      <a class="pick" href="#s5"><b>動画・画像を作りたい</b><span>Google Flow（画像4枚同時）</span></a>
+      <a class="pick" href="#s7"><b>SNS・YouTubeを伸ばしたい</b><span>リサーチ→台本→投稿</span></a>
+      <a class="pick" href="#s8"><b>集客ページ(LP)を作りたい</b><span>LP構成→コードで実装</span></a>
+      <a class="pick" href="#s10"><b>情報を整理・資産化したい</b><span>Notion／Obsidian</span></a>
+    </div>
+
+    <div class="subhead"><span class="ic">📶</span>レベル別に学ぶ</div>
+    <div class="levels3">
+      <div class="lvbox beg">
+        <div class="lvh">初級<small>まず触る</small></div>
+        <ul class="clean">
+          <li><a href="#s3">音声入力で楽に入力する</a></li>
+          <li><a href="#s4">NotebookLMで資料を整理する</a></li>
+          <li><a href="#s7">SNS投稿をAIで作る</a></li>
+        </ul>
+      </div>
+      <div class="lvbox mid">
+        <div class="lvh">中級<small>仕事を任せる</small></div>
+        <ul class="clean">
+          <li><a href="#s4">NotebookLMでスライドを生成</a></li>
+          <li><a href="#s6">パワポ構成をAIで作る</a></li>
+          <li><a href="#s5">Google Flowで画像4枚・動画</a></li>
+          <li><a href="#s7">リサーチ→台本で伸ばす</a></li>
+        </ul>
+      </div>
+      <div class="lvbox adv">
+        <div class="lvh">上級<small>仕組み化する</small></div>
+        <ul class="clean">
+          <li><a href="#s8">LP構成</a> → <a href="#s9">コードで実装</a></li>
+          <li><a href="#s10">Notion/Obsidianで資産化</a></li>
+          <li><a href="#s4">構成→NotebookLM 黄金ワークフロー</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subhead"><span class="ic">📑</span>目次（全チャプター）</div>
+    <ul class="toc">
+      <li><a href="#s1">はじめに</a></li>
+      <li><a href="#s2">AI活用の基本思想</a><span class="lvtag must">必読</span></li>
+      <li><a href="#s3">音声入力ショートカット</a><span class="lvtag beg">初級</span></li>
+      <li><a href="#s4">NotebookLM（整理・スライド）</a><span class="lvtag beg">初〜中</span></li>
+      <li><a href="#s5">Google Flow（画像・動画）</a><span class="lvtag mid">中級</span></li>
+      <li><a href="#s6">パワポ作成</a><span class="lvtag mid">中級</span></li>
+      <li><a href="#s7">SNS・YouTube（リサーチ→台本→投稿）</a><span class="lvtag beg">初〜中</span></li>
+      <li><a href="#s8">LP制作</a><span class="lvtag adv">上級</span></li>
+      <li><a href="#s9">Claude Code / Codex / Cursor</a><span class="lvtag adv">上級</span></li>
+      <li><a href="#s10">Notion / Obsidian</a><span class="lvtag mid">中〜上</span></li>
+      <li><a href="#s12">JC事業・社業の実践例</a></li>
+      <li><a href="#s14">アンケート・次回案内</a></li>
+    </ul>
+  </section>
+
   <!-- 1 -->
   <section id="s1">
     <div class="sec-head"><div class="sec-no">1</div><h2>はじめに</h2></div>
@@ -137,7 +220,7 @@
 
   <!-- 2 -->
   <section id="s2">
-    <div class="sec-head"><div class="sec-no">2</div><h2>AI活用の基本思想</h2></div>
+    <div class="sec-head"><div class="sec-no">2</div><h2>AI活用の基本思想</h2><span class="lvtag must">必読</span></div>
     <p class="lead">AIは「検索の代わり」ではなく「働かせる部下」。下の3段階で、レベルを上げていきます。</p>
     <div class="levels">
       <div class="lv"><span class="tag">Lv.1</span><h4>調べる</h4><p>検索の代わりに使う段階。</p></div>
@@ -156,7 +239,7 @@
 
   <!-- 3 -->
   <section id="s3">
-    <div class="sec-head"><div class="sec-no">3</div><h2>音声入力ショートカット</h2></div>
+    <div class="sec-head"><div class="sec-no">3</div><h2>音声入力ショートカット</h2><span class="lvtag beg">初級</span></div>
     <div class="two">
       <div class="mini"><h4>📱 スマホ</h4><ul class="clean"><li>キーボードのマイクボタンで話すだけ</li><li>移動中の議事メモ・投稿下書きに最適</li></ul></div>
       <div class="mini"><h4>💻 PC</h4><ul class="clean"><li>Mac：<b>fnキー2回</b>で音声入力ON</li><li>Windows：<b>Windowsキー + H</b></li></ul></div>
@@ -166,7 +249,7 @@
 
   <!-- 4 -->
   <section id="s4">
-    <div class="sec-head"><div class="sec-no">4</div><h2>NotebookLM実演プロンプト</h2></div>
+    <div class="sec-head"><div class="sec-no">4</div><h2>NotebookLM実演プロンプト</h2><span class="lvtag beg">初〜中</span></div>
     <p class="lead">担当例会を5分で“伝わる事業”に変える。NotebookLMは読み込んだ資料への要約・整理・質問回答が得意で、<b>JCの議案書・例会資料・事業計画書と相性が抜群</b>です。</p>
 
     <div class="subhead"><span class="ic">🗂</span>① 資料を整理して“伝わる事業”にする</div>
@@ -330,7 +413,7 @@
 
   <!-- 5 -->
   <section id="s5">
-    <div class="sec-head"><div class="sec-no">5</div><h2>Google Flow 動画制作プロンプト</h2></div>
+    <div class="sec-head"><div class="sec-no">5</div><h2>Google Flow 動画制作プロンプト</h2><span class="lvtag mid">中級</span></div>
     <p class="lead">Google Flowは Veo・Imagen・Gemini 向けに設計されたAI映像制作ツール。文字より映像が心を動かします。</p>
 
     <div class="tip"><b>いちばんのおすすめ：画像は“一気に4枚同時生成”。</b> Google Flowは同じ指示から構図・色味の違う画像を<b>4枚まとめて</b>出せます。<b>「1枚を粘る」より「4枚出して選ぶ」</b>方が速く、当たりが見つかる。気に入った1枚をベースに、さらに4枚と展開していくのがコツです。</div>
@@ -366,7 +449,7 @@ JC活動を通じて、地域に想いを届ける若手経営者たち。
 
   <!-- 6 -->
   <section id="s6">
-    <div class="sec-head"><div class="sec-no">6</div><h2>パワポ作成プロンプト</h2></div>
+    <div class="sec-head"><div class="sec-no">6</div><h2>パワポ作成プロンプト</h2><span class="lvtag mid">中級</span></div>
     <div class="prompt">
       <div class="ph"><span class="badge">構成案</span><span class="ttl">10枚のPowerPoint構成を作る</span>
         <button class="copy">コピー</button></div>
@@ -388,7 +471,7 @@ JC活動を通じて、地域に想いを届ける若手経営者たち。
 
   <!-- 7 -->
   <section id="s7">
-    <div class="sec-head"><div class="sec-no">7</div><h2>SNS・YouTube：リサーチ→台本→投稿</h2></div>
+    <div class="sec-head"><div class="sec-no">7</div><h2>SNS・YouTube：リサーチ→台本→投稿</h2><span class="lvtag beg">初〜中</span></div>
     <p class="lead">伸びるかどうかは、投稿を作る前の<b>「リサーチ」と「台本」で9割決まります。</b>いきなり書かず、この順番で。</p>
     <div class="flow">
       <span class="node">① リサーチ<small>何が伸びてる？</small></span><span class="arrow">→</span>
@@ -469,7 +552,7 @@ JC活動を通じて、地域に想いを届ける若手経営者たち。
 
   <!-- 8 -->
   <section id="s8">
-    <div class="sec-head"><div class="sec-no">8</div><h2>LP制作プロンプト</h2></div>
+    <div class="sec-head"><div class="sec-no">8</div><h2>LP制作プロンプト</h2><span class="lvtag adv">上級</span></div>
     <div class="prompt">
       <div class="ph"><span class="badge">LP構成</span><span class="ttl">事業からLP構成を作る</span>
         <button class="copy">コピー</button></div>
@@ -494,7 +577,7 @@ JC活動を通じて、地域に想いを届ける若手経営者たち。
 
   <!-- 9 -->
   <section id="s9">
-    <div class="sec-head"><div class="sec-no">9</div><h2>Claude Code / Codex / Cursor 活用</h2></div>
+    <div class="sec-head"><div class="sec-no">9</div><h2>Claude Code / Codex / Cursor 活用</h2><span class="lvtag adv">上級</span></div>
     <p class="lead">Claude Codeはコードベースを読み、ファイル編集・テスト実行・修正まで支援するエージェント型コーディングシステム。CodexはOpenAIのコーディングエージェント。</p>
     <div class="prompt">
       <div class="ph"><span class="badge">実装</span><span class="ttl">LP構成をその場でコード化</span>
@@ -512,7 +595,7 @@ JC活動を通じて、地域に想いを届ける若手経営者たち。
 
   <!-- 10 / 11 -->
   <section id="s10">
-    <div class="sec-head"><div class="sec-no">10</div><h2>Notion / Obsidian テンプレート</h2></div>
+    <div class="sec-head"><div class="sec-no">10</div><h2>Notion / Obsidian テンプレート</h2><span class="lvtag mid">中〜上</span></div>
     <div class="prompt">
       <div class="ph"><span class="badge">Notion</span><span class="ttl">セミナー内容をDB化</span>
         <button class="copy">コピー</button></div>
