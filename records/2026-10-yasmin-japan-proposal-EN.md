@@ -15,7 +15,7 @@
 | Route logic | Seoul first (cooler) → enter Japan via Osaka → exit Tokyo → Seoul (cheaper international fares) |
 | Japan departure | **Narita (NRT)** preferred; Haneda (HND) also fine |
 | Interests | Must-see icons + our signature cultural experiences · food · Mt. Fuji · hot springs · nightlife · hidden local spots · samurai |
-| Group | Pricing modeled on **6 pax, twin share** (adjusts with final numbers) |
+| Group | **3 travelers — mother + two ~18-year-old daughters, sharing one room (triple)** |
 
 ---
 
@@ -73,17 +73,20 @@ Kimono · Tea Ceremony · Calligraphy · Kyudo (archery) · Samurai / Bushido ·
 
 ## 7. Estimate — NET (Wholesale) per Person
 
-> Japan land portion only · 10 nights · 6 pax, twin share · **NET rates for you to mark up** (or commissionable 10–15% on request). Estimate, subject to final confirmation.
+> Japan land portion only · 10 nights · **3 travelers sharing one room (triple)** · **NET rates for you to mark up** (or commissionable 10–15% on request). Estimate, subject to final confirmation.
 
 | Item | Value | **Standard (recommended)** | Luxury |
 |---|---|---|---|
-| Accommodation (10 nights) | ¥105,000 | ¥185,000 | ¥600,000 |
-| Transport (rail · charters · transfers) | ¥45,000 | ¥65,000 | ¥185,000 |
-| Experiences & culture program | ¥25,000 | ¥70,000 | ¥130,000 |
-| Guide · interpretation · on-site support | ¥12,000 | ¥30,000 | ¥45,000 |
+| Accommodation (10 nights, one room shared by 3) | ¥80,000 | ¥140,000 | ¥500,000 |
+| Transport (rail · charters · transfers) | ¥60,000 | ¥95,000 | ¥230,000 |
+| Experiences & culture program | ¥30,000 | ¥85,000 | ¥150,000 |
+| Guide · interpretation · on-site support | ¥18,000 | ¥45,000 | ¥60,000 |
 | Selected meals (ryokan dinner, experience meals) | ¥3,000 | ¥10,000 | ¥10,000 |
-| **TOTAL (NET / person)** | **¥190,000** | **¥360,000** | **¥970,000** |
-| ≈ USD (at ¥150/USD) | **$1,270** | **$2,400** | **$6,470** |
+| **TOTAL (NET / person)** | **¥190,000** | **¥375,000** | **¥950,000** |
+| ≈ USD (at ¥150/USD) | **$1,270** | **$2,500** | **$6,350** |
+
+> **Small-group pricing note:** with only 3 guests, fixed costs (guide, private transport) are higher per person, but sharing **one room among three** lowers lodging cost — so the per-person total lands close to a standard twin-share trip.
+> **Triple-room note:** budget/standard hotels have limited triple inventory, so we book a **twin + extra bed or a Japanese-style room (3 futons)**. Some 5★ properties cannot place 3 in one room; a **suite or a second room** may be required at additional cost (to be confirmed).
 
 **Includes:** 10 nights' hotels · domestic rail, private charters & airport transfers · listed experiences, entries & English-speaking guide · selected meals.
 **Excludes:** international flights · Seoul stay · meals not listed · personal expenses · travel insurance · peak-season surcharges · anything not listed above.
@@ -103,7 +106,7 @@ Kimono · Tea Ceremony · Calligraphy · Kyudo (archery) · Samurai / Bushido ·
 
 ## 9. To Finalize, Please Confirm
 
-1. **Number of travelers** & rooming (twin share?)
+1. ~~Number of travelers & rooming~~ → **confirmed: 3 pax, one shared room** (please note if a 5★ stay must keep all 3 in one room)
 2. **Target price grade** (Value / Standard / Luxury)
 3. Japan departure airport (NRT/HND) & flight status
 4. Whether we should also coordinate the **Seoul** portion
