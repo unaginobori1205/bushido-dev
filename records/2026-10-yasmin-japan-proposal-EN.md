@@ -42,8 +42,8 @@ We are a Nagoya-based land operator specializing in **authentic, hands-on Japane
 | **Oct 9** | Osaka | Osaka Castle · Dotonbori street-food tour (*kuidaore*) · Shinsekai · **nightlife** |
 | **Oct 10** | → Nara → Kyoto | Todai-ji Great Buddha · Nara Park deer · Kasuga Taisha → Kyoto |
 | **Oct 11** | Kyoto | Fushimi Inari · Kinkaku-ji · Arashiyama bamboo · Kiyomizu-dera · Gion · **samurai/sword experience** or maiko dinner |
-| **Oct 12** | → Nagoya | **CULTURE DAY 1:** kimono dressing · Nagoya Castle · Atsuta Shrine |
-| **Oct 13** | Nagoya / Inuyama | **CULTURE DAY 2:** tea ceremony · calligraphy · kyudo · samurai/bushido · Inuyama Castle keep · *kishimen* lunch |
+| **Oct 12** | → Nagoya | **CULTURE DAY 1:** kimono dressing · Nagoya Castle · Atsuta Shrine · *unagi hitsumabushi* dinner |
+| **Oct 13** | Nagoya / Inuyama / Arimatsu | **CULTURE DAY 2:** kyudo + calligraphy · hand-made miso-nikomi udon · Arimatsu shibori tie-dye · Nishikawa-ryu Japanese dance · Inuyama Castle keep |
 | **Oct 14** | → Hakone / Mt. Fuji | Mt. Fuji views · Lake Ashi cruise · Owakudani · **onsen ryokan (hot springs)** |
 | **Oct 15** | → Tokyo | Hakone Shrine torii · ropeway → Tokyo |
 | **Oct 16** | Tokyo | Senso-ji (Asakusa) · Meiji Shrine · Shibuya Crossing · **teamLab** |
@@ -53,9 +53,20 @@ We are a Nagoya-based land operator specializing in **authentic, hands-on Japane
 
 ---
 
-## 5. Signature: Nagoya Culture Program (our exclusive core)
+## 5. Signature: Nagoya / Aichi Experience Menu (our exclusive core)
 
-Kimono · Tea Ceremony · Calligraphy · Kyudo (archery) · Samurai / Bushido · Nagoya & Inuyama Castles · *kishimen* local cuisine — guided in English with authentic masters.
+> Real per-person rates. We build the 2 days by combining items from this menu — all guided in English with authentic masters.
+
+| Experience | Price / person |
+|---|---|
+| Kyudo (archery) + Calligraphy — set | **¥20,000** |
+| Hand-made Miso-nikomi Udon (Nagoya specialty) | **¥10,000** |
+| Nishikawa-ryu Japanese dance (Nagoya-born school) | **¥20,000** |
+| Arimatsu Shibori tie-dye craft | **¥4,000–5,000** (TBC) |
+| Unagi / *hitsumabushi* signature meal (with our own "Unaginobori") | **¥6,000–8,000** (TBC) |
+| Kimono dressing · Tea ceremony · Castle entries | quoted separately |
+
+> **Standard 2-day set example ≈ ¥61,500/person** (kimono, tea ceremony and entry fees additional).
 
 ---
 
@@ -79,7 +90,7 @@ Kimono · Tea Ceremony · Calligraphy · Kyudo (archery) · Samurai / Bushido ·
 |---|---|---|---|
 | Accommodation (10 nights, one room shared by 3) | ¥80,000 | ¥140,000 | ¥500,000 |
 | Transport (rail · charters · transfers) | ¥60,000 | ¥95,000 | ¥230,000 |
-| Experiences & culture program | ¥30,000 | ¥85,000 | ¥150,000 |
+| Experiences & culture program *(Nagoya menu at real rates — see §5)* | ¥30,000 | ¥85,000 | ¥150,000 |
 | Guide · interpretation · on-site support | ¥18,000 | ¥45,000 | ¥60,000 |
 | Selected meals (ryokan dinner, experience meals) | ¥3,000 | ¥10,000 | ¥10,000 |
 | **TOTAL (NET / person)** | **¥190,000** | **¥375,000** | **¥950,000** |
