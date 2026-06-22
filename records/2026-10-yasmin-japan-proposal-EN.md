@@ -60,14 +60,14 @@ We are a Nagoya-based land operator specializing in **authentic, hands-on Japane
 | Experience | Price / person |
 |---|---|
 | Kyudo (archery) + Calligraphy — set | **¥20,000** |
-| Hand-made Miso-nikomi Udon (Nagoya specialty) | **¥10,000** |
-| Arimatsu Shibori tie-dye craft | **¥4,000–5,000** (TBC) |
-| Unagi / *hitsumabushi* signature meal (with our own "Unaginobori") | **¥6,000–8,000** (TBC) |
+| Hand-made Miso-nikomi Udon (Nagoya specialty) | **¥8,800** |
+| Arimatsu Shibori tie-dye craft | **¥10,000** |
+| Unagi / *hitsumabushi* (with our own "Unaginobori") — meal / + cooking experience | **¥8,000 / ¥20,000** |
 | Nishikawa-ryu Japanese dance (Nagoya-born school) — **optional add-on** | **+¥20,000** |
 | Kimono dressing · Tea ceremony · Castle entries | quoted separately |
 
-> **Standard 2-day set ≈ ¥41,500/person** (kyudo+calligraphy · miso-nikomi udon · shibori · unagi). Kimono, tea ceremony and entry fees additional.
-> **Add Nishikawa-ryu dance → ≈ ¥61,500/person.**
+> **Standard 2-day set ≈ ¥46,800/person** (kyudo+calligraphy · miso-nikomi udon · shibori · unagi meal). Kimono, tea ceremony and entry fees additional.
+> **Options:** add Nishikawa-ryu dance → ≈ ¥66,800/person · upgrade unagi to cooking experience → +¥12,000/person.
 
 ---
 
@@ -91,13 +91,13 @@ We are a Nagoya-based land operator specializing in **authentic, hands-on Japane
 |---|---|---|---|
 | Accommodation (10 nights, one room shared by 3) | ¥80,000 | ¥140,000 | ¥500,000 |
 | Transport (rail · charters · transfers) | ¥60,000 | ¥95,000 | ¥230,000 |
-| Experiences & culture program *(Nagoya menu at real rates — see §5)* | ¥30,000 | ¥65,000 | ¥150,000 |
+| Experiences & culture program *(Nagoya menu at real rates — see §5)* | ¥30,000 | ¥70,000 | ¥150,000 |
 | Guide · interpretation · on-site support | ¥18,000 | ¥45,000 | ¥60,000 |
 | Selected meals (ryokan dinner, experience meals) | ¥3,000 | ¥10,000 | ¥10,000 |
-| **TOTAL (NET / person)** | **¥190,000** | **¥355,000** | **¥950,000** |
-| ≈ USD (at ¥150/USD) | **$1,270** | **$2,370** | **$6,350** |
+| **TOTAL (NET / person)** | **¥190,000** | **¥360,000** | **¥950,000** |
+| ≈ USD (at ¥150/USD) | **$1,270** | **$2,400** | **$6,350** |
 
-**Optional add-on:** Nishikawa-ryu Japanese dance **+¥20,000/person** (Standard then ≈ ¥375,000 / $2,500).
+**Optional add-ons:** ① Nishikawa-ryu dance **+¥20,000/person** (Standard ≈ ¥380,000) · ② unagi cooking experience **+¥12,000/person**.
 
 > **Small-group pricing note:** with only 3 guests, fixed costs (guide, private transport) are higher per person, but sharing **one room among three** lowers lodging cost — so the per-person total lands close to a standard twin-share trip.
 > **Triple-room note:** budget/standard hotels have limited triple inventory, so we book a **twin + extra bed or a Japanese-style room (3 futons)**. Some 5★ properties cannot place 3 in one room; a **suite or a second room** may be required at additional cost (to be confirmed).
