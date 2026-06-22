@@ -1,9 +1,9 @@
 # Yasmin 様（旅行会社）向け 日本旅行 提案パッケージ ＜BUSHIDO JAPAN 作業用マスター＞
 
-> 作成日：2026-06-20 ／ 作成：BUSHIDO JAPAN（上岡賢輔）
+> 作成日：2026-06-20（最終更新 2026-06-22）／ 作成：BUSHIDO JAPAN（上岡賢輔）
 > 出典：Yasmin Sabbag 様との往復メール（2026-05-25 スレッド「Japan Trip Support from BUSHIDO JAPAN」）
-> 区分：**B2B（ランドオペレーター → 旅行会社）** ／ ステータス：たたき台（人数・予算 要確認）
-> 関連：英語クライアント提示版 → `records/2026-10-yasmin-japan-proposal-EN.md`
+> 区分：**B2B（ランドオペレーター → 旅行会社）** ／ ステータス：内部作業用メモ
+> ⚠️ **最新のクライアント提示版は `records/2026-10-yasmin-japan-proposal-JP.md`（2026-06-22更新）です。** 本ファイルは構成案・初期試算を残す内部メモ。価格・ホテル・日程の最新は proposal-JP を正とします。
 
 ---
 

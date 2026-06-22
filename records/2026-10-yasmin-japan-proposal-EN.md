@@ -2,6 +2,7 @@
 ### Prepared by BUSHIDO JAPAN for Yasmin Sabbag (Travel Agency, Colombia)
 
 > Date: 2026-06-20 · Prepared by Kensuke Ueoka, BUSHIDO JAPAN
+> ⚠️ **SUPERSEDED — to be re-translated.** The current authoritative version is the Japanese document `records/2026-10-yasmin-japan-proposal-JP.md` (updated 2026-06-22: 4★ hotels, named properties, group-total pricing, Nagoya kyudo as the highlight). This English file will be regenerated from it.
 > Trade proposal (Land Operator → Travel Agency) · **Draft — pending group size & budget**
 > Scope of our quote: **Japan land arrangements only (Osaka IN → Narita OUT).** International flights & Seoul stay are arranged on your side (we can coordinate if helpful).
 
