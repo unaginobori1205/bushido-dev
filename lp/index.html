@@ -99,6 +99,8 @@
   .hotel .name{font-size:14px;font-weight:700;line-height:1.4}
   .hotel .meta{font-size:12px;color:var(--muted);margin-top:3px}
 
+  .exp{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
+  .exp .img{aspect-ratio:4/3;border-radius:14px}
   .luggage{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:center}
   .luggage .img{aspect-ratio:16/11;border-radius:14px}
 
@@ -125,6 +127,7 @@
     .facts{grid-template-columns:repeat(2,1fr)}
     .grid{grid-template-columns:1fr 1fr}
     .highlight .split{grid-template-columns:1fr}
+    .exp{grid-template-columns:1fr}
     .hotels{grid-template-columns:repeat(2,1fr)}
     .luggage{grid-template-columns:1fr}
     .plans{grid-template-columns:1fr}
@@ -258,16 +261,21 @@
     <div class="kicker">Nagoya / Aichi</div>
     <h2 class="sec">Experience menu</h2>
     <p class="lead">All guided in English with authentic masters. Per person.</p>
-    <table>
-      <tr><th>Experience</th><th>Price / person</th></tr>
-      <tr><td>★ Kyudo + Calligraphy <em>(trip highlight)</em></td><td class="price" data-jpy="20000"></td></tr>
-      <tr><td>Hand-made Miso-nikomi Udon (lunch incl.)</td><td class="price" data-jpy="8800"></td></tr>
-      <tr><td>Arimatsu Shibori tie-dye (make your own)</td><td class="price" data-jpy="10000"></td></tr>
-      <tr><td>Unagi <em>hitsumabushi</em> — meal / with cooking</td><td class="price" data-jpy="8000" data-jpy2="20000" data-sep=" / "></td></tr>
-      <tr><td>Nishikawa-ryu Japanese dance <em>(optional)</em></td><td class="price" data-jpy="20000" data-prefix="+"></td></tr>
-      <tr><td>Kimono · tea ceremony · castle entries</td><td class="price">quoted separately</td></tr>
-    </table>
-    <p class="note">Standard 2-day set ≈ <span data-jpy="46800"></span> / person.</p>
+    <div class="exp">
+      <div>
+        <table>
+          <tr><th>Experience</th><th>Price / person</th></tr>
+          <tr><td>★ Kyudo + Calligraphy <em>(trip highlight)</em></td><td class="price" data-jpy="20000"></td></tr>
+          <tr><td>Hand-made Miso-nikomi Udon (lunch incl.)</td><td class="price" data-jpy="8800"></td></tr>
+          <tr><td>Arimatsu Shibori tie-dye (make your own)</td><td class="price" data-jpy="10000"></td></tr>
+          <tr><td>Unagi <em>hitsumabushi</em> — meal / with cooking</td><td class="price" data-jpy="8000" data-jpy2="20000" data-sep=" / "></td></tr>
+          <tr><td>Nishikawa-ryu Japanese dance <em>(optional)</em></td><td class="price" data-jpy="20000" data-prefix="+"></td></tr>
+          <tr><td>Kimono · tea ceremony · castle entries</td><td class="price">quoted separately</td></tr>
+        </table>
+        <p class="note">Standard 2-day set ≈ <span data-jpy="46800"></span> / person.</p>
+      </div>
+      <div class="img" data-label="Miso-nikomi Udon"><img src="images/exp-miso-nikomi-udon.jpg" alt="Miso-nikomi udon" onerror="imgFail(this)"></div>
+    </div>
   </div>
 </section>
 
