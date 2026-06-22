@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Authentic Japan — 11-Day Model Plan | BUSHIDO JAPAN</title>
+<style>
+  :root{
+    --ink:#16161d; --crimson:#b3001b; --gold:#c8a24b; --paper:#faf7f2;
+    --muted:#6b6b73; --line:#e7e1d8; --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Helvetica Neue",Arial,"Hiragino Sans","Noto Sans JP",sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  .ph{background:linear-gradient(135deg,#2a2a3a,#4a3b3f 60%,#7a5a3a);
+    background-size:cover;background-position:center;color:#fff}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(250,247,242,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-weight:800;letter-spacing:.14em;font-size:15px}
+  .brand b{color:var(--crimson)}
+  .nav a.cta{background:var(--crimson);color:#fff;text-decoration:none;
+    padding:9px 16px;border-radius:30px;font-size:13px;font-weight:700}
+
+  /* hero */
+  .hero{position:relative;min-height:78vh;display:flex;align-items:center;
+    background-image:linear-gradient(180deg,rgba(15,15,25,.35),rgba(15,15,25,.55)),
+      url('images/hero-fuji.jpg');background-size:cover;background-position:center;color:#fff}
+  .hero .wrap{padding:80px 20px}
+  .eyebrow{letter-spacing:.32em;font-size:12px;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .hero h1{font-size:clamp(34px,6vw,64px);line-height:1.08;margin:.25em 0 .35em;font-weight:800}
+  .hero p.route{font-size:clamp(15px,2.2vw,20px);max-width:760px;margin:0 0 28px;opacity:.95}
+  .btnrow{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;padding:13px 24px;border-radius:30px;font-weight:700;font-size:14px}
+  .btn.primary{background:var(--crimson);color:#fff}
+  .btn.ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+
+  /* facts strip */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:-46px auto 0;position:relative;z-index:5;box-shadow:0 18px 40px rgba(0,0,0,.10)}
+  .facts div{background:#fff;padding:18px 16px;text-align:center}
+  .facts .k{font-size:12px;color:var(--muted);letter-spacing:.06em}
+  .facts .v{font-size:18px;font-weight:800;margin-top:4px}
+
+  section{padding:66px 0}
+  .kicker{color:var(--crimson);font-weight:800;letter-spacing:.18em;font-size:12px;text-transform:uppercase}
+  h2.sec{font-size:clamp(26px,4vw,40px);margin:.18em 0 .5em;font-weight:800}
+  .lead{color:var(--muted);max-width:720px;margin:0 0 26px}
+
+  /* route timeline */
+  .timeline{display:flex;flex-wrap:wrap;gap:10px}
+  .stop{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stop .n{font-size:12px;color:var(--gold);font-weight:800;letter-spacing:.1em}
+  .stop .city{font-size:18px;font-weight:800;margin:3px 0 2px}
+  .stop .nights{font-size:12px;color:var(--muted)}
+
+  /* itinerary cards */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .card .img{aspect-ratio:16/10}
+  .card .body{padding:16px 18px}
+  .card .day{font-size:12px;font-weight:800;color:var(--crimson);letter-spacing:.08em}
+  .card h3{margin:.2em 0 .3em;font-size:18px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+
+  /* highlight */
+  .highlight{background:var(--ink);color:#fff}
+  .highlight .split{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+  .highlight .img{aspect-ratio:4/3;border-radius:18px;overflow:hidden;background-image:url('images/nagoya-kyudo.jpg');background-size:cover;background-position:center}
+  .highlight h2{font-size:clamp(26px,4vw,42px);margin:.1em 0 .4em;font-weight:800}
+  .highlight .kicker{color:var(--gold)}
+  .highlight p{opacity:.9}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tag{border:1px solid rgba(255,255,255,.3);border-radius:30px;padding:6px 14px;font-size:13px}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+  th{background:#f3efe8;font-weight:800;letter-spacing:.04em}
+  tr:last-child td{border-bottom:0}
+  .price{font-weight:800;white-space:nowrap}
+
+  /* hotels */
+  .hotels{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .hotel .img{aspect-ratio:3/4;border-radius:14px;overflow:hidden;margin-bottom:10px}
+  .hotel .city{font-size:12px;color:var(--gold);font-weight:800;letter-spacing:.08em}
+  .hotel .name{font-size:14px;font-weight:700;line-height:1.4}
+  .hotel .meta{font-size:12px;color:var(--muted);margin-top:3px}
+
+  /* luggage */
+  .luggage{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:center}
+  .luggage .img{aspect-ratio:16/11;border-radius:14px;overflow:hidden;background-image:url('images/takkyubin.jpg');background-size:cover;background-position:center}
+
+  /* pricing */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 22px;position:relative}
+  .plan.best{border:2px solid var(--crimson);box-shadow:0 16px 40px rgba(179,0,27,.12)}
+  .plan .badge{position:absolute;top:-12px;left:22px;background:var(--crimson);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:5px 12px;border-radius:30px}
+  .plan .name{font-weight:800;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .plan .amt{font-size:30px;font-weight:800;margin:.25em 0 .1em}
+  .plan .sub{font-size:12px;color:var(--muted)}
+  .plan ul{margin:16px 0 0;padding-left:18px;font-size:14px;color:#333}
+  .plan li{margin:6px 0}
+
+  /* CTA banner */
+  .cta-band{background:linear-gradient(135deg,var(--crimson),#7c0014);color:#fff;border-radius:20px;padding:40px;text-align:center}
+  .cta-band h2{font-size:clamp(24px,3.5vw,34px);margin:0 0 .3em;font-weight:800}
+  .cta-band p{opacity:.95;margin:0 0 22px}
+  .cta-band .btn.primary{background:#fff;color:var(--crimson)}
+
+  footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  .note{font-size:12px;color:var(--muted);margin-top:14px}
+
+  @media(max-width:860px){
+    .facts{grid-template-columns:repeat(2,1fr)}
+    .grid{grid-template-columns:1fr 1fr}
+    .highlight .split{grid-template-columns:1fr}
+    .hotels{grid-template-columns:repeat(2,1fr)}
+    .luggage{grid-template-columns:1fr}
+    .plans{grid-template-columns:1fr}
+  }
+  @media(max-width:520px){
+    .grid{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><b>BUSHIDO</b> JAPAN</div>
+    <a class="cta" href="#contact">Get the full plan</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Private Model Plan · For Yasmin&rsquo;s Group</div>
+    <h1>Authentic Japan,<br>in 11 Days</h1>
+    <p class="route">Osaka · Nara · Kyoto · <strong>Nagoya</strong> · Mt. Fuji / Hakone · Tokyo —
+      a comfortable 4-star journey for 3 travelers, with a once-in-a-lifetime Kyudo experience at its heart.</p>
+    <div class="btnrow">
+      <a class="btn primary" href="#itinerary">See the journey</a>
+      <a class="btn ghost" href="#pricing">View pricing</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="facts">
+    <div><div class="k">Duration</div><div class="v">10 nights</div></div>
+    <div><div class="k">Travelers</div><div class="v">3 · one room</div></div>
+    <div><div class="k">Style</div><div class="v">4-star comfort</div></div>
+    <div><div class="k">Highlight</div><div class="v">Nagoya Kyudo</div></div>
+  </div>
+</div>
+
+<!-- ROUTE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">The Route</div>
+    <h2 class="sec">One smooth line, west to east</h2>
+    <p class="lead">Enter at Osaka, travel the classic corridor through Japan&rsquo;s cultural heart, and finish in Tokyo — luggage forwarded ahead so every travel day stays light.</p>
+    <div class="timeline">
+      <div class="stop"><div class="n">IN</div><div class="city">Osaka</div><div class="nights">2 nights</div></div>
+      <div class="stop"><div class="n">via</div><div class="city">Nara</div><div class="nights">day trip</div></div>
+      <div class="stop"><div class="n">↓</div><div class="city">Kyoto</div><div class="nights">2 nights</div></div>
+      <div class="stop"><div class="n">★</div><div class="city">Nagoya</div><div class="nights">2 nights</div></div>
+      <div class="stop"><div class="n">↓</div><div class="city">Hakone / Fuji</div><div class="nights">1 night</div></div>
+      <div class="stop"><div class="n">OUT</div><div class="city">Tokyo</div><div class="nights">3 nights</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section id="itinerary" style="padding-top:8px">
+  <div class="wrap">
+    <div class="kicker">Day by Day</div>
+    <h2 class="sec">The journey</h2>
+    <div class="grid">
+      <div class="card"><div class="img ph" style="background-image:url('images/osaka-castle.jpg')"></div>
+        <div class="body"><div class="day">Oct 9–10 · Osaka</div><h3>Arrive &amp; dive in</h3>
+        <p>Osaka Castle, a Dotonbori street-food tour, and a lively first night in the neon district.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/nara-todaiji-deer.jpg')"></div>
+        <div class="body"><div class="day">Oct 11 · Nara → Kyoto</div><h3>Great Buddha &amp; deer</h3>
+        <p>Todai-ji and the friendly deer of Nara Park, then on to Kyoto for the evening.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/kyoto-fushimi-inari.jpg')"></div>
+        <div class="body"><div class="day">Oct 12 · Kyoto</div><h3>Thousand torii</h3>
+        <p>Fushimi Inari, Kinkaku-ji, Arashiyama bamboo and Gion — with an optional samurai or maiko evening.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/nagoya-castle.jpg')"></div>
+        <div class="body"><div class="day">Oct 13 · Nagoya</div><h3>Culture Day 1</h3>
+        <p>Kimono dressing, Nagoya Castle and Atsuta Shrine — ending with unagi <em>hitsumabushi</em>.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/nagoya-kyudo.jpg')"></div>
+        <div class="body"><div class="day">Oct 14 · Nagoya ★</div><h3>Culture Day 2 — Kyudo</h3>
+        <p>The highlight: Kyudo &amp; calligraphy, hand-made miso-nikomi udon, Arimatsu tie-dye, Inuyama Castle.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/hakone-onsen-fuji.jpg')"></div>
+        <div class="body"><div class="day">Oct 15 · Hakone / Fuji</div><h3>Hot springs &amp; Fuji</h3>
+        <p>Mt. Fuji views, Lake Ashi cruise, Owakudani — and a night at an onsen ryokan.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/tokyo-shibuya.jpg')"></div>
+        <div class="body"><div class="day">Oct 16–17 · Tokyo</div><h3>The big city</h3>
+        <p>Senso-ji, Meiji Shrine, Shibuya Crossing and teamLab — your suitcases waiting at the hotel.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/tokyo-golden-gai.jpg')"></div>
+        <div class="body"><div class="day">Oct 18 · Tokyo</div><h3>Hidden &amp; local</h3>
+        <p>Free day: old-town Yanaka, Toyosu Market, and the tiny bars of Shinjuku Golden Gai.</p></div></div>
+
+      <div class="card"><div class="img ph" style="background-image:url('images/hero-fuji.jpg')"></div>
+        <div class="body"><div class="day">Oct 19 · Departure</div><h3>Sayonara</h3>
+        <p>Private transfer to Narita for your onward flight via Seoul.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHT -->
+<section class="highlight">
+  <div class="wrap split">
+    <div class="img"></div>
+    <div>
+      <div class="kicker">The Highlight</div>
+      <h2>Kyudo — the way of the bow</h2>
+      <p>Kyudo is not about hitting a target. It is posture, breath, etiquette and focus — the living spirit of Japanese culture. Guided by a true master in Nagoya, it becomes the moment your travelers remember most.</p>
+      <div class="tags">
+        <span class="tag">Kyudo + Calligraphy</span>
+        <span class="tag">Miso-nikomi Udon making</span>
+        <span class="tag">Arimatsu Shibori</span>
+        <span class="tag">Unagi Hitsumabushi</span>
+        <span class="tag">Nishikawa-ryu Dance (opt.)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Nagoya / Aichi</div>
+    <h2 class="sec">Experience menu</h2>
+    <p class="lead">All guided in English with authentic masters. Per person.</p>
+    <table>
+      <tr><th>Experience</th><th>Price / person</th></tr>
+      <tr><td>★ Kyudo + Calligraphy <em>(trip highlight)</em></td><td class="price">¥20,000</td></tr>
+      <tr><td>Hand-made Miso-nikomi Udon (lunch incl.)</td><td class="price">¥8,800</td></tr>
+      <tr><td>Arimatsu Shibori tie-dye (make your own)</td><td class="price">¥10,000</td></tr>
+      <tr><td>Unagi <em>hitsumabushi</em> — meal / with cooking</td><td class="price">¥8,000 / ¥20,000</td></tr>
+      <tr><td>Nishikawa-ryu Japanese dance <em>(optional)</em></td><td class="price">+¥20,000</td></tr>
+      <tr><td>Kimono · tea ceremony · castle entries</td><td class="price">quoted separately</td></tr>
+    </table>
+    <p class="note">Standard 2-day set ≈ ¥46,800 / person.</p>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Where you stay</div>
+    <h2 class="sec">4-star, family-friendly, central</h2>
+    <p class="lead">Comfortable rooms for three, in convenient locations with easy transfers.</p>
+    <div class="hotels">
+      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-osaka.jpg')"></div>
+        <div class="city">OSAKA</div><div class="name">Hotel Hankyu Respire Osaka</div><div class="meta">3 min from JR Osaka Sta</div></div>
+      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-kyoto.jpg')"></div>
+        <div class="city">KYOTO</div><div class="name">Hotel Vischio Kyoto by GRANVIA</div><div class="meta">2 min from Kyoto Sta</div></div>
+      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-nagoya.jpg')"></div>
+        <div class="city">NAGOYA</div><div class="name">Nikko Style Nagoya</div><div class="meta">Roomy, family-friendly</div></div>
+      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-hakone.jpg')"></div>
+        <div class="city">HAKONE</div><div class="name">Hakone Ashinoko Hanaori</div><div class="meta">Onsen ryokan, Fuji feel</div></div>
+      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-tokyo.jpg')"></div>
+        <div class="city">TOKYO</div><div class="name">MIMARU Tokyo STATION EAST</div><div class="meta">Apartment-style, kitchen</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LUGGAGE -->
+<section>
+  <div class="wrap">
+    <div class="luggage">
+      <div class="img ph"></div>
+      <div>
+        <div class="kicker">Travel light</div>
+        <h2 class="sec" style="margin-top:.1em">Hands-free with takkyubin</h2>
+        <p class="lead" style="margin-bottom:14px">We forward your suitcases from the Nagoya hotel straight to Tokyo, so you enjoy the Hakone hot-spring night with just a small bag — no hauling luggage on the shinkansen.</p>
+        <table>
+          <tr><th>Leg</th><th>Handling</th></tr>
+          <tr><td>Kansai Airport → Osaka hotel</td><td>Option</td></tr>
+          <tr><td><strong>Nagoya hotel → Tokyo hotel</strong></td><td><strong>Included</strong></td></tr>
+          <tr><td>Tokyo hotel → Narita Airport</td><td>Option</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="kicker">Estimate</div>
+    <h2 class="sec">Total for 3 travelers</h2>
+    <p class="lead">Japan domestic portion only (excludes international flights &amp; Seoul). Reference ranges — hotels and transport vary by availability.</p>
+    <div class="plans">
+      <div class="plan">
+        <div class="name">Downgrade</div>
+        <div class="amt">¥1.2–1.5M</div>
+        <div class="sub">for 3 · approx.</div>
+        <ul><li>Simplified hotels</li><li>Mishima Tokyu near Fuji</li><li>All core experiences</li></ul>
+      </div>
+      <div class="plan best">
+        <div class="badge">RECOMMENDED</div>
+        <div class="name">Standard</div>
+        <div class="amt">¥1.6–1.9M</div>
+        <div class="sub">for 3 · approx.</div>
+        <ul><li>4-star hotels throughout</li><li>Nagoya Kyudo included</li><li>Luggage forwarding included</li></ul>
+      </div>
+      <div class="plan">
+        <div class="name">Upgrade</div>
+        <div class="amt">¥2.2–3.5M+</div>
+        <div class="sub">for 3 · approx.</div>
+        <ul><li>Luxury / HOSHINOYA swaps</li><li>Premium onsen &amp; ryokan</li><li>Private touches</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" style="padding-top:8px">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Decide by June 30 &amp; save ¥50,000</h2>
+      <p>Lock in the plan direction this month to secure the best October hotels — and receive ¥50,000 off the arrangement fee.</p>
+      <a class="btn primary" href="mailto:ueoka@bsd-pro.com?subject=Japan%20Trip%20Plan">Email BUSHIDO JAPAN</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>BUSHIDO JAPAN</strong> · Kensuke Ueoka · ueoka@bsd-pro.com<br>
+    <span class="note">Prices are reference estimates as of June 22, 2026, not confirmed booking amounts. Hotel and transport costs vary with availability. International flights and the Seoul stay are arranged separately.</span>
+  </div>
+</footer>
+
+</body>
+</html>
