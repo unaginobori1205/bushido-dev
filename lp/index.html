@@ -8,6 +8,7 @@
   :root{
     --ink:#16161d; --crimson:#b3001b; --gold:#c8a24b; --paper:#faf7f2;
     --muted:#6b6b73; --line:#e7e1d8; --card:#ffffff;
+    --ph:linear-gradient(135deg,#2a2a3a,#4a3b3f 60%,#7a5a3a);
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:"Helvetica Neue",Arial,"Hiragino Sans","Noto Sans JP",sans-serif;
@@ -15,32 +16,43 @@
   img{max-width:100%;display:block}
   a{color:inherit}
   .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-  .ph{background:linear-gradient(135deg,#2a2a3a,#4a3b3f 60%,#7a5a3a);
-    background-size:cover;background-position:center;color:#fff}
+
+  /* image placeholder pattern (label shows until a real photo is dropped in) */
+  .img{position:relative;overflow:hidden;background:var(--ph)}
+  .img>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .img::after{content:attr(data-label);position:absolute;inset:0;display:flex;
+    align-items:center;justify-content:center;text-align:center;padding:12px;
+    color:rgba(255,255,255,.82);font-size:13px;letter-spacing:.05em}
+  .img>img{z-index:1}
 
   /* header */
   header{position:sticky;top:0;z-index:50;background:rgba(250,247,242,.92);
     backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:62px;flex-wrap:wrap;padding:8px 0}
   .brand{font-weight:800;letter-spacing:.14em;font-size:15px}
   .brand b{color:var(--crimson)}
+  .right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .cur{display:inline-flex;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:#fff}
+  .cur button{border:0;background:transparent;padding:8px 12px;font-size:12px;font-weight:700;
+    cursor:pointer;color:var(--muted)}
+  .cur button.on{background:var(--ink);color:#fff}
   .nav a.cta{background:var(--crimson);color:#fff;text-decoration:none;
     padding:9px 16px;border-radius:30px;font-size:13px;font-weight:700}
 
   /* hero */
   .hero{position:relative;min-height:78vh;display:flex;align-items:center;
-    background-image:linear-gradient(180deg,rgba(15,15,25,.35),rgba(15,15,25,.55)),
-      url('images/hero-fuji.jpg');background-size:cover;background-position:center;color:#fff}
+    background-image:linear-gradient(180deg,rgba(15,15,25,.45),rgba(15,15,25,.6)),var(--ph);
+    background-size:cover;background-position:center;color:#fff}
+  .hero.has-photo{background-image:linear-gradient(180deg,rgba(15,15,25,.35),rgba(15,15,25,.55)),url('images/hero-fuji.jpg')}
   .hero .wrap{padding:80px 20px}
   .eyebrow{letter-spacing:.32em;font-size:12px;text-transform:uppercase;color:var(--gold);font-weight:700}
   .hero h1{font-size:clamp(34px,6vw,64px);line-height:1.08;margin:.25em 0 .35em;font-weight:800}
   .hero p.route{font-size:clamp(15px,2.2vw,20px);max-width:760px;margin:0 0 28px;opacity:.95}
   .btnrow{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-block;text-decoration:none;padding:13px 24px;border-radius:30px;font-weight:700;font-size:14px}
+  .btn{display:inline-block;text-decoration:none;padding:13px 24px;border-radius:30px;font-weight:700;font-size:14px;cursor:pointer;border:0}
   .btn.primary{background:var(--crimson);color:#fff}
-  .btn.ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+  .btn.ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff;background:transparent}
 
-  /* facts strip */
   .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
     border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:-46px auto 0;position:relative;z-index:5;box-shadow:0 18px 40px rgba(0,0,0,.10)}
   .facts div{background:#fff;padding:18px 16px;text-align:center}
@@ -52,14 +64,12 @@
   h2.sec{font-size:clamp(26px,4vw,40px);margin:.18em 0 .5em;font-weight:800}
   .lead{color:var(--muted);max-width:720px;margin:0 0 26px}
 
-  /* route timeline */
   .timeline{display:flex;flex-wrap:wrap;gap:10px}
   .stop{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .stop .n{font-size:12px;color:var(--gold);font-weight:800;letter-spacing:.1em}
   .stop .city{font-size:18px;font-weight:800;margin:3px 0 2px}
   .stop .nights{font-size:12px;color:var(--muted)}
 
-  /* itinerary cards */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
   .card .img{aspect-ratio:16/10}
@@ -68,46 +78,41 @@
   .card h3{margin:.2em 0 .3em;font-size:18px}
   .card p{margin:0;color:var(--muted);font-size:14px}
 
-  /* highlight */
   .highlight{background:var(--ink);color:#fff}
   .highlight .split{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
-  .highlight .img{aspect-ratio:4/3;border-radius:18px;overflow:hidden;background-image:url('images/nagoya-kyudo.jpg');background-size:cover;background-position:center}
+  .highlight .img{aspect-ratio:4/3;border-radius:18px}
   .highlight h2{font-size:clamp(26px,4vw,42px);margin:.1em 0 .4em;font-weight:800}
   .highlight .kicker{color:var(--gold)}
   .highlight p{opacity:.9}
   .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
   .tag{border:1px solid rgba(255,255,255,.3);border-radius:30px;padding:6px 14px;font-size:13px}
 
-  /* table */
   table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
   th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
   th{background:#f3efe8;font-weight:800;letter-spacing:.04em}
   tr:last-child td{border-bottom:0}
   .price{font-weight:800;white-space:nowrap}
 
-  /* hotels */
   .hotels{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-  .hotel .img{aspect-ratio:3/4;border-radius:14px;overflow:hidden;margin-bottom:10px}
+  .hotel .img{aspect-ratio:3/4;border-radius:14px;margin-bottom:10px}
   .hotel .city{font-size:12px;color:var(--gold);font-weight:800;letter-spacing:.08em}
   .hotel .name{font-size:14px;font-weight:700;line-height:1.4}
   .hotel .meta{font-size:12px;color:var(--muted);margin-top:3px}
 
-  /* luggage */
   .luggage{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:center}
-  .luggage .img{aspect-ratio:16/11;border-radius:14px;overflow:hidden;background-image:url('images/takkyubin.jpg');background-size:cover;background-position:center}
+  .luggage .img{aspect-ratio:16/11;border-radius:14px}
 
-  /* pricing */
   .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .plan{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 22px;position:relative}
   .plan.best{border:2px solid var(--crimson);box-shadow:0 16px 40px rgba(179,0,27,.12)}
   .plan .badge{position:absolute;top:-12px;left:22px;background:var(--crimson);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:5px 12px;border-radius:30px}
   .plan .name{font-weight:800;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-  .plan .amt{font-size:30px;font-weight:800;margin:.25em 0 .1em}
+  .plan .amt{font-size:28px;font-weight:800;margin:.25em 0 .1em}
   .plan .sub{font-size:12px;color:var(--muted)}
   .plan ul{margin:16px 0 0;padding-left:18px;font-size:14px;color:#333}
   .plan li{margin:6px 0}
+  .rates{font-size:12px;color:var(--muted);margin-top:14px}
 
-  /* CTA banner */
   .cta-band{background:linear-gradient(135deg,var(--crimson),#7c0014);color:#fff;border-radius:20px;padding:40px;text-align:center}
   .cta-band h2{font-size:clamp(24px,3.5vw,34px);margin:0 0 .3em;font-weight:800}
   .cta-band p{opacity:.95;margin:0 0 22px}
@@ -124,10 +129,7 @@
     .luggage{grid-template-columns:1fr}
     .plans{grid-template-columns:1fr}
   }
-  @media(max-width:520px){
-    .grid{grid-template-columns:1fr}
-    .facts{grid-template-columns:1fr 1fr}
-  }
+  @media(max-width:520px){ .grid{grid-template-columns:1fr} .facts{grid-template-columns:1fr 1fr} }
 </style>
 </head>
 <body>
@@ -135,12 +137,19 @@
 <header>
   <div class="wrap nav">
     <div class="brand"><b>BUSHIDO</b> JAPAN</div>
-    <a class="cta" href="#contact">Get the full plan</a>
+    <div class="right">
+      <div class="cur" id="cur">
+        <button data-cur="JPY" class="on">¥ JPY</button>
+        <button data-cur="USD">$ USD</button>
+        <button data-cur="COP">COP</button>
+      </div>
+      <a class="cta" href="#contact">Get the full plan</a>
+    </div>
   </div>
 </header>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero" id="hero">
   <div class="wrap">
     <div class="eyebrow">Private Model Plan · For Yasmin&rsquo;s Group</div>
     <h1>Authentic Japan,<br>in 11 Days</h1>
@@ -185,39 +194,39 @@
     <div class="kicker">Day by Day</div>
     <h2 class="sec">The journey</h2>
     <div class="grid">
-      <div class="card"><div class="img ph" style="background-image:url('images/osaka-castle.jpg')"></div>
+      <div class="card"><div class="img" data-label="Osaka Castle"><img src="images/osaka-castle.jpg" alt="Osaka Castle" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 9–10 · Osaka</div><h3>Arrive &amp; dive in</h3>
         <p>Osaka Castle, a Dotonbori street-food tour, and a lively first night in the neon district.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/nara-todaiji-deer.jpg')"></div>
+      <div class="card"><div class="img" data-label="Nara · Todai-ji &amp; deer"><img src="images/nara-todaiji-deer.jpg" alt="Nara" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 11 · Nara → Kyoto</div><h3>Great Buddha &amp; deer</h3>
         <p>Todai-ji and the friendly deer of Nara Park, then on to Kyoto for the evening.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/kyoto-fushimi-inari.jpg')"></div>
+      <div class="card"><div class="img" data-label="Fushimi Inari"><img src="images/kyoto-fushimi-inari.jpg" alt="Fushimi Inari" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 12 · Kyoto</div><h3>Thousand torii</h3>
         <p>Fushimi Inari, Kinkaku-ji, Arashiyama bamboo and Gion — with an optional samurai or maiko evening.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/nagoya-castle.jpg')"></div>
+      <div class="card"><div class="img" data-label="Nagoya Castle"><img src="images/nagoya-castle.jpg" alt="Nagoya Castle" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 13 · Nagoya</div><h3>Culture Day 1</h3>
         <p>Kimono dressing, Nagoya Castle and Atsuta Shrine — ending with unagi <em>hitsumabushi</em>.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/nagoya-kyudo.jpg')"></div>
+      <div class="card"><div class="img" data-label="Kyudo (archery)"><img src="images/nagoya-kyudo.jpg" alt="Kyudo" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 14 · Nagoya ★</div><h3>Culture Day 2 — Kyudo</h3>
         <p>The highlight: Kyudo &amp; calligraphy, hand-made miso-nikomi udon, Arimatsu tie-dye, Inuyama Castle.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/hakone-onsen-fuji.jpg')"></div>
+      <div class="card"><div class="img" data-label="Hakone onsen &amp; Fuji"><img src="images/hakone-onsen-fuji.jpg" alt="Hakone onsen" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 15 · Hakone / Fuji</div><h3>Hot springs &amp; Fuji</h3>
         <p>Mt. Fuji views, Lake Ashi cruise, Owakudani — and a night at an onsen ryokan.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/tokyo-shibuya.jpg')"></div>
+      <div class="card"><div class="img" data-label="Shibuya Crossing"><img src="images/tokyo-shibuya.jpg" alt="Shibuya" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 16–17 · Tokyo</div><h3>The big city</h3>
         <p>Senso-ji, Meiji Shrine, Shibuya Crossing and teamLab — your suitcases waiting at the hotel.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/tokyo-golden-gai.jpg')"></div>
+      <div class="card"><div class="img" data-label="Shinjuku Golden Gai"><img src="images/tokyo-golden-gai.jpg" alt="Golden Gai" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 18 · Tokyo</div><h3>Hidden &amp; local</h3>
         <p>Free day: old-town Yanaka, Toyosu Market, and the tiny bars of Shinjuku Golden Gai.</p></div></div>
 
-      <div class="card"><div class="img ph" style="background-image:url('images/hero-fuji.jpg')"></div>
+      <div class="card"><div class="img" data-label="Mt. Fuji"><img src="images/hero-fuji.jpg" alt="Mt. Fuji" onerror="imgFail(this)"></div>
         <div class="body"><div class="day">Oct 19 · Departure</div><h3>Sayonara</h3>
         <p>Private transfer to Narita for your onward flight via Seoul.</p></div></div>
     </div>
@@ -227,7 +236,7 @@
 <!-- HIGHLIGHT -->
 <section class="highlight">
   <div class="wrap split">
-    <div class="img"></div>
+    <div class="img" data-label="Kyudo (archery)"><img src="images/nagoya-kyudo.jpg" alt="Kyudo" onerror="imgFail(this)"></div>
     <div>
       <div class="kicker">The Highlight</div>
       <h2>Kyudo — the way of the bow</h2>
@@ -251,14 +260,14 @@
     <p class="lead">All guided in English with authentic masters. Per person.</p>
     <table>
       <tr><th>Experience</th><th>Price / person</th></tr>
-      <tr><td>★ Kyudo + Calligraphy <em>(trip highlight)</em></td><td class="price">¥20,000</td></tr>
-      <tr><td>Hand-made Miso-nikomi Udon (lunch incl.)</td><td class="price">¥8,800</td></tr>
-      <tr><td>Arimatsu Shibori tie-dye (make your own)</td><td class="price">¥10,000</td></tr>
-      <tr><td>Unagi <em>hitsumabushi</em> — meal / with cooking</td><td class="price">¥8,000 / ¥20,000</td></tr>
-      <tr><td>Nishikawa-ryu Japanese dance <em>(optional)</em></td><td class="price">+¥20,000</td></tr>
+      <tr><td>★ Kyudo + Calligraphy <em>(trip highlight)</em></td><td class="price" data-jpy="20000"></td></tr>
+      <tr><td>Hand-made Miso-nikomi Udon (lunch incl.)</td><td class="price" data-jpy="8800"></td></tr>
+      <tr><td>Arimatsu Shibori tie-dye (make your own)</td><td class="price" data-jpy="10000"></td></tr>
+      <tr><td>Unagi <em>hitsumabushi</em> — meal / with cooking</td><td class="price" data-jpy="8000" data-jpy2="20000" data-sep=" / "></td></tr>
+      <tr><td>Nishikawa-ryu Japanese dance <em>(optional)</em></td><td class="price" data-jpy="20000" data-prefix="+"></td></tr>
       <tr><td>Kimono · tea ceremony · castle entries</td><td class="price">quoted separately</td></tr>
     </table>
-    <p class="note">Standard 2-day set ≈ ¥46,800 / person.</p>
+    <p class="note">Standard 2-day set ≈ <span data-jpy="46800"></span> / person.</p>
   </div>
 </section>
 
@@ -269,15 +278,15 @@
     <h2 class="sec">4-star, family-friendly, central</h2>
     <p class="lead">Comfortable rooms for three, in convenient locations with easy transfers.</p>
     <div class="hotels">
-      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-osaka.jpg')"></div>
+      <div class="hotel"><div class="img" data-label="Osaka hotel"><img src="images/hotel-osaka.jpg" alt="Osaka hotel" onerror="imgFail(this)"></div>
         <div class="city">OSAKA</div><div class="name">Hotel Hankyu Respire Osaka</div><div class="meta">3 min from JR Osaka Sta</div></div>
-      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-kyoto.jpg')"></div>
+      <div class="hotel"><div class="img" data-label="Kyoto hotel"><img src="images/hotel-kyoto.jpg" alt="Kyoto hotel" onerror="imgFail(this)"></div>
         <div class="city">KYOTO</div><div class="name">Hotel Vischio Kyoto by GRANVIA</div><div class="meta">2 min from Kyoto Sta</div></div>
-      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-nagoya.jpg')"></div>
+      <div class="hotel"><div class="img" data-label="Nagoya hotel"><img src="images/hotel-nagoya.jpg" alt="Nagoya hotel" onerror="imgFail(this)"></div>
         <div class="city">NAGOYA</div><div class="name">Nikko Style Nagoya</div><div class="meta">Roomy, family-friendly</div></div>
-      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-hakone.jpg')"></div>
+      <div class="hotel"><div class="img" data-label="Hakone ryokan"><img src="images/hotel-hakone.jpg" alt="Hakone ryokan" onerror="imgFail(this)"></div>
         <div class="city">HAKONE</div><div class="name">Hakone Ashinoko Hanaori</div><div class="meta">Onsen ryokan, Fuji feel</div></div>
-      <div class="hotel"><div class="img ph" style="background-image:url('images/hotel-tokyo.jpg')"></div>
+      <div class="hotel"><div class="img" data-label="Tokyo hotel"><img src="images/hotel-tokyo.jpg" alt="Tokyo hotel" onerror="imgFail(this)"></div>
         <div class="city">TOKYO</div><div class="name">MIMARU Tokyo STATION EAST</div><div class="meta">Apartment-style, kitchen</div></div>
     </div>
   </div>
@@ -287,7 +296,7 @@
 <section>
   <div class="wrap">
     <div class="luggage">
-      <div class="img ph"></div>
+      <div class="img" data-label="Takkyubin (luggage forwarding)"><img src="images/takkyubin.jpg" alt="Takkyubin" onerror="imgFail(this)"></div>
       <div>
         <div class="kicker">Travel light</div>
         <h2 class="sec" style="margin-top:.1em">Hands-free with takkyubin</h2>
@@ -312,24 +321,25 @@
     <div class="plans">
       <div class="plan">
         <div class="name">Downgrade</div>
-        <div class="amt">¥1.2–1.5M</div>
+        <div class="amt" data-jpymin="1200000" data-jpymax="1500000"></div>
         <div class="sub">for 3 · approx.</div>
         <ul><li>Simplified hotels</li><li>Mishima Tokyu near Fuji</li><li>All core experiences</li></ul>
       </div>
       <div class="plan best">
         <div class="badge">RECOMMENDED</div>
         <div class="name">Standard</div>
-        <div class="amt">¥1.6–1.9M</div>
+        <div class="amt" data-jpymin="1600000" data-jpymax="1900000"></div>
         <div class="sub">for 3 · approx.</div>
         <ul><li>4-star hotels throughout</li><li>Nagoya Kyudo included</li><li>Luggage forwarding included</li></ul>
       </div>
       <div class="plan">
         <div class="name">Upgrade</div>
-        <div class="amt">¥2.2–3.5M+</div>
+        <div class="amt" data-jpymin="2200000" data-jpymax="3500000" data-plus="1"></div>
         <div class="sub">for 3 · approx.</div>
         <ul><li>Luxury / HOSHINOYA swaps</li><li>Premium onsen &amp; ryokan</li><li>Private touches</li></ul>
       </div>
     </div>
+    <p class="rates">Currency switch at the top. Approximate rates: ¥150 ≈ $1 USD ≈ 4,100 COP. For reference only; final quotation in JPY.</p>
   </div>
 </section>
 
@@ -337,8 +347,8 @@
 <section id="contact" style="padding-top:8px">
   <div class="wrap">
     <div class="cta-band">
-      <h2>Decide by June 30 &amp; save ¥50,000</h2>
-      <p>Lock in the plan direction this month to secure the best October hotels — and receive ¥50,000 off the arrangement fee.</p>
+      <h2>Decide by June 30 &amp; save <span data-jpy="50000"></span></h2>
+      <p>Lock in the plan direction this month to secure the best October hotels — and receive <span data-jpy="50000"></span> off the arrangement fee.</p>
       <a class="btn primary" href="mailto:ueoka@bsd-pro.com?subject=Japan%20Trip%20Plan">Email BUSHIDO JAPAN</a>
     </div>
   </div>
@@ -347,9 +357,60 @@
 <footer>
   <div class="wrap">
     <strong>BUSHIDO JAPAN</strong> · Kensuke Ueoka · ueoka@bsd-pro.com<br>
-    <span class="note">Prices are reference estimates as of June 22, 2026, not confirmed booking amounts. Hotel and transport costs vary with availability. International flights and the Seoul stay are arranged separately.</span>
+    <span class="note">Prices are reference estimates as of June 22, 2026, not confirmed booking amounts. Currency conversions are approximate. Hotel and transport costs vary with availability. International flights and the Seoul stay are arranged separately.</span>
   </div>
 </footer>
 
+<script>
+  // ---- Currency switch (base = JPY) ----
+  var RATE = { JPY:1, USD:1/150, COP:4100/150 };
+  var SYM  = { JPY:'¥', USD:'$', COP:'$' };
+  var SUF  = { JPY:'', USD:'', COP:' COP' };
+  var CUR = 'JPY';
+
+  function roundFor(v, c){
+    if(c==='JPY') return Math.round(v);
+    if(c==='USD') return v < 1000 ? Math.round(v/10)*10 : Math.round(v/100)*100;
+    return v < 1000000 ? Math.round(v/1000)*1000 : Math.round(v/100000)*100000; // COP
+  }
+  function money(jpy, c){
+    var v = roundFor(jpy * RATE[c], c);
+    return SYM[c] + v.toLocaleString('en-US') + SUF[c];
+  }
+  function compact(jpy, c){
+    var v = jpy * RATE[c];
+    if(c==='JPY') return '¥' + (Math.round(v/100000)/10) + 'M';
+    if(c==='USD') return '$' + (Math.round(v/100)*100).toLocaleString('en-US');
+    return '$' + Math.round(v/1000000) + 'M COP';
+  }
+  function render(){
+    document.querySelectorAll('[data-jpy]').forEach(function(el){
+      var t = (el.dataset.prefix||'') + money(+el.dataset.jpy, CUR);
+      if(el.dataset.jpy2) t += (el.dataset.sep||' / ') + money(+el.dataset.jpy2, CUR);
+      el.textContent = t;
+    });
+    document.querySelectorAll('[data-jpymin]').forEach(function(el){
+      el.textContent = compact(+el.dataset.jpymin, CUR) + '–' + compact(+el.dataset.jpymax, CUR) + (el.dataset.plus ? '+' : '');
+    });
+    document.querySelectorAll('#cur button').forEach(function(b){
+      b.classList.toggle('on', b.dataset.cur === CUR);
+    });
+  }
+  document.getElementById('cur').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    CUR = b.dataset.cur; render();
+  });
+
+  // ---- Image placeholder: if a real photo loads, hide the label; if missing, keep label ----
+  function imgFail(img){ img.style.display = 'none'; }
+  // hero: show photo only if it actually loads
+  (function(){
+    var test = new Image();
+    test.onload = function(){ document.getElementById('hero').classList.add('has-photo'); };
+    test.src = 'images/hero-fuji.jpg';
+  })();
+
+  render();
+</script>
 </body>
 </html>
