@@ -43,7 +43,7 @@ We are a Nagoya-based land operator specializing in **authentic, hands-on Japane
 | **Oct 10** | → Nara → Kyoto | Todai-ji Great Buddha · Nara Park deer · Kasuga Taisha → Kyoto |
 | **Oct 11** | Kyoto | Fushimi Inari · Kinkaku-ji · Arashiyama bamboo · Kiyomizu-dera · Gion · **samurai/sword experience** or maiko dinner |
 | **Oct 12** | → Nagoya | **CULTURE DAY 1:** kimono dressing · Nagoya Castle · Atsuta Shrine · *unagi hitsumabushi* dinner |
-| **Oct 13** | Nagoya / Inuyama / Arimatsu | **CULTURE DAY 2:** kyudo + calligraphy · hand-made miso-nikomi udon · Arimatsu shibori tie-dye · Nishikawa-ryu Japanese dance · Inuyama Castle keep |
+| **Oct 13** | Nagoya / Inuyama / Arimatsu | **CULTURE DAY 2:** kyudo + calligraphy · hand-made miso-nikomi udon · Arimatsu shibori tie-dye · Inuyama Castle keep *(Nishikawa-ryu dance optional — see options)* |
 | **Oct 14** | → Hakone / Mt. Fuji | Mt. Fuji views · Lake Ashi cruise · Owakudani · **onsen ryokan (hot springs)** |
 | **Oct 15** | → Tokyo | Hakone Shrine torii · ropeway → Tokyo |
 | **Oct 16** | Tokyo | Senso-ji (Asakusa) · Meiji Shrine · Shibuya Crossing · **teamLab** |
@@ -61,12 +61,13 @@ We are a Nagoya-based land operator specializing in **authentic, hands-on Japane
 |---|---|
 | Kyudo (archery) + Calligraphy — set | **¥20,000** |
 | Hand-made Miso-nikomi Udon (Nagoya specialty) | **¥10,000** |
-| Nishikawa-ryu Japanese dance (Nagoya-born school) | **¥20,000** |
 | Arimatsu Shibori tie-dye craft | **¥4,000–5,000** (TBC) |
 | Unagi / *hitsumabushi* signature meal (with our own "Unaginobori") | **¥6,000–8,000** (TBC) |
+| Nishikawa-ryu Japanese dance (Nagoya-born school) — **optional add-on** | **+¥20,000** |
 | Kimono dressing · Tea ceremony · Castle entries | quoted separately |
 
-> **Standard 2-day set example ≈ ¥61,500/person** (kimono, tea ceremony and entry fees additional).
+> **Standard 2-day set ≈ ¥41,500/person** (kyudo+calligraphy · miso-nikomi udon · shibori · unagi). Kimono, tea ceremony and entry fees additional.
+> **Add Nishikawa-ryu dance → ≈ ¥61,500/person.**
 
 ---
 
@@ -90,11 +91,13 @@ We are a Nagoya-based land operator specializing in **authentic, hands-on Japane
 |---|---|---|---|
 | Accommodation (10 nights, one room shared by 3) | ¥80,000 | ¥140,000 | ¥500,000 |
 | Transport (rail · charters · transfers) | ¥60,000 | ¥95,000 | ¥230,000 |
-| Experiences & culture program *(Nagoya menu at real rates — see §5)* | ¥30,000 | ¥85,000 | ¥150,000 |
+| Experiences & culture program *(Nagoya menu at real rates — see §5)* | ¥30,000 | ¥65,000 | ¥150,000 |
 | Guide · interpretation · on-site support | ¥18,000 | ¥45,000 | ¥60,000 |
 | Selected meals (ryokan dinner, experience meals) | ¥3,000 | ¥10,000 | ¥10,000 |
-| **TOTAL (NET / person)** | **¥190,000** | **¥375,000** | **¥950,000** |
-| ≈ USD (at ¥150/USD) | **$1,270** | **$2,500** | **$6,350** |
+| **TOTAL (NET / person)** | **¥190,000** | **¥355,000** | **¥950,000** |
+| ≈ USD (at ¥150/USD) | **$1,270** | **$2,370** | **$6,350** |
+
+**Optional add-on:** Nishikawa-ryu Japanese dance **+¥20,000/person** (Standard then ≈ ¥375,000 / $2,500).
 
 > **Small-group pricing note:** with only 3 guests, fixed costs (guide, private transport) are higher per person, but sharing **one room among three** lowers lodging cost — so the per-person total lands close to a standard twin-share trip.
 > **Triple-room note:** budget/standard hotels have limited triple inventory, so we book a **twin + extra bed or a Japanese-style room (3 futons)**. Some 5★ properties cannot place 3 in one room; a **suite or a second room** may be required at additional cost (to be confirmed).
