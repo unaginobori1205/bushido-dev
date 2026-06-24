@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>名古屋城 武士道御成セレモニー｜BUSHIDO JAPAN</title>
+<meta name="description" content="閉館後、10名だけに開かれる名古屋最高峰のプライベート文化体験。徳川将軍ゆかりの名古屋城本丸御殿で、礼と静寂に向き合う半日VIPプログラム。" />
+<meta property="og:title" content="名古屋城 武士道御成セレモニー｜BUSHIDO JAPAN" />
+<meta property="og:description" content="10名、1万ドル。閉館後の名古屋城で、人生に残る一枚を。" />
+<meta property="og:image" content="images/ceremony-portrait.png" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0a0a0c;
+    --ink-2:#121216;
+    --paper:#f4f0e8;
+    --gold:#c5a253;
+    --gold-bright:#e3c878;
+    --gold-soft:#9c854f;
+    --line:rgba(197,162,83,.28);
+    --text-dim:rgba(244,240,232,.66);
+    --maxw:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Shippori Mincho",serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%}
+  .en{font-family:"Cormorant Garamond",serif;letter-spacing:.04em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .gold{color:var(--gold-bright)}
+  .center{text-align:center}
+
+  /* ---------- PREMIUM ATMOSPHERE (grain + vignette) ---------- */
+  body::before{ /* film grain */
+    content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;
+    opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  body::after{ /* edge vignette */
+    content:"";position:fixed;inset:0;z-index:9997;pointer-events:none;
+    box-shadow:inset 0 0 220px 40px rgba(0,0,0,.7);
+  }
+
+  /* ---------- FIXED BRAND BAR ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:9999;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px clamp(20px,4vw,42px);
+    transition:.5s;
+  }
+  .topbar.solid{background:rgba(10,10,12,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar__mark{font-size:14px;font-weight:800;letter-spacing:.32em;color:var(--gold-bright)}
+  .topbar__cta{
+    font-size:11.5px;letter-spacing:.22em;text-decoration:none;
+    color:var(--paper);border:1px solid var(--line);padding:9px 18px;transition:.3s;
+  }
+  .topbar__cta:hover{color:var(--ink);background:var(--gold-bright);border-color:var(--gold-bright)}
+  @media(max-width:540px){.topbar__cta{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero__bg{
+    position:absolute;inset:0;
+    background:url("images/hero-nagoya-castle.jpeg") center 28%/cover no-repeat;
+    transform:scale(1.06);
+  }
+  .hero__veil{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(10,10,12,.55) 0%, rgba(10,10,12,.15) 35%, rgba(10,10,12,.75) 78%, var(--ink) 100%);
+  }
+  .hero__inner{
+    position:relative;
+    padding:0 24px 9vh;
+    width:100%;
+    animation:rise 1.4s ease both;
+  }
+  .hero__emblem{
+    width:96px;height:96px;margin:0 auto 30px;
+    border:1px solid var(--gold);border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:2px;color:var(--gold-bright);
+    box-shadow:0 0 0 6px rgba(197,162,83,.08), inset 0 0 24px rgba(197,162,83,.12);
+    background:rgba(10,10,12,.25);
+  }
+  .hero__emblem b{font-size:25px;font-weight:700;letter-spacing:.04em;line-height:1}
+  .hero__emblem span{font-family:"Cormorant Garamond",serif;font-size:10px;letter-spacing:.3em}
+  .hero__kicker{
+    font-size:13px;letter-spacing:.5em;
+    color:var(--gold-bright);
+    text-indent:.5em;
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(34px,6.2vw,72px);
+    font-weight:800;
+    line-height:1.32;
+    letter-spacing:.06em;
+    text-shadow:0 4px 40px rgba(0,0,0,.7);
+  }
+  .hero h1 small{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.3em;
+    color:var(--gold-bright);
+    margin-bottom:14px;
+  }
+  .hero__sub{
+    margin:26px auto 0;
+    max-width:680px;
+    font-size:clamp(14px,2.2vw,18px);
+    color:var(--text-dim);
+    letter-spacing:.08em;
+  }
+  .hero__price{
+    margin-top:34px;
+    display:inline-flex;flex-direction:column;align-items:center;gap:4px;
+    padding:18px 40px;
+    border:1px solid var(--line);
+    background:rgba(10,10,12,.4);
+    backdrop-filter:blur(4px);
+  }
+  .hero__price .num{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(34px,6vw,52px);
+    font-weight:500;
+    color:var(--gold-bright);
+    line-height:1;
+  }
+  .hero__price .cap{font-size:12px;letter-spacing:.3em;color:var(--text-dim)}
+  .scrollcue{
+    margin-top:40px;font-size:11px;letter-spacing:.4em;color:var(--text-dim);
+    animation:blink 2.6s ease-in-out infinite;
+  }
+
+  /* ---------- KILLER COPY ---------- */
+  .killer{
+    padding:clamp(90px,14vw,150px) 0;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at center, rgba(197,162,83,.07), transparent 65%),
+      var(--ink);
+  }
+  .killer .en-line{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(26px,5vw,46px);
+    color:var(--gold-bright);
+    font-style:italic;
+    letter-spacing:.03em;
+    line-height:1.5;
+  }
+  .killer .jp-line{
+    margin-top:30px;
+    font-size:clamp(19px,3.4vw,30px);
+    font-weight:700;
+    letter-spacing:.1em;
+    line-height:1.8;
+  }
+
+  /* ---------- RARITY / EXCLUSIVITY ---------- */
+  .rarity{
+    padding:clamp(80px,12vw,130px) 0;text-align:center;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse at center, rgba(197,162,83,.06), transparent 70%),
+      var(--ink-2);
+  }
+  .rarity__row{
+    margin-top:54px;display:grid;grid-template-columns:repeat(3,1fr);
+    max-width:860px;margin-inline:auto;gap:0;
+  }
+  .rarity__cell{padding:8px 18px;border-right:1px solid var(--line)}
+  .rarity__cell:last-child{border-right:none}
+  .rarity__n{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(38px,7vw,60px);color:var(--gold-bright);line-height:1;
+  }
+  .rarity__l{margin-top:14px;font-size:13px;letter-spacing:.18em;color:var(--text-dim)}
+  @media(max-width:600px){
+    .rarity__row{grid-template-columns:1fr;gap:34px}
+    .rarity__cell{border-right:none;border-bottom:1px solid var(--line);padding-bottom:30px}
+    .rarity__cell:last-child{border-bottom:none;padding-bottom:0}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative}
+  .label{
+    font-size:12px;letter-spacing:.45em;color:var(--gold);
+    text-align:center;margin-bottom:18px;
+  }
+  .sec-title{
+    text-align:center;
+    font-size:clamp(24px,4.4vw,40px);
+    font-weight:700;
+    letter-spacing:.1em;
+    line-height:1.5;
+  }
+  .divider{
+    width:46px;height:1px;background:var(--gold);
+    margin:24px auto 0;opacity:.7;
+  }
+
+  /* ---------- INTRO / STORY ---------- */
+  .story{padding:clamp(70px,11vw,120px) 0}
+  .story__lead{
+    max-width:760px;margin:42px auto 0;text-align:center;
+    font-size:clamp(15px,2.3vw,18px);
+    color:var(--text-dim);letter-spacing:.06em;
+  }
+  .story__lead strong{color:var(--paper);font-weight:600}
+  .portrait{
+    margin:60px auto 0;max-width:920px;position:relative;
+  }
+  .portrait img{
+    width:100%;border:1px solid var(--line);
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+  }
+  .portrait figcaption{
+    margin-top:16px;text-align:center;font-size:12px;
+    letter-spacing:.3em;color:var(--gold-soft);
+  }
+
+  /* ---------- EXPERIENCE GRID ---------- */
+  .exp{padding:clamp(70px,11vw,120px) 0;background:var(--ink-2)}
+  .exp__grid{
+    margin-top:54px;display:grid;gap:26px;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .card{
+    background:var(--ink);
+    border:1px solid var(--line);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .card__img{aspect-ratio:4/3;overflow:hidden}
+  .card__img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .card:hover .card__img img{transform:scale(1.06)}
+  .card__body{padding:24px 26px 30px}
+  .card__no{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:15px;letter-spacing:.2em}
+  .card__ttl{font-size:19px;font-weight:700;margin:8px 0 12px;letter-spacing:.06em}
+  .card__txt{font-size:14px;color:var(--text-dim);letter-spacing:.04em;line-height:1.85}
+
+  /* ---------- SCHEDULE ---------- */
+  .sched{padding:clamp(70px,11vw,120px) 0}
+  .timeline{
+    max-width:760px;margin:54px auto 0;
+    border-left:1px solid var(--line);
+  }
+  .tl{
+    position:relative;padding:0 0 30px 36px;
+  }
+  .tl:last-child{padding-bottom:0}
+  .tl::before{
+    content:"";position:absolute;left:-5px;top:7px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 0 4px rgba(197,162,83,.15);
+  }
+  .tl__time{
+    font-family:"Cormorant Garamond",serif;
+    font-size:20px;color:var(--gold-bright);letter-spacing:.08em;
+  }
+  .tl__act{font-size:16px;letter-spacing:.06em;margin-top:2px}
+  .tl__act span{display:block;font-size:12.5px;color:var(--text-dim);letter-spacing:.04em;margin-top:3px}
+  .tl.peak .tl__act{color:var(--gold-bright);font-weight:700}
+
+  /* ---------- INCLUDED ---------- */
+  .incl{padding:clamp(70px,11vw,120px) 0;background:var(--ink-2)}
+  .incl__grid{
+    margin-top:48px;display:grid;gap:14px 26px;
+    grid-template-columns:repeat(2,1fr);max-width:780px;margin-inline:auto;
+  }
+  .incl__item{
+    display:flex;align-items:flex-start;gap:12px;
+    padding:14px 18px;border:1px solid var(--line);
+    font-size:14.5px;letter-spacing:.05em;
+  }
+  .incl__item::before{
+    content:"✦";color:var(--gold);font-size:13px;line-height:1.7;flex:none;
+  }
+
+  /* ---------- TARGET ---------- */
+  .target{padding:clamp(70px,11vw,120px) 0}
+  .target__tags{
+    margin-top:46px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+  }
+  .tag{
+    border:1px solid var(--line);padding:11px 22px;
+    font-size:13.5px;letter-spacing:.1em;color:var(--text-dim);
+    transition:.3s;
+  }
+  .tag:hover{color:var(--gold-bright);border-color:var(--gold)}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    position:relative;text-align:center;
+    padding:clamp(90px,15vw,160px) 0;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  }
+  .cta .big{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(28px,5.5vw,52px);
+    color:var(--gold-bright);font-style:italic;line-height:1.45;
+  }
+  .cta .jp{margin-top:22px;font-size:clamp(16px,2.6vw,22px);font-weight:700;letter-spacing:.1em}
+  .cta__price{
+    margin:46px auto 0;display:inline-flex;flex-direction:column;gap:6px;align-items:center;
+    padding:26px 56px;border:1px solid var(--gold);
+  }
+  .cta__price .n{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,8vw,64px);color:var(--gold-bright);line-height:1}
+  .cta__price .c{font-size:13px;letter-spacing:.28em;color:var(--text-dim)}
+  .btn{
+    display:inline-block;margin-top:46px;
+    padding:18px 56px;
+    border:1px solid var(--gold);
+    color:var(--ink);background:var(--gold-bright);
+    font-weight:700;letter-spacing:.18em;font-size:15px;
+    text-decoration:none;transition:.35s;
+  }
+  .btn:hover{background:transparent;color:var(--gold-bright)}
+  .cta__note{margin-top:20px;font-size:12px;letter-spacing:.2em;color:var(--text-dim)}
+
+  /* ---------- FOOTER / DISCLAIMER ---------- */
+  footer{padding:64px 0 80px;background:var(--ink);border-top:1px solid var(--line)}
+  .brand{text-align:center}
+  .brand__mark{font-size:22px;font-weight:800;letter-spacing:.3em;color:var(--gold-bright)}
+  .brand__sub{margin-top:8px;font-size:12px;letter-spacing:.3em;color:var(--text-dim)}
+  .disc{
+    max-width:760px;margin:42px auto 0;
+    font-size:12px;line-height:2;color:rgba(244,240,232,.45);
+    letter-spacing:.03em;
+  }
+  .disc p{position:relative;padding-left:16px}
+  .disc p::before{content:"※";position:absolute;left:0;color:var(--gold-soft)}
+  .copy{margin-top:40px;text-align:center;font-size:11px;letter-spacing:.25em;color:rgba(244,240,232,.35)}
+
+  /* ---------- ANIM ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+  @keyframes blink{0%,100%{opacity:.3}50%{opacity:.9}}
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s ease,transform 1s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:860px){
+    .exp__grid{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+    .incl__grid{grid-template-columns:1fr;max-width:460px}
+  }
+  @media(max-width:540px){
+    .wrap{padding:0 20px}
+    .hero__price{padding:14px 28px}
+    .cta__price{padding:22px 34px}
+    .btn{padding:16px 40px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== BRAND BAR ===== -->
+  <nav class="topbar" id="topbar">
+    <span class="topbar__mark">BUSHIDO JAPAN</span>
+    <a class="topbar__cta" href="#reserve">PRIVATE RESERVATION</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__veil"></div>
+    <div class="hero__inner">
+      <div class="hero__emblem">
+        <b>限定</b>
+        <span>1 GROUP / DAY</span>
+      </div>
+      <p class="hero__kicker">BUSHIDO JAPAN ｜ NAGOYA CASTLE</p>
+      <h1>
+        <small>名古屋城</small>
+        武士道御成セレモニー
+      </h1>
+      <p class="hero__sub">閉館後、10名だけに開かれる<br class="sp" />名古屋最高峰のプライベート文化体験</p>
+      <div class="hero__price">
+        <span class="num en">USD 10,000</span>
+        <span class="cap">最大10名 ・ 半日プライベートプラン</span>
+      </div>
+      <p class="scrollcue">SCROLL</p>
+    </div>
+  </header>
+
+  <!-- ===== KILLER COPY ===== -->
+  <section class="killer">
+    <div class="wrap reveal">
+      <p class="en-line">10 guests. 10,000 dollars.<br/>One private moment inside Nagoya Castle.</p>
+      <p class="jp-line">10名、1万ドル。<br/>閉館後の名古屋城で、人生に残る一枚を。</p>
+    </div>
+  </section>
+
+  <!-- ===== RARITY ===== -->
+  <section class="rarity">
+    <div class="wrap">
+      <p class="label reveal">STRICTLY PRIVATE</p>
+      <h2 class="sec-title reveal">誰もが体験できる場所では、ない。</h2>
+      <div class="divider reveal"></div>
+      <div class="rarity__row reveal">
+        <div class="rarity__cell">
+          <div class="rarity__n en">1</div>
+          <div class="rarity__l">1日1組限定</div>
+        </div>
+        <div class="rarity__cell">
+          <div class="rarity__n en">10</div>
+          <div class="rarity__l">最大10名のみ</div>
+        </div>
+        <div class="rarity__cell">
+          <div class="rarity__n en">After<br/>Hours</div>
+          <div class="rarity__l">閉館後の貸切時間</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORY ===== -->
+  <section class="story">
+    <div class="wrap">
+      <p class="label reveal">CONCEPT</p>
+      <h2 class="sec-title reveal">これは観光ではない。<br/>一夜の、城主の物語。</h2>
+      <div class="divider reveal"></div>
+      <p class="story__lead reveal">
+        徳川将軍ゆかりの<strong>名古屋城本丸御殿</strong>。<br/>
+        一般公開が終わった後、静寂に包まれた御殿で、<br/>
+        礼・静坐・志に向き合う、BUSHIDO JAPAN 最高峰のプライベート文化体験です。<br/><br/>
+        名古屋の歴史、和の美意識、武士道の精神を、<br/>
+        ひとつの物語として体験する<strong>半日VIPプログラム</strong>。
+      </p>
+      <figure class="portrait reveal">
+        <img src="images/ceremony-portrait.png" alt="名古屋城本丸御殿 御成セレモニーの世界観" />
+        <figcaption>THE WORLD OF ONARI — 御成りの世界観</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="exp">
+    <div class="wrap">
+      <p class="label reveal">FULL JOURNEY</p>
+      <h2 class="sec-title reveal">半日をかけて辿る、<br/>三つの「日本」。</h2>
+      <div class="divider reveal"></div>
+      <div class="exp__grid">
+        <figure class="card reveal">
+          <div class="card__img"><img src="images/vip-lunch.png" alt="うなぎのしろむら VIPランチ" /></div>
+          <figcaption class="card__body">
+            <span class="card__no en">01</span>
+            <h3 class="card__ttl">うなぎのしろむら VIPランチ</h3>
+            <p class="card__txt">三河一色産の国産うなぎを、炭火で香ばしく焼き上げる名店で迎える特別な昼餐。旅の幕開けにふさわしい、上質なひととき。</p>
+          </figcaption>
+        </figure>
+        <figure class="card reveal">
+          <div class="card__img"><img src="images/tea-ceremony.png" alt="茶道体験 和敬清寂" /></div>
+          <figcaption class="card__body">
+            <span class="card__no en">02</span>
+            <h3 class="card__ttl">茶道体験 ― 和敬清寂</h3>
+            <p class="card__txt">一碗の茶に向き合い、心を整える。もてなしと静けさの作法を通じて、日本人が大切にしてきた美意識に触れる時間。</p>
+          </figcaption>
+        </figure>
+        <figure class="card reveal">
+          <div class="card__img"><img src="images/cuisine.jpeg" alt="日本料理 季節の膳" /></div>
+          <figcaption class="card__body">
+            <span class="card__no en">03</span>
+            <h3 class="card__ttl">名古屋城 本丸御殿 特別体験</h3>
+            <p class="card__txt">閉館後の御殿を舞台に、武士道ミニ講話、静坐・瞑想、志の儀、そして御成セレモニー記念撮影へ。礼と静寂のポートレートを一枚に。</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCHEDULE ===== -->
+  <section class="sched">
+    <div class="wrap">
+      <p class="label reveal">SCHEDULE</p>
+      <h2 class="sec-title reveal">一日の流れ</h2>
+      <div class="divider reveal"></div>
+      <div class="timeline reveal">
+        <div class="tl"><div class="tl__time en">12:00</div><div class="tl__act">うなぎのしろむら VIPランチ</div></div>
+        <div class="tl"><div class="tl__time en">13:30</div><div class="tl__act">茶道体験</div></div>
+        <div class="tl"><div class="tl__time en">15:30</div><div class="tl__act">名古屋城 集合</div></div>
+        <div class="tl"><div class="tl__time en">15:45</div><div class="tl__act">本丸御殿 入場</div></div>
+        <div class="tl peak"><div class="tl__time en">16:30</div><div class="tl__act">閉館後・貸切タイム<span>静寂に包まれた御殿が、10名だけのものに。</span></div></div>
+        <div class="tl"><div class="tl__time en">16:40</div><div class="tl__act">武士道ミニ講話</div></div>
+        <div class="tl"><div class="tl__time en">16:50</div><div class="tl__act">静坐・瞑想</div></div>
+        <div class="tl"><div class="tl__time en">17:05</div><div class="tl__act">志の儀</div></div>
+        <div class="tl peak"><div class="tl__time en">17:15</div><div class="tl__act">御成セレモニー 記念撮影<span>人生に残る、礼と静寂の一枚。</span></div></div>
+        <div class="tl"><div class="tl__time en">17:30</div><div class="tl__act">退場</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INCLUDED ===== -->
+  <section class="incl">
+    <div class="wrap">
+      <p class="label reveal">INCLUDED</p>
+      <h2 class="sec-title reveal">含まれるもの</h2>
+      <div class="divider reveal"></div>
+      <div class="incl__grid reveal">
+        <div class="incl__item">VIPランチ（うなぎのしろむら）</div>
+        <div class="incl__item">茶道体験</div>
+        <div class="incl__item">名古屋城 本丸御殿 特別体験</div>
+        <div class="incl__item">閉館後 貸切タイム</div>
+        <div class="incl__item">武士道ガイド</div>
+        <div class="incl__item">静坐・瞑想</div>
+        <div class="incl__item">志の儀</div>
+        <div class="incl__item">記念撮影</div>
+        <div class="incl__item">BUSHIDO 証明書</div>
+        <div class="incl__item">英語対応（ご相談可）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TARGET ===== -->
+  <section class="target">
+    <div class="wrap">
+      <p class="label reveal">FOR WHOM</p>
+      <h2 class="sec-title reveal">この体験が、ふさわしい方へ</h2>
+      <div class="divider reveal"></div>
+      <div class="target__tags reveal">
+        <span class="tag">海外VIP</span>
+        <span class="tag">富裕層旅行者</span>
+        <span class="tag">企業エグゼクティブ</span>
+        <span class="tag">インセンティブ旅行</span>
+        <span class="tag">旅行会社・DMC</span>
+        <span class="tag">国際団体・文化交流団体</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta" id="reserve">
+    <div class="wrap reveal">
+      <p class="big">One private moment<br/>inside Nagoya Castle.</p>
+      <p class="jp">名古屋最高峰の、プライベート文化体験。</p>
+      <div class="cta__price">
+        <span class="n en">USD 10,000</span>
+        <span class="c">UP TO 10 GUESTS ・ 1日1組限定</span>
+      </div>
+      <br/>
+      <a class="btn" href="mailto:info@bushido-japan.com?subject=名古屋城%20武士道御成セレモニー%20お問い合わせ">お問い合わせ・ご予約</a>
+      <p class="cta__note">事前予約制 ・ 半日プライベートプラン</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="brand reveal">
+        <div class="brand__mark">BUSHIDO JAPAN</div>
+        <div class="brand__sub">主催：BUSHIDO JAPAN ／ 合同会社BUSHIDO</div>
+      </div>
+      <div class="disc reveal">
+        <p>天守閣貸切ではありません。名古屋城本丸御殿での特別体験です。</p>
+        <p>撮影・演出・進行内容は、施設ルールおよび許可条件に基づき調整いたします。</p>
+        <p>衣装・小道具・撮影内容は事前確認制です。</p>
+        <p>内容は予告なく変更となる場合がございます。あらかじめご了承ください。</p>
+      </div>
+      <p class="copy en">© BUSHIDO JAPAN — NAGOYA CASTLE BUSHIDO ONARI CEREMONY</p>
+    </div>
+  </footer>
+
+  <script>
+    // scroll reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // brand bar solidify on scroll
+    const bar=document.getElementById('topbar');
+    addEventListener('scroll',()=>{
+      bar.classList.toggle('solid', scrollY>60);
+    },{passive:true});
+
+    // subtle hero parallax
+    const bg=document.querySelector('.hero__bg');
+    addEventListener('scroll',()=>{
+      const y=scrollY;
+      if(y<window.innerHeight) bg.style.transform=`scale(1.06) translateY(${y*0.18}px)`;
+    },{passive:true});
+  </script>
+</body>
+</html>
