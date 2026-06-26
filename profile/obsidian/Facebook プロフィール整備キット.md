@@ -63,7 +63,7 @@ tags:
 
 ### English
 
-> **Kensuke Kamioka｜Founder, BUSHIDO JAPAN**
+> **Kensuke Ueoka｜Founder, BUSHIDO JAPAN**
 >
 > I share the true spirit of Japan — not as sightseeing, but as a way of life.
 > Through Kyudo, Bushido, and authentic cultural experiences, I guide people from around the world toward something deeper than tourism: a transformation of body, mind, and spirit.
@@ -100,7 +100,7 @@ tags:
 
 ### English
 
-> My name is Kensuke Kamioka. I have dedicated my life to one question:
+> My name is Kensuke Ueoka. I have dedicated my life to one question:
 > *What is the true spirit of Japan — and how can I share it with the world?*
 >
 > The answer is not in souvenirs or photo spots. It lives in Bushido, and in Kyudo, where every breath, step, and posture becomes self-cultivation. In Kyudo, hitting the target is not the goal — refining the self is. A bamboo bow is alive; to draw it well, you must first put your own heart in order.
@@ -161,7 +161,7 @@ tags:
 
 > 🌏 **Welcome, friends from around the world.**
 >
-> Thank you for finding me through the JCI broadcast. I'm **Kensuke Kamioka**, and I share the **true spirit of Japan** with the world through **Kyudo** and **Bushido** — an experience deeper than tourism.
+> Thank you for finding me through the JCI broadcast. I'm **Kensuke Ueoka**, and I share the **true spirit of Japan** with the world through **Kyudo** and **Bushido** — an experience deeper than tourism.
 >
 > 🏹 Founder, BUSHIDO JAPAN
 > 🗾 Organizer, Nagoya Inbound Summit
@@ -198,7 +198,7 @@ tags:
 
 ## 今後のアクション
 
-- [ ] 氏名ローマ字表記を確定（Kensuke Kamioka / Kamioka Kensuke）
+- [x] 氏名ローマ字表記：**Kensuke Ueoka**（上岡賢輔）
 - [ ] BUSHIDO JAPAN・サミット・ツアーの公式リンクを反映
 - [ ] サミット開催情報・ツアー料金/日数を追記
 - [ ] 肩書きの正式表記を確定

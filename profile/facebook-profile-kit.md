@@ -53,7 +53,7 @@ Facebookの「自己紹介」「詳細」欄にそのまま貼れる形です。
 
 ### English（上に置くことを推奨）
 
-> **Kensuke Kamioka｜Founder, BUSHIDO JAPAN**
+> **Kensuke Ueoka｜Founder, BUSHIDO JAPAN**
 >
 > I share the true spirit of Japan — not as sightseeing, but as a way of life.
 >
@@ -93,7 +93,7 @@ Facebookの「自己紹介」「詳細」欄にそのまま貼れる形です。
 
 > **Who I am**
 >
-> My name is Kensuke Kamioka. I was born and raised in Japan, and I have dedicated my life to one question:
+> My name is Kensuke Ueoka. I was born and raised in Japan, and I have dedicated my life to one question:
 > *What is the true spirit of Japan — and how can I share it with the world?*
 >
 > For me, the answer is not found in souvenirs or photo spots. It lives in **Bushido** — the way of the samurai — and in disciplines like **Kyudo**, Japanese archery, where every breath, every step, and every posture becomes a form of self-cultivation.
@@ -112,7 +112,7 @@ Facebookの「自己紹介」「詳細」欄にそのまま貼れる形です。
 
 > **私について**
 >
-> 上岡賢輔（かみおか けんすけ）と申します。日本に生まれ育ち、ひとつの問いに人生を捧げてきました。
+> 上岡賢輔（うえおか けんすけ）と申します。日本に生まれ育ち、ひとつの問いに人生を捧げてきました。
 > *日本の「真の精神性」とは何か。そして、それをどう世界に伝えられるか。*
 >
 > その答えは、お土産や写真スポットの中にはありません。**武士道**——侍の生き方——の中に、そして**弓道**のように、一呼吸・一歩・一つの姿勢のすべてが自己鍛錬となる道の中にあります。
@@ -203,7 +203,7 @@ JCI音声配信から飛んできた人が最初に読む投稿です。固定�
 
 > 🌏 **Welcome, friends from around the world.**
 >
-> Thank you for finding me through the JCI broadcast. My name is **Kensuke Kamioka**, and I share the **true spirit of Japan** with the world.
+> Thank you for finding me through the JCI broadcast. My name is **Kensuke Ueoka**, and I share the **true spirit of Japan** with the world.
 >
 > Through **Kyudo (Japanese archery)** and **Bushido**, I guide people toward an experience deeper than tourism — a transformation of body, mind, and spirit.
 >
@@ -293,7 +293,7 @@ JCI音声配信から飛んできた人が最初に読む投稿です。固定�
 
 正確に整えるため、分かる範囲で以下を教えていただければ反映します。
 
-- [ ] 氏名のローマ字表記の確定（例：Kensuke Kamioka / Kamioka Kensuke のどちらか）
+- [x] 氏名のローマ字表記：**Kensuke Ueoka**（上岡賢輔）
 - [ ] BUSHIDO JAPAN の公式サイト / SNS / 予約リンク URL
 - [ ] 名古屋インバウンドサミットの開催日・場所・公式リンク
 - [ ] ブシドーツアーの料金・日数・含まれる体験・予約方法
