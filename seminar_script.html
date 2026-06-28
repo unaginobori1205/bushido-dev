@@ -421,16 +421,36 @@
   <section id="s18">
     <div class="sec-head"><div class="sec-no sl">18</div><h2>実演④ Claude Code / Codex / Cursor</h2><span class="demoflag">実演＋プロンプト</span></div>
     <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>資料生成の先＝“作業そのもの”を任せる世界を見せる。</p></div>
-    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">ここが核心です。資料を作る先、<b>“作業そのもの”をAIに任せる</b>世界。LP・ツール・自動化を、<b>指示だけ</b>で。これは私が普段やっている仕事の中身そのものです。</div></div>
-    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>簡単な生成を実行し、AIが“勝手に作っていく”様子をライブで。</span></span></div>
-    <div class="subhead"><span class="ic">⌨️</span>はじめの一歩プロンプト</div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">ここが核心です。資料を作る先、<b>“作業そのもの”をAIに任せる</b>世界。さらにClaude Codeなら、<b>自分専用の“AIチーム”（サブエージェント）</b>を作って仕事を分業・自動化できます。これは私が普段やっている仕事の中身そのものです。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span><code>/agents</code> でエージェントを作る様子→「今週のSNS回して」で3役が順に動くのをライブで。</span></span></div>
+    <div class="tip"><b>初心者の入口：</b>Claude Codeで <code>/agents</code> →<b>「Generate with Claude」</b>を選び、やりたいことを日本語で言うだけ。中身はAIが自動で組みます。<b>1エージェント＝1専門</b>に絞るのがコツ。</div>
+    <div class="subhead"><span class="ic">⌨️</span>① はじめの一歩プロンプト</div>
     <div class="prompt">
       <div class="ph"><span class="badge">入門</span><span class="ttl">Claude Code / Cursor への最初の指示</span><button class="copy">コピー</button></div>
       <pre>あなたは私専属のエンジニアです。専門用語は避けて進めてください。
-作りたいもの：（例）問い合わせフォン付きの1ページの紹介サイト
+作りたいもの：（例）問い合わせフォーム付きの1ページの紹介サイト
 条件：スマホで見やすい／画像は仮でOK／公開まで手順を教えて
 まずは完成イメージを言葉で確認し、合意できたら作り始めてください。
 途中で私に選ばせたい点があれば、3択までで質問してください。</pre>
+    </div>
+    <div class="subhead"><span class="ic">🤖</span>② 自分専用のAIチームを作る（参考動画の手法）</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">AIチーム</span><span class="ttl">投稿作成エージェントを作る（/agents → Generate with Claude）</span><button class="copy">コピー</button></div>
+      <pre>SNS投稿を作る専門エージェントを作って。
+役割：渡されたネタメモから、Instagram・X・Facebookの3媒体ぶんの投稿文を作る。
+ルール：
+- 家族目線のやさしい言葉。宣伝くさくしない
+- 媒体ごとの作法に合わせる（インスタ＝共感＋ハッシュタグ／X＝短く／FB＝丁寧）
+- 個人情報・機密は書かない
+使うツール：ファイルの読み書きのみ（最小限）</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">AIチーム</span><span class="ttl">AIチームに今週のSNSを回させる（一括指示）</span><button class="copy">コピー</button></div>
+      <pre>今週のSNSを回して。次の順で進めて、最後にまとめて。
+1. ネタ収集エージェント：今週の話題・写真メモから投稿ネタを3つ出す
+2. 投稿作成エージェント：3媒体×各2本の投稿文を作る
+3. 校正・炎上チェックエージェント：誤字と炎上しそうな表現を点検して直す
+最後に、月〜日の投稿カレンダー（曜日／媒体／本文）にまとめて。</pre>
     </div>
 
   </section>

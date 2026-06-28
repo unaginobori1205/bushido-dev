@@ -312,9 +312,10 @@
     <div class="lvhead"><div class="lvbadge l3">レベル3</div><h2 style="margin:0;color:var(--navy);font-size:20px">仕組み化＝ルーティーン管理</h2><span class="chip" style="margin-left:auto">25:30–35:30</span></div>
     <p class="lead">軸：単発で終わらせず、<b>毎週ラクに回る仕組み</b>にする。</p>
     <div class="baline">Before：毎週ゼロから<span class="arw">→</span>After：仕込み3分で回る</div>
-    <div class="step"><div class="t">～4分</div><div class="b"><h4>① ルーティーン管理</h4><p>週次のSNS運用＆JC業務をテンプレ＋AIで回す。デモ：「今週の投稿7本＋運用表」一括生成（＝コールドオープンの種明かし）</p></div></div>
-    <div class="step"><div class="t">～3分</div><div class="b"><h4>② 情報を資産化（Notion／Obsidian）</h4><p>プロンプト・議事録・ナレッジを一ヶ所に＝second brain。「個人の工夫を組織の資産に」</p></div></div>
-    <div class="step"><div class="t">～2.5分</div><div class="b"><h4>③ 半自動ルーティーンの全体像</h4><p>「ソースを整える→生成ボタン」まで仕組み化。完全自動の限界も正直に説明。</p></div></div>
+    <div class="step"><div class="t">～3分</div><div class="b"><h4>① ルーティーン管理</h4><p>週次のSNS運用＆JC業務をテンプレ＋AIで回す。デモ：「今週の投稿7本＋運用表」一括生成（＝コールドオープンの種明かし）</p></div></div>
+    <div class="step"><div class="t">～3.5分</div><div class="b"><h4>② Claude Codeで“自分専用のAIチーム”を作る</h4><p>参考動画の手法。<code>/agents</code> で役割ごとに専門エージェントを作り、仕事を分業させる。初心者は「Generate with Claude」＝やりたいことを日本語で言うだけ。例：①ネタ収集→②投稿作成→③校正・炎上チェックの3役で週次SNSを自動化。</p></div></div>
+    <div class="step"><div class="t">～2分</div><div class="b"><h4>③ 情報を資産化（Notion／Obsidian）</h4><p>プロンプト・議事録・ナレッジを一ヶ所に＝second brain。「個人の工夫を組織の資産に」</p></div></div>
+    <div class="step"><div class="t">～1.5分</div><div class="b"><h4>④ 半自動ルーティーンの全体像</h4><p>「ソースを整える→生成ボタン」まで仕組み化。完全自動の限界も正直に説明。</p></div></div>
     <div class="subhead"><span class="ic">📋</span>コピペ用プロンプト（レベル3）</div>
     <div class="prompt">
       <div class="ph"><span class="badge">上級・運用</span><span class="ttl">今週のSNS運用表＋投稿7本を一括生成</span><button class="copy">コピー</button></div>
@@ -342,7 +343,28 @@
 初心者でも迷わないよう、具体名で。</pre>
     </div>
 
-    <div class="sum"><span class="lb">30秒まとめ</span><div><b>テイクアウェイ：</b>「仕組み化すれば、AIが“毎週働く部下”になる」</div></div>
+    <div class="subhead"><span class="ic">🤖</span>Claude Codeで“自分専用のAIチーム”を作る（参考動画の手法）</div>
+    <div class="tip"><b>初心者の入口：</b>Claude Codeで <code>/agents</code> →<b>「Generate with Claude」</b>を選び、やりたいことを日本語で説明するだけ。中身（指示文・使うツール）はAIが自動で組みます。コツは<b>1エージェント＝1専門</b>に絞り、ツールは最小限から。</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">上級・AIチーム</span><span class="ttl">投稿作成エージェントを作る（/agents → Generate with Claude に貼る）</span><button class="copy">コピー</button></div>
+      <pre>SNS投稿を作る専門エージェントを作って。
+役割：渡されたネタメモから、Instagram・X・Facebookの3媒体ぶんの投稿文を作る。
+ルール：
+- 家族目線のやさしい言葉。宣伝くさくしない
+- 媒体ごとの作法に合わせる（インスタ＝共感＋ハッシュタグ／X＝短く／FB＝丁寧）
+- 個人情報・機密は書かない
+使うツール：ファイルの読み書きのみ（最小限）</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">上級・AIチーム</span><span class="ttl">AIチームに今週のSNSを回させる（一括指示）</span><button class="copy">コピー</button></div>
+      <pre>今週のSNSを回して。次の順で進めて、最後にまとめて。
+1. ネタ収集エージェント：今週の話題・写真メモから投稿ネタを3つ出す
+2. 投稿作成エージェント：3媒体×各2本の投稿文を作る
+3. 校正・炎上チェックエージェント：誤字と炎上しそうな表現を点検して直す
+最後に、月〜日の投稿カレンダー（曜日／媒体／本文）にまとめて。</pre>
+    </div>
+
+    <div class="sum"><span class="lb">30秒まとめ</span><div><b>テイクアウェイ：</b>「自分専用のAIチームを組めば、AIが“毎週働く部下”になる」</div></div>
   </section>
 
   <!-- ===== 質疑応答 ===== -->
