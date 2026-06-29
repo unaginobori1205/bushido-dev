@@ -188,7 +188,12 @@
     </div>
 
     <div class="subhead"><span class="ic">📊</span>早見表（目安）</div>
-    <table>
+    <style>
+      table.cmp td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:800;white-space:nowrap}
+      table.cmp th:first-child{width:34%}
+    </style>
+    <table class="cmp">
+      <colgroup><col style="width:34%"><col style="width:30%"><col style="width:18%"><col style="width:18%"></colgroup>
       <thead><tr><th>制度</th><th>主な用途</th><th>上限(目安)</th><th>補助/助成率</th></tr></thead>
       <tbody>
         <tr><td>① デジタル化・AI導入</td><td>AI/業務ソフトの導入</td><td>〜450万円</td><td>1/2〜4/5</td></tr>
