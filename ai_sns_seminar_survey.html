@@ -124,8 +124,9 @@
 
 <style>
   .q{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:#fff}
+  .q.req-box{border-color:var(--gold);background:#fffdf7}
   .q .ql{font-weight:800;color:var(--navy);font-size:15px;margin-bottom:10px}
-  .q .ql .req{color:#c0563b;font-size:12px;margin-left:6px}
+  .q .ql .req{color:#fff;background:#c0563b;font-size:11px;font-weight:800;border-radius:5px;padding:1px 7px;margin-left:8px}
   .opts{display:flex;flex-wrap:wrap;gap:8px}
   .opts label{display:inline-flex;align-items:center;gap:6px;background:var(--soft);border:1px solid var(--line);
     border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer}
@@ -139,7 +140,8 @@
   .btn.gold{background:var(--gold);color:#3a2c08}
   #result{width:100%;min-height:130px;margin-top:12px;border:1px dashed var(--gold);border-radius:8px;
     padding:11px;font-size:12.5px;font-family:"SFMono-Regular",Consolas,monospace;display:none}
-  @media print{.btnrow,header.top,.toTop{display:none}}
+  #observer-wrap{display:none}
+  @media print{.btnrow,header.top,.toTop{display:none} #observer-wrap{display:block}}
 </style>
 
 </head>
@@ -158,54 +160,65 @@
 <main>
   <section id="form">
     <div class="sec-head"><div class="sec-no">✎</div><h2>アンケート（ご協力ありがとうございます）</h2></div>
-    <p class="lead">回答後、下の「回答をまとめてコピー」または「メールで送る」を押してください。スマホでもOKです。所要2〜3分。</p>
-  <div class="q" data-q="1. 本日の満足度">
-    <div class="ql">1. 本日の満足度<span class="req">必須</span></div>
+    <p class="lead">回答後、下の「回答をまとめてコピー」または「メールで送る」を押してください。スマホでもOKです。所要2〜3分。<b>お名前と区分は必須</b>です。</p>
+  <div class="q req-box" data-q="1. ご区分">
+    <div class="ql">1. ご区分<span class="req">必須</span></div>
+    <div class="opts" id="kubun"><label><input type="radio" name="q0" data-label="SNS戦略部会員" value="member">SNS戦略部会員</label><label><input type="radio" name="q0" data-label="オブザーバー（部会員以外）" value="observer">オブザーバー（部会員以外）</label></div>
+  </div>
+  <div class="q req-box" data-q="2. 本日の満足度">
+    <div class="ql">2. 本日の満足度<span class="req">必須</span></div>
     <div class="opts"><label><input type="radio" name="q1" data-label="★5 とても良かった">★5 とても良かった</label><label><input type="radio" name="q1" data-label="★4 良かった">★4 良かった</label><label><input type="radio" name="q1" data-label="★3 普通">★3 普通</label><label><input type="radio" name="q1" data-label="★2 物足りない">★2 物足りない</label><label><input type="radio" name="q1" data-label="★1 良くなかった">★1 良くなかった</label></div>
   </div>
-  <div class="q" data-q="2. 一番印象に残った内容（複数可）">
-    <div class="ql">2. 一番印象に残った内容（複数可）</div>
+  <div class="q" data-q="3. 一番印象に残った内容（複数可）">
+    <div class="ql">3. 一番印象に残った内容（複数可）</div>
     <div class="opts"><label><input type="checkbox" name="q2" data-label="なぜSNSなのか（目的）">なぜSNSなのか（目的）</label><label><input type="checkbox" name="q2" data-label="AI秘書システム">AI秘書システム</label><label><input type="checkbox" name="q2" data-label="実演1：例会をSNS化">実演1：例会をSNS化</label><label><input type="checkbox" name="q2" data-label="実演2：画像・動画生成">実演2：画像・動画生成</label><label><input type="checkbox" name="q2" data-label="実演3：AI秘書・AIチーム">実演3：AI秘書・AIチーム</label><label><input type="checkbox" name="q2" data-label="補助金・助成金の話">補助金・助成金の話</label><label><input type="checkbox" name="q2" data-label="その他">その他</label></div>
   </div>
-  <div class="q" data-q="3. 気になった・使ってみたいAIツール（複数可）">
-    <div class="ql">3. 気になった・使ってみたいAIツール（複数可）</div>
+  <div class="q" data-q="4. 気になった・使ってみたいAIツール（複数可）">
+    <div class="ql">4. 気になった・使ってみたいAIツール（複数可）</div>
     <div class="opts"><label><input type="checkbox" name="q3" data-label="ChatGPT">ChatGPT</label><label><input type="checkbox" name="q3" data-label="Claude / Claude Code">Claude / Claude Code</label><label><input type="checkbox" name="q3" data-label="NotebookLM">NotebookLM</label><label><input type="checkbox" name="q3" data-label="画像生成AI">画像生成AI</label><label><input type="checkbox" name="q3" data-label="動画生成AI（Google Flow 等）">動画生成AI（Google Flow 等）</label><label><input type="checkbox" name="q3" data-label="Notion">Notion</label><label><input type="checkbox" name="q3" data-label="Google Drive">Google Drive</label><label><input type="checkbox" name="q3" data-label="まだ決めていない">まだ決めていない</label></div>
   </div>
-  <div class="q" data-q="4. 気になった・相談したい補助金（複数可）">
-    <div class="ql">4. 気になった・相談したい補助金（複数可）</div>
+  <div class="q" data-q="5. 気になった・相談したい補助金（複数可）">
+    <div class="ql">5. 気になった・相談したい補助金（複数可）</div>
     <div class="opts"><label><input type="checkbox" name="q4" data-label="①デジタル化・AI導入補助金">①デジタル化・AI導入補助金</label><label><input type="checkbox" name="q4" data-label="②省力化投資補助金">②省力化投資補助金</label><label><input type="checkbox" name="q4" data-label="③持続化補助金">③持続化補助金</label><label><input type="checkbox" name="q4" data-label="④リスキリング助成金（研修）">④リスキリング助成金（研修）</label><label><input type="checkbox" name="q4" data-label="⑤ものづくり補助金">⑤ものづくり補助金</label><label><input type="checkbox" name="q4" data-label="よく分からないので相談したい">よく分からないので相談したい</label><label><input type="checkbox" name="q4" data-label="特になし">特になし</label></div>
   </div>
-  <div class="q" data-q="5. 今日または明日、まず何を実行しますか？">
-    <div class="ql">5. 今日または明日、まず何を実行しますか？</div>
+  <div class="q" data-q="6. 今日または明日、まず何を実行しますか？">
+    <div class="ql">6. 今日または明日、まず何を実行しますか？</div>
     <input type="text" class="fld" placeholder="例：例会の告知文をNotebookLMで作ってみる">
   </div>
-  <div class="q" data-q="6. 今日の学びを、誰に伝えますか？">
-    <div class="ql">6. 今日の学びを、誰に伝えますか？</div>
+  <div class="q" data-q="7. 今日の学びを、誰に伝えますか？">
+    <div class="ql">7. 今日の学びを、誰に伝えますか？</div>
     <input type="text" class="fld" placeholder="例：委員会メンバー／会社のスタッフ／家族">
   </div>
-  <div class="q" data-q="7. 今後もっと知りたい内容・テーマ">
-    <div class="ql">7. 今後もっと知りたい内容・テーマ</div>
-    <textarea class="fld" placeholder="例：動画編集のAI活用／自社サイトの作り方／補助金の具体的な進め方 など"></textarea>
+  <div class="q" data-q="8. 今後もっと知りたい内容・テーマ">
+    <div class="ql">8. 今後もっと知りたい内容・テーマ</div>
+    <textarea class="fld" placeholder="例：動画編集のAI活用／自社サイトの作り方／補助金の進め方 など"></textarea>
   </div>
-  <div class="q" data-q="8. 個別相談を希望しますか？">
-    <div class="ql">8. 個別相談を希望しますか？</div>
+  <div class="q" data-q="9. 個別相談を希望しますか？">
+    <div class="ql">9. 個別相談を希望しますか？</div>
     <div class="opts"><label><input type="radio" name="q8" data-label="はい、希望する">はい、希望する</label><label><input type="radio" name="q8" data-label="内容によっては">内容によっては</label><label><input type="radio" name="q8" data-label="いいえ">いいえ</label></div>
   </div>
-  <div class="q" data-q="9. 共有資料（プロンプト集・スライド等）の送付を希望しますか？">
-    <div class="ql">9. 共有資料（プロンプト集・スライド等）の送付を希望しますか？</div>
+  <div class="q" data-q="10. 共有資料（プロンプト集・スライド等）の送付を希望しますか？">
+    <div class="ql">10. 共有資料（プロンプト集・スライド等）の送付を希望しますか？</div>
     <div class="opts"><label><input type="radio" name="q9" data-label="はい">はい</label><label><input type="radio" name="q9" data-label="いいえ">いいえ</label></div>
   </div>
-  <div class="q" data-q="10. ご感想・自由記述">
-    <div class="ql">10. ご感想・自由記述</div>
+  <div class="q" data-q="11. ご感想・自由記述">
+    <div class="ql">11. ご感想・自由記述</div>
     <textarea class="fld" placeholder="率直なご感想をお願いします（良かった点・改善点など）"></textarea>
   </div>
-  <div class="q" data-q="11. お名前（任意）">
-    <div class="ql">11. お名前（任意）</div>
-    <input type="text" class="fld" placeholder="お名前">
+  <div class="q req-box" data-q="12. お名前">
+    <div class="ql">12. お名前<span class="req">必須</span></div>
+    <input type="text" class="fld" id="name" placeholder="お名前（必須）">
   </div>
-  <div class="q" data-q="12. ご連絡先（メール／SNS等・任意）">
-    <div class="ql">12. ご連絡先（メール／SNS等・任意）</div>
+  <div class="q" data-q="13. ご連絡先（メール／SNS等・任意）">
+    <div class="ql">13. ご連絡先（メール／SNS等・任意）</div>
     <input type="text" class="fld" placeholder="資料送付・個別相談をご希望の方はご記入ください">
+  </div>
+  <div id="observer-wrap">
+  <div class="q" data-q="14.【オブザーバーの方へ】SNS戦略部会への入会のご意思">
+    <div class="ql">14.【オブザーバーの方へ】SNS戦略部会への入会のご意思</div>
+    <div class="opts"><label><input type="radio" name="q13" data-label="ぜひ入会したい">ぜひ入会したい</label><label><input type="radio" name="q13" data-label="前向きに検討したい">前向きに検討したい</label><label><input type="radio" name="q13" data-label="まず話を聞いてみたい">まず話を聞いてみたい</label><label><input type="radio" name="q13" data-label="今回は見送る">今回は見送る</label></div>
+    <input type="text" class="fld" style="margin-top:8px" placeholder="入会について気になる点・質問があればご記入ください">
+  </div>
   </div>
 
     <div class="btnrow">
@@ -213,7 +226,7 @@
       <button class="btn gold" id="mail">✉️ メールで送る</button>
     </div>
     <textarea id="result" readonly></textarea>
-    <div class="tip"><b>主催者の方へ：</b>送信先メールを固定したい場合は、HTML内の <code>SEND_TO</code> にアドレスを設定してください（空のままだと宛先未入力でメーラーが開きます）。Googleフォームに貼り付けて集計することもできます。</div>
+    <div class="tip"><b>主催者の方へ：</b>送信先メールを固定したい場合は、HTML内の <code>SEND_TO</code> にアドレスを設定してください。区分で「オブザーバー」を選ぶと、最後に入会意思の設問が表示されます。</div>
   </section>
 
 </main>
@@ -222,30 +235,49 @@
 <script>
   // 主催者：固定の送信先メールを使う場合はここに設定（例 "info@example.com"）
   const SEND_TO = "";
+  const obsWrap=document.getElementById('observer-wrap');
+  document.querySelectorAll('input[name=q0]').forEach(r=>{
+    r.addEventListener('change',()=>{
+      const isObs=document.querySelector('input[name=q0]:checked')?.value==='observer';
+      obsWrap.style.display=isObs?'block':'none';
+    });
+  });
   function gather(){
     const out=["【AI時代のSNS実践セミナー アンケート回答】",""];
     document.querySelectorAll('.q').forEach(q=>{
+      if(q.offsetParent===null) return; // 非表示の設問はスキップ
       const label=q.getAttribute('data-q');
       let ans=[];
       q.querySelectorAll('input[type=radio]:checked,input[type=checkbox]:checked')
         .forEach(i=>ans.push(i.getAttribute('data-label')||i.value));
       q.querySelectorAll('input[type=text],textarea').forEach(t=>{ if(t.value.trim()) ans.push(t.value.trim()); });
-      out.push("■ "+label);
-      out.push("　"+(ans.length?ans.join(" / "):"（未回答）"));
-      out.push("");
+      out.push("■ "+label); out.push("　"+(ans.length?ans.join(" / "):"（未回答）")); out.push("");
     });
     return out.join("\n");
   }
+  function validate(){
+    if(!document.querySelector('input[name=q0]:checked')){
+      alert('「ご区分」（部会員／オブザーバー）を選択してください。');
+      document.getElementById('kubun').scrollIntoView({behavior:'smooth',block:'center'}); return false;
+    }
+    const name=document.getElementById('name');
+    if(!name.value.trim()){
+      alert('お名前は必須です。ご記入ください。');
+      name.focus(); name.scrollIntoView({behavior:'smooth',block:'center'}); return false;
+    }
+    return true;
+  }
   const result=document.getElementById('result');
   document.getElementById('copy').addEventListener('click',async()=>{
+    if(!validate()) return;
     const text=gather(); result.style.display='block'; result.value=text;
     try{ await navigator.clipboard.writeText(text); alert('回答をコピーしました。メールやメッセージに貼り付けて送ってください。'); }
     catch(e){ result.select(); alert('下のテキストを長押しでコピーして送ってください。'); }
   });
   document.getElementById('mail').addEventListener('click',()=>{
+    if(!validate()) return;
     const body=encodeURIComponent(gather());
-    const subj=encodeURIComponent('セミナーアンケート回答');
-    location.href='mailto:'+encodeURIComponent(SEND_TO)+'?subject='+subj+'&body='+body;
+    location.href='mailto:'+encodeURIComponent(SEND_TO)+'?subject='+encodeURIComponent('セミナーアンケート回答')+'&body='+body;
   });
   const top=document.querySelector('.toTop');
   addEventListener('scroll',()=>{top.classList.toggle('show',scrollY>500)});
