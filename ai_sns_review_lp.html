@@ -163,10 +163,36 @@
     nav.menu a{flex:0 0 auto;white-space:nowrap;font-size:12px;padding:6px 12px;
       background:rgba(255,255,255,.06);border-color:rgba(201,162,75,.4)}
   }
+
+  /* ===== 2026 futuristic FX ===== */
+  .scrollprog{position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;pointer-events:none}
+  .scrollprog i{display:block;height:100%;width:0;
+    background:linear-gradient(90deg,var(--accent),var(--gold),var(--gold2),#fff);
+    box-shadow:0 0 12px rgba(201,162,75,.75)}
+  .hero h1{text-shadow:0 0 24px rgba(201,162,75,.28)}
+  .lpnum .n{position:relative}
+  .lpnum .n::after{content:"";position:absolute;inset:-4px;border-radius:15px;pointer-events:none;
+    box-shadow:0 0 0 0 rgba(201,162,75,.5)}
+  .wcard,.prompt,.smc,.lc{transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+  .wcard:hover,.prompt:hover{transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(14,27,46,.16);border-color:var(--gold)}
+  .copy,.cta a,.pick{position:relative;overflow:hidden}
+  .rippleFx{position:absolute;border-radius:50%;transform:scale(0);pointer-events:none;
+    background:rgba(255,255,255,.55);animation:rip .6s ease-out}
+  @keyframes rip{to{transform:scale(2.6);opacity:0}}
+  @media (prefers-reduced-motion: no-preference){
+    body.anim main > section{opacity:0;transform:translateY(30px) scale(.995);
+      transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+    body.anim main > section.in{opacity:1;transform:none}
+    .lpnum .n::after{animation:pulseGlow 2.8s ease-out infinite}
+    @keyframes pulseGlow{0%{box-shadow:0 0 0 0 rgba(201,162,75,.45)}
+      70%{box-shadow:0 0 0 13px rgba(201,162,75,0)}100%{box-shadow:0 0 0 0 rgba(201,162,75,0)}}
+  }
 </style>
 
 </head>
 <body>
+<div class="scrollprog"><i></i></div>
 <header class="top">
   <div class="top-inner">
     <div class="brand">JCI名古屋 SNS戦略部会 <b>6月例会 復習LP</b></div>
@@ -547,7 +573,36 @@
     });
   });
   var toTop=document.querySelector('.toTop');
-  if(toTop){ addEventListener('scroll',function(){ toTop.classList.toggle('show', scrollY>500); }); }
+  var prog=document.querySelector('.scrollprog i');
+  function onScroll(){
+    if(prog){ var h=document.documentElement.scrollHeight-innerHeight;
+      prog.style.width=(h>0?(scrollY/h*100):0)+'%'; }
+    if(toTop){ toTop.classList.toggle('show', scrollY>500); }
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // reveal on scroll（動きを控える設定なら無効）
+  if('IntersectionObserver' in window &&
+     window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+    document.body.classList.add('anim');
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:0.08, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('main > section').forEach(function(s){ io.observe(s); });
+  }
+
+  // click ripple
+  function ripple(e){
+    var el=e.currentTarget, r=el.getBoundingClientRect(), d=Math.max(r.width,r.height);
+    var s=document.createElement('span'); s.className='rippleFx';
+    s.style.width=s.style.height=d+'px';
+    var cx=(e.clientX||r.left+r.width/2), cy=(e.clientY||r.top+r.height/2);
+    s.style.left=(cx-r.left-d/2)+'px'; s.style.top=(cy-r.top-d/2)+'px';
+    el.appendChild(s); setTimeout(function(){ s.remove(); },600);
+  }
+  document.querySelectorAll('.copy,.cta a,.pick').forEach(function(el){
+    el.addEventListener('click',ripple);
+  });
 </script>
 </body>
 </html>
