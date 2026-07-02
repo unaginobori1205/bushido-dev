@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI・SNS実践 復習マニュアル（レベル1〜10）｜名古屋JC</title>
+<style>
+  :root{
+    --navy:#0E1B2E; --navy2:#16263d; --gold:#C9A24B; --gold2:#e3c373;
+    --accent:#1F6F8B; --ink:#222A35; --gray:#5B6674; --line:#e7e2d6;
+    --bg:#f7f5ef; --card:#ffffff; --soft:#f4f1ea; --code:#0f2030;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+  a{color:var(--accent);text-decoration:none}
+  /* ---- top nav ---- */
+  header.top{position:sticky;top:0;z-index:50;background:rgba(14,27,46,.96);
+    backdrop-filter:blur(6px);border-bottom:2px solid var(--gold)}
+  .top-inner{max-width:1000px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand{color:#fff;font-weight:800;font-size:15px;letter-spacing:.02em;white-space:nowrap}
+  .brand b{color:var(--gold2)}
+  nav.menu{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  nav.menu a{color:#d8dde4;font-size:12.5px;padding:5px 10px;border-radius:999px;border:1px solid transparent}
+  nav.menu a:hover{background:rgba(255,255,255,.08);border-color:rgba(201,162,75,.5);color:#fff}
+  /* ---- hero ---- */
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:54px 20px 48px;text-align:center;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:auto 0 0 0;height:5px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold))}
+  .hero .kicker{color:var(--gold2);font-weight:700;letter-spacing:.12em;font-size:13px;margin-bottom:14px}
+  .hero h1{margin:0;font-size:clamp(26px,5vw,40px);font-weight:900;letter-spacing:.01em}
+  .hero p{margin:14px auto 0;max-width:640px;color:#cdd5df;font-size:15px}
+  .hero .meta{margin-top:18px;font-size:12.5px;color:#8fa0b4}
+  /* ---- layout ---- */
+  main{max-width:1000px;margin:0 auto;padding:30px 18px 60px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px 24px;margin:18px 0;box-shadow:0 2px 14px rgba(14,27,46,.05);scroll-margin-top:80px}
+  .sec-head{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+  .sec-no{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--navy);color:var(--gold2);
+    font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .sec-head h2{margin:0;font-size:20px;font-weight:800;color:var(--navy)}
+  .lead{color:var(--gray);font-size:14.5px;margin:.2em 0 1em}
+  .subhead{display:flex;align-items:center;gap:8px;margin:26px 0 10px;font-size:16px;
+    font-weight:800;color:var(--navy);padding-bottom:7px;border-bottom:2px solid var(--soft)}
+  .subhead .ic{font-size:18px}
+  .goldbox{background:linear-gradient(135deg,#fff7e6,#fdeccf);border:1px solid var(--gold);border-radius:14px;padding:16px 18px;margin:16px 0}
+  .goldbox .gb-ttl{font-weight:800;color:#8a6d1f;font-size:15px;margin-bottom:6px}
+  .goldbox p{margin:12px 0 0;font-size:13px;color:#5e4f2a}
+  .flow .node small{display:block;font-weight:600;font-size:10.5px;opacity:.88;margin-top:2px}
+  table.kv td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:700}
+  /* ---- hub / toc / levels ---- */
+  .lvtag{display:inline-block;font-size:11px;font-weight:800;color:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap}
+  .lvtag.beg{background:#2e9e5b}.lvtag.mid{background:var(--accent)}
+  .lvtag.adv{background:#b9842b}.lvtag.must{background:var(--navy)}
+  .sec-head .lvtag{margin-left:auto}
+  .picker{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 4px}
+  .pick{display:block;border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:var(--soft);transition:.15s}
+  .pick:hover{border-color:var(--gold);background:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,27,46,.08)}
+  .pick b{display:block;color:var(--navy);font-size:14px}
+  .pick span{display:block;color:var(--gray);font-size:12px;margin-top:3px}
+  .levels3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0}
+  .lvbox{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .lvbox .lvh{padding:10px 14px;color:#fff;font-weight:800;font-size:15px}
+  .lvbox .lvh small{font-weight:600;font-size:11px;opacity:.9;margin-left:6px}
+  .lvbox.beg .lvh{background:#2e9e5b}.lvbox.mid .lvh{background:var(--accent)}.lvbox.adv .lvh{background:#b9842b}
+  .lvbox ul.clean{padding:12px 14px}.lvbox ul.clean li{padding:5px 0 5px 18px}.lvbox ul.clean li:before{top:12px}
+  .toc{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:26px}
+  .toc li{break-inside:avoid;padding:7px 0;border-bottom:1px solid var(--soft);display:flex;align-items:center;gap:8px;font-size:13.5px}
+  .toc li a{font-weight:700;color:var(--ink)}.toc li a:hover{color:var(--accent)}
+  .toc .lvtag{margin-left:auto}
+  ul.clean{list-style:none;padding:0;margin:0}
+  ul.clean li{position:relative;padding:6px 0 6px 22px}
+  ul.clean li:before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+  /* ---- level stepper ---- */
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 4px}
+  .lv{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--soft);position:relative}
+  .lv .tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--gray);border-radius:999px;padding:2px 10px;margin-bottom:8px}
+  .lv h4{margin:0 0 4px;font-size:15px;color:var(--navy)}
+  .lv p{margin:0;font-size:12.5px;color:var(--gray)}
+  .lv.goal{background:linear-gradient(135deg,#fff7e6,#fdeccf);border-color:var(--gold)}
+  .lv.goal .tag{background:var(--gold);color:#3a2c08}
+  /* ---- flow loop ---- */
+  .flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .flow .node{background:var(--navy);color:#fff;border-radius:10px;padding:10px 16px;font-weight:700;font-size:13.5px}
+  .flow .node.alt{background:var(--accent)}
+  .flow .arrow{color:var(--gold);font-size:20px;font-weight:900}
+  /* ---- tables ---- */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px;overflow:hidden;border-radius:10px}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:700}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--soft)}
+  tbody td:first-child{font-weight:800;color:var(--accent);width:46px;text-align:center}
+  /* ---- prompt card ---- */
+  .prompt{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:14px 0;background:#fff}
+  .prompt .ph{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--soft);border-bottom:1px solid var(--line)}
+  .prompt .ph .ttl{font-weight:800;font-size:13.5px;color:var(--navy)}
+  .prompt .ph .badge{font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:999px;padding:2px 9px}
+  .copy{margin-left:auto;border:0;cursor:pointer;background:var(--navy);color:#fff;font-weight:700;
+    font-size:12px;padding:7px 14px;border-radius:8px;display:flex;align-items:center;gap:6px;transition:.15s}
+  .copy:hover{background:var(--accent)}
+  .copy.done{background:#2e9e5b}
+  pre{margin:0;padding:14px 16px;background:var(--code);color:#e7eef7;font-size:12.5px;line-height:1.7;
+    overflow-x:auto;white-space:pre-wrap;word-break:break-word;
+    font-family:"SFMono-Regular",Consolas,"Yu Gothic",Meiryo,monospace}
+  .tip{background:#fff7e6;border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:13px;margin:12px 0}
+  .tip b{color:#8a6d1f}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mini{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--soft)}
+  .mini h4{margin:0 0 8px;font-size:14px;color:var(--navy)}
+  .pill{display:inline-block;background:#eef3f5;color:var(--accent);border:1px solid #d6e3e7;
+    border-radius:999px;font-size:12px;font-weight:700;padding:3px 11px;margin:3px 4px 0 0}
+  footer{text-align:center;color:var(--gray);font-size:12.5px;padding:26px 16px 50px}
+  .toTop{position:fixed;right:16px;bottom:16px;background:var(--navy);color:#fff;border-radius:50%;
+    width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+  .toTop.show{opacity:1;pointer-events:auto}
+  @media(max-width:680px){
+    .levels{grid-template-columns:1fr}.two{grid-template-columns:1fr}
+    .picker{grid-template-columns:1fr}.levels3{grid-template-columns:1fr}.toc{columns:1}
+    nav.menu{display:none}.hero{padding:40px 16px}
+  }
+  @media print{header.top,.toTop{display:none}section{break-inside:avoid;box-shadow:none}}
+</style>
+
+<style>
+  .ladder{display:grid;gap:8px;margin:12px 0}
+  .rung{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:10px;
+    padding:9px 13px;background:var(--soft);transition:.15s}
+  .rung:hover{border-color:var(--gold);background:#fff;transform:translateX(3px)}
+  .rung .ln{flex:0 0 auto;width:30px;height:30px;border-radius:8px;color:#fff;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:13px}
+  .rung.beg .ln{background:#2e9e5b}.rung.mid .ln{background:var(--accent)}.rung.adv .ln{background:#b9842b}
+  .rung .lt{font-weight:700;color:var(--navy);font-size:13.5px}
+  .rung .lt a{color:var(--navy)}.rung .lt a:hover{color:var(--accent)}
+  .rung .lm{margin-left:auto;font-size:11.5px;color:var(--gray);font-weight:700;white-space:nowrap}
+  .tg{font-size:12.5px;font-weight:800;color:var(--navy);margin:10px 0 2px}
+  .bar2{display:grid;grid-template-columns:64px 1fr 60px;gap:10px;align-items:center;margin:4px 0}
+  .bar2 .bl{font-size:12px;font-weight:700;color:var(--gray);text-align:right}
+  .bar2 .bt{background:var(--soft);border:1px solid var(--line);border-radius:7px;height:18px;overflow:hidden}
+  .bar2 .bf{height:100%;border-radius:6px}
+  .bar2 .bf.before{background:#9aa7b4}
+  .bar2 .bf.after{background:var(--gold)}
+  .bar2 .bv{font-size:12px;font-weight:800;color:var(--navy)}
+  .legend{display:flex;gap:18px;font-size:12px;color:var(--gray);margin:8px 0 0;justify-content:flex-end}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:5px}
+  .statwrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:center;margin:6px 0}
+  .statnote{font-size:12.5px;color:var(--gray);max-width:340px}
+  .diag{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0;
+    background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .diag .dn{background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;
+    font-size:12.5px;font-weight:700;color:var(--navy);text-align:center;max-width:180px}
+  .diag .dn.gold{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .diag .da{color:var(--gold);font-weight:900;font-size:18px}
+  .outgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+  .outgrid .oc{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:9px;
+    font-size:12px;font-weight:700;color:var(--navy);text-align:center}
+  .check{list-style:none;padding:0;margin:10px 0}
+  .check li{padding:6px 0 6px 28px;position:relative;font-size:13.5px}
+  .check li:before{content:"";position:absolute;left:2px;top:7px;width:15px;height:15px;
+    border:2px solid var(--accent);border-radius:4px}
+  .rev{background:var(--navy);color:#fff;border-radius:10px;padding:11px 15px;margin:12px 0 0;font-size:13.5px}
+  .rev b{color:var(--gold2)}
+  .lvchip{display:inline-block;font-size:11px;font-weight:800;color:#fff;border-radius:999px;padding:2px 10px}
+  .lvchip.beg{background:#2e9e5b}.lvchip.mid{background:var(--accent)}.lvchip.adv{background:#b9842b}
+  .sec-head .min{margin-left:auto;font-size:11.5px;font-weight:800;color:var(--gray);white-space:nowrap}
+  @media(max-width:680px){.outgrid{grid-template-columns:repeat(2,1fr)}.bar2{grid-template-columns:56px 1fr 54px}}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">名古屋JC <b>AI・SNS実践 復習マニュアル</b></div>
+    <nav class="menu">
+      <a href="#hub">使い方・ロードマップ</a>
+      <a href="#l1">Lv1-4 初級</a>
+      <a href="#l5">Lv5-8 中級</a>
+      <a href="#l9">Lv9-10 上級</a>
+      <a href="#note">注意点</a>
+    </nav>
+  </div>
+</header>
+<div class="hero">
+  <div class="kicker">セミナー連動 復習マニュアル ｜ レベル1〜10・各10分・プロンプト集付き</div>
+  <h1>AI・SNS実践 復習マニュアル</h1>
+  <p>読むためではなく、<b style="color:#fff">使う</b>ためのマニュアル。レベル1〜10を自分のペースで実践しながら学べます。各プロンプトは右上のボタンで丸ごとコピーできます。</p>
+  <div class="meta">名古屋JC SNS戦略部会 ／ AIは、使った人から変わっていく</div>
+</div>
+<main>
+
+  <section id="hub">
+    <div class="sec-head"><div class="sec-no">◎</div><h2>この復習マニュアルの使い方</h2></div>
+    <p class="lead">セミナーで実演した内容を、<b>レベル1〜10・各10分</b>で自分のペースで復習・実践できるようにまとめました。各レベルは「手順 → コピペできるプロンプト → 30秒復習 → チェック」の順。まず気になる1つからどうぞ。</p>
+
+    <div class="subhead"><span class="ic">🪜</span>10レベルのロードマップ</div>
+    <div class="ladder">
+      <div class="rung beg"><div class="ln">1</div><div class="lt"><a href="#l1">AIの全体像と使い分け</a></div><div class="lm">目安10分</div></div>
+      <div class="rung beg"><div class="ln">2</div><div class="lt"><a href="#l2">音声入力→整文</a></div><div class="lm">目安10分</div></div>
+      <div class="rung beg"><div class="ln">3</div><div class="lt"><a href="#l3">NotebookLMで要約</a></div><div class="lm">目安10分</div></div>
+      <div class="rung beg"><div class="ln">4</div><div class="lt"><a href="#l4">SNS3媒体に展開</a></div><div class="lm">目安10分</div></div>
+      <div class="rung mid"><div class="ln">5</div><div class="lt"><a href="#l5">例会を広報セット化</a></div><div class="lm">目安10分</div></div>
+      <div class="rung mid"><div class="ln">6</div><div class="lt"><a href="#l6">画像生成プロンプト</a></div><div class="lm">目安10分</div></div>
+      <div class="rung mid"><div class="ln">7</div><div class="lt"><a href="#l7">動画生成プロンプト</a></div><div class="lm">目安10分</div></div>
+      <div class="rung mid"><div class="ln">8</div><div class="lt"><a href="#l8">AI秘書（朝・議事録・返信）</a></div><div class="lm">目安10分</div></div>
+      <div class="rung adv"><div class="ln">9</div><div class="lt"><a href="#l9">プロンプトを型に＝資産化</a></div><div class="lm">目安10分</div></div>
+      <div class="rung adv"><div class="ln">10</div><div class="lt"><a href="#l10">Claude CodeでAIチーム</a></div><div class="lm">目安10分</div></div>
+    </div>
+
+    <div class="subhead"><span class="ic">📊</span>AIでどれくらい時短できる？（目安）</div>
+    <div class="bars">
+<div class="tg">SNS投稿 1本</div>
+<div class="bar2"><div class="bl">手作業</div><div class="bt"><div class="bf before" style="width:12.5%"></div></div><div class="bv">30分</div></div>
+<div class="bar2"><div class="bl">AI</div><div class="bt"><div class="bf after" style="width:1.2%"></div></div><div class="bv">3分</div></div>
+<div class="tg">資料・例会の要約</div>
+<div class="bar2"><div class="bl">手作業</div><div class="bt"><div class="bf before" style="width:12.5%"></div></div><div class="bv">30分</div></div>
+<div class="bar2"><div class="bl">AI</div><div class="bt"><div class="bf after" style="width:0.4%"></div></div><div class="bv">1分</div></div>
+<div class="tg">議事録→ToDo</div>
+<div class="bar2"><div class="bl">手作業</div><div class="bt"><div class="bf before" style="width:16.7%"></div></div><div class="bv">40分</div></div>
+<div class="bar2"><div class="bl">AI</div><div class="bt"><div class="bf after" style="width:2.1%"></div></div><div class="bv">5分</div></div>
+<div class="tg">例会の広報セット一式</div>
+<div class="bar2"><div class="bl">手作業</div><div class="bt"><div class="bf before" style="width:50.0%"></div></div><div class="bv">120分</div></div>
+<div class="bar2"><div class="bl">AI</div><div class="bt"><div class="bf after" style="width:6.2%"></div></div><div class="bv">15分</div></div>
+<div class="tg">週次SNS運用（7本＋表）</div>
+<div class="bar2"><div class="bl">手作業</div><div class="bt"><div class="bf before" style="width:100.0%"></div></div><div class="bv">240分</div></div>
+<div class="bar2"><div class="bl">AI</div><div class="bt"><div class="bf after" style="width:8.3%"></div></div><div class="bv">20分</div></div>
+<div class="legend"><span><i style="background:#9aa7b4"></i>手作業</span><span><i style="background:var(--gold)"></i>AI活用</span></div></div>
+
+    <div class="statwrap"><svg viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="時短の目安90%"><circle cx="60" cy="60" r="50" fill="none" stroke="#e7e2d6" stroke-width="14"/><circle cx="60" cy="60" r="50" fill="none" stroke="#C9A24B" stroke-width="14" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="31" transform="rotate(-90 60 60)"/><text x="60" y="58" text-anchor="middle" font-size="26" font-weight="800" fill="#0E1B2E">約90%</text><text x="60" y="77" text-anchor="middle" font-size="10" fill="#5B6674">時短(目安)</text></svg>
+      <div class="statnote">作業の多くが<b>数分の1〜数十分の1</b>に。空いた時間を、人にしかできない“想いを届ける”ことに使うのが狙いです。<br><span style="color:#9aa7b4">※数値は目安。内容により変わります。</span></div>
+    </div>
+
+    <div class="tip"><b>復習のコツ：</b>読むだけにせず、各レベルの「チェック□」を1つでも実際にやってみてください。手を動かすと一気に身につきます。</div>
+  </section>
+
+  <section id="l1">
+    <div class="sec-head"><div class="sec-no">1</div><h2>AIの全体像と使い分け</h2><span class="min">目安10分 ｜ <span class="lvchip beg">初級</span></span></div>
+    <p class="lead">まず「どのAIに何を任せるか」を知る。全部を覚える必要はない。自分の作業をAIに振り分けるのが第一歩。</p>
+    <table><thead><tr><th>AI</th><th>得意なこと</th></tr></thead><tbody><tr><td>ChatGPT</td><td>相談・文章・企画・壁打ち</td></tr><tr><td>Claude</td><td>長文整理・資料構成・自然な文章</td></tr><tr><td>NotebookLM</td><td>入れた資料だけで正確に整理</td></tr><tr><td>画像生成AI</td><td>チラシ・SNS素材・イメージ</td></tr><tr><td>動画生成AI</td><td>ショート動画・PR・告知</td></tr><tr><td>Drive / Notion</td><td>共有・蓄積・マニュアル化</td></tr></tbody></table>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>自分の1週間の作業を10個書き出す</li><li>「AIに任せられそう」な作業に印をつける</li><li>印の中から“今日やる1つ”を決める</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">棚卸し</span><span class="ttl">自分の仕事をAIに振り分ける</span><button class="copy">コピー</button></div><pre>私の仕事を、AIに任せられる作業に仕分けして。
+私の主な業務：（箇条書きで貼る）
+出力：
+1. すぐAIに任せられる作業
+2. AIと一緒にやる作業（最後は人が確認）
+3. 人がやるべき作業
+それぞれ、どのAI（ChatGPT／Claude／NotebookLM／画像・動画）が向くかも添えて。</pre></div>
+
+    <ul class="check"><li>作業を10個書き出した</li><li>AIに渡せる作業に3つ印をつけた</li></ul>
+    <div class="rev"><b>30秒復習：</b>AIは1つではなく“役割で使い分ける”。まず1作業をAIに渡してみる。</div>
+  </section>
+
+  <section id="l2">
+    <div class="sec-head"><div class="sec-no">2</div><h2>音声入力で“吐き出す”→整える</h2><span class="min">目安10分 ｜ <span class="lvchip beg">初級</span></span></div>
+    <p class="lead">文章が苦手でも大丈夫。きれいに書く前に、まず喋る。あとはAIが整える。</p>
+    <div class="diag"><span class="dn">頭の中（ぐちゃぐちゃ）</span><span class="da">→</span><span class="dn">音声入力</span><span class="da">→</span><span class="dn gold">AIで整文</span><span class="da">→</span><span class="dn">読める文章</span></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>スマホ／PCの音声入力で30秒、思いつくまま喋る</li><li>その文章をAIに貼り、整えてもらう</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">整文</span><span class="ttl">音声メモを読みやすく整える</span><button class="copy">コピー</button></div><pre>これは音声入力した自分のメモです。意味を変えずに、読みやすい文章に整えて。
+- 誤変換を直す／重複を消す／自然な順番に並べ替える
+- 箇条書きにできる部分は箇条書きに
+【メモ】（ここに貼る）</pre></div>
+
+    <ul class="check"><li>音声入力を1回試した</li><li>整文プロンプトで文章になった</li></ul>
+    <div class="rev"><b>30秒復習：</b>“書く”の前に“喋る”。ゼロから書くより何倍も速い。</div>
+  </section>
+
+  <section id="l3">
+    <div class="sec-head"><div class="sec-no">3</div><h2>NotebookLMで資料・例会情報を要約</h2><span class="min">目安10分 ｜ <span class="lvchip beg">初級</span></span></div>
+    <p class="lead">分厚い資料や例会情報を、入れた内容だけで正確に整理。会議前の予習が一瞬。</p>
+    <div class="diag"><span class="dn">資料を入れる</span><span class="da">→</span><span class="dn gold">NotebookLM</span><span class="da">→</span><span class="dn">要約／論点／質問／投稿の素</span></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>NotebookLMに資料やメモを読み込ませる</li><li>下のプロンプトで要約を出す</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">要約</span><span class="ttl">資料を一発で多面整理</span><button class="copy">コピー</button></div><pre>この資料を読み込み、以下を出力してください。
+1. 3行要約
+2. 重要ポイント5つ
+3. 会議で確認すべき論点3つ
+4. 想定質問と回答3組
+資料に書いてある内容だけを根拠にしてください。</pre></div>
+
+    <ul class="check"><li>資料を1つ読み込ませた</li><li>要約を出してみた</li></ul>
+    <div class="rev"><b>30秒復習：</b>NotebookLMは“入れた資料だけ”を読むから、デタラメが少ない。</div>
+  </section>
+
+  <section id="l4">
+    <div class="sec-head"><div class="sec-no">4</div><h2>SNS投稿を3媒体に展開</h2><span class="min">目安10分 ｜ <span class="lvchip beg">初級</span></span></div>
+    <p class="lead">1つの素材を、媒体ごとの作法に合わせて一気に書き分ける。</p>
+    <table><thead><tr><th>媒体</th><th>作法</th></tr></thead><tbody><tr><td>Instagram</td><td>共感から入る＋ハッシュタグ</td></tr><tr><td>X</td><td>短く・フック重視</td></tr><tr><td>Facebook</td><td>丁寧に背景と想い</td></tr></tbody></table>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>伝えたい出来事・写真の説明をメモする</li><li>下のプロンプトで3媒体に展開する</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">3媒体展開</span><span class="ttl">1素材を3媒体に書き分け</span><button class="copy">コピー</button></div><pre>次の内容を、以下3媒体向けの投稿文に書き分けてください。
+- Instagram：共感から入る本文＋ハッシュタグ10個
+- X：140字以内のフック＋スレッド3連投
+- Facebook：背景と想いが伝わる丁寧な長文
+素材：（ここに貼る）
+読み手が「自分ごと」と感じる一文から始めてください。</pre></div>
+
+    <ul class="check"><li>1素材を3媒体に展開した</li><li>1つ実際に投稿した</li></ul>
+    <div class="rev"><b>30秒復習：</b>媒体ごとに書き分けると伸びやすい。AIなら一発。</div>
+  </section>
+
+  <section id="l5">
+    <div class="sec-head"><div class="sec-no">5</div><h2>担当例会を“広報セット”に一括変換</h2><span class="min">目安10分 ｜ <span class="lvchip mid">中級</span></span></div>
+    <p class="lead">例会情報を入れるだけで、広報に必要な素材が一式そろう。委員会の作業を大幅短縮。</p>
+    <div class="outgrid"><div class="oc">投稿文</div><div class="oc">ストーリーズ</div><div class="oc">リール台本</div><div class="oc">告知タイトル</div><div class="oc">ハッシュタグ</div><div class="oc">参加促す一言</div><div class="oc">依頼文</div><div class="oc">撮影指示</div></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>例会の日時・会場・テーマ・狙いをまとめる</li><li>下のプロンプトで広報セットを生成</li><li>想いや温度感を人が加える</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">例会広報</span><span class="ttl">例会をSNS広報セットに一括変換</span><button class="copy">コピー</button></div><pre>あなたはJCの広報に強い編集者です。次の例会情報をもとに、SNS広報セットを一式作ってください。
+【例会情報】（日時・会場・テーマ・登壇者・狙いを貼る）
+出力：
+1. SNS投稿文（Instagram用・共感から入る本文）
+2. ストーリーズ用の短文（3枚分）
+3. リール用ナレーション（30秒）
+4. 告知タイトル案を3つ
+5. ハッシュタグ10個
+6. 「参加したくなる一言」
+7. 委員会メンバーへの依頼文（撮影・拡散のお願い）
+8. 当日の写真・動画の撮影指示リスト
+※日付・会場・登壇者名は変えず、想いが伝わる温度感で。</pre></div>
+
+    <ul class="check"><li>例会情報をまとめた</li><li>広報セットを生成した</li></ul>
+    <div class="rev"><b>30秒復習：</b>広報で一番大変な“何をどう伝えるか”をAIがたたき台に。人は温度感を足すだけ。</div>
+  </section>
+
+  <section id="l6">
+    <div class="sec-head"><div class="sec-no">6</div><h2>画像生成プロンプト</h2><span class="min">目安10分 ｜ <span class="lvchip mid">中級</span></span></div>
+    <p class="lead">必要なのはデザイン技術より“世界観を言葉にする力”。まず何を感じてほしいかを1行で。</p>
+    <div class="diag"><span class="dn">世界観を1行で言語化</span><span class="da">→</span><span class="dn gold">画像生成AI</span><span class="da">→</span><span class="dn">告知画像の案 3つ</span></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>「何を感じてほしいか」を1行で決める</li><li>下のプロンプトで画像案＋英語プロンプトを出す</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">画像生成</span><span class="ttl">告知画像のイメージ案を作る</span><button class="copy">コピー</button></div><pre>SNS用の告知画像のイメージ案を作って。
+テーマ：（例）7月例会「〇〇」
+まず「何を感じてほしいか（世界観）」を1行で決めてから、
+- 雰囲気・色・構図を言葉にした画像案を3つ
+- それぞれの英語生成プロンプト
+- 文字入れする場合のキャッチコピー
+を出して。</pre></div>
+
+    <ul class="check"><li>世界観を1行で書いた</li><li>画像案を3つ出した</li></ul>
+    <div class="rev"><b>30秒復習：</b>AIに任せる前に、人が“伝えたいこと”を決める。そこが一番大事。</div>
+  </section>
+
+  <section id="l7">
+    <div class="sec-head"><div class="sec-no">7</div><h2>動画生成プロンプト</h2><span class="min">目安10分 ｜ <span class="lvchip mid">中級</span></span></div>
+    <p class="lead">ショート動画も、構成と台本をAIに作らせれば撮影前の設計が一瞬。</p>
+    <div class="diag"><span class="dn">0–5秒 つかみ</span><span class="da">→</span><span class="dn">5–10秒 中身</span><span class="da">→</span><span class="dn gold">10–15秒 締め＋CTA</span></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>テーマと“誰に何を感じてほしいか”を決める</li><li>下のプロンプトで構成・台本・縦型プロンプトを出す</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">動画生成</span><span class="ttl">15秒ショートの構成・台本・縦型プロンプト</span><button class="copy">コピー</button></div><pre>次のテーマから、SNSショート動画の素材を作って。
+テーマ：（例）7月例会「〇〇」／対象：地域の若手経営者
+出力：
+1. リール動画の構成（0-5秒／5-10秒／10-15秒）
+2. 15秒ショート動画の台本（ナレーション＋テロップ）
+3. 9:16縦型動画の生成プロンプト（日本語）
+4. 上記の英語プロンプト版
+※最初に「何を伝えたいか（世界観）」を1行で言語化してから。</pre></div>
+
+    <ul class="check"><li>動画の構成を出した</li><li>15秒台本を作った</li></ul>
+    <div class="rev"><b>30秒復習：</b>撮る前に“設計図”をAIで。日本語で考え、英語プロンプトに変換。</div>
+  </section>
+
+  <section id="l8">
+    <div class="sec-head"><div class="sec-no">8</div><h2>AI秘書：朝のタスク・議事録・返信</h2><span class="min">目安10分 ｜ <span class="lvchip mid">中級</span></span></div>
+    <p class="lead">SNSだけでなく日々の業務にも。朝の整理、議事録のToDo化、返信案までAIが補佐。</p>
+    <div class="diag"><span class="dn">予定・連絡・タスクを入れる</span><span class="da">→</span><span class="dn gold">AI秘書</span><span class="da">→</span><span class="dn">やること／返信案／連絡先 整理</span></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>朝、予定・未読・タスクを箇条書きで貼る</li><li>下の2つのプロンプトを使い分ける</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">秘書</span><span class="ttl">朝の“今日の動き方”を整理</span><button class="copy">コピー</button></div><pre>あなたは私専属のAI秘書です。次の情報から「今日の動き方」を整理してください。
+【入力】今日の予定／未読の連絡／抱えているタスク／締切（箇条書きで貼る）
+出力：
+1. 今日やるべきこと（優先順位つき）
+2. 返信すべき連絡と、その返信案
+3. 今日のSNS投稿の確認事項
+4. 昨日からの持ち越し
+5. 今日の注意点
+6. 誰に何を連絡すべきか</pre></div>
+
+    <div class="prompt"><div class="ph"><span class="badge">議事録</span><span class="ttl">議事録からToDoを抽出</span><button class="copy">コピー</button></div><pre>次の議事録から、ToDoと連絡事項を抜き出してください。
+【議事録】（貼る）
+出力：
+1. ToDo（担当・期限つき）
+2. 決定事項
+3. 保留・要確認事項
+4. 誰に何を連絡するか（連絡文の案つき）</pre></div>
+
+    <ul class="check"><li>朝の整理を1回やった</li><li>議事録をToDo化した</li></ul>
+    <div class="rev"><b>30秒復習：</b>頭で思い出す時代から、AIに整理させ“判断と行動”に集中する時代へ。</div>
+  </section>
+
+  <section id="l9">
+    <div class="sec-head"><div class="sec-no">9</div><h2>プロンプトを“型”にして資産化</h2><span class="min">目安10分 ｜ <span class="lvchip adv">上級</span></span></div>
+    <p class="lead">よく使うプロンプトはテンプレ化。個人の工夫を、組織で使える資産にする。</p>
+    <div class="diag"><span class="dn">個人の工夫</span><span class="da">→</span><span class="dn">型（テンプレ）</span><span class="da">→</span><span class="dn gold">組織の資産（Drive／Notion）</span></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>うまくいったプロンプトを1か所に保存</li><li>Drive／Notionでチームに共有</li><li>下のプロンプトで管理の型を作る</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">資産化</span><span class="ttl">AI活用を資産にするNotion設計</span><button class="copy">コピー</button></div><pre>あなたは情報整理（PKM）の専門家です。私のAI活用を“資産”にするNotion構成を提案してください。
+管理したいもの：プロンプト集／議事録／SNS投稿アーカイブ／JC議案
+出力：
+1. データベース構成（名前・用途・主なプロパティ）
+2. 各データベースの使い分けルール
+3. 毎週のルーティーン（何を・いつ・どう記録するか）5ステップ
+4. 最初の1週間でやることチェックリスト
+初心者でも迷わないよう、具体名で。</pre></div>
+
+    <ul class="check"><li>良かったプロンプトを保存した</li><li>共有場所を決めた</li></ul>
+    <div class="rev"><b>30秒復習：</b>一回使って終わりにしない。型にすると、次から一瞬で再現できる。</div>
+  </section>
+
+  <section id="l10">
+    <div class="sec-head"><div class="sec-no">10</div><h2>Claude Codeで“自分専用のAIチーム”</h2><span class="min">目安10分 ｜ <span class="lvchip adv">上級</span></span></div>
+    <p class="lead">役割ごとのAI（サブエージェント）を作って分業・自動化。初心者は日本語で言うだけ。</p>
+    <div class="diag"><span class="dn">ネタ収集エージェント</span><span class="da">→</span><span class="dn">投稿作成エージェント</span><span class="da">→</span><span class="dn gold">校正・炎上チェック</span></div>
+
+    <div class="subhead"><span class="ic">🛠️</span>やってみる手順</div>
+    <ul class="clean"><li>Claude Codeで <code>/agents</code> →「Generate with Claude」を選ぶ</li><li>やりたいことを日本語で説明（1エージェント＝1専門に絞る）</li><li>チームに一括指示して回す</li></ul>
+    <div class="prompt"><div class="ph"><span class="badge">AIチーム</span><span class="ttl">投稿作成エージェントを作る（/agents → Generate with Claude）</span><button class="copy">コピー</button></div><pre>SNS投稿を作る専門エージェントを作って。
+役割：渡されたネタメモから、Instagram・X・Facebookの3媒体ぶんの投稿文を作る。
+ルール：
+- 家族目線のやさしい言葉。宣伝くさくしない
+- 媒体ごとの作法に合わせる（インスタ＝共感＋ハッシュタグ／X＝短く／FB＝丁寧）
+- 個人情報・機密は書かない
+使うツール：ファイルの読み書きのみ（最小限）</pre></div>
+
+    <div class="prompt"><div class="ph"><span class="badge">AIチーム</span><span class="ttl">AIチームに今週のSNSを回させる（一括指示）</span><button class="copy">コピー</button></div><pre>今週のSNSを回して。次の順で進めて、最後にまとめて。
+1. ネタ収集エージェント：今週の話題・写真メモから投稿ネタを3つ出す
+2. 投稿作成エージェント：3媒体×各2本の投稿文を作る
+3. 校正・炎上チェックエージェント：誤字と炎上しそうな表現を点検して直す
+最後に、月〜日の投稿カレンダー（曜日／媒体／本文）にまとめて。</pre></div>
+
+    <ul class="check"><li>エージェントを1つ作った</li><li>チームに一括指示してみた</li></ul>
+    <div class="rev"><b>30秒復習：</b>1人に全部やらせず役割を分ける。「今週のSNS回して」の一言で回る。</div>
+  </section>
+
+
+  <section id="note">
+    <div class="sec-head"><div class="sec-no">!</div><h2>AIを使うときの注意点</h2></div>
+    <p class="lead">便利なほど、人間の確認力が大切になります。最低限これだけは守ってください。</p>
+    <ul class="clean">
+      <li>個人情報・機密情報・未公開情報をそのまま入れない</li>
+      <li>AIの文章をそのまま使わず、最後は人が確認する</li>
+      <li>日付・会場・金額・登壇者名は必ず自分で確認する</li>
+      <li>事実と想いを分けて扱う</li>
+      <li>AIは最終責任者ではなく、補佐役</li>
+    </ul>
+    <div class="rev"><b>30秒復習：</b>AIを使うほど、人間の確認力と判断力が大切になる。</div>
+  </section>
+
+  <section id="next">
+    <div class="sec-head"><div class="sec-no">→</div><h2>今日・明日やること</h2></div>
+    <ul class="check">
+      <li>レベル1〜10から、今日やる「1つ」を選んだ</li>
+      <li>実際にプロンプトを1回コピペして使った</li>
+      <li>学んだことを、誰か1人に伝えた</li>
+    </ul>
+    <div class="goldbox"><div class="gb-ttl">キーメッセージ</div>
+      <p>AIは、知っている人が勝つのではなく、<b>使った人から変わっていく</b>。今日・明日まず一つ使い、誰かに教える。それが委員会の力、名古屋JC全体の発信力につながります。</p></div>
+  </section>
+
+</main>
+<footer>名古屋JC SNS戦略部会 ｜ AI・SNS実践 復習マニュアル（レベル1〜10）</footer>
+<a href="#" class="toTop" aria-label="トップへ戻る">↑</a>
+<script>
+  document.querySelectorAll('.prompt').forEach(card=>{
+    const btn=card.querySelector('.copy');const text=card.querySelector('pre').innerText;
+    btn.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(text); }
+      catch(e){ const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);
+        ta.select();document.execCommand('copy');ta.remove(); }
+      const old=btn.textContent;btn.textContent='✓ コピー完了';btn.classList.add('done');
+      setTimeout(()=>{btn.textContent=old;btn.classList.remove('done');},1600);
+    });
+  });
+  const top=document.querySelector('.toTop');
+  addEventListener('scroll',()=>{top.classList.toggle('show',scrollY>500)});
+</script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>名古屋JC セミナー発表者台本｜AIに働かせ、想いを届ける時代へ</title>
+<style>
+  :root{
+    --navy:#0E1B2E; --navy2:#16263d; --gold:#C9A24B; --gold2:#e3c373;
+    --accent:#1F6F8B; --ink:#222A35; --gray:#5B6674; --line:#e7e2d6;
+    --bg:#f7f5ef; --card:#ffffff; --soft:#f4f1ea; --code:#0f2030;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+  a{color:var(--accent);text-decoration:none}
+  /* ---- top nav ---- */
+  header.top{position:sticky;top:0;z-index:50;background:rgba(14,27,46,.96);
+    backdrop-filter:blur(6px);border-bottom:2px solid var(--gold)}
+  .top-inner{max-width:1000px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand{color:#fff;font-weight:800;font-size:15px;letter-spacing:.02em;white-space:nowrap}
+  .brand b{color:var(--gold2)}
+  nav.menu{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  nav.menu a{color:#d8dde4;font-size:12.5px;padding:5px 10px;border-radius:999px;border:1px solid transparent}
+  nav.menu a:hover{background:rgba(255,255,255,.08);border-color:rgba(201,162,75,.5);color:#fff}
+  /* ---- hero ---- */
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:54px 20px 48px;text-align:center;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:auto 0 0 0;height:5px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold))}
+  .hero .kicker{color:var(--gold2);font-weight:700;letter-spacing:.12em;font-size:13px;margin-bottom:14px}
+  .hero h1{margin:0;font-size:clamp(26px,5vw,40px);font-weight:900;letter-spacing:.01em}
+  .hero p{margin:14px auto 0;max-width:640px;color:#cdd5df;font-size:15px}
+  .hero .meta{margin-top:18px;font-size:12.5px;color:#8fa0b4}
+  /* ---- layout ---- */
+  main{max-width:1000px;margin:0 auto;padding:30px 18px 60px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px 24px;margin:18px 0;box-shadow:0 2px 14px rgba(14,27,46,.05);scroll-margin-top:80px}
+  .sec-head{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+  .sec-no{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--navy);color:var(--gold2);
+    font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .sec-head h2{margin:0;font-size:20px;font-weight:800;color:var(--navy)}
+  .lead{color:var(--gray);font-size:14.5px;margin:.2em 0 1em}
+  .subhead{display:flex;align-items:center;gap:8px;margin:26px 0 10px;font-size:16px;
+    font-weight:800;color:var(--navy);padding-bottom:7px;border-bottom:2px solid var(--soft)}
+  .subhead .ic{font-size:18px}
+  .goldbox{background:linear-gradient(135deg,#fff7e6,#fdeccf);border:1px solid var(--gold);border-radius:14px;padding:16px 18px;margin:16px 0}
+  .goldbox .gb-ttl{font-weight:800;color:#8a6d1f;font-size:15px;margin-bottom:6px}
+  .goldbox p{margin:12px 0 0;font-size:13px;color:#5e4f2a}
+  .flow .node small{display:block;font-weight:600;font-size:10.5px;opacity:.88;margin-top:2px}
+  table.kv td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:700}
+  /* ---- hub / toc / levels ---- */
+  .lvtag{display:inline-block;font-size:11px;font-weight:800;color:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap}
+  .lvtag.beg{background:#2e9e5b}.lvtag.mid{background:var(--accent)}
+  .lvtag.adv{background:#b9842b}.lvtag.must{background:var(--navy)}
+  .sec-head .lvtag{margin-left:auto}
+  .picker{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 4px}
+  .pick{display:block;border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:var(--soft);transition:.15s}
+  .pick:hover{border-color:var(--gold);background:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,27,46,.08)}
+  .pick b{display:block;color:var(--navy);font-size:14px}
+  .pick span{display:block;color:var(--gray);font-size:12px;margin-top:3px}
+  .levels3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0}
+  .lvbox{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .lvbox .lvh{padding:10px 14px;color:#fff;font-weight:800;font-size:15px}
+  .lvbox .lvh small{font-weight:600;font-size:11px;opacity:.9;margin-left:6px}
+  .lvbox.beg .lvh{background:#2e9e5b}.lvbox.mid .lvh{background:var(--accent)}.lvbox.adv .lvh{background:#b9842b}
+  .lvbox ul.clean{padding:12px 14px}.lvbox ul.clean li{padding:5px 0 5px 18px}.lvbox ul.clean li:before{top:12px}
+  .toc{list-style:none;padding:0;margin:6px 0;columns:2;column-gap:26px}
+  .toc li{break-inside:avoid;padding:7px 0;border-bottom:1px solid var(--soft);display:flex;align-items:center;gap:8px;font-size:13.5px}
+  .toc li a{font-weight:700;color:var(--ink)}.toc li a:hover{color:var(--accent)}
+  .toc .lvtag{margin-left:auto}
+  ul.clean{list-style:none;padding:0;margin:0}
+  ul.clean li{position:relative;padding:6px 0 6px 22px}
+  ul.clean li:before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+  /* ---- level stepper ---- */
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 4px}
+  .lv{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--soft);position:relative}
+  .lv .tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--gray);border-radius:999px;padding:2px 10px;margin-bottom:8px}
+  .lv h4{margin:0 0 4px;font-size:15px;color:var(--navy)}
+  .lv p{margin:0;font-size:12.5px;color:var(--gray)}
+  .lv.goal{background:linear-gradient(135deg,#fff7e6,#fdeccf);border-color:var(--gold)}
+  .lv.goal .tag{background:var(--gold);color:#3a2c08}
+  /* ---- flow loop ---- */
+  .flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .flow .node{background:var(--navy);color:#fff;border-radius:10px;padding:10px 16px;font-weight:700;font-size:13.5px}
+  .flow .node.alt{background:var(--accent)}
+  .flow .arrow{color:var(--gold);font-size:20px;font-weight:900}
+  /* ---- tables ---- */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px;overflow:hidden;border-radius:10px}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:700}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:var(--soft)}
+  tbody td:first-child{font-weight:800;color:var(--accent);width:46px;text-align:center}
+  /* ---- prompt card ---- */
+  .prompt{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:14px 0;background:#fff}
+  .prompt .ph{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--soft);border-bottom:1px solid var(--line)}
+  .prompt .ph .ttl{font-weight:800;font-size:13.5px;color:var(--navy)}
+  .prompt .ph .badge{font-size:11px;font-weight:700;color:#fff;background:var(--accent);border-radius:999px;padding:2px 9px}
+  .copy{margin-left:auto;border:0;cursor:pointer;background:var(--navy);color:#fff;font-weight:700;
+    font-size:12px;padding:7px 14px;border-radius:8px;display:flex;align-items:center;gap:6px;transition:.15s}
+  .copy:hover{background:var(--accent)}
+  .copy.done{background:#2e9e5b}
+  pre{margin:0;padding:14px 16px;background:var(--code);color:#e7eef7;font-size:12.5px;line-height:1.7;
+    overflow-x:auto;white-space:pre-wrap;word-break:break-word;
+    font-family:"SFMono-Regular",Consolas,"Yu Gothic",Meiryo,monospace}
+  .tip{background:#fff7e6;border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:13px;margin:12px 0}
+  .tip b{color:#8a6d1f}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mini{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--soft)}
+  .mini h4{margin:0 0 8px;font-size:14px;color:var(--navy)}
+  .pill{display:inline-block;background:#eef3f5;color:var(--accent);border:1px solid #d6e3e7;
+    border-radius:999px;font-size:12px;font-weight:700;padding:3px 11px;margin:3px 4px 0 0}
+  footer{text-align:center;color:var(--gray);font-size:12.5px;padding:26px 16px 50px}
+  .toTop{position:fixed;right:16px;bottom:16px;background:var(--navy);color:#fff;border-radius:50%;
+    width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:20px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+  .toTop.show{opacity:1;pointer-events:auto}
+  @media(max-width:680px){
+    .levels{grid-template-columns:1fr}.two{grid-template-columns:1fr}
+    .picker{grid-template-columns:1fr}.levels3{grid-template-columns:1fr}.toc{columns:1}
+    nav.menu{display:none}.hero{padding:40px 16px}
+  }
+  @media print{header.top,.toTop{display:none}section{break-inside:avoid;box-shadow:none}}
+</style>
+
+<style>
+  .slidepart{margin:34px 0 8px;padding:13px 18px;border-radius:13px;
+    background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;font-weight:800;
+    font-size:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    box-shadow:0 2px 14px rgba(14,27,46,.12)}
+  .slidepart .pno{color:var(--gold2);font-size:13px;font-weight:700}
+  .slidepart small{font-weight:600;font-size:12px;color:#cdd5df;margin-left:auto}
+  .slidepart:before{content:"";width:9px;height:9px;background:var(--gold);
+    border-radius:2px;transform:rotate(45deg)}
+  .sec-no.sl{background:var(--gold);color:var(--navy);font-size:15px}
+  .rolerow{margin:14px 0 2px}
+  .rolelbl{display:inline-block;font-size:11.5px;font-weight:800;color:#fff;
+    border-radius:6px;padding:2px 10px;margin-bottom:7px;letter-spacing:.04em}
+  .rolelbl.aim{background:var(--accent)}
+  .rolelbl.talk{background:var(--navy)}
+  .rolelbl.show{background:#b9842b}
+  .rolerow p{margin:0;font-size:14px}
+  .talkquote{border-left:4px solid var(--gold);background:var(--soft);
+    padding:11px 15px;border-radius:8px;font-size:14.5px;margin:2px 0;color:var(--ink);line-height:1.7}
+  .talkquote b{color:var(--navy)}
+  .showcard{display:inline-flex;align-items:flex-start;gap:7px;background:#fff7e6;
+    border:1px solid var(--gold);border-radius:8px;padding:8px 13px;font-size:13px;
+    color:#6b551d;margin-top:3px;max-width:100%}
+  .showcard .ic{flex:0 0 auto}
+  .demoflag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:#b9842b;
+    border-radius:999px;padding:2px 11px;margin-left:auto}
+  .time{font-size:12px;color:var(--gray);font-weight:700;white-space:nowrap}
+</style>
+
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">名古屋JC <b>セミナー発表者台本</b></div>
+    <nav class="menu">
+      <a href="#hub">概要</a>
+      <a href="#s1">第1部 つかみ</a>
+      <a href="#s9">第2部 橋渡し</a>
+      <a href="#s12">第3部 実演</a>
+      <a href="#s22">第4部 締め</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="kicker">登壇用・発表者台本 ｜ 全24スライド・プロンプト集付き</div>
+  <h1>AIに働かせ、想いを届ける時代へ</h1>
+  <p>JC活動・社業・SNSを進化させる実践型AIセミナー。各スライドの<b style="color:#fff">ねらい・話す内容・演出</b>と、デモでそのまま使える<b style="color:#fff">コピペ用プロンプト</b>をまとめた登壇台本です。</p>
+  <div class="meta">想定時間：約90分（デモ各5〜7分）／ 名古屋JC SNS戦略部会</div>
+</div>
+
+<main>
+
+  <section id="hub">
+    <div class="sec-head"><div class="sec-no">◎</div><h2>この台本の使い方・全体設計</h2></div>
+    <p class="lead">感情の波で設計しています。笑い → 信頼 → 自分ごと化 → 実演の衝撃 → 想いで締め。各スライドは「ねらい／話す内容／演出」の3点セット、デモ枠には<b>コピペ用プロンプト</b>を入れています。</p>
+
+    <div class="subhead"><span class="ic">🌊</span>全体の流れ（感情の波）</div>
+    <div class="flow">
+      <div class="node">笑い<small>1-4枚</small></div><div class="arrow">→</div>
+      <div class="node">信頼<small>5-7枚</small></div><div class="arrow">→</div>
+      <div class="node alt">自分ごと<small>8枚</small></div><div class="arrow">→</div>
+      <div class="node alt">実演の衝撃<small>12-21枚</small></div><div class="arrow">→</div>
+      <div class="node">想いで締め<small>23枚</small></div>
+    </div>
+
+    <div class="goldbox">
+      <div class="gb-ttl">通底メッセージ</div>
+      <p>AIは「使う」ではなく「働かせる」。作業を圧縮し、空いた時間で“人にしかできない想いを届ける”。知識ではなく<b>「明日、自分のPCで1個やってみる」</b>を持ち帰らせるのがゴール。</p>
+    </div>
+
+    <div class="subhead"><span class="ic">🧭</span>4部構成</div>
+    <div class="levels3">
+      <div class="lvbox beg"><div class="lvh">第1部<small>つかみ</small></div>
+        <ul class="clean"><li><a href="#s1">表紙〜今日の問い（1-8枚）</a></li><li>笑い・自己紹介・実績で信頼</li></ul></div>
+      <div class="lvbox mid"><div class="lvh">第2部<small>橋渡し</small></div>
+        <ul class="clean"><li><a href="#s9">レベル確認〜全体像（9-11枚）</a></li><li>現在地の自覚と世界観</li></ul></div>
+      <div class="lvbox adv"><div class="lvh">第3部<small>実演</small></div>
+        <ul class="clean"><li><a href="#s12">デモ5本（12-21枚）</a></li><li>プロンプトはここに集約</li></ul></div>
+    </div>
+  </section>
+
+<div class="slidepart">第1部 ｜ つかみ：想いとキャラを刺す<small>スライド 1–8 ／ 約20分</small></div>
+
+  <section id="s1">
+    <div class="sec-head"><div class="sec-no sl">1</div><h2>表紙</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>世界観を一言で提示し、空気を作る。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">今日のテーマはAIの<b>操作方法</b>ではありません。<b>「AIに働かせて、空いた時間で人の心を動かす」</b>——その実演をします。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>タイトルだけ映して約10秒沈黙 → そこから第一声。</span></span></div>
+  </section>
+
+  <section id="s2">
+    <div class="sec-head"><div class="sec-no sl">2</div><h2>今日のゴール</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>到達点を最初に約束する。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">ゴールは1つだけ。AIを<b>便利ツール扱いから卒業</b>して、<b>“優秀な部下”</b>として使えるようになること。指示の出し方さえ覚えれば、資料も動画もLPも“部下”が作ります。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>「便利ツール → 部下」の矢印アニメで印象づけ。</span></span></div>
+  </section>
+
+  <section id="s3">
+    <div class="sec-head"><div class="sec-no sl">3</div><h2>まず笑ってください（草彅剛似ネタ）</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>警戒を解き、心の距離を縮める。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">よく言われるんです、<b>“草彅剛に似てる”</b>って。…似てます？（間）はい、これで皆さん今日1日、私の顔を忘れません。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>「似てる／似てない」を挙手で2分。会場を巻き込む。</span></span></div>
+  </section>
+
+  <section id="s4">
+    <div class="sec-head"><div class="sec-no sl">4</div><h2>名古屋が燃えた話（雪山インスタライブ事件）</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>SNSのリアルな威力と失敗談で共感を作る。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">雪山でインスタライブをやったら、想定外に名古屋界隈がザワついた話を。狙ってバズったわけじゃない。<b>“素の想い”が伝わると人は動く</b>。SNSは台本より熱量です。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>当時の画面・反応・数字をチラ見せ。</span></span></div>
+  </section>
+
+  <section id="s5">
+    <div class="sec-head"><div class="sec-no sl">5</div><h2>自己紹介（JC歴・事業・SNS15アカウント）</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>「この人の話は聞く価値がある」と思わせる。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">JC歴、本業の福祉事業（福祉事業等）、そして<b>SNS15アカウントを実運用</b>しています。評論家ではなく、<b>毎日現場で回している側</b>の話をします。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>15アカウントのアイコンを一覧でドンと見せる。</span></span></div>
+  </section>
+
+  <section id="s6">
+    <div class="sec-head"><div class="sec-no sl">6</div><h2>2023〜2026の歩み</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>進化の文脈を見せ、説得力を上げる。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">JCで<b>ブランディング → 広報 → 国際 → そして今AI/SNS</b>。やってきたこと全部が、<b>“想いを届ける技術”</b>として今つながっています。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>年表を1本の線で表現。点が線になる演出。</span></span></div>
+  </section>
+
+  <section id="s7">
+    <div class="sec-head"><div class="sec-no sl">7</div><h2>SNSで事業は動く</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>理想論ではなく“結果”で語る。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">SNSは遊びじゃない。実際に<b>福祉事業が満床</b>になり、<b>インバウンドのイベント</b>まで動きました。発信は<b>集客と信用の資産</b>です。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>Before / After を実数で。1枚で効かせる。</span></span></div>
+  </section>
+
+  <section id="s8">
+    <div class="sec-head"><div class="sec-no sl">8</div><h2>今日の問い：今いちばんやりたいことは？</h2><span class="lvtag beg">つかみ</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>受け身を“自分ごと”に切り替える。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">ここで質問です。皆さんが<b>“今いちばんやりたいこと・解決したいこと”</b>は何ですか？ それを<b>今日のデモの題材</b>にします。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>数名に口頭ヒアリング → 後半のLP/パワポ実演の題材としてメモしておく。</span></span></div>
+  </section>
+
+<div class="slidepart">第2部 ｜ 橋渡し：レベル確認と全体像<small>スライド 9–11 ／ 約10分</small></div>
+
+  <section id="s9">
+    <div class="sec-head"><div class="sec-no sl">9</div><h2>“使う時代”から“働かせる時代”へ</h2><span class="lvtag mid">橋渡し</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>意識の階段を見せ、現在地を自覚させる。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">AI活用には段階があります。<b>①検索代わり → ②文章作成 → ③資料・動画生成 → ④作業そのものを任せる</b>。今日は<b>③〜④まで一気に</b>体験します。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>4段ピラミッド。自分の現在地を指で確認してもらう。</span></span></div>
+  </section>
+
+  <section id="s10">
+    <div class="sec-head"><div class="sec-no sl">10</div><h2>会場アンケート</h2><span class="lvtag mid">橋渡し</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>温度感を可視化し、当事者意識を高める。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote"><b>音声入力／NotebookLM／Notion／Claude Code</b> … 使ったことがある人？（挙手）ほぼ全員が知らない。<b>つまり今日が分かれ目です。</b></div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>QRでリアルタイム投票にしてもよい。</span></span></div>
+  </section>
+
+  <section id="s11">
+    <div class="sec-head"><div class="sec-no sl">11</div><h2>ゲシュタルト説明：全部つながって1つ</h2><span class="lvtag mid">橋渡し</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>今日の世界観の核を渡す。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote"><b>SNS・AI・事業・想い</b>はバラバラに見えて1つです。AIで作業を圧縮し、SNSで届け、事業が回り、その原動力は“想い”。<b>全部つながって初めて機能する</b>（＝ゲシュタルト）。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>4つの円が重なって1つになる図。</span></span></div>
+  </section>
+
+<div class="slidepart">第3部 ｜ 実演：ここが本番<small>スライド 12–21 ／ 約45分</small></div>
+
+  <div class="tip"><b>デモ共通の型：</b>①課題を提示 → ②AIに指示（プロンプトを見せる）→ ③その場で生成 → ④「これ手作業なら何時間？」と問う。この4ステップを毎回くり返すと衝撃が積み上がります。</div>
+
+  <section id="s12">
+    <div class="sec-head"><div class="sec-no sl">12</div><h2>実演① NotebookLM：資料を読み込ませる</h2><span class="lvtag adv">実演</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>“自分の資料だけ”を根拠に答えるAIを体感させる。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">分厚いJC資料・会社資料を放り込むと、AIが<b>“その資料だけ”を根拠に答える専属アシスタント</b>になります。ハルシネーション（でたらめ）が起きにくいのが強みです。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>実ファイルを読み込ませ、質問を1つ投げて回答を見せる。</span></span></div>
+  </section>
+
+  <section id="s13">
+    <div class="sec-head"><div class="sec-no sl">13</div><h2>NotebookLMプロンプト</h2><span class="demoflag">プロンプト</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>1つの資料から複数の成果物を量産できると示す。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">同じ資料から<b>“要約／議事録／SNS投稿文／想定問答”を一気に</b>。会議後30分の作業が、<b>30秒</b>になります。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>プロンプト4種をその場で実行して見せる。</span></span></div>
+    <div class="subhead"><span class="ic">📋</span>コピーして使えるプロンプト（4種）</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">要約・整理</span><span class="ttl">資料を多面的に1発で整理する</span><button class="copy">コピー</button></div>
+      <pre>この資料を読み込み、以下の形式で整理してください。
+1. 3行要約
+2. 重要ポイントを5つ（各1行）
+3. 会議で確認すべき論点を3つ
+4. SNS投稿に使える切り口を3つ
+5. 30秒で話せるスピーチ原稿
+6. 想定される質問と回答を3組</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">議事録化</span><span class="ttl">録音・メモから議事録を作る</span><button class="copy">コピー</button></div>
+      <pre>この資料（または文字起こし）から、配布用の議事録を作成してください。
+- 形式：日時／参加者／議題ごとの「決定事項」「保留事項」「ToDo（担当・期限）」
+- 文体：です・ます調、簡潔に
+- 最後に「次回までの宿題」を箇条書きでまとめる</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">SNS化</span><span class="ttl">資料を3媒体の投稿文に変える</span><button class="copy">コピー</button></div>
+      <pre>この資料の内容を、以下3媒体向けの投稿文に書き分けてください。
+- Instagram：共感から入る本文＋ハッシュタグ10個
+- X（旧Twitter）：140字以内のフック1本＋スレッド3連投の構成
+- Facebook：少し丁寧に、背景と想いが伝わる長文
+それぞれ、読み手が「自分ごと」に感じる一文から始めてください。</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">質問生成</span><span class="ttl">理解を深める想定問答をつくる</span><button class="copy">コピー</button></div>
+      <pre>この資料について、理解度を確認するための質問を作ってください。
+- 初級5問（用語・事実確認）
+- 中級5問（背景や狙いを問う）
+- 応用3問（自分の事業にどう活かすか）
+各質問に、資料を根拠にした模範解答も付けてください。</pre>
+    </div>
+
+  </section>
+
+  <section id="s14">
+    <div class="sec-head"><div class="sec-no sl">14</div><h2>実演② Google Flow：想いを動画にする</h2><span class="lvtag adv">実演</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>“文字で書いた想い”が映像になる驚きを体感。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">文字で書いた<b>“想い”</b>を、そのまま<b>動画</b>に。広告でもJC事業の紹介でも、<b>熱量を映像化</b>できる時代です。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>短尺生成をその場で実行。生成中の待ち時間でトーク。</span></span></div>
+  </section>
+
+  <section id="s15">
+    <div class="sec-head"><div class="sec-no sl">15</div><h2>Flowプロンプト</h2><span class="demoflag">プロンプト</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>“設計図さえ書けば映像になる”を持ち帰らせる。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote"><b>“誰に・何を感じてほしいか”</b>を書くだけで、30秒シナリオと絵コンテが出ます。撮影前の設計が一瞬で終わります。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>シナリオ生成 → そのまま映像プロンプトに変換する流れを見せる。</span></span></div>
+    <div class="subhead"><span class="ic">🎞️</span>コピーして使えるプロンプト（2種）</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">シナリオ</span><span class="ttl">30秒動画のシナリオ＋絵コンテ</span><button class="copy">コピー</button></div>
+      <pre>あなたはプロの動画ディレクターです。次の条件で30秒動画の構成を作ってください。
+- 目的：（例）福祉事業の温かさを伝え、見学申込につなげる
+- 視聴者：（例）入居を検討する家族
+- 感じてほしい感情：安心・信頼
+出力：
+1. 30秒の構成（0-5秒/5-15秒/15-25秒/25-30秒の4ブロック、各ナレーション付き）
+2. 各ブロックの絵コンテ（映像の説明を1〜2行）
+3. 画面に出すテロップ案
+4. 最後のCTA（行動喚起）の一言</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">画像→動画</span><span class="ttl">Flow用の映像プロンプト（英語化込み）</span><button class="copy">コピー</button></div>
+      <pre>次のシーンを、Google Flowで生成するための映像プロンプトに変換してください。
+- 日本語で意図を整理したあと、英語の生成プロンプトも併記
+- カメラワーク・光・雰囲気・被写体・色味を具体的に指定
+シーン：（例）夕方、縁側で笑い合う高齢者とスタッフ。柔らかい逆光。</pre>
+    </div>
+
+  </section>
+
+  <section id="s16">
+    <div class="sec-head"><div class="sec-no sl">16</div><h2>実演③ パワポ生成：その場で資料を作る</h2><span class="lvtag adv">実演</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>“今見ているこの資料もこう作れる”と接続する。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">理事会資料も営業資料も、<b>箇条書きを渡せば構成済みスライド</b>に。今まさに皆さんが見ている<b>この資料も、こうやって作れます</b>。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>スライド8でヒアリングした会場の題材で実演すると刺さる。</span></span></div>
+  </section>
+
+  <section id="s17">
+    <div class="sec-head"><div class="sec-no sl">17</div><h2>パワポプロンプト</h2><span class="demoflag">プロンプト</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>用途別に“型”があると伝え、再現性を渡す。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">用途別のテンプレを用意しました。<b>目的・対象・枚数・トーン</b>の4点を書くだけ。あとはAIが構成します。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>1つ実行して、生成された構成をその場で微調整して見せる。</span></span></div>
+    <div class="subhead"><span class="ic">🖥️</span>用途別テンプレ（4点を埋めるだけ）</div>
+    <div class="tip"><b>共通の型：</b>「①目的 ②対象 ③枚数 ④トーン」の4点を書くだけで、構成が決まります。</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">理事会資料</span><span class="ttl">理事会・例会の説明資料</span><button class="copy">コピー</button></div>
+      <pre>次の条件でプレゼン資料の構成（各スライドのタイトル＋箇条書き本文）を作ってください。
+①目的：理事会で〇〇事業の承認を得る
+②対象：理事メンバー（多忙・結論を急ぐ）
+③枚数：8枚
+④トーン：簡潔・論理的・数字重視
+構成には「現状→課題→提案→効果→費用→スケジュール→お願い」を含めてください。</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">営業資料</span><span class="ttl">サービス紹介・提案資料</span><button class="copy">コピー</button></div>
+      <pre>次の条件で営業提案資料の構成を作ってください。
+①目的：〇〇サービスの導入を決めてもらう
+②対象：意思決定者（経営者）
+③枚数：10枚
+④トーン：共感→課題→解決→証拠→行動
+顧客の「困りごと」から始め、最後に明確なCTAと料金プランを入れてください。</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">セミナー資料</span><span class="ttl">登壇・研修のスライド</span><button class="copy">コピー</button></div>
+      <pre>次の条件でセミナー資料の構成を作ってください。
+①目的：参加者が〇〇を「明日やってみよう」と思う
+②対象：〇〇に詳しくない人
+③枚数：15枚
+④トーン：体験型・笑い・実演多め
+途中に「会場への問いかけ」を3回、最後にアンケート導線を入れてください。</pre>
+    </div>
+
+  </section>
+
+  <section id="s18">
+    <div class="sec-head"><div class="sec-no sl">18</div><h2>実演④ Claude Code / Codex / Cursor</h2><span class="demoflag">実演＋プロンプト</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>資料生成の先＝“作業そのもの”を任せる世界を見せる。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">ここが核心です。資料を作る先、<b>“作業そのもの”をAIに任せる</b>世界。さらにClaude Codeなら、<b>自分専用の“AIチーム”（サブエージェント）</b>を作って仕事を分業・自動化できます。これは私が普段やっている仕事の中身そのものです。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span><code>/agents</code> でエージェントを作る様子→「今週のSNS回して」で3役が順に動くのをライブで。</span></span></div>
+    <div class="tip"><b>初心者の入口：</b>Claude Codeで <code>/agents</code> →<b>「Generate with Claude」</b>を選び、やりたいことを日本語で言うだけ。中身はAIが自動で組みます。<b>1エージェント＝1専門</b>に絞るのがコツ。</div>
+    <div class="subhead"><span class="ic">⌨️</span>① はじめの一歩プロンプト</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">入門</span><span class="ttl">Claude Code / Cursor への最初の指示</span><button class="copy">コピー</button></div>
+      <pre>あなたは私専属のエンジニアです。専門用語は避けて進めてください。
+作りたいもの：（例）問い合わせフォーム付きの1ページの紹介サイト
+条件：スマホで見やすい／画像は仮でOK／公開まで手順を教えて
+まずは完成イメージを言葉で確認し、合意できたら作り始めてください。
+途中で私に選ばせたい点があれば、3択までで質問してください。</pre>
+    </div>
+    <div class="subhead"><span class="ic">🤖</span>② 自分専用のAIチームを作る（参考動画の手法）</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">AIチーム</span><span class="ttl">投稿作成エージェントを作る（/agents → Generate with Claude）</span><button class="copy">コピー</button></div>
+      <pre>SNS投稿を作る専門エージェントを作って。
+役割：渡されたネタメモから、Instagram・X・Facebookの3媒体ぶんの投稿文を作る。
+ルール：
+- 家族目線のやさしい言葉。宣伝くさくしない
+- 媒体ごとの作法に合わせる（インスタ＝共感＋ハッシュタグ／X＝短く／FB＝丁寧）
+- 個人情報・機密は書かない
+使うツール：ファイルの読み書きのみ（最小限）</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">AIチーム</span><span class="ttl">AIチームに今週のSNSを回させる（一括指示）</span><button class="copy">コピー</button></div>
+      <pre>今週のSNSを回して。次の順で進めて、最後にまとめて。
+1. ネタ収集エージェント：今週の話題・写真メモから投稿ネタを3つ出す
+2. 投稿作成エージェント：3媒体×各2本の投稿文を作る
+3. 校正・炎上チェックエージェント：誤字と炎上しそうな表現を点検して直す
+最後に、月〜日の投稿カレンダー（曜日／媒体／本文）にまとめて。</pre>
+    </div>
+
+  </section>
+
+  <section id="s19">
+    <div class="sec-head"><div class="sec-no sl">19</div><h2>LP実演：参加者の事業でLP骨子を作る</h2><span class="lvtag adv">実演</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>“自分の事業が画面に立ち上がる”体験で最高潮に。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">スライド8でヒアリングした<b>参加者の事業</b>を題材に、その場でLP（集客ページ）の骨子を作ります。<b>自分の事業が画面に立ち上がる</b>体験をしてもらいます。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>会場が一番沸くポイント。名前を出して巻き込む。</span></span></div>
+  </section>
+
+  <section id="s20">
+    <div class="sec-head"><div class="sec-no sl">20</div><h2>LPプロンプト</h2><span class="demoflag">プロンプト</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>“刺さるLPには型がある”を再現可能な形で渡す。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">刺さるLPには型があります。<b>①FVで一言 →②共感 →③解決 →④証拠 →⑤CTA</b>。これをAIに指示するだけです。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>生成された骨子を、実際のコード実装（スライド18）につなげる導線を見せる。</span></span></div>
+    <div class="subhead"><span class="ic">🧲</span>刺さるLPプロンプト</div>
+    <div class="tip"><b>LPの型：</b>①FV（一言で価値）→②共感→③解決→④証拠→⑤CTA。この5ブロックをAIに指示します。</div>
+    <div class="prompt">
+      <div class="ph"><span class="badge">LP構成</span><span class="ttl">ファーストビュー・導線・CTAまで</span><button class="copy">コピー</button></div>
+      <pre>あなたはコンバージョンに強いLP（集客ページ）の構成プロです。
+次の事業のLP構成を、5ブロックで作ってください。
+- 事業：（例）福祉事業の入居者募集
+- ターゲット：（例）親亡き後を心配する家族
+- ゴール：見学予約
+出力：
+1. ファーストビュー：心をつかむキャッチコピー3案＋サブコピー
+2. 共感パート：読み手の不安・悩みを言語化
+3. 解決パート：私たちが提供する価値（3つ）
+4. 証拠：実績・声・数字で信頼を作る要素
+5. CTA：申し込みたくなる一言＋ボタン文言3案
+全体を通して、専門用語を避け、家族目線のやさしい言葉で。</pre>
+    </div>
+
+  </section>
+
+  <section id="s21">
+    <div class="sec-head"><div class="sec-no sl">21</div><h2>実演⑤ Notion / Obsidian：情報を資産化する</h2><span class="lvtag adv">実演</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>作って終わりにせず、組織の資産にする発想を渡す。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">作って終わりにしない。<b>プロンプトも議事録もナレッジも一箇所に</b>。AI時代の<b>“second brain（第二の脳）”</b>で、個人の工夫を<b>組織の資産</b>に変えます。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>今日のプロンプト集が、すでにこの形で蓄積されていることを見せる。</span></span></div>
+  </section>
+
+<div class="slidepart">第4部 ｜ 締め：行動に変える<small>スライド 22–24 ／ 約10分</small></div>
+
+  <section id="s22">
+    <div class="sec-head"><div class="sec-no sl">22</div><h2>Drive共有マニュアル案内</h2><span class="lvtag must">締め</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>持ち帰り＝行動の担保。学びを“資産”として渡す。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">今日の<b>全プロンプトとショートカット</b>は、このDriveマニュアルに入っています。<b>明日1個でいい</b>から試してください。それが一番の近道です。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>QR／リンクを表示。※既存の『AI・SNS実演マニュアル(HTML)』を紐付ける。</span></span></div>
+  </section>
+
+  <section id="s23">
+    <div class="sec-head"><div class="sec-no sl">23</div><h2>締め動画：人の想いを人に届ける</h2><span class="lvtag must">締め</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>感情のピークで終え、記憶に残す。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote">AIに働かせる理由は、空いた時間で<b>“人にしかできないこと＝想いを届ける”</b>をやるため。最後に、その動画を見てください。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>無言で動画を流す → 明転後に一言だけ添えて締める。</span></span></div>
+  </section>
+
+  <section id="s24">
+    <div class="sec-head"><div class="sec-no sl">24</div><h2>アンケートQR</h2><span class="lvtag must">締め</span></div>
+    <div class="rolerow"><span class="rolelbl aim">ねらい</span><p>次の接点（個別相談・次回テーマ）につなげる。</p></div>
+    <div class="rolerow"><span class="rolelbl talk">話す内容</span><div class="talkquote"><b>感想・個別相談・次に聞きたいテーマ</b>を、ここから送ってください。今日の続きは、ぜひ<b>個別でやりましょう</b>。</div></div>
+    <div class="rolerow"><span class="rolelbl show">演出・小ネタ</span><br><span class="showcard"><span class="ic">🎬</span><span>QR＋連絡先＋次回告知。最後まで“次の一歩”を用意する。</span></span></div>
+  </section>
+
+
+</main>
+
+<footer>
+  名古屋JC SNS戦略部会 ｜ セミナー「AIに働かせ、想いを届ける時代へ」発表者台本<br>
+  プロンプトは各カード右上の「コピー」ボタンで丸ごとコピーできます。
+</footer>
+
+<a href="#" class="toTop" aria-label="トップへ戻る">↑</a>
+
+<script>
+  document.querySelectorAll('.prompt').forEach(card=>{
+    const btn=card.querySelector('.copy');
+    const text=card.querySelector('pre').innerText;
+    btn.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(text); }
+      catch(e){ const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);
+        ta.select();document.execCommand('copy');ta.remove(); }
+      const old=btn.textContent;btn.textContent='✓ コピー完了';btn.classList.add('done');
+      setTimeout(()=>{btn.textContent=old;btn.classList.remove('done');},1600);
+    });
+  });
+  const top=document.querySelector('.toTop');
+  addEventListener('scroll',()=>{top.classList.toggle('show',scrollY>500)});
+</script>
+</body>
+</html>
