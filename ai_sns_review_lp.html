@@ -138,8 +138,9 @@
   .wcard h4{margin:0 0 8px;font-size:15px;color:var(--navy)}
   .wcard p{margin:0;font-size:13.5px;color:var(--ink);line-height:1.7}
   .wcard b{color:var(--accent)}
-  table.tools td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:800;white-space:nowrap;background:var(--soft)}
-  table.tools th:first-child{width:26%}
+  table.tools td{vertical-align:top}
+  table.tools td:first-child{text-align:left;color:var(--navy);font-weight:800;background:var(--soft);word-break:break-word}
+  table.tools td:first-child span{font-weight:700;word-break:break-word}
   .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:16px 0}
   .cta a{display:inline-flex;align-items:center;gap:8px;border-radius:10px;font-weight:800;font-size:14px;
     padding:13px 22px;border:2px solid var(--navy)}
@@ -151,7 +152,8 @@
   .keymsg .big b{color:var(--gold2)}
   @media(max-width:680px){
     .whygrid{grid-template-columns:1fr}
-    table.tools th:first-child{width:38%}
+    table.tools{font-size:12.5px}
+    table.tools td,table.tools th{padding:8px 9px}
     /* ヘッダーのセクションマップをスマホでも見やすく（横スクロールのチップ） */
     header.top .top-inner{flex-direction:column;align-items:stretch;gap:8px;padding:9px 14px}
     .brand{white-space:normal;font-size:13px}
@@ -224,6 +226,7 @@
 
     <p class="lead">全部覚える必要はありません。<b>自分の仕事のどの作業をAIに手伝わせるか</b>を決めるだけ。</p>
     <table class="tools">
+      <colgroup><col style="width:40%"><col style="width:60%"></colgroup>
       <thead><tr><th>ツール</th><th>得意なこと</th></tr></thead>
       <tbody>
         <tr><td>Claude Code</td><td>PCで行うあらゆることの指示。<b>LP作成・ゲーム作成・アプリ開発・あらゆるシステム構築</b>／作業の自動化・自分専用のAIチーム</td></tr>
