@@ -141,7 +141,11 @@
   .num li:before{counter-increment:st;content:counter(st);position:absolute;left:0;top:8px;width:26px;height:26px;
     background:var(--navy);color:var(--gold2);border-radius:50%;display:flex;align-items:center;justify-content:center;
     font-size:13px;font-weight:800}
-  @media(max-width:680px){.kv2{grid-template-columns:1fr}}
+  @media(max-width:680px){
+    .kv2{grid-template-columns:1fr}
+    table.cmp,table.who{font-size:12px}
+    table.cmp td,table.cmp th,table.who td,table.who th{padding:8px 9px}
+  }
 </style>
 
 </head>
@@ -195,8 +199,8 @@
 
     <div class="subhead"><span class="ic">📊</span>早見表（目安）</div>
     <style>
-      table.cmp td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:800;white-space:nowrap}
-      table.cmp th:first-child{width:34%}
+      table.cmp td{vertical-align:top}
+      table.cmp td:first-child{width:34%;text-align:left;color:var(--navy);font-weight:800;word-break:break-word}
     </style>
     <table class="cmp">
       <colgroup><col style="width:34%"><col style="width:30%"><col style="width:18%"><col style="width:18%"></colgroup>
@@ -345,8 +349,8 @@
 
     <div class="subhead"><span class="ic">🏢</span>相談先 早見表</div>
     <style>
-      table.who td:first-child{width:auto;text-align:left;color:var(--navy);font-weight:800;white-space:nowrap}
-      table.who th:first-child{width:28%}
+      table.who td{vertical-align:top}
+      table.who td:first-child{width:28%;text-align:left;color:var(--navy);font-weight:800;word-break:break-word}
     </style>
     <table class="who">
       <colgroup><col style="width:28%"><col style="width:14%"><col style="width:58%"></colgroup>
