@@ -30,8 +30,27 @@ const LINE_URL="https://line.me/R/ti/p/@your-id"; // @から始まるLINE ID
 > ✅ **スタッフ2名（岩田さん・上岡さん）の実写は `index.html` に直接埋め込み済み**です（Base64）。
 > 外部ファイルに依存しないので、`index.html` 単体で写真ごと表示されます。差し替えたい場合は下記のスロットに新しい写真を指定してください。
 >
-> ⚠️ ヒーロー・プランなどの**背景写真は未設定**です（外部画像サイトへの接続が制作環境で不可だったため）。
-> 背景はグラデーションで高級感を保っており、後から写真を1行で差し込めます（背景CSSなので、URLが切れても壊れたアイコンは出ません）。
+> ✅ **ヒーロー・人気スポット・プランの背景写真は Wikimedia Commons のフリー画像URLを設定済み**です。
+> ブラウザで開くと写真が表示されます（背景CSSのURL参照方式。万一URLが切れてもグラデーションが出るだけで壊れません）。
+>
+> ⚠️ 制作環境からは画像ホストへ接続できないため、私の側でのプレビュー確認はできていません。**実機ブラウザで表示を必ずご確認ください。** 気に入らない写真は各スロットのURLを差し替えるだけで変更できます。
+
+### 写真の出典（Wikimedia Commons／要ライセンス確認）
+以下はフリー（多くは CC BY-SA / CC BY）ですが、商用利用時は**帰属表示**が必要な場合があります。フッターに「写真：Wikimedia Commons」のクレジットを入れています。厳密な運用や、帰属不要な素材（Unsplash / Pexels 等）に差し替える場合は各URLを置き換えてください。
+
+| 箇所 | Commonsファイル |
+|---|---|
+| ヒーロー | Wat Arun from Chao Phraya River at sunset.jpg |
+| No.1 3大寺院 | Bangkok Grand Palace Wat Phra Kaew triple.jpg |
+| アユタヤ | Buddha Head in Tree Roots, Wat Mahathat, Ayutthaya.jpg |
+| ワット・パクナム | Wat Pak Nam Phasi Charoen (I).jpg |
+| プーケット | Surin Beach.JPG |
+| ナイトマーケット | Train Night Market Ratchada (34079339800).jpg |
+| プラン：バンコク半日 | Wat Arun from Chao Phraya River.jpg |
+| プラン：バンコク1日 | Grand Palace Bangkok, Thailand.jpg |
+| プラン：チェンマイ | Wat Phra That Doi Suthep - Chiang Mai.jpg |
+
+各画像は `https://commons.wikimedia.org/wiki/Special:FilePath/<ファイル名>?width=...` 形式で参照しています（`?width=` の数値で表示解像度を調整可）。
 
 背景に写真を足す場合は、`index.html` と同じ階層に `images/` フォルダを作り、写真を置いてから、各スロットに1行足すだけです。
 
