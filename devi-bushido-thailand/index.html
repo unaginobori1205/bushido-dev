@@ -561,6 +561,40 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   .trust__grid.fade-in .portrait,.staff-card.fade-in .staff-card__photo{clip-path:none!important}
   #scrollProgress{display:none}
 }
+
+/* ===================== SPOTS / DESTINATIONS ===================== */
+.spots{background:linear-gradient(180deg,#0d0b09,#100c07)}
+.spot{position:relative;overflow:hidden;border-radius:18px;border:1px solid rgba(201,168,106,.2);isolation:isolate;display:flex}
+.spot::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--spot-photo,none),var(--spot-fallback);background-size:cover;background-position:center;transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.spot::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,6,4,.05) 0%,rgba(8,6,4,.34) 45%,rgba(8,6,4,.92) 100%)}
+.spot:hover::before{transform:scale(1.07)}
+.spot__body{position:relative;z-index:1;flex:1;padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
+.spot__rank{position:absolute;top:10px;right:22px;z-index:1;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:66px;line-height:1;color:rgba(255,255,255,.18)}
+.spot__badge{position:absolute;top:20px;left:20px;z-index:1;background:linear-gradient(135deg,var(--vermilion),#7a1f10);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 14px;border-radius:100px;box-shadow:0 8px 20px -8px rgba(168,51,31,.8)}
+.spot__tag{align-self:flex-start;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase;margin-bottom:12px;padding:4px 11px;border:1px solid rgba(201,168,106,.45);border-radius:100px;background:rgba(0,0,0,.28)}
+.spot__sub{font-size:12.5px;color:var(--gold-light);letter-spacing:.03em;margin-bottom:6px}
+.spot__name{font-family:'Shippori Mincho',serif;font-weight:700;color:#fff;letter-spacing:.03em;text-shadow:0 3px 20px rgba(0,0,0,.6)}
+.spot__desc{color:rgba(255,255,255,.85);font-size:13.5px;line-height:1.8;margin-top:8px;max-width:56ch}
+.spot-feature{min-height:340px;margin-bottom:22px}
+.spot-feature .spot__name{font-size:clamp(24px,3.4vw,34px)}
+.spot-feature .spot__desc{font-size:15px}
+.spot-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.spot-grid .spot{min-height:232px}
+.spot-grid .spot__name{font-size:20px}
+.spot--temple{--spot-fallback:radial-gradient(circle at 72% 26%,rgba(255,224,150,.55),transparent 55%),linear-gradient(150deg,#c8a24f,#7a521f 60%,#37230f)}
+.spot--ayutthaya{--spot-fallback:radial-gradient(circle at 30% 30%,rgba(220,200,150,.32),transparent 55%),linear-gradient(155deg,#9a8560,#5c4a30 60%,#2c2216)}
+.spot--paknam{--spot-fallback:radial-gradient(circle at 50% 34%,#33c4a0,#0e6b57 52%,#073229)}
+.spot--phuket{--spot-fallback:linear-gradient(180deg,#8adcea 0%,#2f9fc4 44%,#e7d6ad 45%,#f1e4c6 100%)}
+.spot--phuket::after{background:linear-gradient(180deg,rgba(8,6,4,.02) 0%,rgba(8,6,4,.26) 50%,rgba(8,6,4,.9) 100%)}
+.spot--night{--spot-fallback:radial-gradient(circle at 28% 28%,rgba(224,64,180,.55),transparent 48%),radial-gradient(circle at 76% 62%,rgba(60,180,220,.5),transparent 48%),linear-gradient(160deg,#241033,#0c0716)}
+.travel-info{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.tinfo{text-align:center;padding:26px 20px;border-radius:16px;background:rgba(245,239,228,.04);border:1px solid rgba(201,168,106,.18);transition:transform .4s var(--ease),border-color .4s}
+.tinfo:hover{transform:translateY(-4px);border-color:rgba(201,168,106,.45)}
+.tinfo__ico{font-size:26px;margin-bottom:12px}
+.tinfo__label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.tinfo__value{font-family:'Shippori Mincho',serif;font-weight:700;font-size:20px;color:var(--washi)}
+.tinfo__note{font-size:12.5px;color:var(--text-dim);margin-top:6px}
+@media(max-width:760px){.spot-grid,.travel-info{grid-template-columns:1fr}.spot-feature{min-height:300px}}
 </style>
 </head>
 <body>
@@ -574,6 +608,7 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   </a>
   <div class="nav__links">
     <a class="desk" href="#about" data-en="About">私たちについて</a>
+    <a class="desk" href="#spots" data-en="Highlights">見どころ</a>
     <a class="desk" href="#plans" data-en="Plans">人気プラン</a>
     <a class="desk" href="#staff" data-en="Guides">アテンド</a>
     <a class="desk" href="#flow" data-en="How it works">ご利用の流れ</a>
@@ -720,6 +755,86 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
       <li class="chip" data-en="Sourcing">仕入れ</li>
       <li class="chip" data-en="Factory tours">工場見学</li>
     </ul>
+  </div>
+</section>
+
+<!-- ========== SPOTS (popular destinations ranking) ========== -->
+<section class="spots" id="spots">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow">Must-See Thailand</span>
+      <h2 class="section-title" data-en="Popular <span class='accent'>destinations</span>">人気の<span class="accent">観光スポット</span></h2>
+      <p class="lead" data-en="A ranking of Thailand's most-loved cities and sights. Weave any of them into your own private itinerary.">タイで訪れたい人気の街・名所ランキング。行きたい場所は、あなたのプランに自由に組み込めます。</p>
+    </div>
+
+    <!-- #1 feature | real photo: add style="--spot-photo:url('images/spot-temples.jpg')" to this article -->
+    <article class="spot spot-feature spot--temple fade-in">
+      <span class="spot__rank">01</span>
+      <span class="spot__badge">No.1</span>
+      <div class="spot__body">
+        <span class="spot__tag" data-en="Bangkok · Temples">バンコク・寺院</span>
+        <div class="spot__sub" data-en="Wat Pho / Wat Arun / Wat Phra Kaew">ワット・ポー／ワット・アルン／ワット・プラケオ</div>
+        <h3 class="spot__name" data-en="Bangkok's Three Great Temples">バンコクの3大寺院</h3>
+        <p class="spot__desc" data-en="Home to the 46-metre golden Reclining Buddha and the exquisite riverside “Temple of Dawn.”">全長46mの金色の涅槃像や、“暁の寺”と呼ばれる美しい姿が見どころ。</p>
+      </div>
+    </article>
+
+    <div class="spot-grid stagger fade-in">
+      <!-- real photo: add style="--spot-photo:url('images/spot-ayutthaya.jpg')" -->
+      <article class="spot spot--ayutthaya">
+        <span class="spot__rank">02</span>
+        <div class="spot__body">
+          <span class="spot__tag" data-en="World Heritage">世界遺産</span>
+          <h3 class="spot__name" data-en="Ayutthaya Ruins">アユタヤ遺跡</h3>
+          <p class="spot__desc" data-en="A UNESCO World Heritage site and easy day trip from Bangkok — famous for the Buddha head entwined in tree roots.">バンコクから日帰りで行ける世界遺産。木の根に包まれた仏頭が有名。</p>
+        </div>
+      </article>
+      <article class="spot spot--paknam">
+        <span class="spot__rank">03</span>
+        <div class="spot__body">
+          <span class="spot__tag" data-en="Hidden Gem">絶景寺院</span>
+          <h3 class="spot__name" data-en="Wat Paknam">ワット・パクナム</h3>
+          <p class="spot__desc" data-en="Its dreamlike emerald-green ceiling mural is a social-media sensation.">エメラルドグリーンの幻想的な天井画がSNSで大人気。</p>
+        </div>
+      </article>
+      <article class="spot spot--phuket">
+        <span class="spot__rank">04</span>
+        <div class="spot__body">
+          <span class="spot__tag" data-en="Beach Resort">ビーチリゾート</span>
+          <h3 class="spot__name" data-en="Phuket Island">プーケット島</h3>
+          <p class="spot__desc" data-en="Thailand's flagship beach resort, with emerald seas and white-sand shores.">エメラルド色の海と白い砂浜が広がる、タイ随一のビーチリゾート。</p>
+        </div>
+      </article>
+      <article class="spot spot--night">
+        <span class="spot__rank">05</span>
+        <div class="spot__body">
+          <span class="spot__tag" data-en="Night Market">ナイトマーケット</span>
+          <h3 class="spot__name" data-en="Night Markets">ナイトマーケット</h3>
+          <p class="spot__desc" data-en="Rot Fai Ratchada, Jodd Fairs and more — colourful tented night views, local food and shopping.">ラチャダー鉄道市場やジョッドフェアーズなど。カラフルな夜景とローカルグルメ、ショッピング。</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="travel-info stagger fade-in">
+      <div class="tinfo">
+        <div class="tinfo__ico">🗓️</div>
+        <div class="tinfo__label" data-en="Best season">ベストシーズン</div>
+        <div class="tinfo__value" data-en="Nov–Feb dry season">11月〜2月の乾季</div>
+        <div class="tinfo__note" data-en="Comfortable, mild weather">気温が比較的過ごしやすい</div>
+      </div>
+      <div class="tinfo">
+        <div class="tinfo__ico">✈️</div>
+        <div class="tinfo__label" data-en="Flight time">飛行時間</div>
+        <div class="tinfo__value" data-en="About 7 hours">約7時間</div>
+        <div class="tinfo__note" data-en="Tokyo to Bangkok">日本からバンコクまで</div>
+      </div>
+      <div class="tinfo">
+        <div class="tinfo__ico">🧳</div>
+        <div class="tinfo__label" data-en="Recommended length">おすすめ日数</div>
+        <div class="tinfo__value" data-en="3 nights / 5 days">3泊5日</div>
+        <div class="tinfo__note" data-en="The classic Thailand trip">が定番の王道プラン</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1015,6 +1130,7 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
       </div>
       <nav class="footer__nav">
         <a href="#about" data-en="About">私たちについて</a>
+        <a href="#spots" data-en="Highlights">見どころ</a>
         <a href="#plans" data-en="Plans">人気プラン</a>
         <a href="#staff" data-en="Guides">アテンドスタッフ</a>
         <a href="#flow" data-en="How it works">ご利用の流れ</a>

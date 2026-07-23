@@ -55,6 +55,21 @@ HTML内の該当箇所（`<!-- 岩田まゆき｜real photo... -->` のコメン
 <div class="plan__inner" style="--plan-photo:url('images/bangkok.jpg')">
 ```
 
+### 観光スポットランキングの写真（人気の観光スポット）
+各スポットカードに `--spot-photo` を指定します（現状はスポットごとの雰囲気に合わせたグラデーション表示）。
+
+```html
+<article class="spot spot-feature spot--temple ..." style="--spot-photo:url('images/spot-temples.jpg')">
+<article class="spot spot--ayutthaya" style="--spot-photo:url('images/spot-ayutthaya.jpg')">
+<article class="spot spot--paknam"    style="--spot-photo:url('images/spot-paknam.jpg')">
+<article class="spot spot--phuket"    style="--spot-photo:url('images/spot-phuket.jpg')">
+<article class="spot spot--night"     style="--spot-photo:url('images/spot-night.jpg')">
+```
+
+おすすめ検索ワード（フリー・商用可のUnsplash / Pexels 等）：
+`Wat Arun sunset` / `Wat Pho reclining buddha` / `Ayutthaya buddha head tree` / `Wat Paknam ceiling` / `Phuket beach` / `Ratchada train night market`
+> ⚠️ 制作環境のネットワーク制限で外部画像を取得できないため、写真は入れていません。上記スロットに1行足すだけで差し込めます。
+
 ### ヒーロー / ビジョン / 最終CTA の背景写真
 それぞれ `--hero-photo` / `--vision-photo` / `--final-photo` を該当セクションの `style` に足すか、`:root` にまとめて指定:
 
