@@ -489,6 +489,12 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
 .price-note__foot{font-size:13px;color:var(--text-dim);text-align:center;line-height:1.85}
 .price-note__foot b{color:var(--line);font-weight:700}
 @media(max-width:600px){.price-note__cols{grid-template-columns:1fr}}
+.lang-toggle{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid rgba(201,168,106,.4);border-radius:100px;background:rgba(201,168,106,.06);flex-shrink:0}
+.lang-toggle .lang-opt{font-family:'Cinzel',serif;font-weight:600;font-size:11.5px;letter-spacing:.06em;color:var(--text-dim);padding:5px 11px;border-radius:100px;transition:color .25s,background .25s;line-height:1;white-space:nowrap}
+.lang-toggle .lang-opt.is-active{color:var(--ink);background:linear-gradient(135deg,var(--gold-light),var(--gold-deep))}
+.lang-toggle:hover{border-color:rgba(201,168,106,.7)}
+:root[data-lang="en"] :lang(ja){}
+@media(max-width:420px){.lang-toggle .lang-opt{padding:5px 8px;font-size:10.5px}}
 </style>
 </head>
 <body>
@@ -500,12 +506,16 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
     <span>THAILAND PRIVATE TOUR</span>
   </a>
   <div class="nav__links">
-    <a class="desk" href="#about">私たちについて</a>
-    <a class="desk" href="#plans">人気プラン</a>
-    <a class="desk" href="#staff">アテンド</a>
-    <a class="desk" href="#flow">ご利用の流れ</a>
+    <a class="desk" href="#about" data-en="About">私たちについて</a>
+    <a class="desk" href="#plans" data-en="Plans">人気プラン</a>
+    <a class="desk" href="#staff" data-en="Guides">アテンド</a>
+    <a class="desk" href="#flow" data-en="How it works">ご利用の流れ</a>
     <a class="desk" href="#faq">FAQ</a>
-    <a class="nav__cta" href="#contact"><span>LINE</span>無料相談</a>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+      <span class="lang-opt is-active" data-l="ja">日本語</span>
+      <span class="lang-opt" data-l="en">EN</span>
+    </button>
+    <a class="nav__cta" href="#contact" data-en="<span>LINE</span>Free consult"><span>LINE</span>無料相談</a>
   </div>
 </nav>
 
@@ -515,25 +525,25 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="hero__inner fade-in visible">
       <span class="hero__badge"><span class="dot"></span>DEVI VACATION &nbsp;×&nbsp; BUSHIDO JAPAN</span>
-      <h1>
+      <h1 data-en="Travel Thailand<br><span class='gold'>with more freedom.</span><br>and total peace of mind.<span class='small'>Fully private Thailand tours — made for Japanese travelers</span>">
         タイ旅行を、<br><span class="gold">もっと自由に。</span><br>もっと安心に。
         <span class="small">日本人のための 完全貸切 タイ・プライベートツアー</span>
       </h1>
-      <p class="hero__sub">
+      <p class="hero__sub" data-en="From airport to hotel — sightseeing, food, and business visits.<br>We craft the kind of <b>“Thailand trip that's yours alone”</b> a group tour never could.">
         空港からホテル、観光、グルメ、ビジネス視察まで。<br>
         団体旅行では体験できない、<b>“あなただけのタイ旅行”</b> をご提供します。
       </p>
       <ul class="hero__checks">
-        <li><span class="ck">✓</span>空港送迎（ドアtoドア）</li>
-        <li><span class="ck">✓</span>完全貸切</li>
-        <li><span class="ck">✓</span>日本語サポート</li>
-        <li><span class="ck">✓</span>バンコク・チェンマイ対応</li>
-        <li><span class="ck">✓</span>観光・グルメ・ショッピング</li>
-        <li><span class="ck">✓</span>ビジネス視察・商談同行</li>
+        <li data-en="<span class='ck'>✓</span>Airport transfers (door-to-door)"><span class="ck">✓</span>空港送迎（ドアtoドア）</li>
+        <li data-en="<span class='ck'>✓</span>Fully private charter"><span class="ck">✓</span>完全貸切</li>
+        <li data-en="<span class='ck'>✓</span>Japanese-language support"><span class="ck">✓</span>日本語サポート</li>
+        <li data-en="<span class='ck'>✓</span>Bangkok &amp; Chiang Mai"><span class="ck">✓</span>バンコク・チェンマイ対応</li>
+        <li data-en="<span class='ck'>✓</span>Sightseeing, food &amp; shopping"><span class="ck">✓</span>観光・グルメ・ショッピング</li>
+        <li data-en="<span class='ck'>✓</span>Business visits &amp; meeting support"><span class="ck">✓</span>ビジネス視察・商談同行</li>
       </ul>
       <div class="hero__actions">
-        <a class="btn btn-line" href="#contact"><span class="ico">L</span>LINEで無料相談</a>
-        <a class="btn btn-ghost" href="#plans">人気プランを見る</a>
+        <a class="btn btn-line" href="#contact" data-en="<span class='ico'>L</span>Free consult on LINE"><span class="ico">L</span>LINEで無料相談</a>
+        <a class="btn btn-ghost" href="#plans" data-en="See popular plans">人気プランを見る</a>
       </div>
     </div>
   </div>
@@ -547,17 +557,17 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
       <div class="trust__people">
         <!-- 岩田まゆき｜real photo: set style="--p-photo:url('images/iwata.jpg')" on this element -->
         <div class="portrait portrait--a" style="--p-photo:var(--photo-iwata);--p-pos:center 24%">
-          <div class="tag"><b>岩田 まゆき</b><span>タイ在住アテンダー</span></div>
+          <div class="tag" data-en="<b>Mayuki Iwata</b><span>Thailand-based guide</span>"><b>岩田 まゆき</b><span>タイ在住アテンダー</span></div>
         </div>
         <!-- 上岡賢輔｜real photo: set style="--p-photo:url('images/kamioka.jpg')" -->
         <div class="portrait portrait--b" style="--p-photo:var(--photo-kamioka);--p-pos:center 12%">
-          <div class="tag"><b>上岡 賢輔</b><span>BUSHIDO JAPAN代表</span></div>
+          <div class="tag" data-en="<b>Kensuke Kamioka</b><span>CEO, BUSHIDO JAPAN</span>"><b>上岡 賢輔</b><span>BUSHIDO JAPAN代表</span></div>
         </div>
       </div>
       <div class="trust__msg">
         <span class="eyebrow">YOUR GUIDES IN THAILAND</span>
-        <h2><span class="u">タイ在住の日本人</span>と、<span class="u">日本とタイをつなぐプロデューサー</span>が、<br>あなたの旅をサポートします。</h2>
-        <p>言葉の不安も、初めての緊張も。旅の相談から現地でのお迎えまで、日本語で、そばで。「人」で選ばれる、安心のプライベートツアーです。</p>
+        <h2 data-en="<span class='u'>A Japanese local living in Thailand</span> and <span class='u'>a producer bridging Japan and Thailand</span><br>support your journey, right by your side."><span class="u">タイ在住の日本人</span>と、<span class="u">日本とタイをつなぐプロデューサー</span>が、<br>あなたの旅をサポートします。</h2>
+        <p data-en="<p>No language worries, no first-time nerves. From planning to your airport welcome — in Japanese, right beside you. A private tour chosen for its people.</p>">言葉の不安も、初めての緊張も。旅の相談から現地でのお迎えまで、日本語で、そばで。「人」で選ばれる、安心のプライベートツアーです。</p>
       </div>
     </div>
   </div>
@@ -568,14 +578,14 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">About Us</span>
-      <h2 class="section-title">Devi Vacation <span class="accent">×</span> BUSHIDO JAPAN <br>とは？</h2>
-      <p class="lead about__intro">タイ現地法人 <b style="color:var(--washi)">Devi Vacation</b> と、日本の <b style="color:var(--washi)">BUSHIDO JAPAN</b> が共同で企画する、日本人旅行者のためのプライベートツアーです。それぞれの強みを掛け合わせ、現地の安心と日本語の安心を、ひとつの旅に。</p>
+      <h2 class="section-title" data-en="Devi Vacation <span class='accent'>×</span> BUSHIDO JAPAN <br>Who we are">Devi Vacation <span class="accent">×</span> BUSHIDO JAPAN <br>とは？</h2>
+      <p class="lead about__intro" data-en="A private tour for Japanese travelers, co-planned by <b style='color:var(--washi)'>Devi Vacation</b> (Thailand) and <b style='color:var(--washi)'>BUSHIDO JAPAN</b> (Japan). We combine our strengths — on-the-ground reassurance and Japanese-language reassurance — into one seamless journey.">タイ現地法人 <b style="color:var(--washi)">Devi Vacation</b> と、日本の <b style="color:var(--washi)">BUSHIDO JAPAN</b> が共同で企画する、日本人旅行者のためのプライベートツアーです。それぞれの強みを掛け合わせ、現地の安心と日本語の安心を、ひとつの旅に。</p>
     </div>
     <div class="partner-grid stagger fade-in">
       <div class="partner partner--jade">
         <div class="partner__name">Devi Vacation</div>
         <div class="partner__role">Thailand Local Operation</div>
-        <ul>
+        <ul data-en="<li>Tour operations</li><li>Vehicle arrangement</li><li>Driver arrangement</li><li>Hotel &amp; restaurant booking</li><li>On-the-ground support</li>">
           <li>ツアー運営</li>
           <li>車両手配</li>
           <li>ドライバー手配</li>
@@ -586,7 +596,7 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
       <div class="partner">
         <div class="partner__name">BUSHIDO JAPAN</div>
         <div class="partner__role">Japan Travel Planning</div>
-        <ul>
+        <ul data-en="<li>Trip planning for Japanese travelers</li><li>Japanese-language consultation</li><li>Producing cultural experiences</li><li>Planning business visits</li><li>Producing special experiences</li>">
           <li>日本人旅行者向けの旅行企画</li>
           <li>日本語相談</li>
           <li>文化体験のプロデュース</li>
@@ -603,18 +613,18 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">For You</span>
-      <h2 class="section-title">こんな方に<span class="accent">おすすめ</span></h2>
+      <h2 class="section-title" data-en="Perfect <span class='accent'>for you if…</span>">こんな方に<span class="accent">おすすめ</span></h2>
     </div>
     <div class="fit-grid stagger fade-in">
-      <div class="fit-item"><span class="chk">✓</span><p>初めてタイへ行く</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>英語・タイ語が不安</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>家族だけで旅行したい</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>子ども連れで安心したい</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>観光だけでは物足りない</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>ローカルグルメを楽しみたい</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>SNS映えスポットへ行きたい</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>タイでビジネスを考えている</p></div>
-      <div class="fit-item"><span class="chk">✓</span><p>現地経営者と交流したい</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>First time visiting Thailand</p>"><span class="chk">✓</span><p>初めてタイへ行く</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Not confident in English or Thai</p>"><span class="chk">✓</span><p>英語・タイ語が不安</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Want to travel just with family</p>"><span class="chk">✓</span><p>家族だけで旅行したい</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Traveling with kids and want peace of mind</p>"><span class="chk">✓</span><p>子ども連れで安心したい</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Want more than just sightseeing</p>"><span class="chk">✓</span><p>観光だけでは物足りない</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Want to enjoy local food</p>"><span class="chk">✓</span><p>ローカルグルメを楽しみたい</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Want Instagram-worthy spots</p>"><span class="chk">✓</span><p>SNS映えスポットへ行きたい</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Considering business in Thailand</p>"><span class="chk">✓</span><p>タイでビジネスを考えている</p></div>
+      <div class="fit-item" data-en="<span class='chk'>✓</span><p>Want to connect with local entrepreneurs</p>"><span class="chk">✓</span><p>現地経営者と交流したい</p></div>
     </div>
   </div>
 </section>
@@ -624,24 +634,24 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in" style="margin-bottom:8px">
       <span class="eyebrow">Made Only For You</span>
-      <h2 class="section-title">あなた専属の<br><span class="accent">プライベートツアー</span></h2>
+      <h2 class="section-title" data-en="Your very own<br><span class='accent'>private tour</span>">あなた専属の<br><span class="accent">プライベートツアー</span></h2>
     </div>
-    <p class="freedom__big fade-in">決められたコースではありません。<br>お客様の目的に合わせて、<span class="accent">世界に一つだけの旅行プラン</span>を作ります。</p>
+    <p class="freedom__big fade-in" data-en="There is no fixed course.<br>We build <span class='accent'>a one-of-a-kind itinerary</span> around exactly what you want.">決められたコースではありません。<br>お客様の目的に合わせて、<span class="accent">世界に一つだけの旅行プラン</span>を作ります。</p>
     <ul class="chips fade-in">
-      <li class="chip">寺院巡り</li>
-      <li class="chip">ナイトマーケット</li>
-      <li class="chip">ショッピング</li>
-      <li class="chip">タイ料理</li>
-      <li class="chip">カフェ巡り</li>
-      <li class="chip">マッサージ</li>
-      <li class="chip">市場</li>
-      <li class="chip">絶景スポット</li>
-      <li class="chip">ローカル体験</li>
-      <li class="chip">経営者交流</li>
-      <li class="chip">企業訪問</li>
-      <li class="chip">展示会</li>
-      <li class="chip">仕入れ</li>
-      <li class="chip">工場見学</li>
+      <li class="chip" data-en="Temple hopping">寺院巡り</li>
+      <li class="chip" data-en="Night markets">ナイトマーケット</li>
+      <li class="chip" data-en="Shopping">ショッピング</li>
+      <li class="chip" data-en="Thai cuisine">タイ料理</li>
+      <li class="chip" data-en="Café hopping">カフェ巡り</li>
+      <li class="chip" data-en="Massage">マッサージ</li>
+      <li class="chip" data-en="Markets">市場</li>
+      <li class="chip" data-en="Scenic spots">絶景スポット</li>
+      <li class="chip" data-en="Local experiences">ローカル体験</li>
+      <li class="chip" data-en="Meeting entrepreneurs">経営者交流</li>
+      <li class="chip" data-en="Company visits">企業訪問</li>
+      <li class="chip" data-en="Trade shows">展示会</li>
+      <li class="chip" data-en="Sourcing">仕入れ</li>
+      <li class="chip" data-en="Factory tours">工場見学</li>
     </ul>
   </div>
 </section>
@@ -651,56 +661,56 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">Popular Plans</span>
-      <h2 class="section-title">人気<span class="accent">プラン</span></h2>
-      <p class="lead">すべてオーダーメイド。以下は組み立てのベースとなる人気の型です。時間配分も行き先も、自由に調整できます。</p>
+      <h2 class="section-title" data-en="Popular <span class='accent'>plans</span>">人気<span class="accent">プラン</span></h2>
+      <p class="lead" data-en="Everything is made to order. The plans below are popular starting points — timing and destinations can be freely adjusted.">すべてオーダーメイド。以下は組み立てのベースとなる人気の型です。時間配分も行き先も、自由に調整できます。</p>
     </div>
     <div class="plan-grid stagger fade-in">
       <!-- plan photo slot: add style="--plan-photo:url('images/bangkok.jpg')" to .plan__inner -->
       <div class="plan plan--a"><div class="plan__inner">
         <div class="plan__num">01</div>
-        <h3 class="plan__name">バンコク半日ツアー</h3>
-        <div class="plan__time">4〜5時間</div>
-        <div class="plan__price"><span class="amt">¥19,800<span class="tilde">〜</span></span><span class="unit">／ 1グループ（最大4名）</span></div>
-        <ul class="plan__list"><li>空港送迎</li><li>人気スポット</li></ul>
-        <p class="plan__note">到着日・出発日のスキマ時間にも。空港送迎とセットで、バンコクの人気スポットを効率よく。</p>
+        <h3 class="plan__name" data-en="Bangkok Half-Day Tour">バンコク半日ツアー</h3>
+        <div class="plan__time" data-en="4–5 hours">4〜5時間</div>
+        <div class="plan__price" data-en="<span class='amt'>¥19,800<span class='tilde'>~</span></span><span class='unit'>/ per group (up to 4)</span>"><span class="amt">¥19,800<span class="tilde">〜</span></span><span class="unit">／ 1グループ（最大4名）</span></div>
+        <ul class="plan__list" data-en="<li>Airport transfer</li><li>Popular spots</li>"><li>空港送迎</li><li>人気スポット</li></ul>
+        <p class="plan__note" data-en="Perfect for the spare hours on arrival or departure day. Airport transfer plus Bangkok's must-see spots, efficiently.">到着日・出発日のスキマ時間にも。空港送迎とセットで、バンコクの人気スポットを効率よく。</p>
       </div></div>
 
       <div class="plan plan--b"><div class="plan__inner">
-        <div class="plan__badge">人気No.1</div>
+        <div class="plan__badge" data-en="No.1 Popular">人気No.1</div>
         <div class="plan__num">02</div>
-        <h3 class="plan__name">バンコク1日ツアー</h3>
-        <div class="plan__time">8〜10時間</div>
-        <div class="plan__price"><span class="amt">¥34,800<span class="tilde">〜</span></span><span class="unit">／ 1グループ（最大4名）</span></div>
-        <ul class="plan__list"><li>寺院</li><li>グルメ</li><li>ショッピング</li><li>マッサージ</li><li>ナイトマーケット</li></ul>
-        <p class="plan__note">朝から夜まで、バンコクを丸ごと満喫。観光・食・買い物・癒やしを一日でめぐる、いちばん人気のプランです。</p>
+        <h3 class="plan__name" data-en="Bangkok Full-Day Tour">バンコク1日ツアー</h3>
+        <div class="plan__time" data-en="8–10 hours">8〜10時間</div>
+        <div class="plan__price" data-en="<span class='amt'>¥34,800<span class='tilde'>~</span></span><span class='unit'>/ per group (up to 4)</span>"><span class="amt">¥34,800<span class="tilde">〜</span></span><span class="unit">／ 1グループ（最大4名）</span></div>
+        <ul class="plan__list" data-en="<li>Temples</li><li>Local food</li><li>Shopping</li><li>Massage</li><li>Night market</li>"><li>寺院</li><li>グルメ</li><li>ショッピング</li><li>マッサージ</li><li>ナイトマーケット</li></ul>
+        <p class="plan__note" data-en="Enjoy all of Bangkok from morning to night. Sightseeing, food, shopping and relaxation in a single day — our most popular plan.">朝から夜まで、バンコクを丸ごと満喫。観光・食・買い物・癒やしを一日でめぐる、いちばん人気のプランです。</p>
       </div></div>
 
       <div class="plan plan--c"><div class="plan__inner">
         <div class="plan__num">03</div>
-        <h3 class="plan__name">チェンマイ満喫ツアー</h3>
-        <div class="plan__time">1DAY / 終日</div>
-        <div class="plan__price"><span class="amt">¥39,800<span class="tilde">〜</span></span><span class="unit">／ 1グループ（最大4名）</span></div>
-        <ul class="plan__list"><li>ドイステープ寺院</li><li>旧市街</li><li>ナイトマーケット</li><li>絶景カフェ</li><li>象との触れ合い</li><li>ローカル体験</li></ul>
-        <p class="plan__note">古都チェンマイの魅力を凝縮。寺院・自然・カフェ・ローカル体験を、のんびりと。</p>
+        <h3 class="plan__name" data-en="Chiang Mai Full Experience">チェンマイ満喫ツアー</h3>
+        <div class="plan__time" data-en="1 day / full day">1DAY / 終日</div>
+        <div class="plan__price" data-en="<span class='amt'>¥39,800<span class='tilde'>~</span></span><span class='unit'>/ per group (up to 4)</span>"><span class="amt">¥39,800<span class="tilde">〜</span></span><span class="unit">／ 1グループ（最大4名）</span></div>
+        <ul class="plan__list" data-en="<li>Doi Suthep</li><li>Old town</li><li>Night market</li><li>Scenic cafés</li><li>Meet elephants</li><li>Local experiences</li>"><li>ドイステープ寺院</li><li>旧市街</li><li>ナイトマーケット</li><li>絶景カフェ</li><li>象との触れ合い</li><li>ローカル体験</li></ul>
+        <p class="plan__note" data-en="The charm of the ancient capital, distilled. Temples, nature, cafés and local experiences — at a relaxed pace.">古都チェンマイの魅力を凝縮。寺院・自然・カフェ・ローカル体験を、のんびりと。</p>
       </div></div>
 
       <div class="plan plan--d"><div class="plan__inner">
         <div class="plan__badge" style="background:linear-gradient(135deg,#0e8c74,#0a5c4c)">BUSINESS</div>
         <div class="plan__num">04</div>
-        <h3 class="plan__name">ビジネス視察プラン</h3>
-        <div class="plan__time">目的に応じて</div>
-        <div class="plan__price"><span class="amt amt--quote">応相談</span><span class="unit">／ 内容に応じてお見積り</span></div>
-        <ul class="plan__list"><li>市場調査</li><li>企業訪問</li><li>飲食店視察</li><li>工場見学</li><li>経営者との交流</li><li>商談同行</li></ul>
-        <p class="plan__note">タイ進出・仕入れ・市場調査に。現地経営者とのネットワークを活かし、商談同行まで一気通貫でサポート。</p>
+        <h3 class="plan__name" data-en="Business Research Plan">ビジネス視察プラン</h3>
+        <div class="plan__time" data-en="Tailored to your goals">目的に応じて</div>
+        <div class="plan__price" data-en="<span class='amt amt--quote'>On request</span><span class='unit'>/ quoted by scope</span>"><span class="amt amt--quote">応相談</span><span class="unit">／ 内容に応じてお見積り</span></div>
+        <ul class="plan__list" data-en="<li>Market research</li><li>Company visits</li><li>Restaurant scouting</li><li>Factory tours</li><li>Meet entrepreneurs</li><li>Meeting support</li>"><li>市場調査</li><li>企業訪問</li><li>飲食店視察</li><li>工場見学</li><li>経営者との交流</li><li>商談同行</li></ul>
+        <p class="plan__note" data-en="For market entry, sourcing and research. We leverage our network of local entrepreneurs and support you all the way to the meeting table.">タイ進出・仕入れ・市場調査に。現地経営者とのネットワークを活かし、商談同行まで一気通貫でサポート。</p>
       </div></div>
     </div>
     <div class="price-note fade-in">
-      <p class="price-note__lead">表示価格は <b>1グループ（最大4名）あたりの完全貸切料金</b> です（お一人あたりではありません）。少人数でもグループ料金なので、ご家族・ご友人だけならとてもお得です。</p>
+      <p class="price-note__lead" data-en="Prices shown are <b>a fully-private rate per group (up to 4 people)</b> — not per person. Since it's a group rate even for small parties, it's excellent value when it's just family or friends.">表示価格は <b>1グループ（最大4名）あたりの完全貸切料金</b> です（お一人あたりではありません）。少人数でもグループ料金なので、ご家族・ご友人だけならとてもお得です。</p>
       <div class="price-note__cols">
-        <div><span class="h">料金に含まれるもの</span><p>専用車・ドライバー／日本語アテンド／ホテル送迎（ドアtoドア）／旅行プランの作成・ご相談</p></div>
-        <div><span class="h">別途 実費</span><p>各施設の入場料・アクティビティ料金／食事代／お買い物・お土産代／5名以上の場合の追加車両手配</p></div>
+        <div data-en="<span class='h'>What's included</span><p>Private car &amp; driver / Japanese-speaking guide / hotel transfers (door-to-door) / itinerary planning &amp; consultation</p>"><span class="h">料金に含まれるもの</span><p>専用車・ドライバー／日本語アテンド／ホテル送迎（ドアtoドア）／旅行プランの作成・ご相談</p></div>
+        <div data-en="<span class='h'>Paid separately</span><p>Admission &amp; activity fees / meals / shopping &amp; souvenirs / extra vehicle for parties of 5+</p>"><span class="h">別途 実費</span><p>各施設の入場料・アクティビティ料金／食事代／お買い物・お土産代／5名以上の場合の追加車両手配</p></div>
       </div>
-      <p class="price-note__foot">上記は目安です。日程・人数・行き先により変動します。正式なお見積りは <b>LINEで無料</b>。まずはお気軽にご相談ください。</p>
+      <p class="price-note__foot" data-en="These are guides only and vary by dates, party size and destinations. A formal quote is <b>free on LINE</b>. Feel free to reach out anytime.">上記は目安です。日程・人数・行き先により変動します。正式なお見積りは <b>LINEで無料</b>。まずはお気軽にご相談ください。</p>
     </div>
   </div>
 </section>
@@ -710,38 +720,38 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">Why We Are Chosen</span>
-      <h2 class="section-title">選ばれる<span class="accent">理由</span></h2>
+      <h2 class="section-title" data-en="Why we're <span class='accent'>chosen</span>">選ばれる<span class="accent">理由</span></h2>
     </div>
     <div class="reason-grid stagger fade-in">
       <div class="reason">
         <div class="reason__ico">🔒</div>
-        <h3>完全貸切</h3>
-        <p>他のお客様はいません。ご家族、ご友人だけの旅行。人目を気にせず、あなたのペースで。</p>
+        <h3 data-en="Fully private">完全貸切</h3>
+        <p data-en="<p>No other guests — just your family or friends, at your own pace, with no one else around.</p>">他のお客様はいません。ご家族、ご友人だけの旅行。人目を気にせず、あなたのペースで。</p>
       </div>
       <div class="reason">
         <div class="reason__ico">🚙</div>
-        <h3>ドアtoドア</h3>
-        <p>空港からホテル、ホテルから観光、観光からレストラン、そして空港まで。移動はすべてお任せください。</p>
+        <h3 data-en="Door to door">ドアtoドア</h3>
+        <p data-en="<p>Airport to hotel, hotel to sights, sights to restaurant, and back to the airport. Leave every transfer to us.</p>">空港からホテル、ホテルから観光、観光からレストラン、そして空港まで。移動はすべてお任せください。</p>
       </div>
       <div class="reason">
         <div class="reason__ico">💬</div>
-        <h3>日本語で安心</h3>
-        <p>旅行前から日本語で相談。現地でも日本語サポートがあるから、安心して旅行を楽しめます。</p>
+        <h3 data-en="Peace of mind in Japanese">日本語で安心</h3>
+        <p data-en="<p>Consult in Japanese before you travel, with Japanese-language support on the ground too — so you can simply relax and enjoy.</p>">旅行前から日本語で相談。現地でも日本語サポートがあるから、安心して旅行を楽しめます。</p>
       </div>
       <div class="reason">
         <div class="reason__ico">✍️</div>
-        <h3>オーダーメイド旅行</h3>
-        <p>あなたの希望を叶える旅。行き先も時間配分も自由。決められたコースはありません。</p>
+        <h3 data-en="Made-to-order travel">オーダーメイド旅行</h3>
+        <p data-en="<p>A trip that grants your wishes. Destinations and timing are entirely up to you — there is no fixed course.</p>">あなたの希望を叶える旅。行き先も時間配分も自由。決められたコースはありません。</p>
       </div>
       <div class="reason">
         <div class="reason__ico">🗺️</div>
-        <h3>現地だから知っている情報</h3>
-        <p>ガイドブックには載っていない、本当におすすめのお店をご紹介します。</p>
+        <h3 data-en="Real local knowledge">現地だから知っている情報</h3>
+        <p data-en="<p>We introduce the truly wonderful places that guidebooks never mention.</p>">ガイドブックには載っていない、本当におすすめのお店をご紹介します。</p>
       </div>
       <div class="reason">
         <div class="reason__ico">🤝</div>
-        <h3>目的で選べるアテンド</h3>
-        <p>観光も、家族旅行も、ビジネス視察も。目的に応じて最適なアテンダーがご案内します。</p>
+        <h3 data-en="Guides matched to your purpose">目的で選べるアテンド</h3>
+        <p data-en="<p>Sightseeing, family trips or business visits — the right guide accompanies you, matched to your goals.</p>">観光も、家族旅行も、ビジネス視察も。目的に応じて最適なアテンダーがご案内します。</p>
       </div>
     </div>
   </div>
@@ -752,23 +762,23 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">Your Attendants</span>
-      <h2 class="section-title">アテンド<span class="accent">スタッフ</span></h2>
-      <p class="lead">現地で生活し、日本とタイをつなぐ二人が、あなたの旅に寄り添います。</p>
+      <h2 class="section-title" data-en="Your <span class='accent'>guides</span>">アテンド<span class="accent">スタッフ</span></h2>
+      <p class="lead" data-en="Two people who live here and bridge Japan and Thailand will be right beside you on your journey.">現地で生活し、日本とタイをつなぐ二人が、あなたの旅に寄り添います。</p>
     </div>
 
     <div class="staff-card staff-card--a staff-card--jade fade-in">
       <!-- 岩田まゆき｜real photo: add style="--p-photo:url('images/iwata.jpg')" to .staff-card__photo -->
       <div class="staff-card__photo" style="--p-photo:var(--photo-iwata);--p-pos:center 24%">
-        <div class="cap"><b>岩田 まゆき</b><span>ATTENDANT</span></div>
+        <div class="cap" data-en="<b>Mayuki Iwata</b><span>ATTENDANT</span>"><b>岩田 まゆき</b><span>ATTENDANT</span></div>
       </div>
       <div class="staff-card__info">
-        <span class="staff-card__role">観光・家族旅行・グルメ</span>
-        <h3 class="staff-card__name">岩田 まゆき<span class="en">Mayuki Iwata</span></h3>
-        <div class="staff-card__meta"><span>タイ在住3年</span><span>飲食店経営経験</span><span>マッサージ店経営経験</span><span>現地ネットワーク多数</span></div>
-        <p class="staff-card__desc">タイ在住3年。飲食店・マッサージ店の経営経験を持ち、タイ人経営者との幅広いネットワークを築いてきました。現地で生活しているからこそ知っている、人気レストラン・マッサージ・ローカルスポット・ショッピング・観光情報をご案内します。家族旅行、女子旅、グルメ旅、ローカル体験ならお任せください。</p>
+        <span class="staff-card__role" data-en="Sightseeing · Family · Food">観光・家族旅行・グルメ</span>
+        <h3 class="staff-card__name" data-en="Mayuki Iwata">岩田 まゆき<span class="en">Mayuki Iwata</span></h3>
+        <div class="staff-card__meta" data-en="<span>3 years in Thailand</span><span>Ran a restaurant</span><span>Ran a massage salon</span><span>Wide local network</span>"><span>タイ在住3年</span><span>飲食店経営経験</span><span>マッサージ店経営経験</span><span>現地ネットワーク多数</span></div>
+        <p class="staff-card__desc" data-en="Three years living in Thailand. With hands-on experience running a restaurant and a massage salon, Mayuki has built a broad network among Thai business owners. Living here means knowing the popular restaurants, massage spots, local gems, shopping and sightseeing that only locals do. Count on Mayuki for family trips, girls' trips, food tours and local experiences.">タイ在住3年。飲食店・マッサージ店の経営経験を持ち、タイ人経営者との幅広いネットワークを築いてきました。現地で生活しているからこそ知っている、人気レストラン・マッサージ・ローカルスポット・ショッピング・観光情報をご案内します。家族旅行、女子旅、グルメ旅、ローカル体験ならお任せください。</p>
         <div class="staff-card__skills">
-          <div class="h">得意分野</div>
-          <ul class="skill-tags"><li>人気レストラン</li><li>マッサージ</li><li>ローカルスポット</li><li>ショッピング</li><li>観光情報</li><li>女子旅・家族旅行</li></ul>
+          <div class="h" data-en="Specialties">得意分野</div>
+          <ul class="skill-tags" data-en="<li>Popular restaurants</li><li>Massage</li><li>Local spots</li><li>Shopping</li><li>Sightseeing info</li><li>Girls' &amp; family trips</li>"><li>人気レストラン</li><li>マッサージ</li><li>ローカルスポット</li><li>ショッピング</li><li>観光情報</li><li>女子旅・家族旅行</li></ul>
         </div>
       </div>
     </div>
@@ -776,16 +786,16 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
     <div class="staff-card staff-card--b fade-in">
       <!-- 上岡賢輔｜real photo: add style="--p-photo:url('images/kamioka.jpg')" to .staff-card__photo -->
       <div class="staff-card__photo" style="--p-photo:var(--photo-kamioka);--p-pos:center 12%">
-        <div class="cap"><b>上岡 賢輔</b><span>PRODUCER</span></div>
+        <div class="cap" data-en="<b>Kensuke Kamioka</b><span>PRODUCER</span>"><b>上岡 賢輔</b><span>PRODUCER</span></div>
       </div>
       <div class="staff-card__info">
-        <span class="staff-card__role">ビジネス・経営者交流・VIP</span>
-        <h3 class="staff-card__name">上岡 賢輔<span class="en">Kensuke Kamioka</span></h3>
-        <div class="staff-card__meta"><span>BUSHIDO JAPAN代表</span><span>日本文化プロデューサー</span><span>インバウンド事業プロデューサー</span></div>
-        <p class="staff-card__desc">BUSHIDO JAPAN代表。日本文化プロデューサー／インバウンド事業プロデューサーとして、国内外で日本文化・国際交流・ビジネスをテーマに数多くのプロジェクトを企画・運営してきました。タイと日本をつなぐ架け橋として活動しています。経営者・企業様向けの特別プランもご用意しています。</p>
+        <span class="staff-card__role" data-en="Business · Networking · VIP">ビジネス・経営者交流・VIP</span>
+        <h3 class="staff-card__name" data-en="Kensuke Kamioka">上岡 賢輔<span class="en">Kensuke Kamioka</span></h3>
+        <div class="staff-card__meta" data-en="<span>CEO, BUSHIDO JAPAN</span><span>Japanese-culture producer</span><span>Inbound-business producer</span>"><span>BUSHIDO JAPAN代表</span><span>日本文化プロデューサー</span><span>インバウンド事業プロデューサー</span></div>
+        <p class="staff-card__desc" data-en="CEO of BUSHIDO JAPAN. As a producer of Japanese culture and inbound business, Kensuke has planned and run many projects in Japan and abroad around culture, international exchange and business. He works as a bridge between Thailand and Japan, and offers special plans for executives and companies.">BUSHIDO JAPAN代表。日本文化プロデューサー／インバウンド事業プロデューサーとして、国内外で日本文化・国際交流・ビジネスをテーマに数多くのプロジェクトを企画・運営してきました。タイと日本をつなぐ架け橋として活動しています。経営者・企業様向けの特別プランもご用意しています。</p>
         <div class="staff-card__skills">
-          <div class="h">得意分野</div>
-          <ul class="skill-tags"><li>ビジネス視察</li><li>経営者交流</li><li>タイ進出相談</li><li>市場調査</li><li>輸出入相談</li><li>現地企業訪問</li><li>日本文化交流</li><li>VIP旅行</li></ul>
+          <div class="h" data-en="Specialties">得意分野</div>
+          <ul class="skill-tags" data-en="<li>Business research</li><li>Networking with owners</li><li>Thailand market entry</li><li>Market research</li><li>Import/export advice</li><li>Local company visits</li><li>Cultural exchange</li><li>VIP travel</li>"><li>ビジネス視察</li><li>経営者交流</li><li>タイ進出相談</li><li>市場調査</li><li>輸出入相談</li><li>現地企業訪問</li><li>日本文化交流</li><li>VIP旅行</li></ul>
         </div>
       </div>
     </div>
@@ -793,22 +803,22 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
     <!-- matching -->
     <div class="match fade-in">
       <span class="eyebrow">Best Match</span>
-      <h3 class="section-title" style="font-size:clamp(20px,2.8vw,28px)">旅の目的に合わせて、<span class="accent">最適なアテンダー</span>をご案内</h3>
+      <h3 class="section-title" style="font-size:clamp(20px,2.8vw,28px)" data-en="We match you with <span class='accent'>the ideal guide</span> for your trip">旅の目的に合わせて、<span class="accent">最適なアテンダー</span>をご案内</h3>
       <div class="match__grid stagger">
         <div class="match__card">
-          <div class="who">観光・家族旅行</div>
+          <div class="who" data-en="Sightseeing · Family">観光・家族旅行</div>
           <div class="arw">▶</div>
-          <div class="to">岩田 まゆき</div>
+          <div class="to" data-en="Mayuki Iwata">岩田 まゆき</div>
         </div>
         <div class="match__card">
-          <div class="who">経営者・ビジネス</div>
+          <div class="who" data-en="Executives · Business">経営者・ビジネス</div>
           <div class="arw">▶</div>
-          <div class="to">上岡 賢輔</div>
+          <div class="to" data-en="Kensuke Kamioka">上岡 賢輔</div>
         </div>
         <div class="match__card">
-          <div class="who">特別プラン</div>
+          <div class="who" data-en="Special plans">特別プラン</div>
           <div class="arw">▶</div>
-          <div class="to duo">岩田 × 上岡（二人同行）</div>
+          <div class="to duo" data-en="Iwata × Kamioka (both accompany)">岩田 × 上岡（二人同行）</div>
         </div>
       </div>
     </div>
@@ -820,16 +830,16 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">How It Works</span>
-      <h2 class="section-title">ご利用の<span class="accent">流れ</span></h2>
+      <h2 class="section-title" data-en="How it <span class='accent'>works</span>">ご利用の<span class="accent">流れ</span></h2>
     </div>
     <div class="flow-steps stagger fade-in">
-      <div class="flow-step"><div class="flow-step__num">1</div><div class="flow-step__body"><h4>LINEで相談</h4><p>まずは気軽に、日本語でメッセージを。</p></div></div>
-      <div class="flow-step"><div class="flow-step__num">2</div><div class="flow-step__body"><h4>ヒアリング</h4><p>目的・人数・日程・ご希望をお聞きします。</p></div></div>
-      <div class="flow-step"><div class="flow-step__num">3</div><div class="flow-step__body"><h4>プラン作成</h4><p>あなただけの旅行プランをご提案。</p></div></div>
-      <div class="flow-step"><div class="flow-step__num">4</div><div class="flow-step__body"><h4>お見積り</h4><p>内容にご納得いただいてから。</p></div></div>
-      <div class="flow-step"><div class="flow-step__num">5</div><div class="flow-step__body"><h4>ご予約</h4><p>日程を確定します。</p></div></div>
-      <div class="flow-step"><div class="flow-step__num">6</div><div class="flow-step__body"><h4>タイ現地でお迎え</h4><p>空港までお迎えにあがります。</p></div></div>
-      <div class="flow-step flow-step--last"><div class="flow-step__num">7</div><div class="flow-step__body"><h4>あなただけのタイ旅行スタート</h4><p>安心と感動の旅へ。</p></div></div>
+      <div class="flow-step"><div class="flow-step__num">1</div><div class="flow-step__body"><h4 data-en="Consult on LINE">LINEで相談</h4><p data-en="<p>Just send a message — in Japanese, no pressure.</p>">まずは気軽に、日本語でメッセージを。</p></div></div>
+      <div class="flow-step"><div class="flow-step__num">2</div><div class="flow-step__body"><h4 data-en="We listen">ヒアリング</h4><p data-en="<p>We ask about your goals, party size, dates and wishes.</p>">目的・人数・日程・ご希望をお聞きします。</p></div></div>
+      <div class="flow-step"><div class="flow-step__num">3</div><div class="flow-step__body"><h4 data-en="We build your plan">プラン作成</h4><p data-en="<p>We propose an itinerary made just for you.</p>">あなただけの旅行プランをご提案。</p></div></div>
+      <div class="flow-step"><div class="flow-step__num">4</div><div class="flow-step__body"><h4 data-en="Quote">お見積り</h4><p data-en="<p>Only once you're happy with the details.</p>">内容にご納得いただいてから。</p></div></div>
+      <div class="flow-step"><div class="flow-step__num">5</div><div class="flow-step__body"><h4 data-en="Booking">ご予約</h4><p data-en="<p>We confirm the dates.</p>">日程を確定します。</p></div></div>
+      <div class="flow-step"><div class="flow-step__num">6</div><div class="flow-step__body"><h4 data-en="We welcome you in Thailand">タイ現地でお迎え</h4><p data-en="<p>We meet you right at the airport.</p>">空港までお迎えにあがります。</p></div></div>
+      <div class="flow-step flow-step--last"><div class="flow-step__num">7</div><div class="flow-step__body"><h4 data-en="Your own Thailand trip begins">あなただけのタイ旅行スタート</h4><p data-en="<p>Off to a journey of comfort and wonder.</p>">安心と感動の旅へ。</p></div></div>
     </div>
   </div>
 </section>
@@ -839,28 +849,28 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">FAQ</span>
-      <h2 class="section-title">よくある<span class="accent">質問</span></h2>
+      <h2 class="section-title" data-en="Frequently asked <span class='accent'>questions</span>">よくある<span class="accent">質問</span></h2>
     </div>
     <div class="faq-list fade-in">
       <details class="faq-item">
-        <summary><span class="q">Q</span>英語が話せません。大丈夫ですか？<span class="plus"></span></summary>
-        <div class="faq-item__a">大丈夫です。事前相談は日本語で対応します。現地でも日本語サポートがあるので、安心してご旅行いただけます。</div>
+        <summary data-en="<span class='q'>Q</span>I can't speak English. Is that okay?<span class='plus'></span>"><span class="q">Q</span>英語が話せません。大丈夫ですか？<span class="plus"></span></summary>
+        <div class="faq-item__a" data-en="<div class='faq-item__a'>Absolutely. All pre-trip consultation is handled in Japanese, and we provide Japanese-language support on the ground too, so you can travel with complete peace of mind.</div>">大丈夫です。事前相談は日本語で対応します。現地でも日本語サポートがあるので、安心してご旅行いただけます。</div>
       </details>
       <details class="faq-item">
-        <summary><span class="q">Q</span>子ども連れでも大丈夫？<span class="plus"></span></summary>
-        <div class="faq-item__a">もちろんです。ご家族に合わせたプランをご提案します。小さなお子様連れでも安心してお楽しみいただけるよう、無理のない行程を組みます。</div>
+        <summary data-en="<span class='q'>Q</span>Is it okay to travel with children?<span class='plus'></span>"><span class="q">Q</span>子ども連れでも大丈夫？<span class="plus"></span></summary>
+        <div class="faq-item__a" data-en="<div class='faq-item__a'>Of course. We propose plans tailored to your family, with a comfortable pace so even little ones can relax and enjoy.</div>">もちろんです。ご家族に合わせたプランをご提案します。小さなお子様連れでも安心してお楽しみいただけるよう、無理のない行程を組みます。</div>
       </details>
       <details class="faq-item">
-        <summary><span class="q">Q</span>行き先は自由に選べますか？<span class="plus"></span></summary>
-        <div class="faq-item__a">はい。完全オーダーメイドです。寺院・グルメ・ショッピング・ビジネス視察など、ご希望に合わせて世界に一つだけのプランを作ります。</div>
+        <summary data-en="<span class='q'>Q</span>Can I freely choose where we go?<span class='plus'></span>"><span class="q">Q</span>行き先は自由に選べますか？<span class="plus"></span></summary>
+        <div class="faq-item__a" data-en="<div class='faq-item__a'>Yes — it's fully made to order. Temples, food, shopping, business visits and more: we build a one-of-a-kind plan around your wishes.</div>">はい。完全オーダーメイドです。寺院・グルメ・ショッピング・ビジネス視察など、ご希望に合わせて世界に一つだけのプランを作ります。</div>
       </details>
       <details class="faq-item">
-        <summary><span class="q">Q</span>空港送迎だけでも利用できますか？<span class="plus"></span></summary>
-        <div class="faq-item__a">もちろん可能です。空港からホテルまでのドアtoドア送迎だけでもご利用いただけます。</div>
+        <summary data-en="<span class='q'>Q</span>Can I book just the airport transfer?<span class='plus'></span>"><span class="q">Q</span>空港送迎だけでも利用できますか？<span class="plus"></span></summary>
+        <div class="faq-item__a" data-en="<div class='faq-item__a'>Of course. You're welcome to use only our door-to-door transfer between the airport and your hotel.</div>">もちろん可能です。空港からホテルまでのドアtoドア送迎だけでもご利用いただけます。</div>
       </details>
       <details class="faq-item">
-        <summary><span class="q">Q</span>ビジネスだけでも利用できますか？<span class="plus"></span></summary>
-        <div class="faq-item__a">はい。企業視察・商談同行だけでもご利用いただけます。市場調査や工場見学、経営者との交流など、ビジネス目的に特化したプランもご用意しています。</div>
+        <summary data-en="<span class='q'>Q</span>Can I book for business only?<span class='plus'></span>"><span class="q">Q</span>ビジネスだけでも利用できますか？<span class="plus"></span></summary>
+        <div class="faq-item__a" data-en="<div class='faq-item__a'>Yes. Company visits and meeting support alone are perfectly fine. We also offer plans focused purely on business — market research, factory tours, networking with entrepreneurs and more.</div>">はい。企業視察・商談同行だけでもご利用いただけます。市場調査や工場見学、経営者との交流など、ビジネス目的に特化したプランもご用意しています。</div>
       </details>
     </div>
   </div>
@@ -871,13 +881,13 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="fade-in">
       <span class="eyebrow" style="justify-content:center;display:flex">Our Journey</span>
-      <p class="vision__q">私たちが目指す旅</p>
+      <p class="vision__q" data-en="The journey we aim for">私たちが目指す旅</p>
       <div class="vision__lines">
-        <p>タイへ行く。それだけではありません。</p>
-        <p>現地の人と出会い、文化を知り、</p>
-        <p>食を楽しみ、ビジネスを学び、</p>
-        <p class="em">人生が少し豊かになる旅。</p>
-        <p style="margin-top:18px;font-size:.85em;color:var(--text-soft)">そんな体験を、ご提供したいと考えています。</p>
+        <p data-en="<p>Going to Thailand — it's about more than that.</p>">タイへ行く。それだけではありません。</p>
+        <p data-en="<p>Meeting local people, discovering the culture,</p>">現地の人と出会い、文化を知り、</p>
+        <p data-en="<p>savoring the food, learning about business,</p>">食を楽しみ、ビジネスを学び、</p>
+        <p class="em" data-en="a journey that makes life a little richer.">人生が少し豊かになる旅。</p>
+        <p style="margin-top:18px;font-size:.85em;color:var(--text-soft)" data-en="That is the experience we want to give you.">そんな体験を、ご提供したいと考えています。</p>
       </div>
     </div>
   </div>
@@ -888,20 +898,20 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="section-head fade-in">
       <span class="eyebrow">Operation</span>
-      <h2 class="section-title">運営<span class="accent">体制</span></h2>
+      <h2 class="section-title" data-en="Our <span class='accent'>operation</span>">運営<span class="accent">体制</span></h2>
     </div>
     <div class="op-grid stagger fade-in">
       <div class="op">
-        <span class="kind">募集・現地運営</span>
+        <span class="kind" data-en="Sales · Local operation">募集・現地運営</span>
         <h4>Devi Vacation</h4>
-        <p style="font-size:12.5px;color:var(--text-dim);margin:6px 0 16px">タイ法人</p>
-        <ul><li>ツアー運営</li><li>車両手配</li><li>ドライバー</li><li>現地予約</li><li>現地サポート</li></ul>
+        <p style="font-size:12.5px;color:var(--text-dim);margin:6px 0 16px" data-en="Thailand company">タイ法人</p>
+        <ul data-en="<li>Tour operations</li><li>Vehicle arrangement</li><li>Drivers</li><li>Local bookings</li><li>Local support</li>"><li>ツアー運営</li><li>車両手配</li><li>ドライバー</li><li>現地予約</li><li>現地サポート</li></ul>
       </div>
       <div class="op">
-        <span class="kind">共同企画</span>
+        <span class="kind" data-en="Co-planning">共同企画</span>
         <h4>BUSHIDO JAPAN</h4>
-        <p style="font-size:12.5px;color:var(--text-dim);margin:6px 0 16px">日本</p>
-        <ul><li>日本人向け旅行企画</li><li>日本語相談</li><li>文化体験</li><li>ビジネス視察</li><li>VIPプラン</li></ul>
+        <p style="font-size:12.5px;color:var(--text-dim);margin:6px 0 16px" data-en="Japan">日本</p>
+        <ul data-en="<li>Trip planning for Japanese travelers</li><li>Japanese consultation</li><li>Cultural experiences</li><li>Business visits</li><li>VIP plans</li>"><li>日本人向け旅行企画</li><li>日本語相談</li><li>文化体験</li><li>ビジネス視察</li><li>VIPプラン</li></ul>
       </div>
     </div>
   </div>
@@ -912,17 +922,17 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
   <div class="wrap">
     <div class="fade-in">
       <span class="eyebrow" style="justify-content:center;display:flex">One More Time</span>
-      <p class="final__quote">「また<span class="gold">タイへ行きたい</span>。」<br>そう思っていただける旅を、<br>一緒につくります。</p>
+      <p class="final__quote" data-en="“I want to go back to <span class='gold'>Thailand</span>.”<br>Let's create a trip<br>that leaves you feeling exactly that.">「また<span class="gold">タイへ行きたい</span>。」<br>そう思っていただける旅を、<br>一緒につくります。</p>
       <div class="final__list">
-        <span>初めてのタイ旅行も</span>
-        <span>家族旅行も</span>
-        <span>ご夫婦の記念旅行も</span>
-        <span>経営者の視察旅行も</span>
+        <span data-en="<span>Your first trip to Thailand</span>">初めてのタイ旅行も</span>
+        <span data-en="<span>Family trips</span>">家族旅行も</span>
+        <span data-en="<span>Anniversary trips for couples</span>">ご夫婦の記念旅行も</span>
+        <span data-en="<span>Executive research trips</span>">経営者の視察旅行も</span>
       </div>
-      <p class="lead" style="max-width:600px;margin:20px auto 0">Devi Vacation × BUSHIDO JAPAN が、<b style="color:var(--washi)">安心と感動</b>をお届けします。</p>
+      <p class="lead" style="max-width:600px;margin:20px auto 0" data-en="Devi Vacation × BUSHIDO JAPAN delivers <b style='color:var(--washi)'>comfort and wonder</b>.">Devi Vacation × BUSHIDO JAPAN が、<b style="color:var(--washi)">安心と感動</b>をお届けします。</p>
       <div class="final__brand">DEVI VACATION &nbsp;×&nbsp; BUSHIDO JAPAN</div>
-      <a class="btn btn-line" href="#" id="line-cta-main"><span class="ico">L</span>LINEで無料相談する</a>
-      <p style="font-size:12px;color:var(--text-dim);margin-top:18px">相談・お見積りは無料です。まずはお気軽にどうぞ。</p>
+      <a class="btn btn-line" href="#" id="line-cta-main" data-en="<span class='ico'>L</span>Get a free consult on LINE"><span class="ico">L</span>LINEで無料相談する</a>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:18px" data-en="Consultation and quotes are free. Reach out anytime.">相談・お見積りは無料です。まずはお気軽にどうぞ。</p>
     </div>
   </div>
 </section>
@@ -934,20 +944,20 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
       <div class="footer__brand">
         <b>DEVI VACATION × BUSHIDO JAPAN</b>
         <span>Thailand Private Experience</span>
-        <p>日本人のための完全貸切タイ・プライベートツアー。空港送迎・完全貸切・日本語サポートで、あなただけのタイ旅行を。バンコク・チェンマイ対応。</p>
+        <p data-en="<p>Fully private Thailand tours for Japanese travelers. Airport transfers, private charter and Japanese-language support for a trip that's yours alone. Bangkok &amp; Chiang Mai.</p>">日本人のための完全貸切タイ・プライベートツアー。空港送迎・完全貸切・日本語サポートで、あなただけのタイ旅行を。バンコク・チェンマイ対応。</p>
       </div>
       <nav class="footer__nav">
-        <a href="#about">私たちについて</a>
-        <a href="#plans">人気プラン</a>
-        <a href="#staff">アテンドスタッフ</a>
-        <a href="#flow">ご利用の流れ</a>
-        <a href="#faq">よくある質問</a>
-        <a href="#contact">LINE無料相談</a>
+        <a href="#about" data-en="About">私たちについて</a>
+        <a href="#plans" data-en="Plans">人気プラン</a>
+        <a href="#staff" data-en="Guides">アテンドスタッフ</a>
+        <a href="#flow" data-en="How it works">ご利用の流れ</a>
+        <a href="#faq" data-en="FAQ">よくある質問</a>
+        <a href="#contact" data-en="Free LINE consult">LINE無料相談</a>
       </nav>
     </div>
     <div class="footer__bottom">
       <span>© <span id="year"></span> Devi Vacation × BUSHIDO JAPAN. All rights reserved.</span>
-      <span>募集・現地運営：Devi Vacation（タイ法人）／ 共同企画：BUSHIDO JAPAN</span>
+      <span data-en="<span>Sales &amp; local operation: Devi Vacation (Thailand) / Co-planning: BUSHIDO JAPAN</span>">募集・現地運営：Devi Vacation（タイ法人）／ 共同企画：BUSHIDO JAPAN</span>
     </div>
   </div>
 </footer>
@@ -955,7 +965,7 @@ section{position:relative;padding:clamp(72px,10vw,120px) 0}
 <!-- ========== FLOATING LINE CTA ========== -->
 <a class="float-cta" id="floatCta" href="#contact">
   <span class="ico">L</span>
-  <span>無料相談<small>まずはLINEで気軽に</small></span>
+  <span data-en="Free consult<small>Start easily on LINE</small>">無料相談<small>まずはLINEで気軽に</small></span>
 </a>
 
 <script>
@@ -978,6 +988,31 @@ document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
 
 /* year */
 document.getElementById('year').textContent=new Date().getFullYear();
+
+/* ====== i18n : Japanese / English toggle ====== */
+(function(){
+  var root=document.documentElement;
+  var btn=document.getElementById('langToggle');
+  var nodes=document.querySelectorAll('[data-en]');
+  var TITLE={ja:document.title,en:'Devi Vacation \u00d7 BUSHIDO JAPAN | Fully Private Thailand Tours for Japanese Travelers'};
+  function apply(l){
+    for(var i=0;i<nodes.length;i++){
+      var el=nodes[i];
+      if(el.getAttribute('data-ja')===null) el.setAttribute('data-ja',el.innerHTML);
+      el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-ja');
+    }
+    root.setAttribute('lang',l);
+    root.setAttribute('data-lang',l);
+    document.title = TITLE[l]||TITLE.ja;
+    if(btn){var o=btn.querySelectorAll('.lang-opt');for(var j=0;j<o.length;j++){o[j].classList.toggle('is-active',o[j].getAttribute('data-l')===l);}}
+    try{localStorage.setItem('lp_lang',l);}catch(e){}
+  }
+  var saved='ja';
+  try{var s=localStorage.getItem('lp_lang'); if(s==='en'||s==='ja') saved=s;}catch(e){}
+  apply(saved);
+  if(btn) btn.addEventListener('click',function(){apply(root.getAttribute('data-lang')==='en'?'ja':'en');});
+})();
+
 
 /* ====== LINE link configuration ======
    Replace the value below with your official LINE URL, e.g.
