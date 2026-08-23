@@ -1,0 +1,9 @@
+# 生成物・作業用（Word/HTML/PPTXはMarkdownから再生成できる）
+build/node_modules/
+build/html/
+build/*.pptx
+build/*.pdf
+build/package-lock.json
+build/*.b64
+build/t.txt
+build/test.html
