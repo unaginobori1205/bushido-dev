@@ -23,6 +23,7 @@ def conv(p):
         if s.startswith('---'): out.append('<hr>'); i+=1; continue
         if s.startswith('#'):
             l=min(len(s)-len(s.lstrip('#')),6); out.append(f'<h{l}>{inl(s.lstrip("#").strip())}</h{l}>'); i+=1; continue
+        if s=='>': i+=1; continue
         if s.startswith('> '): out.append(f'<blockquote>{inl(s[2:])}</blockquote>'); i+=1; continue
         if re.match(r'^\s*[-*] ',lines[i]):
             out.append('<ul>')

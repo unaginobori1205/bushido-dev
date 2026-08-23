@@ -82,6 +82,8 @@ def convert(md_path, out_path):
             if lvl==1: par.alignment=WD_ALIGN_PARAGRAPH.CENTER
             add_runs(par, txt, sizes.get(lvl,11), NAVY if lvl<=2 else RED, True)
             i+=1; continue
+        if s=='>':
+            i+=1; continue
         if s.startswith('> '):
             par=doc.add_paragraph(); par.paragraph_format.left_indent=Cm(0.8)
             add_runs(par, s[2:], 10.5, NAVY); i+=1; continue
