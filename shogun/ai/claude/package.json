@@ -1,0 +1,20 @@
+{
+  "name": "voice-claude",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenAI Realtime API (gpt-realtime-2.1) を使って、音声でClaude Codeを操作する常駐アシスタント",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "check": "node src/index.js --check",
+    "debug:text": "node src/index.js --text-debug"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ws": "^8.18.0"
+  }
+}

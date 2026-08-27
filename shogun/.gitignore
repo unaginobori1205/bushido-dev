@@ -1,0 +1,17 @@
+# secrets
+.env
+*.env.local
+
+# dependencies / build output
+node_modules/
+dist/
+build/
+apps/desktop/src-tauri/target/
+
+# local data (memory DB, action log — see docs/SECURITY.md)
+database/*.sqlite
+database/*.sqlite-*
+memory/working/*
+
+# OS
+.DS_Store
