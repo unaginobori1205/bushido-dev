@@ -1,0 +1,36 @@
+{
+  "name": "shogun-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SHOGUN Core: orchestrator, memory, permissions, and the OpenAI Realtime connector for MVP0.1. Runs as a local sidecar process; apps/desktop's Tauri shell talks to it over a localhost WebSocket.",
+  "type": "module",
+  "scripts": {
+    "dev:core": "tsx watch core/orchestrator/server.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.5.0",
+    "@types/ws": "^8.5.12",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "esbuild"
+    ]
+  }
+}

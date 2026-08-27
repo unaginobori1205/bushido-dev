@@ -11,12 +11,20 @@ Claude Code / MCP tools / local systems, and learns over time — always
 
 ## Status
 
-**Design phase.** `docs/ARCHITECTURE.md` and `docs/IMPLEMENTATION_PLAN.md`
-lay out the target system and the MVP0.1 task breakdown; no MVP0.1 feature
-code exists yet by design (this pass stopped at planning on purpose so the
-plan can be reviewed before implementation starts). The one piece of
-working groundwork is `ai/claude`'s scaffolding, carried over from an
-earlier standalone CLI in this same session (see `ai/claude/README.md`).
+**MVP0.1 implemented.** `docs/ARCHITECTURE.md` and
+`docs/IMPLEMENTATION_PLAN.md` were written first; MVP0.1 (voice
+conversation with the OpenAI persona, working + daily memory, session
+resume, Action Log) follows that plan — see `docs/IMPLEMENTATION_PLAN.md`
+§6 for the task-by-task breakdown and which parts are unverified. The Node
+core (`core/`, `memory/`, `database/`, `ai/openai/`) is typechecked and
+unit-tested (`pnpm typecheck && pnpm test`, both run clean in this
+environment); the Tauri desktop shell (`apps/desktop/`) compiles
+(`cargo check`, verified on Linux) but has **not** been built or run as a
+real macOS app — this environment has no Mac, display, or microphone, so
+that verification is left to the user (see `apps/desktop/README.md`).
+`ai/claude` (the Claude Code connector) is still just scaffolding, carried
+over from an earlier standalone CLI in this same session — finishing it is
+scoped to MVP0.3, not MVP0.1 (see `ai/claude/README.md`).
 
 Read in this order:
 
@@ -80,8 +88,13 @@ responsibility and target MVP milestone until real code lands there.
 
 ## Setup
 
-Not runnable yet — MVP0.1 code hasn't been written. Once it exists,
-`docs/IMPLEMENTATION_PLAN.md` §6 has the task list and this README's Setup
-section will be filled in with `pnpm install` / dev-run / build steps.
-Building and running the Tauri app requires a real Mac (Xcode command line
-tools) — this cannot be done from this environment.
+```bash
+pnpm install
+cp .env.example .env        # fill in OPENAI_API_KEY at minimum
+pnpm typecheck && pnpm test # sanity check — should pass with no network/mic needed
+pnpm dev:core                # terminal A — starts the local WS server on :8787
+```
+
+Then, in a second terminal, run the Tauri desktop shell — see
+`apps/desktop/README.md` for `cargo tauri dev` instructions and, importantly,
+what has and hasn't been verified for the macOS build from this environment.

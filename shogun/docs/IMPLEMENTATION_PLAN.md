@@ -1,10 +1,8 @@
 # SHOGUN — Implementation Plan
 
-Status: **design draft**. This is the answer to the "before you write MVP0.1
-code" checklist (dependency candidates, security concerns, MVP0.1 task
-breakdown, file list) — no MVP0.1 feature code has been written yet by
-design; this session stopped at planning on purpose so the plan can be
-reviewed first. See `ARCHITECTURE.md` for the *why* behind these choices.
+Status: **MVP0.1 implemented** — §6 was the plan, §8 records what was
+actually built and where it deviated from this plan and why. See
+`ARCHITECTURE.md` for the *why* behind the original design choices.
 
 ## 1. Existing repository state (as surveyed before this plan)
 
@@ -25,7 +23,7 @@ reviewed first. See `ARCHITECTURE.md` for the *why* behind these choices.
 |---|---|---|
 | Desktop shell | Tauri v2 (Rust) + WebView (React or Svelte, TBD at implementation time) | see ARCHITECTURE.md §9 |
 | Core logic (orchestrator, intent router, permissions, planner, memory, mcp client, integrations) | TypeScript, Node.js ≥ 18, run as a Tauri sidecar process | reuses `ai/claude`'s existing Node code; type safety matters once Intent Router / Permission Level / MCP schemas multiply |
-| Package management | pnpm workspaces (monorepo) | multiple internal packages (`core/*`, `voice/*`, `ai/*`, `mcp/*`) without publishing them |
+| Package management | ~~pnpm workspaces (monorepo)~~ → **single root package** (`shogun/package.json`) covering `config.ts`, `core/*`, `memory/*`, `database/*`, `ai/openai/*` | see §8 — deviated from the original plan: for MVP0.1's actual module count, one `tsconfig.json`/`node_modules` was simpler than per-module workspace packages with no real publishing boundary yet. `ai/claude` keeps its own separate `package.json` (unchanged, still just scaffolding). Revisit real workspace packages once module boundaries stabilize past MVP0.1. |
 | Local storage | SQLite via `better-sqlite3` (+ `drizzle-orm` for schema/migrations) | single-user, offline-first, no server to operate |
 | Realtime voice | OpenAI Realtime API, `gpt-realtime-2.1`, WebSocket | already implemented in `ai/claude`'s sibling CLI; same protocol reused in `ai/openai` |
 | Wake word | Picovoice Porcupine (on-device) | see ARCHITECTURE.md §6 — must never stream idle audio to the cloud |
@@ -167,7 +165,102 @@ voice-claude/  →  shogun/ai/claude/   (package.json, .env.example, empty src/)
 
 Untouched: `records/` and everything else already in the repository.
 
-Nothing above executes code or requires the OpenAI key — safe to review
-before the MVP0.1 implementation pass, which will touch a much smaller,
-concrete file list (announced at the start of that session, per the same
-"list files before implementing" rule).
+Nothing above executes code or requires the OpenAI key — this was the
+docs-only pass. §8 covers the MVP0.1 implementation pass that followed.
+
+## 8. MVP0.1 — what was actually built (this pass)
+
+Status against the §6 task list:
+
+1. **Monorepo scaffold** — done, but as a single root package rather than
+   pnpm workspaces (see §2's Package management row). `shogun/package.json`,
+   `shogun/tsconfig.json`, `vitest` for tests. No `eslint`/`prettier` yet —
+   deferred as genuinely optional for MVP0.1 (nothing here is being
+   published or worked on by multiple contributors yet); worth adding
+   before MVP0.2 grows the codebase further.
+2. **`apps/desktop` — Tauri init** — done (`apps/desktop/src-tauri/`):
+   tray icon (left-click toggles the panel), global shortcut
+   (`Cmd+Shift+J`), transparent/borderless always-on-top window positioned
+   bottom-right at runtime (`position_bottom_right` in `main.rs`, since
+   `tauri.conf.json` can't know the real screen size). **Verified with
+   `cargo check` on Linux** (after installing `libwebkit2gtk-4.1-dev` etc.
+   in this environment specifically to get real compiler feedback instead
+   of guessing at the Tauri v2 API) — it compiles clean against the exact
+   APIs used (`TrayIconBuilder`, `GlobalShortcutExt`, `Emitter`, window
+   positioning). **Not** built or run as an actual macOS `.app` — see
+   `apps/desktop/README.md`'s verification-gap list.
+3. **`apps/desktop` — minimal UI** — done, plain HTML/CSS/JS (no
+   bundler/framework — a deviation from §2's "TBD React or Svelte"; see
+   `apps/desktop/src/index.html`'s comment for why this was simpler for
+   four states and zero external dependencies).
+4. **`ai/openai` — Realtime client** — done (`ai/openai/realtimeClient.ts`).
+   One further deviation from the CLI it was ported from: MVP0.1 lets the
+   Realtime model generate its **own** replies (`create_response: true`)
+   since OpenAI *is* the persona here — the original `voice-claude`/
+   `ai/claude` design suppressed that (`create_response: false`) because it
+   substituted Claude Code's text instead, which doesn't apply until
+   MVP0.3. `speak(text)` (verbatim out-of-band TTS) is still implemented
+   for that future use. Mic capture is the WebView's `getUserMedia` +
+   `AudioWorklet` (`apps/desktop/src/pcm-worklet.js`), resampled by
+   constructing the `AudioContext` at `{ sampleRate: 24000 }` rather than
+   hand-rolling a resampler.
+5. **`core/orchestrator` — state machine** — done, split into a pure,
+   fully unit-tested `stateMachine.ts` (8 tests) and a composition-root
+   `server.ts` that wires it to `ai/openai`/memory/database and exposes
+   the localhost WebSocket the desktop shell connects to.
+6. **`memory/working`** — done, unit-tested (4 tests).
+7. **`memory/daily`** — done, unit-tested (7 tests). Session-end detection
+   is a regex on the transcript (`終わり|おやすみ|お疲れ様でした|バイバイ`)
+   as planned; unexpected-quit autosave is a `socket.on("close")` handler.
+8. **Session resume** — done: `server.ts` loads the latest prior daily
+   record at startup and splices `summarizeDailyRecord()`'s output into
+   the system prompt.
+9. **Config/env + startup check** — done (`config.ts`, root-level per
+   ARCHITECTURE.md §10, zod-validated). "Startup check" ended up being
+   "fail fast with a readable error" (verified: missing `OPENAI_API_KEY`
+   produces a clear `ZodError` naming the field, not a crash deep in a
+   callback) rather than a separate `--check` flag/mic-permission probe —
+   the CLI's `--check` doesn't have a direct GUI-app equivalent; a
+   pre-flight mic-permission check is worth adding to the desktop shell
+   later.
+10. **Action Log** — done (`database/actionLog.ts`), wired into
+    `server.ts` for every user transcript.
+11. **`core/permissions` — interface only** — done, and given real unit
+    tests (9 tests) even though nothing calls it yet in MVP0.1, since the
+    logic (Level enum, CRITICAL confirmation heuristic) is cheap to verify
+    now and expensive to get subtly wrong later.
+12. **Dev/build docs** — done (`apps/desktop/README.md`,
+    root `README.md` Setup section), with an explicit list of what could
+    and couldn't be verified from this environment.
+
+**Verification performed in this environment:**
+`pnpm typecheck` (clean), `pnpm test` (28/28 passing across
+`core/permissions`, `core/orchestrator/stateMachine`, `memory/daily`,
+`memory/working`), a manual run of `core/orchestrator/server.ts` (fails
+fast and clearly with no `OPENAI_API_KEY`; starts and listens correctly
+with one set), and `cargo check` for the Tauri shell. **Not** performed
+(no hardware/OS for it here): an actual mic→OpenAI→speaker round trip, a
+built macOS `.app`, or real multi-monitor window positioning.
+
+### Files added in this pass
+
+```
+shogun/package.json  shogun/tsconfig.json  shogun/config.ts
+shogun/core/permissions/{index.ts,index.test.ts}
+shogun/core/orchestrator/{stateMachine.ts,stateMachine.test.ts,server.ts}
+shogun/memory/working/{index.ts,index.test.ts}
+shogun/memory/daily/{index.ts,index.test.ts}
+shogun/database/{db.ts,actionLog.ts}
+shogun/ai/openai/realtimeClient.ts
+shogun/apps/desktop/src-tauri/{Cargo.toml,build.rs,tauri.conf.json,Info.plist,src/main.rs,capabilities/default.json,icons/*.png}
+shogun/apps/desktop/src/{index.html,style.css,main.js,pcm-worklet.js}
+```
+
+`shogun/apps/desktop/src-tauri/Cargo.lock` and `shogun/pnpm-lock.yaml` are
+committed for reproducible builds. `shogun/apps/desktop/src-tauri/target/`
+and `.../gen/` (Tauri's regenerated ACL schemas) are git-ignored — see
+`.gitignore`.
+
+Not touched in this pass, per §5's milestone boundaries: `ai/claude/src`
+(MVP0.3), `voice/wake-word` (MVP0.1 follow-up), `mcp/*`, `integrations/*`
+(MVP0.4), `memory/long-term`, `memory/projects` (MVP0.2/0.3).

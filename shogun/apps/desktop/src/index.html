@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SHOGUN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!--
+      MVP0.1 UI: four states only (IDLE/LISTENING/THINKING/SPEAKING — spec
+      §15-16). CONFIRMING/EXECUTING render as a generic "busy" state for now
+      since MVP0.1 has no Level 1+ intents that reach them; a dedicated
+      confirmation affordance is MVP0.2+ work (docs/ARCHITECTURE.md §5).
+
+      No frontend framework/bundler for MVP0.1 — plain HTML/CSS/JS loaded
+      directly by the WebView (see apps/desktop/README.md). Reassess once
+      the UI grows past this.
+    -->
+    <main id="panel">
+      <div id="dot" class="dot" data-state="IDLE"></div>
+      <div id="state-label">SHOGUN</div>
+      <div id="transcript" aria-live="polite"></div>
+      <div id="connection-warning" hidden>core (ws://127.0.0.1:8787) に接続できません。`pnpm dev:core` を起動してください。</div>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+/* Transparent, borderless bottom-right panel — spec §15. */
+:root {
+  color-scheme: dark;
+  --bg: rgba(20, 16, 14, 0.86);
+  --fg: #f2ece4;
+  --accent-idle: #6b6058;
+  --accent-listening: #8fbf7f;
+  --accent-thinking: #d9a441;
+  --accent-speaking: #c9524a;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+#panel {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  -webkit-app-region: drag; /* lets the borderless panel be dragged by its body */
+}
+
+.dot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-idle);
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+.dot[data-state="LISTENING"] {
+  background: var(--accent-listening);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+.dot[data-state="THINKING"] {
+  background: var(--accent-thinking);
+  animation: spin 1.2s linear infinite;
+}
+.dot[data-state="SPEAKING"] {
+  background: var(--accent-speaking);
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#state-label {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+#transcript {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+#connection-warning {
+  font-size: 11px;
+  color: var(--accent-speaking);
+  text-align: center;
+}
