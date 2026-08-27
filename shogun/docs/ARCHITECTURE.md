@@ -27,7 +27,8 @@ SHOGUN is not a chat app. It is a persistent, voice-first concierge that:
                     │   apps/desktop (Tauri) │  tray icon, global shortcut,
                     │   WebView UI           │  bottom-right panel, mic capture
                     └───────────┬────────────┘  via getUserMedia in the WebView
-                                │ local IPC (Tauri commands / WS on localhost)
+                                │ WebSocket (local by default; ws(s):// —
+                                │ can point at a cloud-hosted core, §11)
                                 ▼
                     ┌───────────────────────┐
                     │   core/orchestrator    │  conversation state machine
@@ -248,11 +249,13 @@ remembering?" filter (an LLM call classifying candidate facts as
 ephemeral/notable/durable) before being promoted from Daily to Long-term —
 this is a planner task, not automatic accumulation of every utterance.
 
-`database/` is a single local SQLite file (`better-sqlite3` /
-`drizzle-orm`). SQLite is chosen over a server DB because SHOGUN is a
-single-user, single-machine, offline-capable app — no server to run or
-secure. Encryption-at-rest for the DB and memory files is flagged as
-future work (§ SECURITY.md), not required for MVP0.1.
+`database/` is a single SQLite file (`better-sqlite3` / `drizzle-orm`).
+SQLite is chosen over a server DB because SHOGUN is **single-user**,
+whether `core/orchestrator` runs on the user's own Mac (local dev) or on a
+small persistent host they control (§11) — either way there is exactly
+one writer and no multi-tenant story to build. Encryption-at-rest for the
+DB and memory files is flagged as future work (§ SECURITY.md), not
+required for MVP0.1.
 
 ## 9. Desktop shell
 
@@ -264,11 +267,45 @@ remains a fallback if a Tauri-specific blocker appears (e.g. a required
 native module with no Tauri-compatible binding) — call this out explicitly
 if it happens rather than silently switching.
 
-## 10. Open decisions carried into IMPLEMENTATION_PLAN.md
+## 11. Cloud deployment
+
+`core/orchestrator` is a plain Node process talking WebSocket — nothing
+about it assumes it's running on the same machine as the Tauri shell.
+Running it on a small always-on host instead of only via `pnpm dev:core`
+means SHOGUN stays reachable when the Mac is asleep/closed, and is a step
+toward eventually reaching SHOGUN from more than the desktop app (a phone
+or browser client — not built yet, but no longer architecturally blocked
+once core has a real network-facing address).
+
+This changes exactly one thing about the trust model: a WebSocket server
+that used to be unreachable by construction (loopback-only) is now
+reachable from the network, so it needs its own authentication —
+`core/orchestrator/auth.ts` enforces a shared-secret token
+(`CORE_AUTH_TOKEN`) the moment `CORE_WS_HOST` isn't loopback, and refuses
+to start otherwise (fail loud, not silently insecure). This is a single
+personal secret, not a multi-user auth system — see docs/SECURITY.md and
+docs/DEPLOYMENT.md for the full reasoning and the concrete deploy steps
+(Fly.io or any Docker host).
+
+`apps/desktop` is unaffected in what it does — it still owns
+mic/speaker/tray/shortcut — only *where it points* changes, via a small
+settings panel (`apps/desktop/src/settings.js`) storing the core URL and
+token in `localStorage`.
+
+**Not part of this change:** `ai/claude` (headless Claude Code) still only
+runs where `core/orchestrator` runs, and MVP0.1 doesn't wire it in yet
+(MVP0.3). Running the user's *coding* agent on a remote host instead of
+their own machine is a materially bigger decision — see
+docs/DEPLOYMENT.md's note on this — and should be made explicitly when
+MVP0.3 arrives, not inherited by default from this change.
+
+## 12. Open decisions carried into IMPLEMENTATION_PLAN.md
 
 - Exact wake-word trigger phrase set ("将軍" / "SHOGUN" / both) and Porcupine
   keyword training flow.
 - Whether MVP0.1's OpenAI persona already loads `prompts/shogun-system.md`
   verbatim, or a trimmed MVP subset.
-- Local port/IPC transport between the Tauri shell and the Node sidecar
-  (localhost WebSocket vs Tauri's `shell`/`sidecar` command API).
+- ~~Local port/IPC transport between the Tauri shell and the Node
+  sidecar~~ — resolved: plain WebSocket (§2 diagram), which turned out to
+  extend cleanly to a remote/cloud core (§11) without changing the
+  protocol, only the URL + adding auth.

@@ -66,6 +66,36 @@ the "24. SECURITY" section of the product spec into concrete rules.
   before logging if they could contain a secret (e.g. never log a full
   OAuth token even if a tool call happened to include one).
 
+## Cloud-hosted core (docs/DEPLOYMENT.md)
+
+`core/orchestrator` can run on a small persistent cloud host instead of
+only on the user's Mac (docs/ARCHITECTURE.md §11). This is the one place
+in SHOGUN where "local-first" becomes "single-user, but network-reachable"
+— treat the following as non-negotiable, the same as the rules above:
+
+- `core/orchestrator/auth.ts` refuses to bind to a non-loopback host
+  (`CORE_WS_HOST`) unless `CORE_AUTH_TOKEN` is set — this is enforced in
+  code, not just documented, so a misconfigured deploy fails to start
+  instead of quietly running unauthenticated.
+- The token is a single personal secret, generated randomly
+  (`openssl rand -hex 24`, per docs/DEPLOYMENT.md), stored as a platform
+  secret (`fly secrets set`, a host's env var manager, …) — **never** in
+  `fly.toml`, `.env` committed to git, or any file tracked by this repo.
+  Treat a leaked token exactly like a leaked API key (see Secrets, above):
+  rotate it immediately, don't wait for evidence of misuse.
+- TLS is terminated by the hosting platform (Fly.io, or a reverse proxy in
+  front of a plain Docker host) — the app itself only ever speaks plain
+  WebSocket. Never point the desktop app at an unencrypted `ws://` URL
+  once core is off the user's own machine/network; only `wss://`.
+- This is single-shared-secret auth, appropriate for exactly one user. If
+  SHOGUN ever needs to distinguish *which* authorized caller is connecting
+  (multiple people, or per-client permission scoping), that requires
+  replacing this token check — don't stretch it to do more than it's
+  built for.
+- SQLite still assumes exactly one writer (see docs/ARCHITECTURE.md §8).
+  Never deploy `core/orchestrator` to a platform that might run more than
+  one instance against the same database file/volume.
+
 ## MCP
 
 - `mcp/registry` records each server's permission scope (read-only vs

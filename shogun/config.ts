@@ -7,7 +7,7 @@
  * what's required and one place a startup check (`assertConfigReady`) can
  * fail loudly instead of a module crashing deep in a callback later.
  *
- * See docs/ARCHITECTURE.md §10 — this file currently lives at the repo
+ * See docs/ARCHITECTURE.md §12 — this file currently lives at the repo
  * root rather than under core/context/, which is where it's expected to
  * move once core/context grows beyond "just config".
  */
@@ -28,6 +28,18 @@ const ConfigSchema = z.object({
   SHOGUN_USER_NAME: z.string().default(""),
   SHOGUN_TIMEZONE: z.string().default("Asia/Tokyo"),
   CORE_WS_PORT: z.coerce.number().int().positive().default(8787),
+  // Bind address for the local WS server. Defaults to loopback-only, which
+  // is correct for local dev (`pnpm dev:core` + the Tauri shell on the same
+  // machine). A cloud deployment (docs/DEPLOYMENT.md) sets this to
+  // "0.0.0.0" so the platform's reverse proxy/load balancer can reach it —
+  // never set it to "0.0.0.0" on a machine directly exposed to the
+  // internet without also setting CORE_AUTH_TOKEN below.
+  CORE_WS_HOST: z.string().default("127.0.0.1"),
+  // Shared secret the desktop client must present to connect (see
+  // core/orchestrator/server.ts's auth check). Optional for local dev
+  // (loopback-only + no auth is an acceptable MVP0.1 default); required in
+  // practice the moment CORE_WS_HOST is not loopback — see docs/SECURITY.md.
+  CORE_AUTH_TOKEN: z.string().default(""),
 });
 
 export type ShogunConfig = z.infer<typeof ConfigSchema>;

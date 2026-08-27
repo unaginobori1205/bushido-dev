@@ -36,7 +36,10 @@ Read in this order:
    (secrets, mic privacy, permission enforcement, data-vs-instructions).
 4. [`docs/MCP_REGISTRY.md`](docs/MCP_REGISTRY.md) — MCP server
    registration schema.
-5. [`prompts/shogun-system.md`](prompts/shogun-system.md) — SHOGUN's core
+5. [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — running `core/orchestrator`
+   on a small always-on cloud host instead of (or alongside) local dev, so
+   SHOGUN stays reachable when the Mac is off.
+6. [`prompts/shogun-system.md`](prompts/shogun-system.md) — SHOGUN's core
    persona/system prompt.
 
 ## Repository layout
@@ -67,6 +70,7 @@ shogun/
 ├── database/                local SQLite (memory + action log)
 ├── prompts/shogun-system.md
 ├── docs/
+├── Dockerfile, fly.toml      core/orchestrator, cloud-deployable (docs/DEPLOYMENT.md)
 └── .env.example
 ```
 
@@ -83,8 +87,10 @@ responsibility and target MVP milestone until real code lands there.
 - **Reuse before rewrite.** `ai/claude` started life as a working
   standalone CLI in this session; it was moved and repositioned, not
   thrown away.
-- **Local-first.** SQLite + Markdown, no server dependency, for a
-  single-user Mac app.
+- **Single-user, not multi-tenant.** SQLite + Markdown storage; `core`
+  runs either on the user's own Mac or on a small persistent host they
+  control (docs/DEPLOYMENT.md) — never shared across users, never assumed
+  to have more than one writer.
 
 ## Setup
 
@@ -98,3 +104,8 @@ pnpm dev:core                # terminal A — starts the local WS server on :878
 Then, in a second terminal, run the Tauri desktop shell — see
 `apps/desktop/README.md` for `cargo tauri dev` instructions and, importantly,
 what has and hasn't been verified for the macOS build from this environment.
+
+To run `core/orchestrator` on a small always-on cloud host instead of
+(or in addition to) `pnpm dev:core` locally — so SHOGUN stays reachable
+when the Mac is asleep or off — see `docs/DEPLOYMENT.md`. The desktop
+app's ⚙ settings panel points it at either.

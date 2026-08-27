@@ -216,7 +216,7 @@ Status against the §6 task list:
    record at startup and splices `summarizeDailyRecord()`'s output into
    the system prompt.
 9. **Config/env + startup check** — done (`config.ts`, root-level per
-   ARCHITECTURE.md §10, zod-validated). "Startup check" ended up being
+   ARCHITECTURE.md §12, zod-validated). "Startup check" ended up being
    "fail fast with a readable error" (verified: missing `OPENAI_API_KEY`
    produces a clear `ZodError` naming the field, not a crash deep in a
    callback) rather than a separate `--check` flag/mic-permission probe —
@@ -234,13 +234,14 @@ Status against the §6 task list:
     and couldn't be verified from this environment.
 
 **Verification performed in this environment:**
-`pnpm typecheck` (clean), `pnpm test` (28/28 passing across
+`pnpm typecheck` (clean), `pnpm test` (28/28 passing at the time across
 `core/permissions`, `core/orchestrator/stateMachine`, `memory/daily`,
-`memory/working`), a manual run of `core/orchestrator/server.ts` (fails
-fast and clearly with no `OPENAI_API_KEY`; starts and listens correctly
-with one set), and `cargo check` for the Tauri shell. **Not** performed
-(no hardware/OS for it here): an actual mic→OpenAI→speaker round trip, a
-built macOS `.app`, or real multi-monitor window positioning.
+`memory/working` — see §9 for `core/orchestrator/auth`, added later and
+bringing the total to 36), a manual run of `core/orchestrator/server.ts`
+(fails fast and clearly with no `OPENAI_API_KEY`; starts and listens
+correctly with one set), and `cargo check` for the Tauri shell. **Not**
+performed (no hardware/OS for it here): an actual mic→OpenAI→speaker round
+trip, a built macOS `.app`, or real multi-monitor window positioning.
 
 ### Files added in this pass
 
@@ -264,3 +265,44 @@ and `.../gen/` (Tauri's regenerated ACL schemas) are git-ignored — see
 Not touched in this pass, per §5's milestone boundaries: `ai/claude/src`
 (MVP0.3), `voice/wake-word` (MVP0.1 follow-up), `mcp/*`, `integrations/*`
 (MVP0.4), `memory/long-term`, `memory/projects` (MVP0.2/0.3).
+
+## 9. Cloud-hosted core (post-MVP0.1 follow-up)
+
+Not one of the original MVP0.1 checklist items — added afterward, in
+response to a direct request to make `core/orchestrator` usable from the
+cloud rather than only via `pnpm dev:core` on the user's own Mac. See
+docs/ARCHITECTURE.md §11 for the design and docs/SECURITY.md's new
+"Cloud-hosted core" section for the rules.
+
+What was built:
+
+- `config.ts` — two new fields, `CORE_WS_HOST` (bind address, default
+  `127.0.0.1`) and `CORE_AUTH_TOKEN` (shared secret, default empty).
+- `core/orchestrator/auth.ts` (new, pure, unit tested — 8 tests) —
+  `assertBindingIsSafe` refuses to start a non-loopback server without a
+  token; `authorize` checks each connection's `?token=` against it.
+  `server.ts` calls both; a connection that fails `authorize` is closed
+  (code 1008) before any OpenAI/session work happens for it.
+- `apps/desktop/src/settings.js` (new) + a small ⚙ panel in `index.html`/
+  `style.css` — lets the desktop app point at a different core URL/token
+  without rebuilding, persisted in `localStorage`.
+- `Dockerfile`, `.dockerignore`, `fly.toml`, `docs/DEPLOYMENT.md` (new) —
+  a concrete way to actually run core on a persistent host (Fly.io
+  walkthrough, plus a platform-agnostic Docker option), including why
+  SQLite constrains this to a single always-on instance rather than a
+  scale-to-zero/multi-instance deployment.
+
+**Verification performed in this environment:** `pnpm typecheck` and
+`pnpm test` (36/36, including the new `auth.test.ts`) both clean; a manual
+run confirming `server.ts` refuses `CORE_WS_HOST=0.0.0.0` with no token
+and starts correctly once one is set. **Not performed** here (no Docker
+daemon, no Fly.io account in this environment): an actual `docker build`,
+`fly deploy`, or a real desktop-app-to-cloud-core connection — see
+docs/DEPLOYMENT.md's own verification note before relying on this for
+daily use.
+
+**Deliberately not done as part of this change:** wiring `ai/claude`
+(Claude Code) into a cloud-hosted core. MVP0.1 doesn't call `ai/claude` at
+all yet, and running the user's coding agent remotely is a bigger decision
+than running the conversation loop remotely — see docs/DEPLOYMENT.md's
+note on this, to be revisited explicitly when MVP0.3 wires Claude Code in.

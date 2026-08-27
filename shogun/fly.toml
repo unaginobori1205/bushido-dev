@@ -1,0 +1,44 @@
+# Example Fly.io config for core/orchestrator (docs/DEPLOYMENT.md).
+# Rename the app, then `fly launch --no-deploy` once to create it and
+# adjust `primary_region`/`app` to match, or just edit this file and
+# `fly deploy` directly — see docs/DEPLOYMENT.md for the full walkthrough.
+#
+# Secrets (OPENAI_API_KEY, CORE_AUTH_TOKEN) are deliberately NOT here —
+# this file is committed to git. Set them with `fly secrets set`.
+
+app = "your-shogun-core" # change this — must be globally unique on Fly
+primary_region = "nrt"   # Tokyo; pick whatever region is closest to you
+
+[build]
+
+[env]
+  CORE_WS_HOST = "0.0.0.0"
+  CORE_WS_PORT = "8787"
+  DATABASE_URL = "/data/shogun.sqlite"
+  SHOGUN_TIMEZONE = "Asia/Tokyo"
+  OPENAI_REALTIME_MODEL = "gpt-realtime-2.1"
+  TURN_DETECTION_TYPE = "semantic_vad"
+  INTERRUPTION_MODE = "barge-in"
+
+[http_service]
+  internal_port = 8787
+  force_https = true
+  # A personal assistant shouldn't have cold-start latency the moment
+  # you wake it — keep exactly one machine running rather than Fly's
+  # scale-to-zero default. Costs a small, predictable amount for a
+  # shared-cpu-1x/256MB machine kept always-on; check Fly's current
+  # pricing before deploying.
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[mounts]]
+  # Persistent volume for the SQLite DB (memory/daily + action log) — see
+  # docs/SECURITY.md on why this must never be a shared/multi-tenant
+  # store. Create it once: `fly volumes create shogun_data --size 1`
+  source = "shogun_data"
+  destination = "/data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

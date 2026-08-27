@@ -18,6 +18,7 @@ body {
 }
 
 #panel {
+  position: relative; /* anchors #settings-toggle/#settings-panel to the panel, not the window */
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
@@ -79,4 +80,59 @@ body {
   font-size: 11px;
   color: var(--accent-speaking);
   text-align: center;
+}
+
+#settings-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  opacity: 0.55;
+  cursor: pointer;
+  -webkit-app-region: no-drag; /* buttons/inputs must opt out of the panel's drag region to stay clickable */
+}
+#settings-toggle:hover {
+  opacity: 1;
+}
+
+#settings-panel {
+  position: absolute;
+  top: 38px;
+  right: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  font-size: 12px;
+  -webkit-app-region: no-drag;
+}
+#settings-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#settings-panel input {
+  font-size: 12px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--fg);
+}
+#settings-panel button {
+  padding: 6px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent-listening);
+  color: #12140f;
+  font-weight: 600;
+  cursor: pointer;
 }

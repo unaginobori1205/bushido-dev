@@ -13,10 +13,15 @@ always-on-top WebView panel anchored to the bottom-right of the screen
 This shell does **not** contain the conversation logic. It only owns the
 window/tray/shortcut/mic-capture/audio-playback surface; everything else
 (state machine, OpenAI Realtime connection, memory) runs as a separate
-local process — `core/orchestrator/server.ts` — that the frontend talks to
-over a plain WebSocket (`ws://127.0.0.1:8787`). See
-`docs/ARCHITECTURE.md` §2 for why, and `core/orchestrator/server.ts`'s
-header comment for the wire protocol.
+process — `core/orchestrator/server.ts` — that the frontend talks to over
+a WebSocket. See `docs/ARCHITECTURE.md` §2 for why, and
+`core/orchestrator/server.ts`'s header comment for the wire protocol.
+
+That process defaults to `ws://127.0.0.1:8787` (local dev, see below) but
+doesn't have to be local — click the panel's ⚙ (top-right) to point it at
+a cloud-hosted core instead (`wss://your-host`, plus the auth token it
+requires — see `docs/DEPLOYMENT.md`). Settings persist in the WebView's
+`localStorage`; see `src/settings.js`.
 
 ## Running it (macOS)
 
@@ -82,7 +87,9 @@ cargo tauri icon path/to/source-1024x1024.png
   (Porcupine) is the planned follow-up.
 - No bundler/framework for the frontend — plain HTML/CSS/JS. Revisit once
   the UI grows past four states.
-- The core process isn't packaged as a Tauri sidecar yet — it's a
-  separately-run Node process during development. Bundling it into the
-  shipped `.app` is a follow-up, not required for MVP0.1's "works via
-  `pnpm dev` + `cargo tauri dev`" bar.
+- The core process isn't packaged as a Tauri sidecar yet — it's either a
+  separately-run local Node process during development, or a cloud-hosted
+  one (docs/DEPLOYMENT.md) the app connects to via the ⚙ settings panel.
+  Bundling a *local* core into the shipped `.app` (so it doesn't need a
+  separate `pnpm dev:core` at all) is a possible future simplification for
+  users who don't want the cloud option, not required for MVP0.1.

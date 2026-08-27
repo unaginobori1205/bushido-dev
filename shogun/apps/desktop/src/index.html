@@ -18,10 +18,28 @@
       the UI grows past this.
     -->
     <main id="panel">
+      <button id="settings-toggle" type="button" aria-label="接続設定" title="接続設定">⚙</button>
       <div id="dot" class="dot" data-state="IDLE"></div>
       <div id="state-label">SHOGUN</div>
       <div id="transcript" aria-live="polite"></div>
-      <div id="connection-warning" hidden>core (ws://127.0.0.1:8787) に接続できません。`pnpm dev:core` を起動してください。</div>
+      <div id="connection-warning" hidden>core に接続できません。ローカルなら `pnpm dev:core` を起動、クラウド接続なら下の⚙で接続先を確認してください。</div>
+
+      <!--
+        Where core/orchestrator lives — local dev by default, or a
+        cloud-hosted URL (docs/DEPLOYMENT.md) + shared token
+        (core/orchestrator/auth.ts). See settings.js.
+      -->
+      <div id="settings-panel" hidden>
+        <label>
+          Core URL
+          <input id="settings-core-url" type="text" placeholder="ws://127.0.0.1:8787 or wss://your-shogun.example.com" />
+        </label>
+        <label>
+          Token
+          <input id="settings-core-token" type="password" placeholder="CORE_AUTH_TOKEN（ローカル接続なら空でOK）" />
+        </label>
+        <button id="settings-save" type="button">保存して再接続</button>
+      </div>
     </main>
     <script type="module" src="./main.js"></script>
   </body>

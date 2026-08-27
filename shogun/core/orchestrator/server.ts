@@ -18,6 +18,16 @@
  *   ← { type: "assistantAudio", data: "<base64 pcm16>" }
  *   ← { type: "assistantTranscript", text }
  *   ← { type: "error", message }
+ *
+ * Cloud deployment (docs/DEPLOYMENT.md): this same process is what you run
+ * on a small persistent host so it stays up when the user's Mac is off —
+ * the desktop shell just points CORE_WS_URL at `wss://<host>/?token=...`
+ * instead of `ws://127.0.0.1:8787`. Auth is a single shared secret
+ * (CORE_AUTH_TOKEN) checked in `authorize()` below; see docs/SECURITY.md
+ * for why that's the right amount of auth for a single-user personal
+ * server and what it deliberately doesn't cover (no per-request
+ * authorization levels — Permission Level, §5, is a separate, later
+ * concern from "is this even SHOGUN's owner connecting at all").
  */
 import { readFileSync } from "node:fs";
 import { WebSocketServer, type WebSocket } from "ws";
@@ -28,6 +38,7 @@ import { DailyMemory, summarizeDailyRecord } from "../../memory/daily/index.js";
 import { WorkingMemory } from "../../memory/working/index.js";
 import { RealtimeClient } from "../../ai/openai/realtimeClient.js";
 import { ConversationStateMachine } from "./stateMachine.js";
+import { assertBindingIsSafe, authorize } from "./auth.js";
 
 const SLEEP_PATTERN = /(終わり|おやすみ|お疲れ様でした|バイバイ)/;
 
@@ -42,6 +53,7 @@ function loadSystemPrompt(recap: string): string {
 
 async function main() {
   const config = getConfig();
+  assertBindingIsSafe(config.CORE_WS_HOST, config.CORE_AUTH_TOKEN);
   const db = openDatabase(config.DATABASE_URL);
   const dailyMemory = new DailyMemory(db);
   const workingMemory = new WorkingMemory();
@@ -50,11 +62,17 @@ async function main() {
   const recap = summarizeDailyRecord(dailyMemory.getLatestBefore(today(now)));
   const systemPrompt = loadSystemPrompt(recap);
 
-  const wss = new WebSocketServer({ port: config.CORE_WS_PORT });
-  console.log(`[shogun-core] listening on ws://127.0.0.1:${config.CORE_WS_PORT}`);
+  const wss = new WebSocketServer({ host: config.CORE_WS_HOST, port: config.CORE_WS_PORT });
+  console.log(`[shogun-core] listening on ws://${config.CORE_WS_HOST}:${config.CORE_WS_PORT}${config.CORE_AUTH_TOKEN ? " (token required)" : ""}`);
   console.log(`[shogun-core] recap for this session:\n${recap}`);
 
-  wss.on("connection", (socket) => handleConnection(socket, config, systemPrompt, workingMemory, dailyMemory, db));
+  wss.on("connection", (socket, req) => {
+    if (!authorize(req, config.CORE_AUTH_TOKEN)) {
+      socket.close(1008, "unauthorized"); // policy violation — see docs/SECURITY.md
+      return;
+    }
+    handleConnection(socket, config, systemPrompt, workingMemory, dailyMemory, db);
+  });
 }
 
 async function handleConnection(

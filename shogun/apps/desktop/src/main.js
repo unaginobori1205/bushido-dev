@@ -1,11 +1,11 @@
 /**
  * SHOGUN desktop frontend — MVP0.1. Vanilla JS, no bundler (see
- * index.html's comment). Connects to core/orchestrator's local WebSocket,
- * captures mic audio once woken, plays back streamed TTS audio, and
- * renders the four MVP0.1 states.
+ * index.html's comment). Connects to core/orchestrator's WebSocket
+ * (either the local dev server or a cloud-hosted one — see
+ * docs/DEPLOYMENT.md and settings.js), captures mic audio once woken,
+ * plays back streamed TTS audio, and renders the four MVP0.1 states.
  */
-
-const CORE_WS_URL = "ws://127.0.0.1:8787";
+import { getSettings, buildWsUrl, initSettingsUI } from "./settings.js";
 
 const dot = document.getElementById("dot");
 const stateLabel = document.getElementById("state-label");
@@ -35,8 +35,12 @@ function appendTranscript(prefix, text) {
 
 // ---- Core WebSocket -------------------------------------------------
 
+let reconnectTimer = null;
+
 function connectCore() {
-  ws = new WebSocket(CORE_WS_URL);
+  clearTimeout(reconnectTimer);
+  const { coreUrl, token } = getSettings();
+  ws = new WebSocket(buildWsUrl(coreUrl, token));
 
   ws.addEventListener("open", () => {
     connectionWarning.hidden = true;
@@ -44,10 +48,10 @@ function connectCore() {
 
   ws.addEventListener("close", () => {
     connectionWarning.hidden = false;
-    // Simple bounded reconnect — the core process is expected to be
-    // started manually in dev mode (`pnpm dev:core`); this just recovers
-    // if it was started a moment after the desktop shell.
-    setTimeout(connectCore, 2000);
+    // Simple bounded reconnect — the core process may be a local dev
+    // server started a moment after the desktop shell, or a cloud host
+    // that's momentarily unreachable; this just recovers either way.
+    reconnectTimer = setTimeout(connectCore, 2000);
   });
 
   ws.addEventListener("error", () => {
@@ -159,6 +163,12 @@ async function onWake() {
 }
 
 connectCore();
+initSettingsUI({
+  onSave: () => {
+    ws?.close();
+    connectCore(); // reconnect immediately with the new settings instead of waiting for the 2s auto-retry
+  },
+});
 
 if (window.__TAURI__) {
   const { listen } = window.__TAURI__.event;
