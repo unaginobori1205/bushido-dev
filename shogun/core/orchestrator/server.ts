@@ -140,7 +140,18 @@ async function handleConnection(
     send({ type: "error", message: error.message });
   });
 
-  await realtime.connect();
+  try {
+    await realtime.connect();
+  } catch (err) {
+    // Connection failure already reached the client via the "error"
+    // listener above (RealtimeClient emits before rejecting) — this catch
+    // exists purely so a bad/expired OPENAI_API_KEY or an unreachable
+    // Realtime API doesn't crash the whole server for every other
+    // connected client. Close this one connection and stop.
+    console.error("[shogun-core] failed to connect to OpenAI Realtime API:", err);
+    socket.close(1011, "upstream connection failed");
+    return;
+  }
 
   socket.on("message", (raw) => {
     let msg: Record<string, unknown>;
