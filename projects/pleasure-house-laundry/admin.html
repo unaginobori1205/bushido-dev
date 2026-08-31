@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>問合せ顧客管理システム｜プレジャーハウス</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body{background:#eef2f6}
+  header.top{background:var(--navy);color:#fff;padding:14px 0}
+  header.top .wrap{max-width:1240px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  header.top h1{font-size:17px;margin:0;font-weight:900}
+  header.top .brand{font-size:11px;letter-spacing:.3em;opacity:.8}
+  .spacer{flex:1}
+  .wrap{max-width:1240px}
+  .demo{background:#fff3cd;border-bottom:1px solid #ffe08a;color:#7a5900;font-size:13px;padding:8px 0}
+  main{padding:18px 0 60px}
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .l{font-size:12px;font-weight:800;color:var(--muted)}
+  .kpi .v{font-size:28px;font-weight:900;color:var(--navy);line-height:1.25}
+  .kpi .v small{font-size:14px;color:var(--muted)}
+  /* フィルタ */
+  .filters{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+  .filters .f{flex:1 1 150px}
+  .filters label{display:block;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:4px}
+  .filters select,.filters input{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;background:#fff}
+  /* テーブル */
+  .tablebox{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:auto}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:1000px}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{background:#f5f8fb;font-size:12px;color:var(--muted);position:sticky;top:0;cursor:pointer;user-select:none}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:#fffaf0}
+  .pill{display:inline-block;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:800}
+  .st-新規{background:#ffe8e2;color:#c2410c}
+  .st-連絡済{background:#e6f0ff;color:#1d4ed8}
+  .st-アポ設定{background:#e7f0ff;color:#0f2b4a}
+  .st-訪問\/点検済{background:#eae6ff;color:#5b21b6}
+  .st-提案中{background:#fff2cc;color:#8a6100}
+  .st-成約{background:#dcf5ea;color:#12805c}
+  .st-見送り{background:#eceff3;color:#6b7b8c}
+  .rank{font-weight:900;color:var(--navy)}
+  .alert{color:#c2410c;font-weight:800}
+  .empty{padding:40px;text-align:center;color:var(--muted)}
+  /* 店舗別 */
+  .bystore{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:18px}
+  .bystore h3{margin:0 0 12px;font-size:14px;color:var(--navy)}
+  .brow{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px}
+  .brow .nm{flex:0 0 190px;font-weight:700;overflow:hidden;text-overflow:ellipsis}
+  .brow .bar{flex:1;background:#eef2f6;border-radius:999px;height:16px;overflow:hidden;position:relative}
+  .brow .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sun),var(--gold))}
+  .brow .bar b{position:absolute;left:0;top:0;height:100%;background:var(--ok);opacity:.85}
+  .brow .num{flex:0 0 130px;text-align:right;color:var(--muted);font-size:12px}
+  .legend{font-size:12px;color:var(--muted);margin-top:8px}
+  .legend span{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}
+  /* ドロワー */
+  .ov{position:fixed;inset:0;background:rgba(15,43,74,.45);display:none;z-index:20}
+  .ov.on{display:block}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:#fff;z-index:21;transform:translateX(100%);transition:.25s;overflow:auto;box-shadow:-8px 0 30px rgba(0,0,0,.2)}
+  .drawer.on{transform:none}
+  .dhead{background:var(--navy);color:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}
+  .dhead h2{margin:0;font-size:16px;flex:1}
+  .dclose{background:none;border:0;color:#fff;font-size:24px;cursor:pointer;line-height:1}
+  .dbody{padding:20px}
+  .dl{display:grid;grid-template-columns:96px 1fr;gap:8px 12px;font-size:14px;margin-bottom:20px}
+  .dl dt{color:var(--muted);font-size:12px;font-weight:800;padding-top:3px}
+  .dl dd{margin:0;word-break:break-word}
+  .dbody label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin:0 0 4px}
+  .dbody select,.dbody input,.dbody textarea{width:100%;border:2px solid var(--line);border-radius:8px;padding:10px;font-size:15px;font-family:inherit;margin-bottom:14px}
+  .dact{display:flex;gap:10px;flex-wrap:wrap}
+  .diagbox{background:#f6f8fb;border-radius:10px;padding:12px;font-size:13px;line-height:1.8;margin-bottom:18px}
+  @media(max-width:700px){ .brow .nm{flex-basis:110px} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div>
+      <div class="brand">PLEASURE HOUSE</div>
+      <h1>問合せ顧客管理システム</h1>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn-sm" id="reload">↻ 更新</button>
+    <button class="btn btn-sm btn-ghost" id="csv">CSVダウンロード</button>
+  </div>
+</header>
+
+<div class="demo" id="demoBar" style="display:none">
+  <div class="wrap">
+    ⚠ デモモード（このブラウザにのみ保存）で動作中です。<code>assets/config.js</code> の <code>API_URL</code> に Google Apps Script のURLを設定すると本番データに接続します。
+    <button class="btn btn-sm btn-ghost" id="seed" style="margin-left:8px">サンプルデータを入れる</button>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="filters">
+    <div class="f"><label for="fStore">店舗</label><select id="fStore"><option value="">すべて</option></select></div>
+    <div class="f"><label for="fStatus">ステータス</label><select id="fStatus"><option value="">すべて</option></select></div>
+    <div class="f"><label for="fRank">診断タイプ</label><select id="fRank"><option value="">すべて</option><option>TYPE A</option><option>TYPE B</option><option>TYPE C</option><option>TYPE D</option></select></div>
+    <div class="f"><label for="fFrom">受付日（開始）</label><input type="date" id="fFrom"></div>
+    <div class="f"><label for="fTo">受付日（終了）</label><input type="date" id="fTo"></div>
+    <div class="f"><label for="fQ">フリーワード（氏名・電話・地域）</label><input type="text" id="fQ" placeholder="山田 / 090 / 中区"></div>
+    <div class="f" style="flex:0 0 auto"><button class="btn btn-sm btn-ghost" id="clear">条件クリア</button></div>
+  </div>
+
+  <div class="tablebox">
+    <table id="tbl">
+      <thead><tr>
+        <th data-k="createdAt">受付日時</th>
+        <th data-k="id">受付番号</th>
+        <th data-k="storeName">流入店舗</th>
+        <th data-k="name">お名前</th>
+        <th data-k="tel">電話番号</th>
+        <th data-k="area">地域</th>
+        <th data-k="diagRank">診断</th>
+        <th data-k="contactTime">希望時間帯</th>
+        <th data-k="status">ステータス</th>
+        <th data-k="nextDate">次回連絡</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty" id="empty">データがありません</div>
+  </div>
+
+  <div class="bystore">
+    <h3>店舗別の反響（掲示ポスターの効果測定）</h3>
+    <div id="storeChart"></div>
+    <div class="legend">
+      <span style="background:#f4a300"></span>問合せ数　
+      <span style="background:#12805c"></span>成約数
+    </div>
+  </div>
+
+</div>
+</main>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead">
+    <h2 id="dTitle">顧客詳細</h2>
+    <button class="dclose" id="dClose">×</button>
+  </div>
+  <div class="dbody">
+    <dl class="dl" id="dl"></dl>
+    <div class="diagbox" id="diagbox"></div>
+
+    <label for="dStatus">ステータス</label>
+    <select id="dStatus"></select>
+
+    <label for="dNext">次回連絡予定日</label>
+    <input type="date" id="dNext">
+
+    <label for="dOwner">担当者</label>
+    <input type="text" id="dOwner" placeholder="例）鈴木">
+
+    <label for="dMemo">対応メモ（履歴）</label>
+    <textarea id="dMemo" rows="6" placeholder="例）8/31 14:00 架電→不在。夕方に再架電。"></textarea>
+
+    <div class="dact">
+      <button class="btn" id="dSave">保存する</button>
+      <a class="btn btn-sm btn-ghost" id="dTel" href="#">☎ 発信</a>
+      <button class="btn btn-sm btn-ghost" id="dStamp">日時スタンプ挿入</button>
+    </div>
+  </div>
+</aside>
+
+<script src="assets/config.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+let ROWS = [], VIEW = [], current = null, sortKey = "createdAt", sortAsc = false;
+
+/* ---- 選択肢を初期化 ---- */
+PH.cfg.STORES.forEach(s => {
+  $("fStore").insertAdjacentHTML("beforeend", `<option value="${s.code}">${s.name}</option>`);
+});
+PH.cfg.STATUSES.forEach(s => {
+  $("fStatus").insertAdjacentHTML("beforeend", `<option>${s}</option>`);
+  $("dStatus").insertAdjacentHTML("beforeend", `<option>${s}</option>`);
+});
+if (PH.isDemo()) $("demoBar").style.display = "block";
+
+/* ---- 取得 ---- */
+async function load() {
+  try {
+    const res = await PH.get({ action: "list", token: PH.cfg.ADMIN_TOKEN });
+    if (!res.ok) throw new Error(res.error || "取得に失敗しました");
+    ROWS = res.rows || [];
+  } catch (e) {
+    alert("データの取得に失敗しました：" + e.message);
+    ROWS = [];
+  }
+  apply();
+}
+
+/* ---- 絞り込み・描画 ---- */
+function apply() {
+  const store = $("fStore").value, st = $("fStatus").value, rank = $("fRank").value;
+  const from = $("fFrom").value, to = $("fTo").value, q = $("fQ").value.trim().toLowerCase();
+  VIEW = ROWS.filter(r => {
+    if (store && r.storeCode !== store) return false;
+    if (st && (r.status || "新規") !== st) return false;
+    if (rank && r.diagRank !== rank) return false;
+    const d = (r.createdAt || "").slice(0, 10);
+    if (from && d < from) return false;
+    if (to && d > to) return false;
+    if (q) {
+      const hay = [r.name, r.tel, r.area, r.email, r.inquiry, r.storeName].join(" ").toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  VIEW.sort((a, b) => {
+    const x = (a[sortKey] ?? ""), y = (b[sortKey] ?? "");
+    return (x > y ? 1 : x < y ? -1 : 0) * (sortAsc ? 1 : -1);
+  });
+  renderKpi(); renderTable(); renderStores();
+}
+
+function fmt(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d)) return iso;
+  const p = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+function renderKpi() {
+  const now = new Date(), ym = now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0");
+  const month = VIEW.filter(r => (r.createdAt||"").slice(0,7) === ym).length;
+  const nw = VIEW.filter(r => (r.status||"新規") === "新規").length;
+  const appt = VIEW.filter(r => ["アポ設定","訪問/点検済","提案中","成約"].includes(r.status)).length;
+  const won = VIEW.filter(r => r.status === "成約").length;
+  const rate = VIEW.length ? Math.round(won / VIEW.length * 1000) / 10 : 0;
+  const today = new Date().toISOString().slice(0,10);
+  const due = VIEW.filter(r => r.nextDate && r.nextDate <= today && !["成約","見送り"].includes(r.status)).length;
+  const items = [
+    ["問合せ 合計", VIEW.length + "<small> 件</small>"],
+    ["今月の問合せ", month + "<small> 件</small>"],
+    ["未対応（新規）", `<span style="color:#c2410c">${nw}</span><small> 件</small>`],
+    ["要フォロー（期日到来）", `<span style="color:#c2410c">${due}</span><small> 件</small>`],
+    ["アポ以降", appt + "<small> 件</small>"],
+    ["成約", won + `<small> 件 / ${rate}%</small>`]
+  ];
+  $("kpis").innerHTML = items.map(([l,v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
+}
+
+function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function renderTable() {
+  const today = new Date().toISOString().slice(0,10);
+  $("empty").style.display = VIEW.length ? "none" : "block";
+  $("tbody").innerHTML = VIEW.map(r => {
+    const st = r.status || "新規";
+    const overdue = r.nextDate && r.nextDate <= today && !["成約","見送り"].includes(st);
+    return `<tr data-id="${esc(r.id)}">
+      <td>${fmt(r.createdAt)}</td>
+      <td>${esc(r.id)}</td>
+      <td>${esc(r.storeName || PH.storeName(r.storeCode))}</td>
+      <td><b>${esc(r.name)}</b></td>
+      <td>${esc(r.tel)}</td>
+      <td>${esc(r.area)}</td>
+      <td class="rank">${esc(r.diagRank)}</td>
+      <td>${esc(r.contactTime)}</td>
+      <td><span class="pill st-${esc(st)}">${esc(st)}</span></td>
+      <td class="${overdue ? "alert" : ""}">${esc(r.nextDate || "")}${overdue ? " ⚠" : ""}</td>
+    </tr>`;
+  }).join("");
+  $("tbody").querySelectorAll("tr").forEach(tr => tr.onclick = () => openDrawer(tr.dataset.id));
+}
+
+function renderStores() {
+  const map = new Map();
+  PH.cfg.STORES.forEach(s => map.set(s.code, { name: s.name, n: 0, won: 0 }));
+  VIEW.forEach(r => {
+    const k = r.storeCode || "";
+    if (!map.has(k)) map.set(k, { name: r.storeName || "（店舗コードなし）", n: 0, won: 0 });
+    const o = map.get(k); o.n++; if (r.status === "成約") o.won++;
+  });
+  const arr = [...map.values()].sort((a,b) => b.n - a.n);
+  const max = Math.max(1, ...arr.map(a => a.n));
+  $("storeChart").innerHTML = arr.map(a => `
+    <div class="brow">
+      <div class="nm">${esc(a.name)}</div>
+      <div class="bar"><i style="width:${a.n/max*100}%"></i><b style="width:${a.won/max*100}%"></b></div>
+      <div class="num">${a.n} 件 / 成約 ${a.won}</div>
+    </div>`).join("");
+}
+
+/* ---- ドロワー ---- */
+function openDrawer(id) {
+  current = ROWS.find(r => r.id === id);
+  if (!current) return;
+  const r = current;
+  $("dTitle").textContent = `${r.name || ""} 様（${r.id}）`;
+  $("dl").innerHTML = [
+    ["受付日時", fmt(r.createdAt)],
+    ["流入店舗", r.storeName || PH.storeName(r.storeCode)],
+    ["お電話", r.tel ? `<a href="tel:${esc(r.tel)}">${esc(r.tel)}</a>` : ""],
+    ["メール", r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : "―"],
+    ["地域", esc(r.area)],
+    ["希望時間帯", esc(r.contactTime) || "指定なし"],
+    ["ご相談内容", esc(r.inquiry) || "―"],
+    ["流入経路", esc(r.source) || "―"]
+  ].map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+  $("diagbox").innerHTML =
+    `<b>診断結果：${esc(r.diagRank)}</b>　スコア ${esc(r.diagScore)}<br>` +
+    `${esc(r.diagTitle)}<br><span class="muted" style="font-size:12px">${esc(r.diagAnswers)}</span>`;
+  $("dStatus").value = r.status || "新規";
+  $("dNext").value = r.nextDate || "";
+  $("dOwner").value = r.owner || "";
+  $("dMemo").value = r.memo || "";
+  $("dTel").href = r.tel ? "tel:" + r.tel : "#";
+  $("ov").classList.add("on"); $("drawer").classList.add("on");
+}
+function closeDrawer() { $("ov").classList.remove("on"); $("drawer").classList.remove("on"); current = null; }
+$("ov").onclick = closeDrawer;
+$("dClose").onclick = closeDrawer;
+
+$("dStamp").onclick = () => {
+  const d = new Date(), p = n => String(n).padStart(2,"0");
+  const stamp = `\n${d.getMonth()+1}/${d.getDate()} ${p(d.getHours())}:${p(d.getMinutes())} `;
+  const ta = $("dMemo");
+  ta.value = (ta.value + stamp).replace(/^\n/, "");
+  ta.focus();
+};
+
+$("dSave").onclick = async () => {
+  if (!current) return;
+  const patch = {
+    status: $("dStatus").value,
+    nextDate: $("dNext").value,
+    owner: $("dOwner").value.trim(),
+    memo: $("dMemo").value
+  };
+  $("dSave").disabled = true; $("dSave").textContent = "保存中…";
+  try {
+    const res = await PH.post({ action: "update", id: current.id, token: PH.cfg.ADMIN_TOKEN, patch });
+    if (!res.ok) throw new Error(res.error || "保存に失敗しました");
+    Object.assign(current, patch);
+    apply(); closeDrawer();
+  } catch (e) { alert("保存に失敗しました：" + e.message); }
+  $("dSave").disabled = false; $("dSave").textContent = "保存する";
+};
+
+/* ---- CSV ---- */
+$("csv").onclick = () => {
+  const cols = [
+    ["受付番号","id"],["受付日時","createdAt"],["流入店舗","storeName"],["店舗コード","storeCode"],
+    ["お名前","name"],["電話番号","tel"],["メール","email"],["地域","area"],["希望時間帯","contactTime"],
+    ["診断タイプ","diagRank"],["診断結果","diagTitle"],["スコア","diagScore"],["回答内容","diagAnswers"],
+    ["ご相談内容","inquiry"],["ステータス","status"],["担当者","owner"],["次回連絡日","nextDate"],["対応メモ","memo"]
+  ];
+  const q = s => `"${String(s ?? "").replace(/"/g, '""')}"`;
+  const csv = [cols.map(c => q(c[0])).join(",")]
+    .concat(VIEW.map(r => cols.map(c => q(r[c[1]])).join(",")))
+    .join("\r\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `問合せ一覧_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+
+/* ---- 並び替え・フィルタ操作 ---- */
+document.querySelectorAll("#tbl th").forEach(th => th.onclick = () => {
+  const k = th.dataset.k;
+  if (sortKey === k) sortAsc = !sortAsc; else { sortKey = k; sortAsc = true; }
+  apply();
+});
+["fStore","fStatus","fRank","fFrom","fTo"].forEach(id => $(id).onchange = apply);
+$("fQ").oninput = apply;
+$("clear").onclick = () => {
+  ["fStore","fStatus","fRank","fFrom","fTo","fQ"].forEach(id => $(id).value = "");
+  apply();
+};
+$("reload").onclick = load;
+
+/* ---- サンプルデータ（デモモードのみ） ---- */
+$("seed").onclick = () => {
+  const names = ["山田 太郎","佐藤 花子","鈴木 一郎","高橋 美咲","田中 健","伊藤 由紀","渡辺 修","中村 彩"];
+  const areas = ["名古屋市中区","名古屋市千種区","名古屋市中川区","春日井市","豊田市","一宮市"];
+  const ranks = ["TYPE A","TYPE A","TYPE B","TYPE C","TYPE D"];
+  const sts = ["新規","新規","連絡済","アポ設定","訪問/点検済","提案中","成約","見送り"];
+  names.forEach((n, i) => {
+    const s = PH.cfg.STORES[i % PH.cfg.STORES.length];
+    const created = new Date(Date.now() - i * 86400000 * 2).toISOString();
+    PH.localSave({ action: "submit", data: {
+      storeCode: s.code, storeName: s.name, name: n,
+      tel: "090" + String(10000000 + i * 1234567).slice(0, 8),
+      email: i % 3 ? `sample${i}@example.com` : "",
+      area: areas[i % areas.length],
+      contactTime: ["午前（9:00-12:00）","夕方（15:00-18:00）","土日祝",""][i % 4],
+      inquiry: i % 2 ? "電気代が高くて困っています" : "",
+      diagRank: ranks[i % ranks.length], diagTitle: "診断結果サンプル", diagScore: 6 + i,
+      diagAnswers: "サンプル回答", source: "店内ポスターQR",
+      status: sts[i % sts.length], createdAt: created
+    }});
+  });
+  load();
+};
+
+load();
+</script>
+</body>
+</html>

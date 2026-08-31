@@ -1,0 +1,38 @@
+/* プレジャーハウス 共通スタイル */
+:root{
+  --navy:#0f2b4a;
+  --navy-2:#173d64;
+  --gold:#f4a300;
+  --gold-2:#ffcf5c;
+  --sun:#ffb43a;
+  --ink:#16202b;
+  --muted:#6b7b8c;
+  --line:#e3e9ef;
+  --bg:#f6f8fb;
+  --white:#fff;
+  --ok:#12805c;
+  --warn:#c2410c;
+  --radius:14px;
+  --shadow:0 6px 24px rgba(15,43,74,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--ink);background:var(--bg);
+  font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,system-ui,sans-serif;
+  line-height:1.75;-webkit-text-size-adjust:100%;
+}
+img{max-width:100%}
+a{color:var(--navy)}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:0;border-radius:999px;padding:16px 28px;font-size:17px;font-weight:800;
+  background:linear-gradient(180deg,var(--sun),var(--gold));color:#3a2400;cursor:pointer;
+  box-shadow:0 6px 18px rgba(244,163,0,.35);text-decoration:none;
+}
+.btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+.btn-ghost{background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:none}
+.btn-sm{padding:9px 16px;font-size:14px}
+.muted{color:var(--muted)}
+.center{text-align:center}
