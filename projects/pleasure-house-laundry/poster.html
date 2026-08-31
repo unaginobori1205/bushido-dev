@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>店内掲示ポスター作成｜プレジャーハウス</title>
+<link rel="stylesheet" href="assets/style.css">
+<!-- QRコード生成ライブラリ（qrcode-generator / MIT）をローカル同梱。オフラインでも生成できます -->
+<script src="assets/qrcode.js"></script>
+<style>
+  body{background:#5b6775}
+  /* ---- 操作パネル（印刷されない） ---- */
+  .panel{background:#fff;padding:18px;border-bottom:3px solid var(--gold)}
+  .panel .wrap{max-width:1000px}
+  .panel h1{font-size:18px;margin:0 0 12px;color:var(--navy)}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+  .row .f{flex:1 1 200px}
+  .row label{display:block;font-size:12px;font-weight:800;margin-bottom:4px}
+  .row select,.row input{width:100%;border:2px solid var(--line);border-radius:8px;padding:9px 10px;font-size:14px}
+  .hint{font-size:12px;color:var(--muted);margin-top:10px}
+  /* ---- ポスター本体 A3縦 (297×420mm) ---- */
+  .sheet{
+    width:297mm;height:420mm;margin:24px auto;background:#fff;position:relative;overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+    display:flex;flex-direction:column;
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  }
+  .p-head{background:linear-gradient(160deg,#0f2b4a,#1c4a78);color:#fff;padding:13mm 14mm 10mm;text-align:center;position:relative}
+  .p-head::after{content:"";position:absolute;left:0;right:0;bottom:-6mm;height:12mm;background:inherit;transform:skewY(-1.4deg)}
+  .p-brand{font-size:5mm;letter-spacing:.4em;opacity:.85}
+  .p-eyebrow{display:inline-block;background:var(--gold);color:#3a2400;font-weight:900;font-size:6mm;border-radius:999px;padding:2mm 8mm;margin:6mm 0 5mm}
+  .p-h1{font-size:17mm;font-weight:900;line-height:1.25;margin:0}
+  .p-h1 em{font-style:normal;color:#ffc45c}
+  .p-sub{font-size:6.4mm;margin:5mm 0 0;opacity:.95;font-weight:700}
+  .p-body{flex:1;padding:12mm 14mm 0;display:flex;flex-direction:column}
+  .p-lead{font-size:6.2mm;line-height:1.7;font-weight:700;color:#16202b;text-align:center;margin:0 0 7mm}
+  .p-lead b{background:linear-gradient(transparent 62%,#ffe08a 62%)}
+  .qbox{display:flex;gap:10mm;align-items:center;border:2mm solid #f4a300;border-radius:6mm;padding:9mm;background:#fffdf6}
+  .qcode{width:66mm;height:66mm;flex:none;background:#fff;padding:3mm;border-radius:2mm}
+  .qcode svg{display:block;width:100%;height:100%}
+  .qtext .t1{font-size:8.6mm;font-weight:900;color:#0f2b4a;line-height:1.35}
+  .qtext .t2{font-size:5.6mm;font-weight:700;color:#c2410c;margin-top:3mm}
+  .qtext .t3{font-size:4.6mm;color:#6b7b8c;margin-top:3mm;line-height:1.6}
+  .steps{display:flex;gap:5mm;margin:7mm 0 0}
+  .step{flex:1;text-align:center;border:1px solid #e3e9ef;border-radius:4mm;padding:6mm 3mm;background:#f6f8fb}
+  .step .n{width:11mm;height:11mm;line-height:11mm;border-radius:50%;background:#0f2b4a;color:#fff;font-weight:900;font-size:6mm;margin:0 auto 3mm}
+  .step .s{font-size:5mm;font-weight:800;line-height:1.5}
+  .checks{display:flex;flex-wrap:wrap;gap:3mm;margin:7mm 0 0;justify-content:center}
+  .chk{background:#0f2b4a;color:#fff;border-radius:999px;padding:2.5mm 7mm;font-size:5mm;font-weight:800}
+  .trust{display:flex;gap:5mm;margin:7mm 0 0}
+  .trust div{flex:1;text-align:center;border-top:1mm solid #f4a300;padding-top:4mm}
+  .trust .big{font-size:9mm;font-weight:900;color:#0f2b4a;line-height:1.2}
+  .trust .cap{font-size:4.2mm;color:#6b7b8c;font-weight:700}
+  .p-foot{margin-top:auto;background:#0f2b4a;color:#fff;padding:7mm 14mm;display:flex;justify-content:space-between;align-items:center}
+  .p-foot .cname{font-size:6.4mm;font-weight:900}
+  .p-foot .cinfo{font-size:4.2mm;line-height:1.7;opacity:.9}
+  .p-foot .ctel{font-size:9mm;font-weight:900;letter-spacing:.02em;text-align:right;line-height:1.2}
+  .p-foot .ctel small{display:block;font-size:4mm;font-weight:700;opacity:.85}
+  .p-store{position:absolute;top:0;right:0;background:#f4a300;color:#3a2400;font-size:4.4mm;font-weight:900;padding:2.5mm 7mm;border-bottom-left-radius:4mm;z-index:2}
+  .p-note{font-size:3.4mm;color:#6b7b8c;text-align:center;margin:5mm 0 4mm;line-height:1.55}
+
+  @media print{
+    @page{size:A3 portrait;margin:0}
+    body{background:#fff}
+    .panel{display:none}
+    .sheet{margin:0;box-shadow:none;page-break-after:always}
+  }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <div class="wrap">
+    <h1>店内掲示ポスター作成（A3縦・そのまま印刷できます）</h1>
+    <div class="row">
+      <div class="f">
+        <label for="store">掲示する店舗</label>
+        <select id="store"></select>
+      </div>
+      <div class="f">
+        <label for="url">QRの遷移先（診断ページURL）</label>
+        <input type="text" id="url" placeholder="https://example.com/index.html">
+      </div>
+      <div class="f" style="flex:0 0 auto">
+        <button class="btn btn-sm" id="print">🖨 印刷 / PDF保存</button>
+      </div>
+    </div>
+    <p class="hint">
+      店舗を選ぶと QR に <code>?store=店舗コード</code> が自動で付き、管理画面で「どの店舗からの問合せか」が集計できます。<br>
+      店舗の追加は <code>assets/config.js</code> の <code>STORES</code> に1行追加するだけです。印刷は「背景のグラフィック」をONにしてください。
+    </p>
+  </div>
+</div>
+
+<div class="sheet" id="sheet">
+  <div class="p-store" id="pStore">コインランドリー栄店</div>
+
+  <div class="p-head">
+    <div class="p-brand">PLEASURE HOUSE</div>
+    <div class="p-eyebrow">洗濯を待つ 30秒で できること</div>
+    <h1 class="p-h1">その電気代、<br><em>まだ下げられる</em>かも。</h1>
+    <p class="p-sub">太陽光＋蓄電池の「わが家タイプ診断」</p>
+  </div>
+
+  <div class="p-body">
+    <p class="p-lead">
+      電気代は上がり続け、売電価格は下がり続けています。<br>
+      <b>6問・30秒</b>の簡易診断で、わが家に合った見直し方がわかります。
+    </p>
+
+    <div class="qbox">
+      <div class="qcode" id="qr"></div>
+      <div class="qtext">
+        <div class="t1">スマホで読み取って<br>いますぐ無料診断</div>
+        <div class="t2">個人情報の入力なしで結果がわかります</div>
+        <div class="t3">診断のあと、ご希望の方だけ<br>「無料点検・無料シミュレーション」をお申し込みいただけます。</div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="s">QRを<br>読み取る</div></div>
+      <div class="step"><div class="n">2</div><div class="s">6問に<br>答える</div></div>
+      <div class="step"><div class="n">3</div><div class="s">結果と目安が<br>その場で表示</div></div>
+      <div class="step"><div class="n">4</div><div class="s">希望者のみ<br>無料相談を申込</div></div>
+    </div>
+
+    <div class="checks">
+      <span class="chk">電気代が高い</span>
+      <span class="chk">停電がこわい</span>
+      <span class="chk">太陽光を昔あきらめた</span>
+      <span class="chk">小さな子ども・ペットがいる</span>
+    </div>
+
+    <div class="trust">
+      <div><div class="big">約7,000件</div><div class="cap">東海エリア中心の施工実績</div></div>
+      <div><div class="big">★4.8</div><div class="cap">Googleレビュー平均</div></div>
+      <div><div class="big">0円</div><div class="cap">点検・ご相談・試算</div></div>
+      <div><div class="big">雨漏り0件</div><div class="cap">7,000件の施工実績のなかで</div></div>
+    </div>
+
+    <p class="p-note">
+      ※ 診断結果・削減額は一般的な参考シミュレーションです。効果はご家庭の使用状況・機器構成・設置条件・天候等により異なり、効果を保証するものではありません。<br>
+      ※ 本掲示は店舗運営とは関係のない告知です。店舗スタッフへのお問い合わせはご遠慮ください。
+    </p>
+  </div>
+
+  <div class="p-foot">
+    <div>
+      <div class="cname">株式会社プレジャーハウス</div>
+      <div class="cinfo">愛知県名古屋市中区錦3-23-18 ニューサカエビル6階<br>太陽光発電／蓄電池／エコキュート／IH／住宅メンテナンス</div>
+    </div>
+    <div class="ctel">052-228-6565<small>お電話でのご相談も歓迎です</small></div>
+  </div>
+</div>
+
+<script src="assets/config.js"></script>
+<script>
+const sel = document.getElementById("store");
+PH.cfg.STORES.forEach(s => {
+  const o = document.createElement("option");
+  o.value = s.code; o.textContent = s.name; sel.appendChild(o);
+});
+const urlInput = document.getElementById("url");
+urlInput.value = PH.cfg.FORM_BASE_URL;
+
+let qr = null;
+function draw() {
+  const code = sel.value;
+  const base = urlInput.value.trim() || PH.cfg.FORM_BASE_URL;
+  const url = base + (base.includes("?") ? "&" : "?") + "store=" + encodeURIComponent(code);
+  document.getElementById("pStore").textContent = PH.storeName(code) + " 掲示用";
+  const box = document.getElementById("qr");
+  box.innerHTML = "";
+  const q = qrcode(0, "H");          // 誤り訂正レベル H（汚れ・かすれに強い）
+  q.addData(url);
+  q.make();
+  box.innerHTML = q.createSvgTag({ cellSize: 8, margin: 0, scalable: true });
+  qr = url;
+}
+sel.onchange = draw;
+urlInput.oninput = draw;
+document.getElementById("print").onclick = () => window.print();
+draw();
+</script>
+</body>
+</html>

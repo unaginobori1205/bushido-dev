@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>30秒でわかる わが家の光熱費見直し診断｜株式会社プレジャーハウス</title>
+<meta name="description" content="太陽光・蓄電池で電気代を見直せるか、30秒の簡易診断でチェック。無料点検・無料シミュレーションのご相談も受付中です。">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .hero{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;padding:36px 0 30px;text-align:center}
+  .hero .brand{font-size:12px;letter-spacing:.28em;opacity:.85}
+  .hero h1{font-size:27px;line-height:1.45;margin:14px 0 10px;font-weight:900}
+  .hero h1 em{font-style:normal;color:var(--sun)}
+  .hero p{margin:0;font-size:15px;opacity:.9}
+  .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700}
+  .storebar{background:var(--gold);color:#3a2400;text-align:center;font-size:13px;font-weight:800;padding:8px}
+  section{padding:26px 0}
+  h2{font-size:20px;margin:0 0 14px;font-weight:900;color:var(--navy)}
+  .qcard{padding:22px 20px;margin-bottom:16px}
+  .progress{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px}
+  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--sun),var(--gold));transition:width .3s}
+  .qnum{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.08em}
+  .qtext{font-size:19px;font-weight:900;margin:6px 0 16px;line-height:1.5}
+  .opts{display:grid;gap:10px}
+  .opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;padding:14px 16px;font-size:16px;font-weight:700;cursor:pointer;transition:.15s}
+  .opt:hover{border-color:var(--gold);background:#fffaf0}
+  .backlink{margin-top:14px;font-size:14px;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline}
+  /* 結果 */
+  .result{padding:24px 20px}
+  .rank{display:inline-block;background:var(--navy);color:#fff;border-radius:999px;padding:6px 18px;font-size:13px;font-weight:800;letter-spacing:.1em}
+  .rtitle{font-size:24px;font-weight:900;margin:14px 0 6px;line-height:1.45;color:var(--navy)}
+  .rlead{margin:0 0 18px}
+  .est{background:#fff8ea;border:1px dashed var(--gold);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px}
+  .est .lbl{font-size:13px;font-weight:800;color:var(--warn);line-height:1.5}
+  .est .val{font-size:30px;font-weight:900;color:var(--navy);line-height:1.25;white-space:nowrap}
+  .est .val small{font-size:15px}
+  .points{list-style:none;padding:0;margin:0 0 18px}
+  .points li{position:relative;padding-left:26px;margin-bottom:8px;font-size:15px}
+  .points li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:900}
+  /* フォーム */
+  .form{padding:24px 20px}
+  .field{margin-bottom:16px}
+  label.lb{display:block;font-size:14px;font-weight:800;margin-bottom:6px}
+  .req{background:var(--warn);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+  .any{background:var(--muted);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+  input[type=text],input[type=tel],input[type=email],select,textarea{
+    width:100%;border:2px solid var(--line);border-radius:10px;padding:13px 14px;font-size:16px;font-family:inherit;background:#fff}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold)}
+  .chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;background:#f2f6fa;border-radius:10px;padding:14px}
+  .chk input{margin-top:4px;width:18px;height:18px;flex:none}
+  .err{color:#c00;font-size:13px;margin-top:6px;display:none}
+  .note{font-size:12px;color:var(--muted);margin-top:10px}
+  /* 完了 */
+  .done{padding:34px 20px;text-align:center}
+  .done .mark{font-size:52px;line-height:1}
+  /* 会社情報 */
+  .company{background:var(--navy);color:#fff;padding:26px 0;margin-top:30px}
+  .company .wrap{font-size:13px;line-height:1.9}
+  .company b{font-size:15px}
+  .tel{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border-radius:999px;padding:10px 22px;font-size:20px;font-weight:900;text-decoration:none;margin:10px 0}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="storebar" id="storebar">お洗濯のお時間に、30秒でチェック</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">PLEASURE HOUSE</div>
+    <h1>その電気代、<em>まだ下げられる</em>かもしれません。</h1>
+    <p>30秒・6問の簡易診断でわが家のタイプがわかります</p>
+    <div class="badges">
+      <span class="badge">東海エリア 施工 約7,000件</span>
+      <span class="badge">Googleレビュー ★4.8</span>
+      <span class="badge">点検・相談 0円</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 診断 ============ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="progress"><i id="bar" style="width:0%"></i></div>
+    <div class="card qcard">
+      <div class="qnum" id="qnum">Q1 / 6</div>
+      <div class="qtext" id="qtext"></div>
+      <div class="opts" id="opts"></div>
+      <button class="backlink hidden" id="back" type="button">← ひとつ前にもどる</button>
+    </div>
+    <p class="note center">※ 個人情報の入力は不要です。結果はすぐに表示されます。</p>
+  </div>
+</section>
+
+<!-- ============ 結果 ============ -->
+<section id="resultSec" class="hidden">
+  <div class="wrap">
+    <div class="card result">
+      <span class="rank" id="rank"></span>
+      <h2 class="rtitle" id="rtitle"></h2>
+      <p class="rlead" id="rlead"></p>
+      <div class="est" id="estBox">
+        <div class="lbl">月々の電気代 削減の目安（参考シミュレーション）</div>
+        <div class="val" id="estVal"></div>
+        <div class="muted" style="font-size:12px">年間にすると <b id="estYear"></b> の目安です</div>
+      </div>
+      <ul class="points" id="rpoints"></ul>
+      <div class="center">
+        <a href="#formSec" class="btn" id="toForm">無料点検・無料シミュレーションを申し込む</a>
+      </div>
+      <p class="note">※ 診断結果は一般的な参考例です。実際の効果はご家庭の使用状況・機器構成・設置条件・天候等により異なり、効果を保証するものではありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 申込フォーム ============ -->
+<section id="formSec" class="hidden">
+  <div class="wrap">
+    <h2>ご相談・無料点検のお申し込み</h2>
+    <form class="card form" id="leadForm" novalidate>
+      <div class="field">
+        <label class="lb" for="name">お名前<span class="req">必須</span></label>
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="例）山田 太郎">
+        <div class="err" data-for="name">お名前をご入力ください</div>
+      </div>
+      <div class="field">
+        <label class="lb" for="tel">お電話番号<span class="req">必須</span></label>
+        <input type="tel" id="tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="例）09012345678">
+        <div class="err" data-for="tel">電話番号を数字でご入力ください</div>
+      </div>
+      <div class="field">
+        <label class="lb" for="email">メールアドレス<span class="any">任意</span></label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="例）sample@example.com">
+        <div class="err" data-for="email">メールアドレスの形式をご確認ください</div>
+      </div>
+      <div class="field">
+        <label class="lb" for="area">お住まいの市区町村<span class="req">必須</span></label>
+        <input type="text" id="area" name="area" placeholder="例）名古屋市中区">
+        <div class="err" data-for="area">市区町村をご入力ください</div>
+      </div>
+      <div class="field">
+        <label class="lb" for="contactTime">ご連絡しやすい時間帯<span class="any">任意</span></label>
+        <select id="contactTime" name="contactTime">
+          <option value="">指定なし</option>
+          <option>午前（9:00-12:00）</option>
+          <option>午後（12:00-15:00）</option>
+          <option>夕方（15:00-18:00）</option>
+          <option>夜間（18:00-20:00）</option>
+          <option>土日祝</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="lb" for="memo">ご相談内容・気になること<span class="any">任意</span></label>
+        <textarea id="memo" name="memo" rows="3" placeholder="例）10年前に太陽光を検討して見送りました。今の電気代が気になります。"></textarea>
+      </div>
+      <div class="field">
+        <label class="chk">
+          <input type="checkbox" id="agree">
+          <span>ご入力内容を、無料点検・シミュレーションのご案内のみに利用することに同意します。しつこい営業は一切いたしません。</span>
+        </label>
+        <div class="err" data-for="agree">同意にチェックをお願いします</div>
+      </div>
+      <div class="center">
+        <button type="submit" class="btn" id="submitBtn">この内容で申し込む</button>
+      </div>
+      <p class="note center">お電話でのご相談も歓迎です　<a href="tel:0522286565">052-228-6565</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ 完了 ============ -->
+<section id="doneSec" class="hidden">
+  <div class="wrap">
+    <div class="card done">
+      <div class="mark">✅</div>
+      <h2 style="margin-top:12px">お申し込みありがとうございます</h2>
+      <p>担当者より、ご希望の時間帯に合わせてご連絡いたします。<br>受付番号：<b id="leadId"></b></p>
+      <p class="muted" style="font-size:13px">お急ぎの場合はお電話ください</p>
+      <a class="tel" href="tel:0522286565">☎ 052-228-6565</a>
+    </div>
+  </div>
+</section>
+
+<footer class="company">
+  <div class="wrap center">
+    <b>株式会社プレジャーハウス</b><br>
+    愛知県名古屋市中区錦3-23-18 ニューサカエビル6階<br>
+    TEL 052-228-6565／東海エリアを中心に施工実績 約7,000件<br>
+    太陽光発電・蓄電池・エコキュート・IH・住宅メンテナンス
+  </div>
+</footer>
+
+<script src="assets/config.js"></script>
+<script>
+/* ---------- 店舗コード（QRの ?store= から取得） ---------- */
+const params = new URLSearchParams(location.search);
+const STORE = params.get("store") || "";
+if (STORE) {
+  document.getElementById("storebar").textContent =
+    PH.storeName(STORE) + " をご利用のみなさまへ";
+}
+
+/* ---------- 設問 ---------- */
+const QUESTIONS = [
+  { q: "お住まいの種別を教えてください",
+    a: [ {t:"持ち家（戸建て）", s:3, k:"house"},
+         {t:"持ち家（マンション）", s:1, k:"mansion"},
+         {t:"賃貸（戸建て・アパート等）", s:0, k:"rent"} ] },
+  { q: "1か月の電気代はどのくらいですか？",
+    a: [ {t:"8,000円未満", s:0, k:"~8000"},
+         {t:"8,000〜12,000円", s:1, k:"8-12k"},
+         {t:"12,000〜18,000円", s:2, k:"12-18k"},
+         {t:"18,000円以上", s:3, k:"18k~"} ] },
+  { q: "太陽光発電はすでに設置していますか？",
+    a: [ {t:"設置していない", s:2, k:"none"},
+         {t:"太陽光のみ設置済み（蓄電池なし）", s:3, k:"pv_only"},
+         {t:"太陽光＋蓄電池を設置済み", s:1, k:"pv_batt"} ] },
+  { q: "ご家族の構成に近いものは？",
+    a: [ {t:"小さなお子さまがいる／ペットがいる", s:2, k:"kids"},
+         {t:"大人2人以上（共働きなど）", s:1, k:"adults"},
+         {t:"ご高齢の方と同居", s:2, k:"senior"},
+         {t:"ひとり暮らし", s:0, k:"single"} ] },
+  { q: "災害・停電への備えは気になりますか？",
+    a: [ {t:"とても気になる", s:2, k:"high"},
+         {t:"少し気になる", s:1, k:"mid"},
+         {t:"あまり気にしていない", s:0, k:"low"} ] },
+  { q: "お住まいの築年数はどのくらいですか？",
+    a: [ {t:"10年未満", s:1, k:"~10y"},
+         {t:"10〜20年", s:2, k:"10-20y"},
+         {t:"20年以上", s:2, k:"20y~"},
+         {t:"わからない", s:1, k:"unknown"} ] }
+];
+
+let idx = 0, score = 0;
+const answers = [];
+const $ = id => document.getElementById(id);
+
+function render() {
+  const q = QUESTIONS[idx];
+  $("qnum").textContent = `Q${idx + 1} / ${QUESTIONS.length}`;
+  $("qtext").textContent = q.q;
+  $("bar").style.width = (idx / QUESTIONS.length * 100) + "%";
+  const box = $("opts");
+  box.innerHTML = "";
+  q.a.forEach(opt => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "opt";
+    b.textContent = opt.t;
+    b.onclick = () => choose(opt);
+    box.appendChild(b);
+  });
+  $("back").classList.toggle("hidden", idx === 0);
+}
+
+function choose(opt) {
+  answers[idx] = opt;
+  idx++;
+  if (idx < QUESTIONS.length) { render(); window.scrollTo({top:0,behavior:"smooth"}); }
+  else finish();
+}
+
+$("back").onclick = () => { if (idx > 0) { idx--; render(); } };
+
+/* ---------- 結果判定 ---------- */
+function finish() {
+  score = answers.reduce((n, a) => n + a.s, 0);
+  const housing = answers[0].k;
+  const bill    = answers[1].k;
+  const pv      = answers[2].k;
+
+  let rank, title, lead, est, points;
+
+  if (housing === "rent" || housing === "mansion") {
+    rank = "TYPE D";
+    title = "まずは「使い方の見直し」からご提案できます";
+    lead = "現在のお住まいでは設備の設置が難しい場合がありますが、電気の契約プランや家電の使い方の見直しでも負担を減らせることがあります。将来の住み替え・ご実家のご相談も承っています。";
+    est = null;
+    points = [
+      "ご実家・ご親族のお住まいのご相談も無料で承ります",
+      "将来のマイホーム計画に合わせたシミュレーションが可能",
+      "しつこい営業は一切いたしません"
+    ];
+  } else if (pv === "pv_only") {
+    rank = "TYPE A";
+    title = "蓄電池の追加で、いちばん効果が出やすいタイプです";
+    lead = "売電価格が下がるいま、昼につくった電気を「売る」より「ためて夜に使う」ほうがメリットの大きいご家庭です。既設の太陽光をそのまま活かせます。";
+    est = bill === "18k~" ? [10000, 14000] : bill === "12-18k" ? [7000, 11000] : [4000, 8000];
+    points = [
+      "既設の太陽光に蓄電池を後付けして自家消費率をアップ",
+      "停電時も照明・冷蔵庫などの必要な電気を確保",
+      "発電量が落ちていないか、まず無料点検で確認できます"
+    ];
+  } else if (score >= 11) {
+    rank = "TYPE A";
+    title = "太陽光＋蓄電池の導入メリットが大きいタイプです";
+    lead = "電気の使用量・ご家族構成・お住まいの条件から、導入効果が出やすいご家庭と考えられます。初期費用0円・月々払いのプランもご用意しています。";
+    est = bill === "18k~" ? [11000, 15000] : [8000, 12000];
+    points = [
+      "頭金・初期費用0円のプランあり（月々のお支払いのみ）",
+      "削減できた光熱費で設備費をまかなえる場合があります",
+      "停電時の備えとしても安心につながります"
+    ];
+  } else if (score >= 7) {
+    rank = "TYPE B";
+    title = "条件しだいで、しっかり効果が期待できるタイプです";
+    lead = "屋根の向き・形状や日照条件を確認すれば、削減効果を具体的に出せます。まずは無料シミュレーションで数字をご覧ください。";
+    est = [5000, 9000];
+    points = [
+      "屋根の形状・向き・面積から設置シミュレーションを実施",
+      "地域の日照条件・電力会社の情報をもとに最適プランをご提案",
+      "電気明細1か月分があれば、より正確な試算が可能です"
+    ];
+  } else {
+    rank = "TYPE C";
+    title = "いまは「無料点検」でお住まいの状態確認がおすすめです";
+    lead = "電気代の削減幅は大きくない可能性がありますが、太陽光・蓄電池・エコキュート・IH、床下や天井裏まで無料で点検いたします。気になる箇所だけでも大丈夫です。";
+    est = null;
+    points = [
+      "太陽光・蓄電池・エコキュート・IHの動作確認",
+      "床下のシロアリ検査／天井裏の雨漏り検査",
+      "点検・ご相談は0円。無理な売り込みはいたしません"
+    ];
+  }
+
+  $("bar").style.width = "100%";
+  $("rank").textContent = rank;
+  $("rtitle").textContent = title;
+  $("rlead").textContent = lead;
+  if (est) {
+    $("estVal").innerHTML = `月 ${est[0].toLocaleString()}〜${est[1].toLocaleString()}<small> 円</small>`;
+    $("estYear").textContent = `約 ${(est[0]*12).toLocaleString()}〜${(est[1]*12).toLocaleString()} 円`;
+    $("estBox").classList.remove("hidden");
+  } else {
+    $("estBox").classList.add("hidden");
+  }
+  const ul = $("rpoints"); ul.innerHTML = "";
+  points.forEach(p => { const li = document.createElement("li"); li.textContent = p; ul.appendChild(li); });
+
+  $("quiz").classList.add("hidden");
+  $("resultSec").classList.remove("hidden");
+  $("formSec").classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  window.__diag = {
+    rank, title, score,
+    answers: QUESTIONS.map((q, i) => q.q + " → " + answers[i].t).join(" / "),
+    housing, bill, pv
+  };
+}
+
+render();
+
+/* ---------- フォーム送信 ---------- */
+const form = $("leadForm");
+function showErr(name, on) {
+  const el = document.querySelector(`.err[data-for="${name}"]`);
+  if (el) el.style.display = on ? "block" : "none";
+}
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const v = k => $(k).value.trim();
+  let ok = true;
+  const checks = {
+    name: !!v("name"),
+    tel: /^[0-9\-+() ]{10,}$/.test(v("tel")),
+    area: !!v("area"),
+    email: !v("email") || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email")),
+    agree: $("agree").checked
+  };
+  Object.entries(checks).forEach(([k, pass]) => { showErr(k, !pass); if (!pass) ok = false; });
+  if (!ok) { document.querySelector('.err[style*="block"]')?.scrollIntoView({block:"center",behavior:"smooth"}); return; }
+
+  const btn = $("submitBtn");
+  btn.disabled = true; btn.textContent = "送信中…";
+  const d = window.__diag || {};
+  const payload = {
+    action: "submit",
+    data: {
+      storeCode: STORE,
+      storeName: PH.storeName(STORE),
+      name: v("name"),
+      tel: v("tel"),
+      email: v("email"),
+      area: v("area"),
+      contactTime: v("contactTime"),
+      inquiry: v("memo"),
+      diagRank: d.rank || "",
+      diagTitle: d.title || "",
+      diagScore: d.score ?? "",
+      diagAnswers: d.answers || "",
+      source: "店内ポスターQR",
+      referrer: document.referrer || ""
+    }
+  };
+  try {
+    const res = await PH.post(payload);
+    $("leadId").textContent = res.id || "受付完了";
+    $("resultSec").classList.add("hidden");
+    $("formSec").classList.add("hidden");
+    $("doneSec").classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (err) {
+    alert("送信に失敗しました。通信環境をご確認のうえ、もう一度お試しください。\nお急ぎの場合は 052-228-6565 までお電話ください。");
+    btn.disabled = false; btn.textContent = "この内容で申し込む";
+  }
+});
+</script>
+</body>
+</html>
