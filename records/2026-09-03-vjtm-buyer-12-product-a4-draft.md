@@ -23,6 +23,27 @@
 | SALAAM JAPAN | 3社＋枠外1 | P9 |
 | MICE・インセンティブ | 3社 | P6 |
 
+## 共通注記｜Accommodation & Transport — How We Quote
+
+**表紙または裏面に1枚として入れ、各ページからは † で参照する。** 宿泊と車両だけが暦で動くため、そこを先に開示しておく。
+
+> Hotel and vehicle rates are the only figures in this document that move with the calendar. Everything BUSHIDO teaches or supplies is fixed for the period of this guide.
+
+**Peak periods**　Late March – early April (cherry blossom) · 29 April – 5 May (Golden Week) · mid-August (Obon) · November (autumn foliage) · 28 December – 4 January (New Year)
+
+| Element | Standard season | Peak periods |
+| --- | --- | --- |
+| Hotel — Nagoya city, twin | ¥30,000–80,000 per room / night, at cost | Quoted at enquiry. Sits above the standard band, and the upper tier closes first |
+| Guide accommodation on multi-day itineraries | ¥15,000–25,000 per night, at cost | Quoted at enquiry |
+| Toyota Alphard with driver (BUSHIDO Private) | ¥300,000 retail / ¥255,000 net per day — **fixed** | Unchanged |
+| Coach, 7 guests and above | Quoted per routing | Quoted per routing. Distance and driver hours differ, so we quote the operator's own figure for the specific routing, not a flat daily rate |
+| Rail | Fixed; covered by the rail pass where the client holds one | Fares vary little. In peak the constraint is reserved-seat availability, not price |
+| Admissions and meals | At cost. Where a group rate exists, you get the group rate, not ours | Largely unchanged |
+
+**Our undertaking**　We quote the actual rate at the time of enquiry, we tell you which band it sits in, and we hold that quote for 14 days. We would rather send a figure we can keep than a lower one we have to revise.
+
+> 日本語メモ：「後で修正する数字より、守れる数字を送りたい」（JS Denmark企画書）と同じ姿勢で統一。ハイシーズンの実勢価格が分かれば、上表の「Quoted at enquiry」を実数の幅に置き換えられる。現時点では数字を作らず、帯とピーク時期の明示にとどめてある。
+
 ---
 
 # P1｜HALF DAY ① The Way of the Bow
@@ -115,7 +136,7 @@ Guests 2–8 · Both meals included · No vehicle required
 | --- | --- | --- | --- |
 | BUSHIDO Guide — full day | per group (1–6) | ¥100,000 | ¥85,000 |
 | Kyudo — The Way of the Bow | per person | ¥30,000 | ¥25,500 |
-| Admissions and lunch | at cost | quoted | — |
+| Admissions and lunch | at cost | quoted per group | — |
 | **Indicative — 2 guests** | | **from ¥160,000** | |
 
 **Upgrade** BUSHIDO Private — guide, Toyota Alphard and driver: ¥300,000 / ¥255,000 per day (1–6)
@@ -164,12 +185,13 @@ Kensuke Ueoka holds 4th dan in kyudo and 6th dan in shodo, and rides yabusame. O
 | --- | --- | --- | --- |
 | BUSHIDO Guide — full day | per group (1–6) | ¥100,000 | ¥85,000 |
 | Seto Ware Pottery (2 hrs) · BSDSET001 | per person | ¥10,000 | ¥8,500 |
-| Admissions | at cost | quoted | — |
+| Admissions | at cost | quoted per group; group rate from 30 passed through | — |
 
 **Group discount** at the museum from 30 participants. Group rates are passed through at the group rate, not ours.
-**Teams over 6** — coach and team rates on application.
+**Teams over 6** — coach and team rates on application. Coach is quoted per routing, not a flat daily rate. †
 
 **Best for** MICE and incentive groups, engineering and STEM school parties, and clients who have already done the temples.
+† Seasonal. See **Accommodation & Transport — How We Quote**. Quotes are held for 14 days.
 
 > 日本語メモ：MICE3社＋教育系に効く。ただし7名超は車両が要るため、鯱バスの確定料金が入るまで「on application」で止めておく。無理に数字を出さない。
 
@@ -189,12 +211,14 @@ Kensuke Ueoka holds 4th dan in kyudo and 6th dan in shodo, and rides yabusame. O
 | Kyudo — The Way of the Bow | per person | ¥30,000 | ¥25,500 |
 | Day 2 experience (tea / shibori / pottery) | per person | ¥10,000–20,000 | ¥8,500–17,000 |
 | Guide, if required | per group | ¥100,000 | ¥85,000 |
-| Hotel — Espacio, Tower Hotel, HAELA, TIAD | at cost | ¥30,000–80,000 | — |
+| Hotel — Espacio, Tower Hotel, HAELA, TIAD † | per room / night, at cost | ¥30,000–80,000 standard season | — |
+| Hotel — peak periods † | per room / night, at cost | above the standard band; quoted at enquiry | — |
 | **Self-guided, 2 guests, experiences only** | | **from ¥80,000** | |
 
 **The client does not lose a day. They gain one.**
 
 **Best for** Self-guided FIT programmes — the majority of what most trade partners actually sell.
+† Seasonal. See **Accommodation & Transport — How We Quote**. Quotes are held for 14 days.
 
 > 日本語メモ：既存Plan C。Amazing Tours・ikiTravels・Journey to the East にそのまま出せる。「車不要・レールパス内」が最大の武器なので太字で残す。
 
@@ -245,9 +269,11 @@ Kensuke Ueoka holds 4th dan in kyudo and 6th dan in shodo, and rides yabusame. O
 | Arimatsu Shibori Dyeing | per person | ¥10,000 | ¥8,500 |
 | Miso-Nikomi Udon Making, halal course | per person | ¥15,000 | ¥12,750 |
 | Guide, prayer space arrangement | per group | ¥100,000 | ¥85,000 |
-| Hotel, meals beyond the above | at cost | quoted | — |
+| Hotel † | per room / night, at cost | ¥30,000–80,000 standard · peak quoted at enquiry | — |
+| Meals beyond the above | at cost | quoted per group | — |
 
 **Best for** SALAM VACATION, BIG WORLD HOLIDAY, Transforma (halal certified), Azza Travel.
+† Seasonal. See **Accommodation & Transport — How We Quote**. Quotes are held for 14 days.
 
 > 日本語メモ：★これは既存5日間「The Peace Road」からの2日間派生で、新規組成。商談で出す前にハラル認証店の実名リストと礼拝スペースのマップを確定させること。未確定のまま数字を出すと一番信用を落とすカテゴリー。
 
@@ -268,11 +294,13 @@ Equipment is included and fitted to each participant. Taught by Ken or a senior 
 | Component | Basis | Rate | Commission |
 | --- | --- | --- | --- |
 | Kyudo Camp — 3 days · equipment included | per person | ¥90,000 | at cost — not commissionable |
-| Accommodation, meals, transport | at cost | quoted | — |
+| Accommodation † | per room / night, at cost | ¥30,000–80,000 standard · peak quoted at enquiry | — |
+| Meals and transport | at cost | quoted per group | — |
 
 **Lead time** 30 days recommended.
 
 **Best for** Karate and martial arts clubs, and clients who have already done a single session and want the real thing. Saizen Tours (karate clubs), JAPANSPECIALIST Denmark (karate), Transforma (the contact practises).
+† Seasonal. See **Accommodation & Transport — How We Quote**. Quotes are held for 14 days.
 
 > 日本語メモ：at cost＝手数料が乗らないことを先に言う。「これは利益商品ではない」と自分から言うほうが、他の商品の値付けが信用される。
 
@@ -294,11 +322,13 @@ Yabusame is archery from a moving horse. Three days: the seat before the bow, th
 | --- | --- | --- | --- |
 | Yabusame — 3 days | per person | ¥180,000 | at cost — not commissionable |
 | Insurance — compulsory | per person | ¥8,000 | — |
-| Accommodation, meals, transport | at cost | quoted | — |
+| Accommodation † | per room / night, at cost | ¥30,000–80,000 standard · peak quoted at enquiry | — |
+| Meals and transport | at cost | quoted per group | — |
 
 **Lead time** 60 days — horses and ground are arranged per group.
 
 **Best for** HARRY KOLB TRAVEL (exclusive routing), Gattinoni, and any partner who needs one thing on the itinerary that cannot be bought anywhere else.
+† Seasonal. See **Accommodation & Transport — How We Quote**. Quotes are held for 14 days.
 
 > 日本語メモ：★写真が一枚もない。営業資料に使える騎射のカットがゼロ（美多彌神社の32点は全部遠景・使用不可）。このページは「写真準備中」で出すか、テキストのみで出すか、商談までに撮影機会を作るかの三択。誇張はしない。
 
@@ -321,12 +351,14 @@ The Nakasendo is the walking, and it is the only walking in the itinerary. Every
 | Kyudo — The Way of the Bow | per person | ¥30,000 | ¥25,500 |
 | BUSHIDO Guide — 3 days | per group / day | ¥100,000 | ¥85,000 |
 | BUSHIDO Private — guide, Alphard, driver | per group / day | ¥300,000 | ¥255,000 |
-| Guide accommodation on multi-day | at cost | ¥15,000–25,000 / night | — |
-| Admissions, meals, accommodation | at cost | quoted | — |
+| Guide accommodation on multi-day † | at cost | ¥15,000–25,000 / night standard · peak quoted | — |
+| Client accommodation — Nagoya and post town † | per room / night, at cost | ¥30,000–80,000 standard · peak quoted at enquiry | — |
+| Admissions and meals | at cost | quoted per group | — |
 
-**Groups over 6** — coach and team rates on application.
+**Groups over 6** — coach and team rates on application. Quoted per routing, not a flat daily rate. †
 
 **Best for** HARRY KOLB TRAVEL, ikiTravels, JAPANSPECIALIST Denmark, Pianeta Gaia — partners looking for a themed route their competitors have not already got.
+† Seasonal. See **Accommodation & Transport — How We Quote**. Quotes are held for 14 days.
 
 > 日本語メモ：JS Denmark企画書の3〜6日目をそのまま3日に圧縮したもの。既存素材なので新規組成ではない。7名以上はやはりバス代待ち。
 
@@ -338,7 +370,13 @@ The Nakasendo is the walking, and it is the only walking in the itinerary. Every
 
 P6・P8・P12 の3ページが「on application」のまま止まっている。7〜60名のレート表が確定すれば、この3ページは数字入りで出せる。**15社中10社が6名超を扱うため、ここが空欄のままだと最も送客量の大きい相手に提示できるものが手数料モデルしか残らない。**
 
-## 2. 写真
+## 2. ハイシーズンの実勢価格
+
+共通注記の表で、宿泊と車両のピーク時を「Quoted at enquiry」にとどめてある。**手元にある確かな数字が標準期の帯（宿泊 ¥30,000–80,000／ガイド宿泊 ¥15,000–25,000）だけで、ピーク時の実数がないため。** 桜・GW・お盆・紅葉・年末年始の実勢が分かれば、そこを実数の幅に置き換えられる。
+
+バイヤーが最も嫌うのは「安く出して後から上げられる」ことなので、数字を作らず時期と帯だけ先に開示する形にしてある。14日間の見積保持もあわせて明記した。
+
+## 3. 写真
 
 | ページ | 写真の状況 |
 | --- | --- |
@@ -351,15 +389,15 @@ P6・P8・P12 の3ページが「on application」のまま止まっている。
 | **P11** | **★騎射のカットがゼロ。要判断（P11の日本語メモ参照）** |
 | P12 | 中山道・高山・白川郷の自社撮影素材の有無を要確認 |
 
-## 3. SALAAM JAPAN 2日版（P9）の扱い
+## 4. SALAAM JAPAN 2日版（P9）の扱い
 
 既存は5日間商品。2日版は今回の新規組成なので、**ハラル認証店の実名リストと礼拝スペースのマップが確定してから商談に出すこと。** 未確定のまま数字を出すと、この分野は最も信用を落とす。
 
-## 4. 表紙・目次
+## 5. 表紙・目次
 
-12P＝12商品ちょうどで組んである。表紙と使い方ページを足すと14Pになる。ファクトシートのときと同様、表紙に「1ページだけ切り出して転送可・Listing Copyは転載自由・写真は取引先の販促利用について許諾済み」を明記しておくと、カタログ供給先（Gattinoni 1,500代理店／江蘇楽橙プラットフォーム／JS Spain B2C）が迷わない。
+12P＝12商品ちょうどで組んである。表紙・使い方ページ・共通注記（Accommodation & Transport）を足すと15Pになる。ファクトシートのときと同様、表紙に「1ページだけ切り出して転送可・Listing Copyは転載自由・写真は取引先の販促利用について許諾済み」を明記しておくと、カタログ供給先（Gattinoni 1,500代理店／江蘇楽橙プラットフォーム／JS Spain B2C）が迷わない。
 
-## 5. 中国語版
+## 6. 中国語版
 
 枠17・枠19向けに中国語版が必要。この12Pのうち、単品で卸せるP1・P2・P3・P6を優先して訳すのが投資効率が高い。
 
