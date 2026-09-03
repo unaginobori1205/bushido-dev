@@ -160,12 +160,14 @@ Kensuke Ueoka holds 4th dan in kyudo and 6th dan in shodo, and rides yabusame. O
 | Component | Basis | Retail | Net |
 | --- | --- | --- | --- |
 | A Day with Master Ken — full day | per group (1–6) | ¥500,000 | ¥425,000 |
-| Vehicle, admissions, meals | at cost | quoted | — |
+| Toyota Alphard with driver, if required | per group / day | ¥300,000 | ¥255,000 |
+| Admissions and meals | at cost | quoted per group | — |
 
 **Availability** Six days per calendar month. Dates are released in order of enquiry.
 **Lead time** 30 days recommended.
 
 **Best for** High-value custom FIT and clients for whom "who taught it" is the point.
+† The vehicle rate is fixed year-round. See **Accommodation & Transport — How We Quote**.
 
 > 日本語メモ：ラグジュアリー4社の中核。「月6日は販促の仕掛けではなく品質基準」という言い方を崩さないこと。エリア独占の話につなぐ入口でもある。
 
