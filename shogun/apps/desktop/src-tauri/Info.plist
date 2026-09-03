@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Merged into the generated app's Info.plist by tauri-build on macOS.
+  NSMicrophoneUsageDescription is required — without it, getUserMedia()
+  in the WebView fails silently/with a permission error and macOS never
+  even shows the permission prompt. Verify this actually gets merged when
+  building on macOS (this repo's environment can't build the .app to
+  confirm it end-to-end) — see apps/desktop/README.md.
+-->
+<plist version="1.0">
+  <dict>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>SHOGUNが音声で会話するためにマイクを使用します。呼びかけた時だけ聞き取ります。</string>
+  </dict>
+</plist>

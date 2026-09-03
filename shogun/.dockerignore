@@ -1,0 +1,15 @@
+node_modules
+apps
+integrations
+mcp
+voice
+docs
+.env
+.env.example
+# NOTE: prompts/shogun-system.md is read at runtime by
+# core/orchestrator/server.ts and IS copied into the image (see
+# Dockerfile) — do not add a blanket "*.md"/"prompts" ignore here, it
+# would silently break that COPY.
+README.md
+database/*.sqlite
+database/*.sqlite-*
