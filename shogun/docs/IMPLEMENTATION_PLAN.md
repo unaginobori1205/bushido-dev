@@ -417,3 +417,72 @@ or an outbound WebSocket to OpenAI.
 
 Unit tests: 62 total (was 36) — `claudeBridge` (13), `sessionStore` (6),
 `intent-router` (7) added.
+
+## 12. Offline test harness — the system actually run end to end
+
+The blocker on "try it" was never the code, it was the setup tail: a Mac, a
+Rust toolchain, mic permission, and an OpenAI key with working Realtime
+access. None of that is needed to exercise the interesting parts, so this
+adds two dev tools that remove it:
+
+- `tools/cli.ts` (`pnpm cli`) — drives core by typing, over the same
+  WebSocket the desktop shell uses. No mic, no Tauri.
+- `tools/fake-realtime.ts` (`pnpm fake:openai`) — a stand-in for the
+  OpenAI Realtime API that speaks the real event shapes and decides what to
+  do from keywords. No API key, no network. `OPENAI_REALTIME_URL` points
+  core at it.
+
+Three terminals:
+
+```bash
+pnpm fake:openai
+OPENAI_API_KEY=x OPENAI_REALTIME_URL=ws://127.0.0.1:8799 \
+  CLAUDE_DELEGATION_ENABLED=true CLAUDE_CWD=~/shogun-sandbox pnpm dev:core
+pnpm cli
+```
+
+**What this proved (run in this environment, start to finish):**
+
+```
+>> こんにちは
+SHOGUN: 「こんにちは」について承りました。
+>> hello.txt に「動いた」とだけ書いたファイルを作って
+SHOGUN: 承知しました。1分ほどで終わる見込みです。
+SHOGUN: この内容で実行してよろしいですか？
+>> はい
+🛠 delegating (1分): hello.txt に「動いた」とだけ書いたファイルを作って
+✅ hello.txt を作成しました（中身は「動いた」のみ）。
+```
+
+…and `hello.txt` really existed afterwards, containing `動いた`. That is
+the whole orchestration path — typed turn → model → tool call →
+confirmation refused → spoken yes → second call accepted → real Claude
+Code run → result summarised back — with only the OpenAI hop faked.
+
+**Three real bugs this found, all now fixed:**
+
+1. **Typed input did nothing.** The documented keyboard fallback pushed the
+   text into memory and emitted a transcript, but never sent it to the
+   model. `RealtimeClient.sendUserText` now puts it in the conversation as
+   a real user turn (which also makes it count toward the delegation
+   confirmation gate).
+2. **The assistant's words never appeared anywhere.** With
+   `output_modalities: ["audio"]` the API never emits
+   `response.output_text.done`, which was the only event being handled —
+   so the desktop panel's assistant lines and any text view were
+   permanently blank. Now handles `response.output_audio_transcript.done`.
+3. **Three seconds wasted on every delegated task.** `claude -p` waits for
+   piped stdin before giving up ("no stdin data received in 3s"). The
+   bridge now spawns with stdin closed; the instruction is in argv, so
+   there was never anything to pipe.
+
+A fourth was found and fixed in the CLI itself: lines arriving before the
+socket opened (which is *always* the case when piping input) threw on a
+CONNECTING socket, so they are queued now.
+
+**Still unproven**, unchanged: real microphone capture, real speaker
+playback, a built macOS `.app`, and the real OpenAI Realtime socket (this
+environment's egress proxy does not support WebSocket upgrades at all).
+The fake deliberately does not model the real model's judgement — it
+proves our plumbing, not that GPT will choose to delegate at the right
+moment.

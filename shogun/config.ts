@@ -19,6 +19,10 @@ loadDotenv();
 const ConfigSchema = z.object({
   OPENAI_API_KEY: z.string().min(1, "OPENAI_API_KEY is required"),
   OPENAI_REALTIME_MODEL: z.string().default("gpt-realtime-2.1"),
+  // Override to point at something other than OpenAI: the offline test
+  // double in tools/fake-realtime.ts, or a proxy. The model name is still
+  // appended as ?model=… so the double sees the same request shape.
+  OPENAI_REALTIME_URL: z.string().default("wss://api.openai.com/v1/realtime"),
   OPENAI_REALTIME_VOICE: z.string().default("marin"),
   OPENAI_REALTIME_LANGUAGE: z.string().default("ja"),
   TURN_DETECTION_TYPE: z.enum(["semantic_vad", "server_vad"]).default("semantic_vad"),

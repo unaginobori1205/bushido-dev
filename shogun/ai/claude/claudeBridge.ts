@@ -102,7 +102,11 @@ export class ClaudeBridge {
     return new Promise<CodingProviderResult>((resolve) => {
       // spawn (not exec/shell) so the spoken instruction is one argv entry
       // and can never be interpreted as shell syntax.
-      const child = spawn(claudeBin, args, { cwd, env: process.env });
+      // stdio: stdin closed on purpose. `claude -p` waits ~3s for piped
+      // stdin before giving up ("no stdin data received in 3s"), which
+      // would add that delay to every single delegated task; the
+      // instruction is already in argv, so there is nothing to pipe.
+      const child = spawn(claudeBin, args, { cwd, env: process.env, stdio: ["ignore", "pipe", "pipe"] });
       let stdout = "";
       let stderr = "";
       let settled = false;

@@ -50,7 +50,7 @@ export class RealtimeClient extends EventEmitter {
 
   connect(): Promise<void> {
     return new Promise((resolve, reject) => {
-      const url = `wss://api.openai.com/v1/realtime?model=${encodeURIComponent(this.config.OPENAI_REALTIME_MODEL)}`;
+      const url = `${this.config.OPENAI_REALTIME_URL}?model=${encodeURIComponent(this.config.OPENAI_REALTIME_MODEL)}`;
       const ws = new WebSocket(url, {
         headers: {
           Authorization: `Bearer ${this.config.OPENAI_API_KEY}`,
@@ -137,6 +137,23 @@ export class RealtimeClient extends EventEmitter {
   }
 
   /**
+   * Sends a typed message as a normal user turn — the keyboard fallback the
+   * product spec asks for (§16 "キーボード入力は補助"), and the only way to
+   * exercise the whole system without a microphone (see tools/cli.ts).
+   *
+   * Note this goes into the real conversation (unlike `speak`'s out-of-band
+   * response), so typed and spoken turns share one history and the model can
+   * delegate from a typed instruction exactly as it would from speech.
+   */
+  sendUserText(text: string): void {
+    this.send({
+      type: "conversation.item.create",
+      item: { type: "message", role: "user", content: [{ type: "input_text", text }] },
+    });
+    this.send({ type: "response.create" });
+  }
+
+  /**
    * Returns a tool call's outcome to the model and asks it to tell the user
    * in its own voice. Going back through the model (rather than `speak()`
    * verbatim) keeps the persona consistent and lets it summarise a long
@@ -198,6 +215,15 @@ export class RealtimeClient extends EventEmitter {
         const name = event.name as string | undefined;
         const argumentsJson = (event.arguments as string | undefined) ?? "";
         if (callId && name) this.emit("toolCall", { callId, name, argumentsJson });
+        break;
+      }
+      case "response.output_audio_transcript.done": {
+        // With output_modalities:["audio"] the model never emits
+        // response.output_text.done — what it said arrives here, as the
+        // transcript of the audio. This is what the desktop panel and the
+        // text-mode CLI actually display.
+        const transcript = (event.transcript as string | undefined)?.trim();
+        if (transcript) this.emit("assistantTranscript", { text: transcript });
         break;
       }
       case "response.output_text.done": {

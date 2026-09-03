@@ -11,20 +11,20 @@ Claude Code / MCP tools / local systems, and learns over time — always
 
 ## Status
 
-**MVP0.1 implemented.** `docs/ARCHITECTURE.md` and
-`docs/IMPLEMENTATION_PLAN.md` were written first; MVP0.1 (voice
-conversation with the OpenAI persona, working + daily memory, session
-resume, Action Log) follows that plan — see `docs/IMPLEMENTATION_PLAN.md`
-§6 for the task-by-task breakdown and which parts are unverified. The Node
-core (`core/`, `memory/`, `database/`, `ai/openai/`) is typechecked and
-unit-tested (`pnpm typecheck && pnpm test`, both run clean in this
-environment); the Tauri desktop shell (`apps/desktop/`) compiles
-(`cargo check`, verified on Linux) but has **not** been built or run as a
-real macOS app — this environment has no Mac, display, or microphone, so
-that verification is left to the user (see `apps/desktop/README.md`).
-`ai/claude` (the Claude Code connector) is still just scaffolding, carried
-over from an earlier standalone CLI in this same session — finishing it is
-scoped to MVP0.3, not MVP0.1 (see `ai/claude/README.md`).
+**MVP0.1 + MVP0.3 implemented, and run end to end.** Conversation loop,
+working + daily memory with session recall, Action Log, and Claude Code
+delegation with a spoken confirmation gate.
+
+The whole orchestration has actually been exercised — typed turn → model →
+tool call → confirmation refused → yes → real `claude -p` run → result
+reported back, with a real file on disk at the end — using the offline
+harness below (`docs/IMPLEMENTATION_PLAN.md` §12). Only the OpenAI hop was
+faked there.
+
+Still unproven, and left to the user's Mac: real microphone capture, real
+speaker playback, a built macOS `.app`, and the real OpenAI Realtime
+socket (this environment's egress proxy blocks WebSocket upgrades
+entirely). See `apps/desktop/README.md` for that checklist.
 
 Read in this order:
 
@@ -109,6 +109,23 @@ To run `core/orchestrator` on a small always-on cloud host instead of
 (or in addition to) `pnpm dev:core` locally — so SHOGUN stays reachable
 when the Mac is asleep or off — see `docs/DEPLOYMENT.md`. The desktop
 app's ⚙ settings panel points it at either.
+
+## Trying it without a Mac, a mic, or an OpenAI key
+
+The voice path has a long setup tail. To exercise everything else — the
+persona, memory and session recall, Claude Code delegation and its spoken
+confirmation gate — three terminals and no hardware:
+
+```bash
+pnpm fake:openai                                    # stand-in for OpenAI Realtime
+OPENAI_API_KEY=x OPENAI_REALTIME_URL=ws://127.0.0.1:8799 \
+  CLAUDE_DELEGATION_ENABLED=true CLAUDE_CWD=~/shogun-sandbox pnpm dev:core
+pnpm cli                                            # type at it
+```
+
+Ask it to create a file and say はい when it asks — Claude Code really
+runs. See `docs/IMPLEMENTATION_PLAN.md` §12 for a transcript of this
+working, and for what the fake deliberately does *not* prove.
 
 ## Running costs
 

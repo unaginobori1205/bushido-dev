@@ -322,14 +322,22 @@ async function handleConnection(
         break;
       }
       case "text": {
-        // Typed fallback (spec §16: "キーボード入力は補助"). Fed straight to
-        // the model as an out-of-band nudge is unnecessary here — simplest
-        // MVP0.1 handling is to just log+relay it the same as a transcript.
-        const text = msg.text as string | undefined;
-        if (text) {
-          workingMemory.push({ role: "user", text, at: Date.now() });
-          send({ type: "userTranscript", text });
-          sm.handle("USER_UTTERANCE");
+        // Typed fallback (spec §16: "キーボード入力は補助"), and the path
+        // tools/cli.ts uses to exercise the whole system without a mic.
+        // Treated exactly like a spoken turn from here on — including
+        // counting as a real user turn for delegation confirmation, which
+        // is why lastUserTurnAt is set here too.
+        const text = (msg.text as string | undefined)?.trim();
+        if (!text) break;
+        lastUserTurnAt = Date.now();
+        workingMemory.push({ role: "user", text, at: Date.now() });
+        logAction(db, { timestamp: Date.now(), userRequest: text, intent: "conversation", tool: null });
+        send({ type: "userTranscript", text });
+        sm.handle("USER_UTTERANCE");
+        realtime.sendUserText(text);
+        if (SLEEP_PATTERN.test(text)) {
+          saveSessionEnd();
+          sm.handle("SLEEP");
         }
         break;
       }

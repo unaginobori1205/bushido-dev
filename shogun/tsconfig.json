@@ -20,7 +20,8 @@
     "core/**/*.ts",
     "memory/**/*.ts",
     "database/**/*.ts",
-    "ai/**/*.ts"
+    "ai/**/*.ts",
+    "tools/**/*.ts"
   ],
   "exclude": [
     "node_modules",
