@@ -41,6 +41,13 @@ the "24. SECURITY" section of the product spec into concrete rules.
   `bypassPermissions`) for a hands-free coding session is itself a Level
   2/3-equivalent decision made explicitly per project — never a global
   default, and never silently inherited from a previous session.
+- When you *do* loosen it, pair it with containment: point
+  `CLAUDE_CWD` at a single project or scratch directory
+  (e.g. `~/shogun-sandbox/`) rather than a home directory or anything
+  broad. A voice command has no confirmation step and no undo, so the
+  blast radius should be a directory you would not mind losing. This is
+  a convention, not something the code enforces yet — `core/permissions`
+  gates *whether* an action runs, not *where* it can reach.
 
 ## External content vs. instructions
 

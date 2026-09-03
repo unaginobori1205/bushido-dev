@@ -109,3 +109,22 @@ To run `core/orchestrator` on a small always-on cloud host instead of
 (or in addition to) `pnpm dev:core` locally — so SHOGUN stays reachable
 when the Mac is asleep or off — see `docs/DEPLOYMENT.md`. The desktop
 app's ⚙ settings panel points it at either.
+
+## Running costs
+
+Two separate bills, and only one of them scales with how much you talk:
+
+- **OpenAI Realtime API** — usage-billed per minute of audio in/out. This
+  is the one that grows: a few short exchanges in a morning is small
+  change; leaving SHOGUN in conversation all day is a few dollars. Check
+  OpenAI's current Realtime pricing rather than trusting any figure
+  written here — it has changed before and will again.
+- **Claude Code** (from MVP0.3, once `ai/claude` is wired in) — runs
+  under the existing Claude subscription, so delegated coding tasks don't
+  add per-task API charges.
+- **Cloud host** (optional, docs/DEPLOYMENT.md) — one small always-on
+  machine plus a 1GB volume.
+
+Idle cost is near zero by design: the mic only opens after a wake/click,
+and the Realtime socket is only opened for an active conversation
+(docs/SECURITY.md), so SHOGUN sitting in the menu bar isn't billing you.

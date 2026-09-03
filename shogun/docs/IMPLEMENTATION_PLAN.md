@@ -306,3 +306,60 @@ daily use.
 all yet, and running the user's coding agent remotely is a bigger decision
 than running the conversation loop remotely — see docs/DEPLOYMENT.md's
 note on this, to be revisited explicitly when MVP0.3 wires Claude Code in.
+
+## 10. Reference: the "Jarvis / voice-controlled Claude Code" walkthrough
+
+The user pointed at a Japanese video walkthrough of building essentially
+the same idea — GPT Realtime as the voice front end, Claude Code as the
+hands — and asked that it be used as a reference. This environment can't
+reach YouTube, so this section is written from the summary the user
+pasted, not from the video itself.
+
+**Where it matches what's already built** (useful as validation, no
+change needed):
+
+| Video's approach | SHOGUN today |
+|---|---|
+| GPT Realtime for listening + speaking, Claude Code for execution | Same split — `ai/openai` ("brain") + `ai/claude` ("engineer"), docs/ARCHITECTURE.md §3 |
+| Mute the mic while the AI speaks and just after, to stop speaker bleed | `INTERRUPTION_MODE=mute-while-speaking` + `POST_SPEECH_MUTE_MS` (ARCHITECTURE.md §6); desktop default is barge-in instead, which is the same problem solved the other way |
+| Global keyboard shortcut to toggle the system | `Cmd+Shift+J` in `apps/desktop/src-tauri/src/main.rs` |
+| A floating desktop widget showing listening/speaking state | `apps/desktop/src/` panel, four MVP0.1 states |
+| "Don't actually touch files until I say go" | The whole Permission Level 0–3 model (`core/permissions`, ASK BEFORE ACT) |
+| API key via `.env`, never pasted into chat | docs/SECURITY.md's Secrets section |
+
+**Where it differs on purpose** (not adopting):
+
+- The video's persona is a deferential butler ("セバス", calls the user
+  "マスター"). SHOGUN's own spec (§18) explicitly rejects that framing —
+  "執事ではない。上司でもない。最高のパートナー" — so
+  `prompts/shogun-system.md` stays as-is. The persona *is* a single file,
+  though, so anyone who wants the butler version just edits that file.
+- The video builds one script; SHOGUN is a module-per-concern layout
+  because it's aimed at the larger concierge product (memory tiers, MCP,
+  proactive suggestions), not only at voice-driven coding.
+
+**Worth adopting** (small, concrete, and not yet present):
+
+1. **Announce an ETA before starting a delegated task.** The video's
+   assistant answers "かしこまりました。数分ほどお時間をいただきます"
+   *before* handing off, so the user knows whether to wait or walk away.
+   This belongs in the MVP0.3 orchestrator hand-off path, alongside the
+   Permission-Level check — added to the MVP0.3 scope below.
+2. **Recommend a sandboxed working directory by default.** The video
+   suggests restricting execution to one isolated folder. SHOGUN already
+   warns about loosening Claude Code's permission mode, but doesn't yet
+   name the containment pattern — now called out in docs/SECURITY.md.
+3. **Set cost expectations up front.** Realtime API voice is usage-billed
+   while Claude Code rides the existing subscription; a rough per-session
+   figure helps the user decide how freely to leave it running — now in
+   the README.
+
+MVP0.3 scope additions from the above (to be built when MVP0.3 starts,
+not now):
+
+- Before `CodingProvider.run()`, speak a short acknowledgement including a
+  rough duration estimate, then hand off in the background.
+- Keep the conversation responsive while the delegated task runs (the
+  video's assistant stays conversational during execution) — the
+  `EXECUTING` state already exists in `core/orchestrator/stateMachine.ts`
+  for exactly this, but nothing drives it yet.
