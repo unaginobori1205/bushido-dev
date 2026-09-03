@@ -17,6 +17,8 @@
  *   ← { type: "userTranscript", text }
  *   ← { type: "assistantAudio", data: "<base64 pcm16>" }
  *   ← { type: "assistantTranscript", text }
+ *   ← { type: "taskStarted", instruction, estimate }   delegated to Claude Code
+ *   ← { type: "taskFinished", isError, text }
  *   ← { type: "error", message }
  *
  * Cloud deployment (docs/DEPLOYMENT.md): this same process is what you run
@@ -39,6 +41,12 @@ import { WorkingMemory } from "../../memory/working/index.js";
 import { RealtimeClient } from "../../ai/openai/realtimeClient.js";
 import { ConversationStateMachine } from "./stateMachine.js";
 import { assertBindingIsSafe, authorize } from "./auth.js";
+import { parseDelegateIntent, toPendingAction } from "../intent-router/index.js";
+import { ClaudeBridge, assertRunnableHere, parseExtraArgs } from "../../ai/claude/claudeBridge.js";
+import { SessionStore } from "../../ai/claude/sessionStore.js";
+import { requiresConfirmation } from "../permissions/index.js";
+import { homedir } from "node:os";
+import { join } from "node:path";
 
 const SLEEP_PATTERN = /(終わり|おやすみ|お疲れ様でした|バイバイ)/;
 
@@ -46,9 +54,38 @@ function today(now: Date): string {
   return now.toISOString().slice(0, 10); // YYYY-MM-DD (UTC; see SHOGUN_TIMEZONE note in config for a future improvement)
 }
 
-function loadSystemPrompt(recap: string): string {
+/**
+ * Runtime guidance appended to the persona. Kept here rather than edited
+ * into prompts/shogun-system.md because that file is the product spec's
+ * persona verbatim (§19) — this is operational detail about *this* build's
+ * capabilities, which changes as milestones land.
+ */
+function delegationGuidance(config: ReturnType<typeof getConfig>): string {
+  if (!config.CLAUDE_DELEGATION_ENABLED) {
+    return [
+      "You currently have NO ability to run tasks on the user's computer — the delegation tool is disabled.",
+      "If the user asks for work that would need it, say plainly that task execution is not enabled yet",
+      "rather than pretending to start it.",
+    ].join(" ");
+  }
+  return [
+    `When the user asks for actual work on their computer, call ${"`delegate_to_claude_code`"}.`,
+    "Before calling it, say out loud in one short sentence that you are starting, plus a rough time estimate.",
+    "While it runs you stay available — keep answering the user normally.",
+    "When it finishes you will be told the outcome; report it in two or three sentences, outcome first.",
+    "Never read file contents, code, or long output aloud.",
+  ].join(" ");
+}
+
+function loadSystemPrompt(recap: string, config: ReturnType<typeof getConfig>): string {
   const base = readFileSync(new URL("../../prompts/shogun-system.md", import.meta.url), "utf8");
-  return `${base}\n\n---\n\nContext for this session — the user's most recent prior daily record:\n${recap}`;
+  return [
+    base,
+    "---",
+    `Context for this session — the user's most recent prior daily record:\n${recap}`,
+    "---",
+    delegationGuidance(config),
+  ].join("\n\n");
 }
 
 async function main() {
@@ -60,7 +97,7 @@ async function main() {
 
   const now = new Date();
   const recap = summarizeDailyRecord(dailyMemory.getLatestBefore(today(now)));
-  const systemPrompt = loadSystemPrompt(recap);
+  const systemPrompt = loadSystemPrompt(recap, config);
 
   const wss = new WebSocketServer({ host: config.CORE_WS_HOST, port: config.CORE_WS_PORT });
   console.log(`[shogun-core] listening on ws://${config.CORE_WS_HOST}:${config.CORE_WS_PORT}${config.CORE_AUTH_TOKEN ? " (token required)" : ""}`);
@@ -87,6 +124,18 @@ async function handleConnection(
   const realtime = new RealtimeClient(config, systemPrompt);
   let muted = false;
   let unmuteTimer: NodeJS.Timeout | null = null;
+  let lastUserTurnAt = 0;
+  /** Instruction proposed but not yet confirmed, and when we asked. */
+  let awaitingConfirmation: { instruction: string; askedAt: number } | null = null;
+
+  const claudeCwd = config.CLAUDE_CWD || process.cwd();
+  const claudeBridge = new ClaudeBridge({
+    claudeBin: config.CLAUDE_BIN,
+    cwd: claudeCwd,
+    extraArgs: parseExtraArgs(config.CLAUDE_EXTRA_ARGS),
+    timeoutMs: config.CLAUDE_TIMEOUT_MS,
+    sessionStore: new SessionStore(config.CLAUDE_SESSION_FILE || join(homedir(), ".shogun", "claude-sessions.json")),
+  });
 
   const send = (payload: Record<string, unknown>) => {
     if (socket.readyState === socket.OPEN) socket.send(JSON.stringify(payload));
@@ -100,6 +149,7 @@ async function handleConnection(
   };
 
   realtime.on("userTranscript", ({ text }) => {
+    lastUserTurnAt = Date.now();
     workingMemory.push({ role: "user", text, at: Date.now() });
     logAction(db, { timestamp: Date.now(), userRequest: text, intent: "conversation", tool: null });
     send({ type: "userTranscript", text });
@@ -133,6 +183,107 @@ async function handleConnection(
         muted = false;
       }, config.POST_SPEECH_MUTE_MS);
     }
+  });
+
+  /**
+   * Delegation to Claude Code. The model decides *that* a turn is work
+   * (core/intent-router); everything about whether it actually runs is
+   * decided here, because a tool call is a request to act, not permission
+   * to act (docs/ARCHITECTURE.md §5).
+   *
+   * Confirmation flow: the first call is always refused with "ask the user
+   * first". Only a second call carrying confirmed:true — *and* with a real
+   * user turn observed after that refusal — executes. That second condition
+   * is the part the model can't fake: it can claim the user agreed, but it
+   * can't manufacture a `conversation.item.input_audio_transcription`
+   * event, so a self-confirming model still can't run anything.
+   */
+  realtime.on("toolCall", ({ callId, name, argumentsJson }) => {
+    const intent = parseDelegateIntent(callId, name, argumentsJson);
+    if (!intent) {
+      realtime.sendToolResult(callId, "Malformed tool call — ignored. Ask the user to restate the task.");
+      return;
+    }
+
+    if (!config.CLAUDE_DELEGATION_ENABLED) {
+      realtime.sendToolResult(
+        callId,
+        "Task execution is not enabled on this install (CLAUDE_DELEGATION_ENABLED=false). Tell the user plainly; do not retry.",
+      );
+      return;
+    }
+
+    try {
+      assertRunnableHere(config.CORE_WS_HOST);
+    } catch (err) {
+      realtime.sendToolResult(callId, err instanceof Error ? err.message : String(err));
+      return;
+    }
+
+    const action = toPendingAction(intent);
+    const needsConfirmation = requiresConfirmation(action) && config.CLAUDE_REQUIRE_CONFIRMATION;
+    const userSpokeSinceAsking = awaitingConfirmation !== null && lastUserTurnAt > awaitingConfirmation.askedAt;
+
+    if (needsConfirmation && !(intent.confirmed && userSpokeSinceAsking)) {
+      awaitingConfirmation = { instruction: intent.instruction, askedAt: Date.now() };
+      logAction(db, {
+        timestamp: Date.now(),
+        userRequest: intent.instruction,
+        intent: "delegate_to_claude_code",
+        tool: "claude-code",
+        permissionLevel: action.level,
+        confirmation: "requested",
+        result: "awaiting confirmation",
+      });
+      realtime.sendToolResult(
+        callId,
+        "NOT executed yet. Read the task back to the user in one sentence and ask them to confirm out loud. " +
+          "If they say yes, call this tool again with the same instruction and confirmed: true.",
+      );
+      return;
+    }
+
+    awaitingConfirmation = null;
+    sm.handle("CONFIRMATION_NEEDED");
+    sm.handle("CONFIRMED"); // → EXECUTING; the conversation stays live while this runs
+    logAction(db, {
+      timestamp: Date.now(),
+      userRequest: intent.instruction,
+      intent: "delegate_to_claude_code",
+      tool: "claude-code",
+      parameters: { cwd: claudeCwd, estimate: intent.estimate },
+      permissionLevel: action.level,
+      confirmation: config.CLAUDE_REQUIRE_CONFIRMATION ? "confirmed by user" : "standing consent (confirmation disabled)",
+      result: "started",
+    });
+    send({ type: "taskStarted", instruction: intent.instruction, estimate: intent.estimate ?? null });
+    console.log(`[shogun-core] delegating to Claude Code in ${claudeCwd}: ${intent.instruction}`);
+
+    // Deliberately not awaited: the user keeps talking to SHOGUN while
+    // Claude Code works, which is the whole point of delegating.
+    void claudeBridge
+      .run(intent.instruction)
+      .then((result) => {
+        logAction(db, {
+          timestamp: Date.now(),
+          userRequest: intent.instruction,
+          intent: "delegate_to_claude_code",
+          tool: "claude-code",
+          permissionLevel: action.level,
+          result: result.isError ? `error: ${result.text.slice(0, 500)}` : result.text.slice(0, 2000),
+        });
+        workingMemory.push({ role: "assistant", text: `[Claude Code] ${result.text}`.slice(0, 2000), at: Date.now() });
+        send({ type: "taskFinished", isError: result.isError, text: result.text });
+        sm.handle("EXECUTION_DONE");
+        realtime.sendToolResult(callId, result.text.slice(0, 4000) || "(no output)");
+      })
+      .catch((err: unknown) => {
+        const message = err instanceof Error ? err.message : String(err);
+        console.error("[shogun-core] delegation failed:", message);
+        send({ type: "taskFinished", isError: true, text: message });
+        sm.handle("EXECUTION_DONE");
+        realtime.sendToolResult(callId, `The task failed to run: ${message}`);
+      });
   });
 
   realtime.on("error", ({ error }) => {

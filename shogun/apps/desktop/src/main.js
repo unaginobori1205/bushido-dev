@@ -73,6 +73,12 @@ function connectCore() {
       case "assistantAudio":
         playPcm16(msg.data);
         break;
+      case "taskStarted":
+        appendTranscript("🛠", `Claude Codeに依頼中${msg.estimate ? `（${msg.estimate}）` : ""}: ${msg.instruction}`);
+        break;
+      case "taskFinished":
+        appendTranscript(msg.isError ? "⚠️" : "✅", msg.text);
+        break;
       case "error":
         appendTranscript("⚠️", msg.message);
         break;

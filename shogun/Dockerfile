@@ -3,6 +3,11 @@
 # separate, local-only client and is deliberately NOT part of this image;
 # see .dockerignore.
 #
+# Note that Claude Code delegation (ai/claude) refuses to run in a
+# cloud-hosted core by design — the user's Claude Code install and files
+# are on their machine. The module is copied in so the process imports
+# cleanly; it just declines to execute (see assertRunnableHere).
+#
 # Ships the TypeScript source and runs it through `tsx` rather than
 # precompiling to JS — this is exactly the execution path already smoke-
 # tested during development (`node --import tsx core/orchestrator/server.ts`),
@@ -34,7 +39,7 @@ COPY config.ts tsconfig.json ./
 COPY core ./core
 COPY memory ./memory
 COPY database ./database
-COPY ai/openai ./ai/openai
+COPY ai ./ai
 COPY prompts ./prompts
 
 ENV NODE_ENV=production

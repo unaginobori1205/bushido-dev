@@ -1,6 +1,6 @@
 # SHOGUN — Implementation Plan
 
-Status: **MVP0.1 implemented** — §6 was the plan, §8 records what was
+Status: **MVP0.1 + MVP0.3 implemented** — §6 was the plan, §8 records what was
 actually built and where it deviated from this plan and why. See
 `ARCHITECTURE.md` for the *why* behind the original design choices.
 
@@ -363,3 +363,57 @@ not now):
   video's assistant stays conversational during execution) — the
   `EXECUTING` state already exists in `core/orchestrator/stateMachine.ts`
   for exactly this, but nothing drives it yet.
+
+## 11. MVP0.3 — Claude Code delegation (built)
+
+The "Jarvis" behaviour from §10's reference: say a task out loud, SHOGUN
+hands it to Claude Code, keeps talking to you while it runs, then reports
+back. Built after MVP0.1, skipping MVP0.2 (calendar) because this is what
+the user actually asked for.
+
+**How a task flows**
+
+1. The Realtime session registers one function,
+   `delegate_to_claude_code` (`core/intent-router`). The *model* decides a
+   turn is work — no keyword matching on our side — and announces its ETA
+   out loud in the same turn, which is how §10's "tell them how long"
+   requirement is met.
+2. `core/orchestrator/server.ts` receives the tool call and refuses it the
+   first time, telling the model to read the task back and get a spoken
+   yes.
+3. Only a second call with `confirmed: true` **and** a real user turn
+   observed after the refusal executes. The model can claim the user
+   agreed; it cannot manufacture a transcription event, so a
+   self-confirming model still runs nothing. `CLAUDE_REQUIRE_CONFIRMATION=false`
+   waives this in favour of standing consent — documented as a Level 2/3
+   decision, not a convenience toggle.
+4. `ai/claude/claudeBridge.ts` spawns `claude -p "<task>" --output-format
+   json [--resume <id>]` in `CLAUDE_CWD`, not awaited, so the conversation
+   stays live (the `EXECUTING` state now has something driving it).
+5. On completion the result goes back through
+   `RealtimeClient.sendToolResult`, so SHOGUN summarises it in its own
+   voice rather than reading Claude Code's output verbatim.
+
+**Deliberate constraints**
+
+- **Off by default** (`CLAUDE_DELEGATION_ENABLED=false`). The persona is
+  told when it's disabled so it says so plainly instead of pretending to
+  start work.
+- **Local only.** `assertRunnableHere` refuses delegation when core is
+  bound off-loopback: the user's Claude Code login and files are on their
+  machine, so a cloud core would act on the wrong one. This closes the
+  question §9 left open.
+- **Session continuity per directory** (`ai/claude/sessionStore.ts`) —
+  keyed by cwd, because Claude Code's history is per-project and resuming
+  one project's session in another would continue the wrong conversation.
+
+**Verification.** `ai/claude/claudeBridge.ts` was run against the **real**
+`claude` CLI in this environment: a first call returned its answer and
+persisted the session id, and a second call resumed that session with the
+model still remembering the first turn. That is the one part of the voice
+loop this environment *can* prove, and it works. The parts still unproven
+are unchanged from §8 — anything requiring a microphone, speakers, a Mac,
+or an outbound WebSocket to OpenAI.
+
+Unit tests: 62 total (was 36) — `claudeBridge` (13), `sessionStore` (6),
+`intent-router` (7) added.

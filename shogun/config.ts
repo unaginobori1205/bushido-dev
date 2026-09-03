@@ -40,6 +40,37 @@ const ConfigSchema = z.object({
   // (loopback-only + no auth is an acceptable MVP0.1 default); required in
   // practice the moment CORE_WS_HOST is not loopback — see docs/SECURITY.md.
   CORE_AUTH_TOKEN: z.string().default(""),
+
+  // --- ai/claude (Claude Code delegation) ---------------------------
+  CLAUDE_BIN: z.string().default("claude"),
+  // Where delegated tasks run. Defaults to the directory core was started
+  // from; docs/SECURITY.md recommends pointing this at one project or
+  // scratch directory rather than a home directory, since a voice command
+  // has no confirmation step and no undo.
+  CLAUDE_CWD: z.string().default(""),
+  // Extra flags for `claude -p`, e.g. "--permission-mode acceptEdits".
+  // Empty means Claude Code's own default permission handling, which in
+  // headless mode will simply decline actions it would normally prompt
+  // for — see docs/SECURITY.md before loosening this.
+  CLAUDE_EXTRA_ARGS: z.string().default(""),
+  CLAUDE_TIMEOUT_MS: z.coerce.number().int().positive().default(600000),
+  CLAUDE_SESSION_FILE: z.string().default(""),
+  // Delegation is off unless explicitly enabled: MVP0.1's conversation
+  // loop is safe by construction, whereas delegation runs commands on the
+  // user's machine. Opt in once CLAUDE_CWD points somewhere you trust.
+  CLAUDE_DELEGATION_ENABLED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((v) => v === "true"),
+  // ASK BEFORE ACT (docs/ARCHITECTURE.md §5): a delegated task is read back
+  // and confirmed out loud before it runs. Setting this to false waives
+  // that per-task confirmation in favour of standing consent — itself a
+  // Level 2/3 decision, so only do it with CLAUDE_CWD pointed at a
+  // directory you would not mind losing (docs/SECURITY.md).
+  CLAUDE_REQUIRE_CONFIRMATION: z
+    .enum(["true", "false"])
+    .default("true")
+    .transform((v) => v === "true"),
 });
 
 export type ShogunConfig = z.infer<typeof ConfigSchema>;

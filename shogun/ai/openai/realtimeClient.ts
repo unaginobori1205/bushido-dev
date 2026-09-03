@@ -1,12 +1,13 @@
 /**
  * ai/openai — the ConversationProvider (docs/ARCHITECTURE.md §3) backed by
  * the OpenAI Realtime API (`gpt-realtime-2.1`, WebSocket). This is SHOGUN's
- * "brain" for MVP0.1: the model itself holds the SHOGUN persona
- * (prompts/shogun-system.md) and generates its own conversational replies
- * — unlike the original `voice-claude` CLI design (ai/claude), which
- * suppressed the model's own responses (`create_response:false`) so it
- * could substitute Claude Code's text instead. MVP0.1 has no Claude Code
- * in the loop, so the model's own reply is exactly what should be spoken.
+ * "brain": the model itself holds the SHOGUN persona
+ * (prompts/shogun-system.md) and generates its own conversational replies,
+ * rather than having them substituted (the original `voice-claude` CLI
+ * suppressed the model's own responses with `create_response:false` so it
+ * could speak Claude Code's text instead). Here the model answers in its
+ * own voice, and *delegates* to Claude Code via a tool call when the turn
+ * is actual work — see core/intent-router and `sendToolResult` below.
  *
  * Session schema verified against current OpenAI Realtime API docs
  * (nested `session.audio.input`/`session.audio.output`, `semantic_vad`
@@ -17,6 +18,7 @@
 import { EventEmitter } from "node:events";
 import WebSocket from "ws";
 import type { ShogunConfig } from "../../config.js";
+import { DELEGATE_TOOL_DEFINITION } from "../../core/intent-router/index.js";
 
 export interface RealtimeClientEvents {
   open: [];
@@ -26,6 +28,7 @@ export interface RealtimeClientEvents {
   speechStart: [];
   speechDelta: [{ audio: Buffer }];
   speechEnd: [];
+  toolCall: [{ callId: string; name: string; argumentsJson: string }];
   error: [{ error: Error }];
   close: [];
 }
@@ -84,6 +87,11 @@ export class RealtimeClient extends EventEmitter {
         model: this.config.OPENAI_REALTIME_MODEL,
         output_modalities: ["audio"],
         instructions: this.systemInstructions,
+        // Lets the model itself decide when a turn is real work to hand to
+        // Claude Code — see core/intent-router. It only ever *proposes*;
+        // core/permissions decides whether the call actually runs.
+        tools: [DELEGATE_TOOL_DEFINITION],
+        tool_choice: "auto",
         audio: {
           input: {
             format: { type: "audio/pcm", rate: 24000 },
@@ -128,6 +136,28 @@ export class RealtimeClient extends EventEmitter {
     });
   }
 
+  /**
+   * Returns a tool call's outcome to the model and asks it to tell the user
+   * in its own voice. Going back through the model (rather than `speak()`
+   * verbatim) keeps the persona consistent and lets it summarise a long
+   * Claude Code answer into something worth hearing out loud.
+   */
+  sendToolResult(callId: string, output: string): void {
+    this.send({
+      type: "conversation.item.create",
+      item: { type: "function_call_output", call_id: callId, output },
+    });
+    this.send({
+      type: "response.create",
+      response: {
+        output_modalities: ["audio"],
+        instructions:
+          "Tell the user how the task went, in your own voice, in two or three sentences at most. " +
+          "Lead with the outcome. Do not read file contents or code aloud.",
+      },
+    });
+  }
+
   close(): void {
     this.ws?.close();
     this.ws = null;
@@ -161,6 +191,13 @@ export class RealtimeClient extends EventEmitter {
         }
         const b64 = event.delta as string | undefined;
         if (b64) this.emit("speechDelta", { audio: Buffer.from(b64, "base64") });
+        break;
+      }
+      case "response.function_call_arguments.done": {
+        const callId = event.call_id as string | undefined;
+        const name = event.name as string | undefined;
+        const argumentsJson = (event.arguments as string | undefined) ?? "";
+        if (callId && name) this.emit("toolCall", { callId, name, argumentsJson });
         break;
       }
       case "response.output_text.done": {
