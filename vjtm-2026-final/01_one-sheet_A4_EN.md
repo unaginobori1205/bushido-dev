@@ -45,7 +45,7 @@ Nagoya sits **on** the Tokyo–Kyoto line. Your clients lose no travel time. The
 
 **1. The product is a person, not a booking.** We do not buy our experiences from a wholesaler. I teach the archery. The calligraphy master is someone I train with.
 
-**2. One contact, not five suppliers.** I chair the **Nagoya Inbound Summit** — 100+ hotels, restaurants, craft studios and operators across Aichi, Gifu and Mie. For transport we work with **Shachi Bus**. Say "thirty students, four days, March" and you get one quote, not five.
+**2. One contact, not five suppliers.** I chair the **Nagoya Inbound Summit** — 100+ hotels, restaurants, craft studios and operators across Aichi, Gifu and Mie — and we are a member of the **Nagoya Convention & Visitors Bureau**. For transport we work with **Shachi Bus**. Say "thirty students, four days, March" and you get one quote, not five.
 
 **3. Nagoya first — but not only Nagoya.** We operate from a Nagoya base into Gifu, Mie, Nagano and Hokuriku, and we arrange nationally where a client's route requires it.
 
@@ -72,6 +72,7 @@ Nagoya sits **on** the Tokyo–Kyoto line. Your clients lose no travel time. The
 Or in Nagoya, any time.
 
 **Kensuke Ueoka (Ken)** — Founder, BUSHIDO LLC / Chairman, Nagoya Inbound Summit
+Member, Nagoya Convention & Visitors Bureau · Travel Service Arrangement Business, Aichi Prefecture
 ueoka@bsd-pro.com · WhatsApp +81 90-5101-5064 · Invoice Reg. T8180003024921
 
 [QR ①] Products, photographs, sample itineraries
@@ -97,9 +98,14 @@ ueoka@bsd-pro.com · WhatsApp +81 90-5101-5064 · Invoice Reg. T8180003024921
 | 項目 | 出典 | 状態 |
 | --- | --- | --- |
 | 手数料15%・見積14日・24時間回答 | 既存B2B資料・送信済みメールで一貫 | ✅確定 |
-| リードタイム（14/30/60日） | **本書で新規設定** | ⚠️上岡さんの承認が要る |
+| リードタイム（14/30/60日） | 本書で新規設定 → **2026-09-24 上岡さん承認済み** | ✅確定 |
 | 1〜100名 | マグロ解体ショー最大100名の実績から | ✅ |
 | 弓道4段・書道6段 | 既存資料 | ✅ |
+| 名古屋観光コンベンションビューロー会員 | 上岡さん申告（2026-09-24） | ✅ |
 | 30年 | 本人申告 | ✅ |
 
-**⚠️ リードタイムは今夜決めてください。** 海外バイヤーが最初に聞く項目のひとつで、ここが空欄だと「まだ仕組みになっていない会社」に見えます。上の数字で問題なければそのまま印刷。
+**✅ リードタイムは2026-09-24に確定しました。** 14日／20名超30日／流鏑馬60日。このまま印刷。
+
+**⚠️ 残る確認は取消料の一点だけ。** 本書の取消条件（8日前まで無料／7〜4日30%／3〜1日50%／当日100%）は、
+既存の `BUSHIDO JAPAN 取消料基準表`（2026-09-14制定）をそのまま採用し、**「案」の二文字だけを外したもの**です。
+中身は上岡さんが作った条件そのままなので、**特に指示がなければこのまま印刷します。**

@@ -28,6 +28,8 @@ Organised by BUSHIDO LLC · Nagoya · Since April 2026
 
 A working network of the people who actually deliver inbound travel in Central Japan — hotels (Hilton, ESPACIO Nagoya Castle), the Nagoya Convention & Visitors Bureau, city tourism officials, prefectural assembly members, restaurants, craft studios and experience providers.
 
+BUSHIDO LLC, which organises the Summit, is itself a **member of the Nagoya Convention & Visitors Bureau**.
+
 We meet regularly for one purpose: to turn Nagoya from a place trains pass through into a place people stop.
 
 ---
@@ -60,6 +62,7 @@ We meet regularly for one purpose: to turn Nagoya from a place trains pass throu
 Or in Nagoya, any time. We would be glad to design a Chubu programme for your market.
 
 **Kensuke Ueoka (Ken)** — Founder, BUSHIDO LLC / Chairman, Nagoya Inbound Summit
+Member, Nagoya Convention & Visitors Bureau
 ueoka@bsd-pro.com · WhatsApp +81 90-5101-5064 · Invoice Reg. T8180003024921
 Summit Office: nagoya.inbound.summit@gmail.com
 

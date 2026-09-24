@@ -87,19 +87,51 @@
 
 ---
 
-## 6. 「団体のレートは？」への答え — **必ずこう言う**
+## 6. 「団体のレートは？」への答え — **2026-09-24 方針確定**
 
 **15社中10社が6名超を扱う。これが最頻出の質問になる。**
 
-> *"The group rate table is being finalised with our coach operator. What I can give you today is the per-person rate and the guide rate — both fixed, both on this sheet. The variable is the vehicle, and that depends on your routing rather than a flat daily rate.*
->
-> *Give me your party size, your dates and where you are coming from, and you will have a firm figure within seven days of this show — one I can hold, not one I have to revise."*
+### 方針：平均値を出さない。日付ごとに押さえる。
 
-**やってはいけない**：その場で概算を口走る。**後から下げられない。**
-**必ず持ち帰る3点**：① 標準人数 ② シーズン ③ 行程日数と発地
+**「団体レートがまだ無い」とは言わない。** 言うのはこれ。
+
+> *"I can't give you a flat daily coach rate — and honestly, any supplier who does is giving you an average. Which means your client overpays on the cheap dates and the operator loses on the expensive ones.*
+>
+> *Coach pricing in this region genuinely moves by date. Distance, driver hours, and how many vehicles are left that week. Cherry blossom and autumn are the weeks operators run out.*
+>
+> *So here is how we work. Give me your dates and your routing, and we quote the operator's actual figure for those dates — and hold a vehicle against that quote. If your dates move, the figure moves, and I will tell you before you commit rather than after.*
+>
+> *The experience rates and the guide rate on this sheet don't move at all. The vehicle is the only variable, and I'd rather show you the variable than hide it in an average."*
+
+### なぜこの言い方が強いか
+
+「レート表がない」＝準備不足に聞こえる。
+**「日付ごとに実額で押さえる」＝実務を分かっている会社に聞こえる。**
+同じ事実でも、buyer の受け取りが逆になる。
+
+しかも**これは嘘ではない。** 貸切バスは実際に日によって原価が違う。
+平均日額を出している会社のほうが、内部で丸めている。
+
+### その場で必ず取る5項目（→ `14_vehicle-enquiry-sheet.md`）
+
+1. **日付**（または月と曜日の幅）
+2. **人数**
+3. **発地と解散地**（名古屋駅／中部国際空港／東京から直行 など）
+4. **1日あたりの動き**（市内のみ／中部周遊／宿泊移動）
+5. **車両を夜間も押さえるか**（運転手の拘束時間が変わる）
+
+**この5つが埋まれば、7日以内に実額が出せる。**
+埋まらないまま数字を言うと、必ず後で下げられない。
+
+### やってはいけない
+
+- その場で概算を口走る（**後から下げられない**）
+- 「たぶん○万円くらい」（たぶんは見積ではない）
+- 「他社より安くできます」（原価を知らないまま言っている）
 
 > **9/26は宇津木社長が同席する。** 団体の話になったら**その場で振る**。
-> **9/25は同席がない。** 同じ質問が来たら上の台詞で受け、`10_team_SHACHI-BUSHIDO_EN.md` を見せる。
+> **9/25は同席がない。** 上の台詞で受け、`10_team_SHACHI-BUSHIDO_EN.md` を見せ、
+> *"My transport partner is here tomorrow. I can put him on a call this week, or answer in writing within 24 hours. I'd rather he answered than I guessed."*
 
 ---
 
