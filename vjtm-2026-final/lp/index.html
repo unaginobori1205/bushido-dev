@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUSHIDO JAPAN — Trade Partners</title>
+<meta name="description" content="Kyudo, culture and land operation in Central Japan. Net rates, 15% commission, 24-hour turnaround. VJTM 2026 Booth S15-01.">
+<meta property="og:title" content="BUSHIDO JAPAN — Trade Partners">
+<meta property="og:description" content="I teach Japanese archery. That is the whole company. Net rates and trade terms for travel agencies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto;display:block}
+
+:root{
+  --ink:#0A0A0A;
+  --ink-2:#141414;
+  --ink-3:#1C1C1C;
+  --gold:#C9A86A;
+  --gold-lt:#E2C98A;
+  --gold-dim:rgba(201,168,106,.18);
+  --washi:#F5F0E8;
+  --text:rgba(245,240,232,.88);
+  --dim:rgba(245,240,232,.52);
+  --line:rgba(201,168,106,.22);
+  --gut:16px;
+  --max:760px;
+}
+
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.2;color:var(--washi)}
+h1{font-size:clamp(30px,8vw,46px);letter-spacing:-.01em}
+h2{font-size:clamp(24px,6vw,32px);margin-bottom:8px}
+h3{font-size:19px;margin-bottom:6px}
+
+.eyebrow{
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;display:block
+}
+.lead{font-size:17px;color:var(--text)}
+.dim{color:var(--dim)}
+.small{font-size:14px}
+em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08em;color:var(--gold-lt)}
+strong{color:var(--washi);font-weight:600}
+
+/* ---------- HERO ---------- */
+.hero{
+  padding:44px 0 52px;
+  background:
+    radial-gradient(120% 80% at 50% 0%,rgba(201,168,106,.10),transparent 60%),
+    var(--ink);
+}
+.hero .badge{
+  display:inline-block;border:1px solid var(--line);border-radius:2px;
+  padding:6px 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:22px
+}
+.hero h1{margin-bottom:18px}
+.hero .sub{font-size:17px;max-width:44ch;margin-bottom:26px}
+.rule{width:48px;height:2px;background:var(--gold);margin:26px 0}
+
+/* ---------- IMAGE SLOTS ---------- */
+.shot{
+  position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;
+  border:1px solid var(--line);background:var(--ink-3);border-radius:2px
+}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot.ph{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  background:
+    repeating-linear-gradient(135deg,rgba(201,168,106,.05) 0 10px,transparent 10px 20px),
+    var(--ink-3);
+}
+.shot.ph span{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,168,106,.55);
+  padding:0 16px;line-height:1.7
+}
+.shot.tall{aspect-ratio:4/5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+
+/* ---------- TILES ---------- */
+.tiles{display:grid;gap:14px;margin-top:24px}
+.tile{border:1px solid var(--line);border-radius:2px;padding:20px;background:var(--ink-2)}
+.tile .n{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);line-height:1;margin-bottom:10px;display:block}
+
+/* ---------- TABLE ---------- */
+.tbl{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}
+.tbl th{
+  text-align:left;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;padding:0 8px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap
+}
+.tbl th:last-child,.tbl td:last-child{text-align:right;padding-right:0}
+.tbl td{padding:11px 8px 11px 0;border-bottom:1px solid rgba(201,168,106,.10);vertical-align:top}
+.tbl td:first-child{color:var(--washi)}
+.tbl .num{white-space:nowrap;font-variant-numeric:tabular-nums}
+.tbl .cost{color:var(--gold-lt);font-size:12.5px}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 calc(var(--gut)*-1);padding:0 var(--gut)}
+
+/* ---------- TERMS LIST ---------- */
+.terms{margin-top:20px;border-top:1px solid var(--line)}
+.terms div{
+  display:flex;gap:16px;padding:13px 0;border-bottom:1px solid rgba(201,168,106,.10);
+  font-size:14.5px;align-items:baseline
+}
+.terms dt{
+  flex:0 0 118px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;line-height:1.9
+}
+.terms dd{flex:1}
+
+/* ---------- SPLIT (team) ---------- */
+.split{display:grid;gap:14px;margin-top:24px}
+.col{border:1px solid var(--line);border-radius:2px;padding:20px;background:var(--ink-2)}
+.col h3{color:var(--gold);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.col ul{list-style:none;font-size:14.5px}
+.col li{padding:6px 0 6px 16px;position:relative;color:var(--text)}
+.col li::before{content:'';position:absolute;left:0;top:14px;width:5px;height:1px;background:var(--gold)}
+
+/* ---------- STATS ---------- */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px}
+.stats div{background:var(--ink-2);padding:18px 14px;text-align:center}
+.stats b{display:block;font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold);line-height:1.1}
+.stats span{font-size:11px;letter-spacing:.08em;color:var(--dim);display:block;margin-top:6px;line-height:1.5}
+
+/* ---------- QUOTE ---------- */
+blockquote{
+  border-left:2px solid var(--gold);padding:4px 0 4px 18px;margin:24px 0;
+  font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;
+  color:var(--gold-lt);line-height:1.5
+}
+
+/* ---------- CTA ---------- */
+.cta{background:linear-gradient(180deg,var(--ink-2),var(--ink));text-align:center}
+.btn{
+  display:block;width:100%;padding:17px 20px;margin-top:12px;
+  border:1px solid var(--gold);border-radius:2px;
+  color:var(--ink);background:var(--gold);
+  font-size:15px;font-weight:600;letter-spacing:.04em;text-decoration:none;
+  transition:background .2s,transform .1s
+}
+.btn:active{transform:scale(.99)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.meta{font-size:13px;color:var(--dim);margin-top:26px;line-height:1.9}
+
+footer{padding:36px 0 48px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.9}
+footer b{color:var(--washi);font-weight:600}
+
+/* ---------- ANIM ---------- */
+.fade{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.fade.vis{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}}
+
+/* ---------- RESPONSIVE ---------- */
+@media (min-width:700px){
+  :root{--gut:32px}
+  section{padding:72px 0}
+  .tiles{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .btnrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btnrow .btn{margin-top:0}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">VJTM 2026 · Booth S15-01 · Seller Reg. 1684</span>
+    <h1>I teach Japanese archery.<br>That is the whole company.</h1>
+    <p class="sub">Thirty years of kyudo. Fourth dan. Everything BUSHIDO builds sits on top of that one fact — which is also why it cannot be copied.</p>
+    <div class="shot">
+      <!-- 実写あり：BUSHIDO_弓道体験_構え.jpg を img/kyudo-01.jpg として置く -->
+      <img src="img/kyudo-01.jpg" alt="Kyudo practice at the dojo" onerror="this.parentNode.classList.add('ph');this.remove();this.parentNode.innerHTML='<span>Kyudo — img/kyudo-01.jpg</span>'">
+    </div>
+    <div class="rule"></div>
+    <p class="small dim">Experience design and land operation · Nagoya, Central Japan</p>
+  </div>
+</header>
+
+<!-- ============ WHY DIFFERENT ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow">Why we are different</span>
+    <h2>Three things, and only three</h2>
+    <div class="tiles">
+      <div class="tile">
+        <span class="n">01</span>
+        <h3>The product is a person</h3>
+        <p class="small">We do not buy our experiences from a wholesaler. I teach the archery. The calligraphy master is someone I train with. The constraint is not money — it is an instructor who still trains.</p>
+      </div>
+      <div class="tile">
+        <span class="n">02</span>
+        <h3>One contact, not five suppliers</h3>
+        <p class="small">I chair the <strong>Nagoya Inbound Summit</strong> — 100+ operators across Aichi, Gifu and Mie — and we are a member of the <strong>Nagoya Convention &amp; Visitors Bureau</strong>. For transport we work with <strong>Shachi Bus</strong>. Say “thirty students, four days, March” and you get one quote.</p>
+      </div>
+      <div class="tile">
+        <span class="n">03</span>
+        <h3>Nagoya is not a detour</h3>
+        <p class="small">It sits <strong>on</strong> the Tokyo–Kyoto line. Your clients lose no travel time. They gain a day of Japan that is not crowded, at a lower cost than Kyoto in peak season.</p>
+      </div>
+      <div class="tile">
+        <span class="n">04</span>
+        <h3>Nagoya first — not only Nagoya</h3>
+        <p class="small">We operate from a Nagoya base into Gifu, Mie, Nagano and Hokuriku, and arrange nationally where a client’s route requires it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RATES ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow">Net rates</span>
+    <h2>What it costs</h2>
+    <p class="lead dim small">Per person unless stated. <strong>Net = Retail × 0.85.</strong> Items marked <em>at cost</em> carry no commission for either of us — we would rather say so here than have you find it on the invoice.</p>
+
+    <div class="tblwrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Experience</th><th>Time</th><th>Retail</th><th>Net</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Kyudo — The Way of the Bow</td><td class="num dim">2 h</td><td class="num">¥30,000</td><td class="num">¥25,500</td></tr>
+          <tr><td>Arimatsu Shibori — indigo since 1608</td><td class="num dim">2 h</td><td class="num">¥10,000</td><td class="num">¥8,500</td></tr>
+          <tr><td>Shibori + Calligraphy</td><td class="num dim">4 h</td><td class="num">¥20,000</td><td class="num">¥17,000</td></tr>
+          <tr><td>Pottery — Seto ware</td><td class="num dim">2 h</td><td class="num">¥10,000</td><td class="num">¥8,500</td></tr>
+          <tr><td>Miso-nikomi udon + lunch</td><td class="num dim">3 h</td><td class="num">¥15,000</td><td class="num">¥12,750</td></tr>
+          <tr><td>The Nagoya Table — udon + unagi</td><td class="num dim">Full day</td><td class="num">¥35,000</td><td class="num">¥29,750</td></tr>
+          <tr><td>A Day with Master Ken <span class="dim">· private, 2–6</span></td><td class="num dim">Full day</td><td class="num">¥500,000<br><span class="dim">/group</span></td><td class="num">¥425,000</td></tr>
+          <tr><td>Guide, coordination, prayer arrangement</td><td class="num dim">Per day</td><td class="num">¥100,000<br><span class="dim">/group</span></td><td class="num">¥85,000</td></tr>
+          <tr><td>VIP hire — Alphard with driver <span class="dim">· ≤6 pax</span></td><td class="num dim">Per day</td><td class="num">¥300,000</td><td class="num">¥255,000</td></tr>
+          <tr><td>Yabusame — horseback archery</td><td class="num dim">Half day</td><td class="num">¥180,000<br><span class="dim">/group</span></td><td class="num cost">at cost</td></tr>
+          <tr><td>Kyudo Camp <span class="dim">· three days</span></td><td class="num dim">3 days</td><td class="num">¥90,000</td><td class="num cost">at cost</td></tr>
+          <tr><td>Hotel <span class="dim">· per room / night</span></td><td class="num dim">—</td><td class="num">¥30,000–80,000</td><td class="num cost">at cost</td></tr>
+          <tr><td>Coach, 7 guests and above</td><td class="num dim">Per day</td><td class="num" colspan="2">quoted against your dates</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="small dim" style="margin-top:18px">Tea ceremony, zen, sushi, Nagoya coffee culture and sea fishing are priced on application — give us dates and numbers and you have a figure within 48 hours.</p>
+
+    <blockquote>The vehicle is the only variable. Everything we teach or supply is fixed, peak season included.</blockquote>
+
+    <p class="small">We do not publish a flat daily coach rate, because any supplier who does is giving you an average — your client overpays on the cheap dates and the operator loses on the expensive ones. Coach pricing here genuinely moves by date. <strong>Give us your dates and routing and we quote the operator’s actual figure, then hold a vehicle against that quote.</strong> If your dates move, the figure moves, and we tell you before you commit rather than after.</p>
+  </div>
+</section>
+
+<!-- ============ TERMS ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow">How we trade</span>
+    <h2>The part your office needs</h2>
+    <dl class="terms">
+      <div><dt>Commission</dt><dd>15% on commissionable items. Net shown beside retail on every quote.</dd></div>
+      <div><dt>Turnaround</dt><dd>24 hours from a complete enquiry.</dd></div>
+      <div><dt>Quote held</dt><dd>14 days.</dd></div>
+      <div><dt>Lead time</dt><dd>14 days standard · 30 days for groups over 20 · 60 days for yabusame.</dd></div>
+      <div><dt>Group size</dt><dd>1 to 100. Private programmes run from two guests, with no single supplement — we simply quote for two.</dd></div>
+      <div><dt>Language</dt><dd>English throughout. Chinese interpretation arranged. Others on request.</dd></div>
+      <div><dt>Weather</dt><dd>Indoor programmes run regardless. Yabusame and sea fishing we postpone rather than run badly, and we tell you 24 hours ahead.</dd></div>
+      <div><dt>Cancellation</dt><dd>Free to 8 days · 30% at 7–4 days · 50% at 3–1 days · 100% on the day. Pre-committed venue, instructor, ingredient and vehicle costs pass at actual cost — disclosed before you confirm.</dd></div>
+      <div><dt>Payment</dt><dd>Bank transfer or card link. Invoice on confirmation. JPY.</dd></div>
+      <div><dt>Booking</dt><dd>E-mail. Confirmation and invoice within 24 hours.</dd></div>
+      <div><dt>Licence</dt><dd>Travel Service Arrangement Business, Aichi Prefecture. Invoice Reg. T8180003024921. Insured — certificate on request.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow">Shachi Bushido Journey</span>
+    <h2>Transport and culture, quoted as one product</h2>
+    <p class="lead small dim">Most suppliers in this region sell you one piece and leave you to assemble the rest. We quote the whole day.</p>
+    <div class="split">
+      <div class="col">
+        <h3>Shachi Bus — Move</h3>
+        <ul>
+          <li>Chartered coaches and premium vehicles</li>
+          <li>Group transport, 7 to 60+ guests</li>
+          <li>Licensed operation and safety management</li>
+          <li>Itinerary construction and travel-business expertise</li>
+          <li><strong>Vehicles held for peak weeks</strong></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>BUSHIDO — Experience</h3>
+        <ul>
+          <li>Cultural experience design and delivery</li>
+          <li>Overseas sales and B2B account handling</li>
+          <li>English-language product development</li>
+          <li>100+ local partners via the Summit</li>
+          <li>Guides, land operation, on-the-day management</li>
+        </ul>
+      </div>
+    </div>
+    <blockquote>Cherry blossom and autumn are the weeks operators in this region run out of coaches. That is why this partnership exists.</blockquote>
+  </div>
+</section>
+
+<!-- ============ SALAAM ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow">Salaam Japan</span>
+    <h2>Muslim-friendly Central Japan</h2>
+    <p class="lead small"><strong>We are not halal-certified, and we will not hand you a certificate we do not have.</strong></p>
+    <p class="small" style="margin-top:14px">What we have instead: every venue is checked for the specific group, before the trip, in Japanese — and the people who check are <strong>Muslims living in Nagoya who eat there themselves</strong>. Not a list copied off a website. This work is done with <strong>Halal Navi</strong>.</p>
+    <p class="small" style="margin-top:14px">For each venue we tell you exactly what it is — Muslim-owned, verified by our Muslim partners, or simply no pork and no alcohol in the kitchen. <strong>You decide what your client can accept.</strong></p>
+    <p class="small" style="margin-top:14px">Prayer is written into the schedule, five times a day, with somewhere to wash. Nobody is ever asked to take part in a religious act at a shrine or temple.</p>
+    <p class="small dim" style="margin-top:14px">Tokyo and Osaka have established halal certification. Nagoya does not yet. We would rather you heard that from us.</p>
+    <blockquote>Archery and horsemanship are not merely permitted in Islam — they are encouraged. Yabusame is both at once.</blockquote>
+  </div>
+</section>
+
+<!-- ============ SUMMIT ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow">Nagoya Inbound Summit</span>
+    <h2>One introduction, many partners</h2>
+    <div class="stats">
+      <div><b>4</b><span>summits held<br>in 2026</span></div>
+      <div><b>100+</b><span>businesses<br>and leaders</span></div>
+      <div><b>10+</b><span>media features<br>incl. NIKKEI</span></div>
+      <div><b>2027</b><span>JCI World Congress<br>comes to Nagoya</span></div>
+    </div>
+    <p class="small" style="margin-top:22px">A working network of the people who actually deliver inbound travel in Central Japan — hotels, the Nagoya Convention &amp; Visitors Bureau, city tourism officials, restaurants, craft studios and experience providers. BUSHIDO organises it, and is itself a member of the Bureau.</p>
+    <p class="small" style="margin-top:14px"><strong>If you ever need something in this region that we do not do ourselves, ask us anyway.</strong> We would rather be useful once than sell you something you do not need.</p>
+    <div class="shot ph" style="margin-top:22px"><span>Summit — img/summit.jpg</span></div>
+  </div>
+</section>
+
+<!-- ============ MORE EXPERIENCES ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow">Also available</span>
+    <h2>Beyond the bow</h2>
+    <div class="grid2">
+      <div class="shot ph"><span>Arimatsu shibori<br>img/shibori.jpg</span></div>
+      <div class="shot ph"><span>Seto pottery<br>img/pottery.jpg</span></div>
+      <div class="shot ph"><span>Tea ceremony<br>img/tea.jpg</span></div>
+      <div class="shot ph"><span>Miso-nikomi udon<br>img/udon.jpg</span></div>
+    </div>
+    <p class="small dim" style="margin-top:18px">Calligraphy · tea ceremony · zen and etiquette · Nagoya Castle · sushi · Arimatsu indigo · pottery · Nagoya coffee culture · sea fishing · tuna-cutting show for up to 100 guests.</p>
+    <p class="small dim" style="margin-top:10px">Photography for these is being shot in October. Tell us the format your catalogue needs and we will shoot to it.</p>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta fade">
+  <div class="wrap">
+    <span class="eyebrow">Next step</span>
+    <h2>Tell us about your clients</h2>
+    <p class="small dim" style="max-width:40ch;margin:10px auto 0">Party size, season and the itinerary you already sell. That is enough for a firm quote.</p>
+    <div class="btnrow">
+      <a class="btn" href="mailto:ueoka@bsd-pro.com?subject=Enquiry%20from%20VJTM%202026">E-mail Ken</a>
+      <a class="btn ghost" href="https://wa.me/819051015064">WhatsApp</a>
+    </div>
+    <p class="meta">
+      <b style="color:var(--washi)">Kensuke Ueoka (Ken)</b><br>
+      Founder, BUSHIDO LLC · Chairman, Nagoya Inbound Summit<br>
+      Member, Nagoya Convention &amp; Visitors Bureau<br>
+      ueoka@bsd-pro.com · +81 90-5101-5064
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>BUSHIDO LLC</b> · Nagoya, Aichi, Japan<br>
+    Travel Service Arrangement Business, Aichi Prefecture · Invoice Reg. T8180003024921<br>
+    VJTM 2026 · Tokyo Big Sight West Hall 1 · Booth S15-01 · Seller Registration 1684
+  </div>
+</footer>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target);} });
+  },{threshold:.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

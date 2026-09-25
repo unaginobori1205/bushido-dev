@@ -1,0 +1,30 @@
+@page{size:A4;margin:13mm 14mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"IPAPGothic","IPAGothic",Georgia,serif;color:#111;font-size:9.4pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hdr{border-bottom:2.4pt solid #8a6d34;padding-bottom:3mm;margin-bottom:5mm;display:flex;justify-content:space-between;align-items:flex-end}
+.hdr h1{font-size:20pt;letter-spacing:-.01em;line-height:1.05}
+.hdr .r{text-align:right;font-size:7.6pt;color:#666;line-height:1.6}
+.tag{font-size:7.4pt;letter-spacing:.2em;color:#8a6d34;font-weight:700;text-transform:uppercase}
+h2{font-size:11.5pt;margin:5mm 0 2mm;padding-bottom:1.2mm;border-bottom:.7pt solid #d8cbb0;letter-spacing:.01em}
+h3{font-size:9.6pt;margin-bottom:1mm}
+p{margin-bottom:2mm}
+b{font-weight:700}
+em{font-style:italic;color:#6b5424}
+table{width:100%;border-collapse:collapse;font-size:8.6pt;margin:2mm 0 3mm}
+th{text-align:left;font-size:7.2pt;letter-spacing:.12em;text-transform:uppercase;color:#8a6d34;border-bottom:.8pt solid #8a6d34;padding:0 3mm 1.4mm 0;white-space:nowrap}
+td{padding:1.6mm 3mm 1.6mm 0;border-bottom:.4pt solid #e4dcc8;vertical-align:top}
+td:first-child{font-weight:600}
+th:last-child,td:last-child{text-align:right;padding-right:0}
+.num{white-space:nowrap}
+.cost{color:#8a6d34;font-size:8pt}
+.lead{font-size:11pt;line-height:1.5;margin-bottom:3mm}
+.big{font-size:14pt;line-height:1.35;font-weight:700;margin-bottom:3mm}
+.box{border:.8pt solid #d8cbb0;background:#faf7f0;padding:3mm 3.5mm;margin:3mm 0}
+.cols{display:flex;gap:5mm}.cols>div{flex:1}
+.two{column-count:2;column-gap:7mm}
+ul{list-style:none}
+li{padding:1.2mm 0 1.2mm 4mm;position:relative}
+li::before{content:'';position:absolute;left:0;top:3.4mm;width:2mm;height:.7pt;background:#8a6d34}
+.ft{position:fixed;bottom:0;left:0;right:0;border-top:.7pt solid #d8cbb0;padding-top:2mm;font-size:7.4pt;color:#555;line-height:1.6}
+.ft b{color:#111}
+.ph{border:.8pt dashed #c9b88e;background:#faf7f0;height:34mm;display:flex;align-items:center;justify-content:center;color:#a28e5f;font-size:7.4pt;letter-spacing:.1em;margin-bottom:3mm}
