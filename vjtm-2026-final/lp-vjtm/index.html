@@ -215,8 +215,14 @@ th{text-align:left;font-size:10.5px;letter-spacing:.13em;color:var(--ai);font-we
 td{padding:13px 12px 13px 0;border-bottom:1px solid var(--hair);vertical-align:top;line-height:1.65}
 td:first-child{color:var(--sumi);font-weight:700}
 td .co{display:block;font-size:11.5px;color:var(--sumi-3);font-weight:400;letter-spacing:.04em}
-td.when{white-space:nowrap;font-family:var(--fig);font-weight:700;font-size:15px;
+tr.day td{background:var(--paper-3);color:var(--sumi);font-weight:700;font-size:12px;
+  letter-spacing:.1em;padding:8px 0 8px 10px;border-bottom:1px solid var(--line)}
+table.sched td:first-child{width:1%;white-space:nowrap}
+table.sched td:nth-child(2){font-weight:700;color:var(--sumi)}
+table.sched td:last-child{color:var(--sumi-3);font-size:13px;white-space:nowrap}
+td.when{white-space:nowrap;font-family:var(--fig);font-weight:700;font-size:16px;
   color:var(--shu);font-variant-numeric:tabular-nums}
+
 tbody tr:last-child td{border-bottom:0}
 @media (hover:hover){tbody tr{transition:background-color .2s ease}tbody tr:hover{background:var(--paper-2)}}
 
@@ -527,44 +533,46 @@ html.anim body.ready .hero .herocta{transform:none;transition-delay:.42s}
   <div class="wrap">
     <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>MEETING THE WORLD</span>
     <h2>世界の旅行会社と、20分ずつ直接商談。</h2>
-    <p class="lead">事前マッチングされた1枠20分の商談を、期間中に連続して行います。FIT、教育旅行、MICE、VIP、ウェルネス、ムスリム市場——<strong>それぞれ違う顧客層を持つ会社</strong>と話します。</p>
+    <p class="lead">事前マッチングされた1枠20分の商談を、2日間で連続して行います。<strong>19社。</strong>FIT、教育旅行、MICE、VIP、ウェルネス、ムスリム市場——<strong>それぞれ違う顧客層を持つ会社</strong>です。同じ説明を19回する商談会ではありません。</p>
 
     <div class="tagrow">
       <span>FIT</span><span>Luxury / UHNW</span><span>Wellness</span><span>Educational Travel</span>
       <span>Muslim Market</span><span>MICE</span><span>Group Travel</span><span>DMC</span>
     </div>
 
-    <h3 style="margin-top:32px">商談先の一例</h3>
+    <h3 style="margin-top:32px">商談予定（9月25日・26日）</h3>
+    <p class="sm dim">事前マッチングで確定している商談先です。担当者名・連絡先・やり取りの状況は載せていません。</p>
     <div class="tw">
-      <table>
-        <thead><tr><th>企業・地域</th><th>商談テーマ</th><th>日時</th></tr></thead>
+      <table class="sched">
+        <thead><tr><th>時刻</th><th>企業</th><th>国・地域</th></tr></thead>
         <tbody>
-          <tr>
-            <td>北京易去国際旅行社 成都分社<span class="co">中国・成都</span></td>
-            <td>FIT、小グループ、文化体験、MICE、宿泊、名古屋ガストロノミー</td>
-            <td class="when">9/25<br>13:30</td>
-          </tr>
-          <tr>
-            <td>江蘇楽橙国際旅行社 南京分公司<span class="co">中国・南京</span></td>
-            <td>教育旅行、企業研修、産業観光、オンライン単品販売</td>
-            <td class="when">9/25<br>15:10</td>
-          </tr>
-          <tr>
-            <td>KABUTO DMC<span class="co">DMC・スペイン語市場</span></td>
-            <td>日本文化商品、B2B商品造成</td>
-            <td class="when dim">—</td>
-          </tr>
-          <tr>
-            <td>イスラエル大手旅行グループ<span class="co">ウェルネス／ロンジェビティ部門</span></td>
-            <td>UHNW、ウェルネス、ロンジェビティ、日本文化との融合</td>
-            <td class="when dim">—</td>
-          </tr>
+          <tr class="day"><td colspan="3">9月25日（金）</td></tr>
+          <tr><td class="when">11:30</td><td>Kabuto DMC <span class="co">※時間は仮</span></td><td>日本</td></tr>
+          <tr><td class="when dim">調整中</td><td>Azza Travel</td><td>シンガポール</td></tr>
+          <tr><td class="when">13:00</td><td>Japanspecialist by JTB</td><td>スペイン</td></tr>
+          <tr><td class="when">13:30</td><td>北京易去国際旅行社 成都分社<span class="co">Beijing Easy Go, Chengdu</span></td><td>中国</td></tr>
+          <tr><td class="when">14:40</td><td>BIG WORLD HOLIDAY</td><td>タイ</td></tr>
+          <tr><td class="when">15:10</td><td>江蘇楽橙国際旅行社 南京分公司<span class="co">Jiangsu Leorange, Nanjing</span></td><td>中国</td></tr>
+          <tr><td class="when">15:40</td><td>SALAM VACATION</td><td>マレーシア</td></tr>
+          <tr><td class="when">16:10</td><td>大手旅行グループ ウェルネス／ロンジェビティ部門</td><td>イスラエル</td></tr>
+          <tr><td class="when">16:40</td><td>Amazing Tours</td><td>ベルギー</td></tr>
+          <tr><td class="when">17:10</td><td>Saizen Tours</td><td>オーストラリア</td></tr>
+          <tr><td class="when">17:40</td><td>HARRY KOLB TRAVEL</td><td>スイス</td></tr>
+          <tr class="day"><td colspan="3">9月26日（土）</td></tr>
+          <tr><td class="when">09:00</td><td>Transforma Travel Group</td><td>イギリス</td></tr>
+          <tr><td class="when">09:30</td><td>Pianeta Gaia Viaggi</td><td>イタリア</td></tr>
+          <tr><td class="when">10:00</td><td>Gattinoni Travel Network</td><td>イタリア</td></tr>
+          <tr><td class="when">10:30</td><td>Journey to the East</td><td>オーストラリア</td></tr>
+          <tr><td class="when">11:00</td><td>ikiTravels</td><td>オランダ</td></tr>
+          <tr><td class="when">11:30</td><td>JAPANSPECIALIST デンマーク</td><td>デンマーク</td></tr>
+          <tr><td class="when">12:00</td><td>Boutique Japan</td><td>アメリカ</td></tr>
+          <tr><td class="when">13:00</td><td>Japanspecialist ドイツ</td><td>ドイツ</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="src">※掲載は商談先の一部です。期間中はこのほかにも複数の旅行会社と商談を行います。</p>
-  </div>
-</section>
+    <p class="sm" style="margin-top:20px">このうち<strong>4社は特に重点を置いています。</strong>北京易去国際旅行社 成都分社にはFIT・小グループの文化体験とMICE、宿泊、名古屋のガストロノミー。江蘇楽橙国際旅行社 南京分公司には教育旅行、企業研修、産業観光、そしてオンラインでの単品販売。Kabuto DMCには日本文化商品のB2B造成とスペイン語市場。イスラエルの大手旅行グループにはUHNW向けのウェルネスとロンジェビティ、そして日本文化との組み合わせ。</p>
+    <p class="src">※時間は変更になる場合があります。</p>
+  </section>
 
 <!-- ============ 9-2. 参加者リスト ============ -->
 <section class="fade">
