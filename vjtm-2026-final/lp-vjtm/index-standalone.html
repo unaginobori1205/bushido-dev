@@ -191,6 +191,22 @@ ol.goals span{font-size:13.5px;color:var(--sumi-3);line-height:1.7}
 .tagrow span{font-size:12.5px;letter-spacing:.04em;border:1px solid var(--ai);color:var(--ai);
   border-radius:999px;padding:5px 13px;background:var(--paper-2)}
 
+/* ============ doc links ============ */
+.doclinks{display:grid;gap:13px;margin-top:24px}
+.doclinks a{display:block;padding:19px 46px 19px 20px;border:1px solid var(--line);border-radius:3px;
+  background:var(--paper-2);text-decoration:none;position:relative;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.doclinks a::after{content:"PDF";position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-family:var(--fig);font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--shu)}
+@media (hover:hover){.doclinks a:hover{transform:translateY(-2px);box-shadow:var(--shade);border-color:var(--shu)}}
+.dl-k{display:block;font-size:10.5px;letter-spacing:.2em;color:var(--ai);font-weight:700}
+.dl-t{display:block;font-size:16px;color:var(--sumi);font-weight:700;margin-top:5px;line-height:1.45}
+.dl-m{display:block;font-size:12.5px;color:var(--sumi-3);margin-top:3px}
+.tagrow.counts span{display:inline-flex;align-items:baseline;gap:6px;border-color:var(--line);color:var(--sumi-2)}
+.tagrow.counts b{font-family:var(--fig);font-weight:700;font-size:15px;color:var(--ai);
+  font-variant-numeric:tabular-nums}
+.tagrow.counts .etc{color:var(--sumi-3);border-style:dashed}
+
 /* ============ table ============ */
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut)}
 table{width:100%;border-collapse:collapse;font-size:14px;margin-top:22px;min-width:min(100%,520px)}
@@ -294,6 +310,7 @@ html.anim body.ready .hero .herocta{transform:none;transition-delay:.42s}
   .cat.wide .bd{flex:1}
   .strip{grid-template-columns:repeat(4,1fr)}
   .cards{grid-template-columns:1fr 1fr}
+  .doclinks{grid-template-columns:1fr 1fr}
   .card.wide{grid-column:1/-1}
   .herocta{grid-template-columns:1fr 1fr;gap:12px}
   .asks{grid-template-columns:repeat(3,1fr)}
@@ -344,12 +361,12 @@ html.anim body.ready .hero .herocta{transform:none;transition-delay:.42s}
     <p class="lead">一般の展示会ではありません。<strong>海外の旅行会社が日本の商品を「仕入れ」、実際の訪日ツアーに乗せるためのBtoB商談会</strong>です。主催はJNTO（日本政府観光局）。訪日旅行商品の新規造成・販売と、事業者間のネットワーク構築を目的に開かれています。</p>
 
     <div class="stats">
-      <div><b>280</b><span>海外旅行会社・バイヤー<br>（約・社）</span></div>
-      <div><b>350</b><span>国内観光事業者<br>（約・社／団体）</span></div>
+      <div><b>279</b><span>海外旅行会社・バイヤー<br>（社）</span></div>
+      <div><b>349</b><span>国内観光事業者<br>（社・団体）</span></div>
       <div><b>20</b><span>1回の商談時間<br>（分）</span></div>
       <div><b>30</b><span>最大商談数<br>（フル参加の場合・約）</span></div>
     </div>
-    <p class="src">※参加規模は2026年の予定数。商談は1枠20分の事前マッチング制で、期間中に連続して行われます。</p>
+    <p class="src">※社数は主催者発表の参加者リスト（2026年）より集計。商談は1枠20分の事前マッチング制で、期間中に連続して行われます。</p>
   </div>
 </section>
 
@@ -546,6 +563,40 @@ html.anim body.ready .hero .herocta{transform:none;transition-delay:.42s}
       </table>
     </div>
     <p class="src">※掲載は商談先の一部です。期間中はこのほかにも複数の旅行会社と商談を行います。</p>
+  </div>
+</section>
+
+<!-- ============ 9-2. 参加者リスト ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>参加者リスト（公式）</span>
+    <h2>誰が来ているのか、全部見られます。</h2>
+    <p class="lead">主催者が公開している参加者リストです。ブース番号、ID、社名、国・地域、カテゴリが載っています。<strong>バイヤー279社、セラー349社・団体。</strong>この規模の相手が、3日間、同じ建物の中にいます。</p>
+
+    <div class="doclinks">
+      <a href="docs/VJTM2026_buyer-list.pdf" target="_blank" rel="noopener">
+        <span class="dl-k">BUYER LIST</span>
+        <span class="dl-t">海外旅行会社・バイヤー 279社</span>
+        <span class="dl-m">33の国・地域／PDF 5ページ</span>
+      </a>
+      <a href="docs/VJTM2026_seller-list.pdf" target="_blank" rel="noopener">
+        <span class="dl-k">SELLER LIST</span>
+        <span class="dl-t">国内観光事業者 349社・団体</span>
+        <span class="dl-m">BUSHIDO JAPAN は S15-01／PDF 9ページ</span>
+      </a>
+    </div>
+
+    <h3 style="margin-top:34px">バイヤーの国・地域別の内訳</h3>
+    <p class="sm dim">公式リストから集計。数字は社数。</p>
+    <div class="tagrow counts">
+      <span>中国 <b>39</b></span><span>タイ <b>33</b></span><span>イタリア <b>19</b></span>
+      <span>シンガポール <b>18</b></span><span>アメリカ <b>17</b></span><span>韓国 <b>15</b></span>
+      <span>台湾 <b>12</b></span><span>ベトナム <b>12</b></span><span>オーストラリア <b>12</b></span>
+      <span>カナダ <b>12</b></span><span>スペイン <b>11</b></span><span>香港 <b>10</b></span>
+      <span>フィリピン <b>8</b></span><span>マレーシア <b>7</b></span><span>イギリス <b>7</b></span>
+      <span>ドイツ <b>7</b></span><span class="etc">ほか17の国・地域</span>
+    </div>
+    <p class="src">※アジアだけでなく、欧州・北米・中東からも来ています。つまり同じ商品説明では通りません。だから提案を出し分けています。</p>
   </div>
 </section>
 
