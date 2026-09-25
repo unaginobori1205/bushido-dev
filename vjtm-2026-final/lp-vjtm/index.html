@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>名古屋から世界へ VJTM 2026</title>
+<meta name="description" content="世界の旅行会社に、名古屋を直接売り込む3日間。VISIT JAPAN Travel &amp; MICE Mart 2026 に出展する BUSHIDO JAPAN の、目的・提案商品・商談先・その後まで。">
+<meta property="og:title" content="名古屋から世界へ｜VJTM 2026">
+<meta property="og:description" content="海外旅行会社と日本の観光事業者が直接商談する、国内最大級のインバウンド商談会。BUSHIDO JAPAN が何を世界に売り込みに行っているのか。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens : 生成り / 墨 / 藍 / 朱 ============ */
+:root{
+  color-scheme:light;
+  --paper:#EFEAE0; --paper-2:#F8F5EF; --paper-3:#E3DCCE;
+  --sumi:#1A1714; --sumi-2:#595048; --sumi-3:#8C8278;
+  --ai:#25394A; --ai-2:#41627F;
+  --shu:#9E2B25; --shu-on:#FFFDF8;
+  --line:rgba(26,23,20,.17); --hair:rgba(26,23,20,.085);
+  --shade:0 1px 0 rgba(26,23,20,.05),0 14px 34px -22px rgba(26,23,20,.55);
+  --gut:18px; --max:860px;
+  --disp:"Shippori Mincho",Georgia,"Yu Mincho","Hiragino Mincho ProN",serif;
+  --body:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  --fig:"Cormorant Garamond",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#12100E; --paper-2:#1C1916; --paper-3:#272320;
+    --sumi:#F0EBE1; --sumi-2:rgba(240,235,225,.68); --sumi-3:rgba(240,235,225,.46);
+    --ai:#93B6CF; --ai-2:#AECBDE;
+    --shu:#E0655A; --shu-on:#140F0D;
+    --line:rgba(240,235,225,.19); --hair:rgba(240,235,225,.10);
+    --shade:0 1px 0 rgba(0,0,0,.5),0 18px 40px -24px #000;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#12100E; --paper-2:#1C1916; --paper-3:#272320;
+  --sumi:#F0EBE1; --sumi-2:rgba(240,235,225,.68); --sumi-3:rgba(240,235,225,.46);
+  --ai:#93B6CF; --ai-2:#AECBDE;
+  --shu:#E0655A; --shu-on:#140F0D;
+  --line:rgba(240,235,225,.19); --hair:rgba(240,235,225,.10);
+  --shade:0 1px 0 rgba(0,0,0,.5),0 18px 40px -24px #000;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+img{max-width:100%;height:auto;display:block}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--sumi-2);font-family:var(--body);
+  font-size:16px;line-height:1.85;overflow-x:hidden;
+  background-image:radial-gradient(rgba(26,23,20,.045) 1px,transparent 1px);
+  background-size:22px 22px;background-attachment:fixed}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+section{padding-block:58px;border-top:1px solid var(--line);position:relative}
+
+h1,h2,h3{color:var(--sumi);line-height:1.34;text-wrap:balance}
+h1,h2{font-family:var(--disp);font-weight:800;letter-spacing:.01em}
+h1{font-size:clamp(27px,6.6vw,46px);line-height:1.26}
+h2{font-size:clamp(21px,5vw,31px);margin-bottom:14px}
+h3{font-size:17px;font-weight:700;margin-bottom:7px}
+.lead{font-size:17px}
+.sm{font-size:14.5px}
+.dim{color:var(--sumi-3)}
+strong{color:var(--sumi);font-weight:700}
+p+p{margin-top:14px}
+
+.eyebrow{display:flex;align-items:center;gap:9px;margin-bottom:15px;
+  font-size:11px;letter-spacing:.22em;color:var(--ai);font-weight:700}
+.mato{flex:0 0 auto;width:17px;height:17px;border-radius:50%;display:block}
+.mato .w{fill:var(--paper-2)} .mato .k{fill:var(--sumi)} .mato .c{fill:var(--shu)}
+
+/* ============ top bar ============ */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid transparent;transition:border-color .25s ease,box-shadow .25s ease}
+.bar.stuck{border-bottom-color:var(--line);box-shadow:0 6px 18px -16px rgba(0,0,0,.7)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:9px}
+.brand{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.17em;
+  color:var(--sumi);font-weight:700;white-space:nowrap}
+.brand .mato{width:19px;height:19px}
+.bar .when{font-size:11.5px;letter-spacing:.1em;color:var(--sumi-3);
+  font-family:var(--fig);font-weight:700;white-space:nowrap}
+
+/* ============ hero : 墨地 ============ */
+.hero{background:#14110F;color:rgba(245,241,233,.8);border-top:0;overflow:hidden;
+  position:relative;padding-block:46px 52px}
+.hero h1,.hero .big{color:#FBF7EF}
+.hero .matobg{position:absolute;top:50%;right:-130px;width:460px;height:460px;
+  transform:translateY(-50%);opacity:.2;pointer-events:none}
+.hero .matobg circle{fill:none;stroke:#C98A58;stroke-width:1.2}
+.hero .wrap{position:relative;z-index:1}
+.kicker{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.2em;
+  color:#E3B28A;font-weight:700;margin-bottom:18px}
+.kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:#C0392F}
+.hero .sub{font-size:16.5px;max-width:30em;margin-top:18px;color:rgba(245,241,233,.72)}
+.when-block{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 26px;margin-top:30px;
+  padding-top:24px;border-top:1px solid rgba(245,241,233,.2)}
+.when-block .big{font-family:var(--fig);font-weight:700;font-size:clamp(30px,8vw,46px);
+  line-height:1;letter-spacing:.01em}
+.when-block .where{font-size:13.5px;line-height:1.7;color:rgba(245,241,233,.72)}
+.when-block .where b{color:#FBF7EF;display:block;font-weight:700}
+.byline{margin-top:22px;font-size:12.5px;letter-spacing:.06em;color:rgba(245,241,233,.6)}
+.byline b{color:#FBF7EF}
+.herocta{display:grid;gap:11px;margin-top:26px}
+.herocta a{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  min-height:52px;padding:14px 18px;border-radius:3px;text-decoration:none;
+  font-size:14.5px;font-weight:700;letter-spacing:.02em;
+  background:#C0392F;color:#FFFDF8;border:1.5px solid #C0392F;
+  transition:transform .2s ease,opacity .2s ease}
+.herocta a.ghost{background:transparent;color:#FBF7EF;border-color:rgba(245,241,233,.4)}
+.herocta a::after{content:"→";font-family:var(--fig);font-size:17px;opacity:.8}
+@media (hover:hover){.herocta a:hover{transform:translateY(-1px);opacity:.92}}
+
+/* ============ figures / stats ============ */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-top:26px}
+.stats div{background:var(--paper-2);padding:18px 12px;text-align:center}
+.stats b{display:block;font-family:var(--fig);font-weight:700;font-size:34px;color:var(--ai);line-height:1.05;
+  font-variant-numeric:tabular-nums}
+.stats span{display:block;font-size:11.5px;color:var(--sumi-3);margin-top:7px;line-height:1.55}
+
+.route{display:grid;grid-template-columns:auto 1fr auto 1fr auto;align-items:center;gap:8px;
+  margin-top:26px;padding:20px 4px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.route .stop{text-align:center;font-size:13px;line-height:1.4}
+.route .stop b{display:block;font-family:var(--disp);font-size:16px;color:var(--sumi)}
+.route .stop.now b{color:var(--shu)}
+.route .stop::after{content:"";display:block;width:7px;height:7px;border-radius:50%;
+  border:1.5px solid var(--sumi-3);margin:6px auto 0}
+.route .stop.now::after{background:var(--shu);border-color:var(--shu)}
+.route .leg{position:relative;text-align:center;font-size:11px;letter-spacing:.06em;
+  color:var(--sumi-3);padding-bottom:12px;font-family:var(--fig);font-weight:700}
+.route .leg::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:1px;
+  background:repeating-linear-gradient(90deg,var(--sumi-3) 0 5px,transparent 5px 10px);opacity:.7}
+
+blockquote{margin-block:26px;padding:18px 20px;border-left:3px solid var(--shu);
+  background:var(--paper-2);border-radius:0 3px 3px 0;
+  font-family:var(--disp);font-weight:600;font-size:17.5px;line-height:1.7;color:var(--sumi)}
+
+/* ============ category grid ============ */
+.cats{display:grid;gap:15px;margin-top:26px}
+.cat{border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--paper-2);
+  display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
+@media (hover:hover){.cat:hover{transform:translateY(-2px);box-shadow:var(--shade)}}
+.cat .ph{position:relative;aspect-ratio:16/10;background:var(--paper-3);overflow:hidden}
+.cat .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.cat:hover .ph img{transform:scale(1.04)}}
+.cat .tag{position:absolute;left:0;bottom:0;padding:7px 12px;font-size:10.5px;letter-spacing:.18em;
+  font-weight:700;color:#FBF7EF;background:rgba(20,17,15,.78)}
+.cat .bd{padding:16px 17px 19px}
+.cat ul{list-style:none;margin-top:9px;display:flex;flex-wrap:wrap;gap:7px}
+.cat li{font-size:12.5px;line-height:1.5;color:var(--sumi-2);
+  border:1px solid var(--line);border-radius:999px;padding:3px 11px;background:var(--paper)}
+.shibori{width:100%;height:100%;display:block;background:var(--ai)}
+
+.strip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.strip figure{position:relative;border-radius:3px;overflow:hidden;border:1px solid var(--hair);background:var(--paper-3)}
+.strip img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.strip figure:hover img{transform:scale(1.05)}}
+.strip figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 9px 7px;font-size:11px;
+  color:#FFFDF8;background:linear-gradient(transparent,rgba(12,10,8,.85))}
+
+/* ============ generic cards / lists ============ */
+.cards{display:grid;gap:14px;margin-top:24px}
+.card{border:1px solid var(--line);border-radius:3px;padding:20px;background:var(--paper-2)}
+.card .n{display:flex;align-items:center;justify-content:center;width:29px;height:29px;border-radius:50%;
+  border:1.5px solid var(--ai);color:var(--ai);font-family:var(--fig);font-weight:700;
+  font-size:15px;line-height:1;margin-bottom:11px}
+.card.hi{border-color:var(--shu);background:linear-gradient(170deg,color-mix(in srgb,var(--shu) 7%,var(--paper-2)),var(--paper-2))}
+.card.hi .n{border-color:var(--shu);color:var(--shu)}
+
+ul.ticks{list-style:none;margin-top:18px;display:grid;gap:10px}
+ul.ticks li{position:relative;padding-left:22px;font-size:15px}
+ul.ticks li::before{content:"";position:absolute;left:0;top:.66em;width:9px;height:9px;
+  border-radius:50%;border:2px solid var(--shu)}
+
+ol.goals{list-style:none;counter-reset:g;margin-top:22px;border-top:1px solid var(--line)}
+ol.goals li{counter-increment:g;display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--hair)}
+ol.goals li::before{content:counter(g);flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+  background:var(--shu);color:var(--shu-on);font-family:var(--fig);font-weight:700;font-size:14px;
+  display:flex;align-items:center;justify-content:center;margin-top:3px}
+ol.goals b{display:block;color:var(--sumi)}
+ol.goals span{font-size:13.5px;color:var(--sumi-3);line-height:1.7}
+
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tagrow span{font-size:12.5px;letter-spacing:.04em;border:1px solid var(--ai);color:var(--ai);
+  border-radius:999px;padding:5px 13px;background:var(--paper-2)}
+
+/* ============ table ============ */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:22px;min-width:min(100%,520px)}
+th{text-align:left;font-size:10.5px;letter-spacing:.13em;color:var(--ai);font-weight:700;
+  padding:0 12px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:13px 12px 13px 0;border-bottom:1px solid var(--hair);vertical-align:top;line-height:1.65}
+td:first-child{color:var(--sumi);font-weight:700}
+td .co{display:block;font-size:11.5px;color:var(--sumi-3);font-weight:400;letter-spacing:.04em}
+td.when{white-space:nowrap;font-family:var(--fig);font-weight:700;font-size:15px;
+  color:var(--shu);font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:0}
+@media (hover:hover){tbody tr{transition:background-color .2s ease}tbody tr:hover{background:var(--paper-2)}}
+
+/* ============ ask / equation ============ */
+.asks{display:grid;gap:12px;margin-top:22px}
+.ask{padding:17px 19px;border:1px solid var(--line);border-left:3px solid var(--ai);
+  border-radius:0 3px 3px 0;background:var(--paper-2);
+  font-family:var(--disp);font-weight:600;font-size:16.5px;color:var(--sumi);line-height:1.6}
+.eq{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;
+  margin-top:24px;padding:22px 14px;border:1px solid var(--line);border-radius:3px;background:var(--paper-2)}
+.eq b{font-family:var(--disp);font-weight:800;font-size:clamp(16px,4.6vw,21px);color:var(--sumi)}
+.eq i{font-style:normal;color:var(--shu);font-family:var(--fig);font-weight:700;font-size:20px}
+
+/* ============ timeline ============ */
+.tl{margin-top:24px;position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl>div{position:relative;padding-bottom:20px}
+.tl>div:last-child{padding-bottom:0}
+.tl>div::before{content:"";position:absolute;left:-26px;top:7px;width:11px;height:11px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--ai)}
+.tl>div.now::before{background:var(--shu);border-color:var(--shu)}
+.tl b{display:block;color:var(--sumi);font-size:15.5px}
+.tl span{font-size:13.5px;color:var(--sumi-3);line-height:1.7}
+
+/* ============ report ============ */
+.report{border:1px solid var(--line);border-radius:3px;background:var(--paper-2);
+  padding:20px;margin-top:22px}
+.report .rh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;
+  padding-bottom:12px;border-bottom:1px solid var(--hair);margin-bottom:14px}
+.report .rh b{font-size:15px;color:var(--sumi)}
+.report .rh time{font-size:11.5px;letter-spacing:.08em;color:var(--sumi-3);font-family:var(--fig);font-weight:700}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rgrid div{text-align:center;padding:12px 6px;border:1px solid var(--hair);border-radius:3px;background:var(--paper)}
+.rgrid b{display:block;font-family:var(--fig);font-weight:700;font-size:26px;color:var(--ai);line-height:1.1;
+  font-variant-numeric:tabular-nums}
+.rgrid span{display:block;font-size:11px;color:var(--sumi-3);margin-top:4px}
+.pending{color:var(--sumi-3)!important}
+
+/* ============ closing / footer ============ */
+.close{background:#14110F;color:rgba(245,241,233,.76);text-align:center;border-top:0;overflow:hidden;position:relative}
+.close h2{color:#FBF7EF}
+.close .matobg{position:absolute;left:50%;top:50%;width:520px;height:520px;
+  transform:translate(-50%,-50%);opacity:.14;pointer-events:none}
+.close .matobg circle{fill:none;stroke:#C98A58;stroke-width:1.2}
+.close .wrap{position:relative;z-index:1}
+.close p{max-width:30em;margin-inline:auto}
+.fromto{margin-top:30px;font-family:var(--fig);font-weight:700;font-size:clamp(17px,4.6vw,24px);
+  letter-spacing:.14em;color:#E3B28A;line-height:1.5}
+.contact{margin-top:26px;font-size:14px;line-height:2;color:rgba(245,241,233,.8)}
+.contact b{color:#FBF7EF}
+.contact span{-webkit-user-select:all;user-select:all}
+footer{padding:30px 0 46px;font-size:12.5px;color:var(--sumi-3);line-height:1.95;border-top:1px solid var(--line)}
+.src{margin-top:14px;font-size:12px;color:var(--sumi-3);line-height:1.8}
+
+/* ============ motion : transform only, nothing waits at opacity 0 ============ */
+html.anim .fade{transform:translateY(22px);transition:transform .85s cubic-bezier(.2,.75,.2,1)}
+html.anim .fade.on{transform:none}
+html.anim .on .eyebrow .mato{transform:none}
+html.anim .eyebrow .mato{transform:scale(.35) rotate(-40deg);
+  transition:transform .75s cubic-bezier(.2,1.5,.35,1) .1s}
+html.anim .matobg circle{stroke-dasharray:1200;stroke-dashoffset:1200;
+  animation:draw 2.8s cubic-bezier(.2,.8,.2,1) forwards}
+html.anim .matobg circle:nth-child(2){animation-delay:.12s}
+html.anim .matobg circle:nth-child(3){animation-delay:.24s}
+html.anim .matobg circle:nth-child(4){animation-delay:.36s}
+@keyframes draw{to{stroke-dashoffset:0}}
+html.anim .hero .kicker,html.anim .hero h1,html.anim .hero .sub,
+html.anim .hero .when-block,html.anim .hero .herocta{
+  transform:translateY(16px);transition:transform .9s cubic-bezier(.2,.75,.2,1)}
+html.anim body.ready .hero .kicker{transform:none;transition-delay:.04s}
+html.anim body.ready .hero h1{transform:none;transition-delay:.12s}
+html.anim body.ready .hero .sub{transform:none;transition-delay:.22s}
+html.anim body.ready .hero .when-block{transform:none;transition-delay:.32s}
+html.anim body.ready .hero .herocta{transform:none;transition-delay:.42s}
+@media (prefers-reduced-motion:reduce){
+  html.anim .fade,html.anim .eyebrow .mato,html.anim .hero .kicker,html.anim .hero h1,
+  html.anim .hero .sub,html.anim .hero .when-block,html.anim .hero .herocta{
+    transform:none!important;transition:none!important}
+  html.anim .matobg circle{animation:none;stroke-dashoffset:0}
+  html{scroll-behavior:auto}
+}
+
+@media (min-width:720px){
+  :root{--gut:32px}
+  section{padding-block:80px}
+  .hero{padding-block:72px 78px}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .cats{grid-template-columns:1fr 1fr}
+  .cat.wide{grid-column:1/-1;flex-direction:row}
+  .cat.wide .ph{flex:0 0 42%;aspect-ratio:auto}
+  .cat.wide .bd{flex:1}
+  .strip{grid-template-columns:repeat(4,1fr)}
+  .cards{grid-template-columns:1fr 1fr}
+  .card.wide{grid-column:1/-1}
+  .herocta{grid-template-columns:1fr 1fr;gap:12px}
+  .asks{grid-template-columns:repeat(3,1fr)}
+  .rgrid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar">
+  <div class="wrap">
+    <span class="brand">
+      <svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>
+      BUSHIDO JAPAN
+    </span>
+    <span class="when">VJTM 2026 · 9.24–26 · S15-01</span>
+  </div>
+</div>
+
+<!-- ============ 1. FIRST VIEW ============ -->
+<header class="hero">
+  <svg class="matobg" viewBox="0 0 200 200" aria-hidden="true">
+    <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="74"/><circle cx="100" cy="100" r="52"/><circle cx="100" cy="100" r="30"/>
+  </svg>
+  <div class="wrap">
+    <span class="kicker">VISIT JAPAN TRAVEL &amp; MICE MART 2026</span>
+    <h1>世界の旅行会社に、<br>名古屋を直接売り込む3日間。</h1>
+    <p class="sub">海外の旅行会社と、日本の観光事業者が直接商談する、国内最大級のインバウンド商談会。</p>
+
+    <div class="when-block">
+      <span class="big">2026.9.24–26</span>
+      <span class="where"><b>東京ビッグサイト</b>西1ホール／ブース S15-01</span>
+    </div>
+    <p class="byline"><b>BUSHIDO JAPAN</b> ／ 名古屋インバウンドサミット</p>
+
+    <div class="herocta">
+      <a href="#experiences">BUSHIDO JAPANの体験を見る</a>
+      <a class="ghost" href="#summit">名古屋の観光コンテンツを見る</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 2. VJTMとは ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>VJTM とは</span>
+    <h2>日本の観光商品が、<br>世界の旅行会社につながる場所。</h2>
+    <p class="lead">一般の展示会ではありません。<strong>海外の旅行会社が日本の商品を「仕入れ」、実際の訪日ツアーに乗せるためのBtoB商談会</strong>です。主催はJNTO（日本政府観光局）。訪日旅行商品の新規造成・販売と、事業者間のネットワーク構築を目的に開かれています。</p>
+
+    <div class="stats">
+      <div><b>280</b><span>海外旅行会社・バイヤー<br>（約・社）</span></div>
+      <div><b>350</b><span>国内観光事業者<br>（約・社／団体）</span></div>
+      <div><b>20</b><span>1回の商談時間<br>（分）</span></div>
+      <div><b>30</b><span>最大商談数<br>（フル参加の場合・約）</span></div>
+    </div>
+    <p class="src">※参加規模は2026年の予定数。商談は1枠20分の事前マッチング制で、期間中に連続して行われます。</p>
+  </div>
+</section>
+
+<!-- ============ 3. なぜ出るのか ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>なぜ出るのか</span>
+    <h2>名古屋には、まだ世界に知られていない日本がある。</h2>
+    <p class="lead">東京、京都、大阪だけではありません。名古屋・愛知には、<strong>武道／伝統文化／ものづくり／食／工芸／自然／VIPツーリズム</strong>という、他の地域にはない強い資源があります。</p>
+    <p>足りないのは魅力ではありません。<strong>「海外の旅行会社が、そのまま仕入れられる形」になっていない</strong>ことです。価格が出ていない。英語の説明がない。誰に聞けばいいか分からない。だから世界の商品棚に並ばない。</p>
+    <blockquote>地域の魅力を、世界で販売できる旅行商品へ。</blockquote>
+    <p class="sm">そしてもう一つ。名古屋は<strong>東京—京都の線の上</strong>にあります。お客様の移動時間は増えません。増えるのは、混雑していない日本の一日です。</p>
+    <div class="route">
+      <div class="stop"><b>東京</b></div>
+      <div class="leg">~100 min</div>
+      <div class="stop now"><b>名古屋</b></div>
+      <div class="leg">~35 min</div>
+      <div class="stop"><b>京都</b></div>
+    </div>
+    <p class="src">※所要時間は東海道新幹線のぞみ号の目安です。</p>
+  </div>
+</section>
+
+<!-- ============ 4. 世界へ提案する体験 ============ -->
+<section class="fade" id="experiences">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>今回、世界へ提案する体験</span>
+    <h2>名古屋・愛知から、五つの束で持っていきます。</h2>
+    <p class="lead sm dim">単品でも、1日でも、既存ルートへの差し込みでも組めるように整理してあります。</p>
+
+    <div class="cats">
+      <div class="cat">
+        <div class="ph"><img src="img/kyudo.jpg" alt="弓道" loading="lazy"><span class="tag">BUDO &amp; CULTURE</span></div>
+        <div class="bd">
+          <h3>武道と文化</h3>
+          <p class="sm dim">実際に稽古が行われている道場で。見学ではなく、やってみる側に立ってもらいます。</p>
+          <ul><li>弓道</li><li>茶道</li><li>書道</li><li>居合</li><li>禅</li></ul>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="ph"><svg class="shibori" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><radialGradient id="sg"><stop offset="0%" stop-color="#F2EDE3" stop-opacity=".95"/><stop offset="55%" stop-color="#F2EDE3" stop-opacity=".18"/><stop offset="100%" stop-color="#F2EDE3" stop-opacity="0"/></radialGradient></defs>
+            <rect width="160" height="100" fill="#25394A"/>
+            <g fill="url(#sg)"><circle cx="26" cy="24" r="17"/><circle cx="72" cy="17" r="12"/><circle cx="120" cy="30" r="19"/><circle cx="46" cy="66" r="14"/><circle cx="96" cy="72" r="16"/><circle cx="142" cy="78" r="12"/><circle cx="8" cy="86" r="10"/></g>
+          </svg><span class="tag">CRAFT</span></div>
+        <div class="bd">
+          <h3>工芸</h3>
+          <p class="sm dim">1608年から続く藍染をはじめ、職人の手元に直接入ります。<span class="pending">（この枠は写真準備中。10月に実写へ差し替え予定）</span></p>
+          <ul><li>有松絞り</li><li>尾張七宝</li><li>瀬戸焼</li><li>鉱山見学</li></ul>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="ph"><img src="img/wagyu.jpg" alt="和牛" loading="lazy"><span class="tag">FOOD</span></div>
+        <div class="bd">
+          <h3>食</h3>
+          <p class="sm dim">名古屋めしから、料亭・ファインダイニングまで。最大100名規模のマグロ解体にも対応します。</p>
+          <ul><li>マグロ解体＆寿司</li><li>ひつまぶし・うなぎ蒲焼</li><li>味噌煮込みうどん手打ち</li><li>料亭／ファインダイニング</li></ul>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="ph"><img src="img/tour.jpg" alt="産業観光" loading="lazy"><span class="tag">INDUSTRY</span></div>
+        <div class="bd">
+          <h3>ものづくり・産業観光</h3>
+          <p class="sm dim">自動車産業をはじめ、この地域が世界に知られている理由そのものを見てもらいます。</p>
+          <ul><li>自動車産業の産業観光</li><li>ものづくり視察</li><li>企業研修</li></ul>
+        </div>
+      </div>
+
+      <div class="cat wide">
+        <div class="ph"><img src="img/camp.jpg" alt="Special Journeys" loading="lazy"><span class="tag">SPECIAL JOURNEYS</span></div>
+        <div class="bd">
+          <h3>特定の市場に向けた旅</h3>
+          <p class="sm dim">「日本文化を体験する」ではなく、その旅行会社の顧客の目的から逆算して組み立てる4本。</p>
+          <ul><li>Muslim-Friendly Peace Journey</li><li>Wellness &amp; Longevity</li><li>Educational Travel</li><li>VIP / UHNW Private Nagoya</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <figure><img src="img/yabusame.jpg" alt="流鏑馬" loading="lazy"><figcaption>流鏑馬</figcaption></figure>
+      <figure><img src="img/armour.jpg" alt="甲冑" loading="lazy"><figcaption>甲冑</figcaption></figure>
+      <figure><img src="img/tea.jpg" alt="茶道" loading="lazy"><figcaption>茶道 ※イメージ</figcaption></figure>
+      <figure><img src="img/dish.jpg" alt="創作料理" loading="lazy"><figcaption>創作料理</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. BUSHIDO JAPANとは ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>BUSHIDO JAPAN とは</span>
+    <h2>観光ではなく、日本の「人」と「文化」につなぐ。</h2>
+    <p class="lead">名古屋を起点に、日本の伝統文化・武道・食・地域資源を組み合わせた体験型ツーリズムを企画・提供しています。</p>
+    <ul class="ticks">
+      <li><strong>実践者・職人との直接連携。</strong>間に業者を挟まず、教える本人と組みます。</li>
+      <li><strong>完全オーダーメイド。</strong>決まった商品を売るのではなく、顧客に合わせて組み替えます。</li>
+      <li><strong>FIT〜団体、教育旅行、MICE、VIPまで。</strong>1名から100名まで。</li>
+      <li><strong>英語・多言語対応。</strong>体験は英語で実施。中国語をはじめ通訳も手配します。</li>
+      <li><strong>ホテル・食・移動まで一括設計。</strong>窓口は一つ、請求も一本。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 6. 上岡賢輔 ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>上岡 賢輔 について</span>
+    <h2>弓道三十年。<br>地域と世界をつなぐ文化体験プロデューサー。</h2>
+    <div class="tagrow">
+      <span>BUSHIDO JAPAN Founder</span><span>弓道四段</span><span>弓道歴 約30年</span>
+      <span>観光コンテンツ造成</span><span>国際交流・JCI活動</span><span>名古屋インバウンドサミット 主催</span>
+      <span>名古屋観光コンベンションビューロー 会員</span>
+    </div>
+    <p class="sm" style="margin-top:20px">道場で教えるのは本人です。これは外注できません。制約は資金ではなく、<strong>稽古を続けている指導者がいるかどうか</strong>だからです。</p>
+  </div>
+</section>
+
+<!-- ============ 7. 名古屋インバウンドサミット ============ -->
+<section class="fade" id="summit">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>名古屋インバウンドサミット</span>
+    <h2>一人ではなく、名古屋の仲間と世界へ。</h2>
+    <p class="lead">名古屋・愛知の観光、食、工芸、交通、文化、サービスの事業者がつながる地域ネットワークです。ホテル、飲食店、工房、体験事業者、名古屋観光コンベンションビューロー、市の観光担当、県議会議員——この地域でインバウンドを実際に動かしている人たちが集まります。</p>
+    <blockquote>海外の旅行会社が「名古屋でこんな旅を作りたい」と思ったとき、一つの窓口から地域の事業者につながれる。</blockquote>
+    <div class="stats">
+      <div><b>4</b><span>2026年の開催回数</span></div>
+      <div><b>100+</b><span>参加事業者</span></div>
+      <div><b>10+</b><span>メディア掲載<br>（日経COMPASS等）</span></div>
+      <div><b>2027</b><span>JCI世界会議<br>名古屋開催</span></div>
+    </div>
+    <div class="strip" style="grid-template-columns:1fr;margin-top:20px">
+      <figure><img src="img/summit.jpg" alt="名古屋インバウンドサミット" loading="lazy" style="aspect-ratio:16/9"><figcaption>名古屋インバウンドサミットの会場にて</figcaption></figure>
+    </div>
+    <p class="sm" style="margin-top:18px">つまり、<strong>当社が自分でやっていないことでも、この地域のことなら聞いてください。</strong>必要ないものを売るより、一度お役に立てるほうが良いと考えています。</p>
+  </div>
+</section>
+
+<!-- ============ 8. 今回の目的 ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>今回の目的</span>
+    <h2>ゴールは「名刺交換」ではありません。</h2>
+    <ol class="goals">
+      <li><div><b>海外旅行会社との継続取引</b><span>一度きりの見積で終わらせず、毎年の造成に入る。</span></div></li>
+      <li><div><b>名古屋商品のツアー造成</b><span>既存ルートに名古屋を1〜2日差し込む形を含めて。</span></div></li>
+      <li><div><b>FAM Trip（視察旅行）の実施</b><span>実際に来てもらう。売る人が体験していない商品は売れません。</span></div></li>
+      <li><div><b>教育旅行・VIP・ウェルネス等の共同開発</b><span>相手の顧客に合わせて、一緒に商品をつくる。</span></div></li>
+      <li><div><b>名古屋の仲間への送客</b><span>当社の商品だけでなく、地域全体に返す。</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 9. 商談相手 ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>MEETING THE WORLD</span>
+    <h2>世界の旅行会社と、20分ずつ直接商談。</h2>
+    <p class="lead">事前マッチングされた1枠20分の商談を、期間中に連続して行います。FIT、教育旅行、MICE、VIP、ウェルネス、ムスリム市場——<strong>それぞれ違う顧客層を持つ会社</strong>と話します。</p>
+
+    <div class="tagrow">
+      <span>FIT</span><span>Luxury / UHNW</span><span>Wellness</span><span>Educational Travel</span>
+      <span>Muslim Market</span><span>MICE</span><span>Group Travel</span><span>DMC</span>
+    </div>
+
+    <h3 style="margin-top:32px">商談先の一例</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>企業・地域</th><th>商談テーマ</th><th>日時</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>北京易去国際旅行社 成都分社<span class="co">中国・成都</span></td>
+            <td>FIT、小グループ、文化体験、MICE、宿泊、名古屋ガストロノミー</td>
+            <td class="when">9/25<br>13:30</td>
+          </tr>
+          <tr>
+            <td>江蘇楽橙国際旅行社 南京分公司<span class="co">中国・南京</span></td>
+            <td>教育旅行、企業研修、産業観光、オンライン単品販売</td>
+            <td class="when">9/25<br>15:10</td>
+          </tr>
+          <tr>
+            <td>KABUTO DMC<span class="co">DMC・スペイン語市場</span></td>
+            <td>日本文化商品、B2B商品造成</td>
+            <td class="when dim">—</td>
+          </tr>
+          <tr>
+            <td>イスラエル大手旅行グループ<span class="co">ウェルネス／ロンジェビティ部門</span></td>
+            <td>UHNW、ウェルネス、ロンジェビティ、日本文化との融合</td>
+            <td class="when dim">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src">※掲載は一部です。相手先の意向により、社名を伏せている商談もあります。</p>
+  </div>
+</section>
+
+<!-- ============ 10. 提案の出し分け ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>提案の出し分け</span>
+    <h2>旅行会社ごとに、出すものを変えます。</h2>
+    <p class="lead sm dim">同じカタログを全社に配ることはしません。顧客層が違えば、売れる組み合わせも違うからです。</p>
+    <div class="cards">
+      <div class="card"><span class="n">1</span><h3>FIT・小グループ</h3>
+        <p class="sm">弓道／茶道／有松絞り／尾張七宝／瀬戸焼／食体験。1名から。</p></div>
+      <div class="card"><span class="n">2</span><h3>教育旅行</h3>
+        <p class="sm">弓道 × 礼／書道／ものづくり・産業観光／伝統工芸／地域文化。学びの目的に合わせて。</p></div>
+      <div class="card"><span class="n">3</span><h3>VIP / UHNW</h3>
+        <p class="sm">PRIVATE NAGOYA。高級ホテル、一流レストラン、VIP車両、貸切の文化体験。</p></div>
+      <div class="card"><span class="n">4</span><h3>Wellness / Longevity</h3>
+        <p class="sm">弓道／禅／抹茶／和食／温泉／自然。心身を整えるための文化体験として組み直します。</p></div>
+      <div class="card wide hi"><span class="n">5</span><h3>Muslim Market</h3>
+        <p class="sm">礼拝対応、モスクへの動線、貸切風呂、ムスリムフレンドリーな行程設計。<strong>ハラール認証は取得していません。</strong>代わりに、その団体ごとに、名古屋在住のムスリム——実際にそこで食事をしている人たち——が事前に日本語で確認します。証明書の代わりに、確認の事実をお渡しします。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. 何を聞いているのか ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>商談で何を聞いているのか</span>
+    <h2>売り込む前に、三つ聞きます。</h2>
+    <div class="asks">
+      <div class="ask">どんなお客様が<br>いますか？</div>
+      <div class="ask">そのお客様は<br>何を求めていますか？</div>
+      <div class="ask">名古屋に何があれば<br>売れますか？</div>
+    </div>
+    <p class="sm" style="margin-top:22px">この三つの答えが揃ってから、組み立てます。カタログを開くのはその後です。</p>
+    <div class="eq">
+      <b>体験</b><i>×</i><b>食</b><i>×</i><b>宿泊</b><i>×</i><b>移動</b>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. VJTM後 ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>VJTM のあと</span>
+    <h2>商談して終わり、にはしません。</h2>
+    <div class="tl">
+      <div class="now"><b>会期中 — 商談</b><span>20分で、相手の顧客像と必要な商品を聞き取る。</span></div>
+      <div><b>直後 — フォローと提案書・タリフ送付</b><span>その場の話を踏まえた提案書と価格表を、ネット価格つきで送ります。</span></div>
+      <div><b>オンラインミーティング</b><span>時差に合わせて、担当者と直接。</span></div>
+      <div><b>FAM Trip（視察旅行）</b><span>実際に名古屋へ来てもらい、売る人自身に体験してもらう。</span></div>
+      <div><b>商品改善</b><span>売れなかった理由を聞いて、価格・内容・所要時間を直す。</span></div>
+      <div><b>実際の送客</b><span>ここまで来て、はじめて一件です。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. 活動レポート ============ -->
+<section class="fade">
+  <div class="wrap">
+    <span class="eyebrow"><svg class="mato" viewBox="0 0 100 100" aria-hidden="true"><circle class="w" cx="50" cy="50" r="50"/><circle class="k" cx="50" cy="50" r="40"/><circle class="w" cx="50" cy="50" r="30"/><circle class="k" cx="50" cy="50" r="20"/><circle class="c" cx="50" cy="50" r="10"/></svg>VJTM 活動レポート</span>
+    <h2>誰と話し、何につながったか。随時更新します。</h2>
+    <div class="report">
+      <div class="rh"><b>2026 VJTM 進捗</b><time datetime="2026-09-25">最終更新 2026.9.25</time></div>
+      <div class="rgrid">
+        <div><b class="pending">—</b><span>商談件数</span></div>
+        <div><b class="pending">—</b><span>具体提案</span></div>
+        <div><b class="pending">—</b><span>FAM Trip 候補</span></div>
+        <div><b class="pending">—</b><span>継続商談先</span></div>
+      </div>
+      <p class="sm dim" style="margin-top:14px">会期が終わり次第、実数に差し替えます。事前に誰と話すかを出し、会期中の反応を書き、会期後に何につながったかまで書く——ここまで出して、はじめて活動の記録になると考えています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14. CLOSING ============ -->
+<section class="close fade">
+  <svg class="matobg" viewBox="0 0 200 200" aria-hidden="true">
+    <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="74"/><circle cx="100" cy="100" r="52"/><circle cx="100" cy="100" r="30"/>
+  </svg>
+  <div class="wrap">
+    <h2>名古屋から世界へ。</h2>
+    <p>日本には、まだ世界に知られていない素晴らしい人、文化、技、食があります。</p>
+    <p>それらを「観光商品」として消費するのではなく、<br>その背景にある人や想いまで世界へ届けたい。</p>
+    <p>BUSHIDO JAPANは、地域と世界をつなぐ旅をつくります。</p>
+    <p class="fromto">FROM NAGOYA<br>TO THE WORLD.</p>
+    <p class="contact">
+      <b>上岡 賢輔（Ken Ueoka）</b><br>
+      合同会社BUSHIDO 代表／名古屋インバウンドサミット 主催<br>
+      <span>ueoka@bsd-pro.com</span><br>
+      <span>+81 90-5101-5064</span>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>BUSHIDO LLC</b> ／ 日本・愛知県名古屋エリア<br>
+    愛知県 旅行サービス手配業登録 ／ インボイス登録番号 T8180003024921<br>
+    VJTM 2026 ・ 東京ビッグサイト 西1ホール ・ ブース S15-01 ・ セラー登録番号 1684
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce=false;
+  try{reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+
+  var targets=document.querySelectorAll('.fade');
+  function revealAll(){targets.forEach(function(el){el.classList.add('on');});}
+
+  if(reduce||!('IntersectionObserver' in window)){
+    revealAll();
+  }else{
+    document.documentElement.classList.add('anim');
+    requestAnimationFrame(function(){requestAnimationFrame(function(){document.body.classList.add('ready');});});
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+    },{threshold:.05,rootMargin:'0px 0px -48px 0px'});
+    targets.forEach(function(el){io.observe(el);});
+    setTimeout(revealAll,1500);   /* 保険。何があっても本文は定位置に戻す */
+  }
+
+  var bar=document.getElementById('bar'),last=null;
+  function onScroll(){
+    var s=(window.scrollY||window.pageYOffset)>8;
+    if(s!==last){bar.classList.toggle('stuck',s);last=s;}
+  }
+  onScroll();
+  window.addEventListener('scroll',onScroll,{passive:true});
+})();
+</script>
+</body>
+</html>
