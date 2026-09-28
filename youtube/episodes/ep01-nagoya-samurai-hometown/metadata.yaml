@@ -200,6 +200,9 @@ main:
     ▼ Planning a samurai or Kyudo experience in Nagoya for your clients?
     Please leave a comment or contact us.
 
+    ▼ Subscribe to BUSHIDO JAPAN
+    {subscribe_url}
+
     日本語字幕あり / English & Japanese subtitles
 
     #Nagoya #Bushido #Samurai #JapanTravel #Kyudo
@@ -262,6 +265,7 @@ shorts:
 shorts_common:
   description: |
     Full episode: {main_url}
+    Subscribe: {subscribe_url}
     BUSHIDO JAPAN — Nagoya, Bushido, Japanese spirituality and Kyudo, for travel professionals.
     #Shorts #Japan #Samurai #Bushido #Nagoya #JapanTravel
   tags: [Shorts, Japan, Samurai, Bushido, Nagoya, Japan travel, Kyudo]

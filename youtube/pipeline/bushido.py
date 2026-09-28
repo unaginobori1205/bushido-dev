@@ -850,6 +850,13 @@ def cmd_upload(args, cfg) -> None:
     record = json.loads(ep.path("uploads.json").read_text()) if ep.path("uploads.json").exists() else {}
     times = publish_times(ep, cfg)
     yt = None if args.dry_run else build("youtube", "v3", credentials=google_creds(cfg))
+    expected = cfg["youtube"].get("channel_id")
+    if yt and expected:
+        # guard against logging in with a different Google account / channel
+        mine = [c["id"] for c in yt.channels().list(part="id", mine=True).execute().get("items", [])]
+        if expected not in mine:
+            sys.exit(f"logged-in account owns {mine or 'no channel'}, not {expected}. "
+                     f"Delete {cfg['google']['token_file']} and log in with the BUSHIDO JAPAN channel account.")
     privacy_now = dt.datetime.now(dt.timezone.utc)
     # The default YouTube API quota (10,000 units/day) fits about 5 uploads, so cap each run;
     # re-running the next day continues where it stopped (finished uploads are kept in uploads.json).
@@ -902,7 +909,9 @@ def cmd_upload(args, cfg) -> None:
         return vid
 
     m = ep.meta["main"]
-    desc = m["description"].replace("{chapters}", chapters_text(ep, words)) + credits_text(ep)
+    subscribe = f"https://www.youtube.com/channel/{cfg['youtube'].get('channel_id', '')}?sub_confirmation=1"
+    desc = (m["description"].replace("{chapters}", chapters_text(ep, words)).replace("{subscribe_url}", subscribe)
+            + credits_text(ep))
     main_id = upload("main", ep.path("main.mp4"), m["title"], desc, m["tags"],
                      {"en": ep.path("main.en.srt"), "ja": ep.path("main.ja.srt")}, ep.path("thumbnail.jpg"))
     if not main_id:
@@ -918,7 +927,7 @@ def cmd_upload(args, cfg) -> None:
         # Shorts already carry burned-in EN/JA captions; caption tracks are optional (400 quota units each)
         srts = ({"en": ep.path(f"short-{sh['n']}.en.srt"), "ja": ep.path(f"short-{sh['n']}.ja.srt")}
                 if cfg["youtube"].get("caption_tracks_for_shorts") else {})
-        upload(f"short-{sh['n']}", video, title, common["description"].replace("{main_url}", main_url), common["tags"],
+        upload(f"short-{sh['n']}", video, title, common["description"].replace("{main_url}", main_url).replace("{subscribe_url}", subscribe), common["tags"],
                srts)
     left = [k for k in times if k not in record]
     if args.dry_run:

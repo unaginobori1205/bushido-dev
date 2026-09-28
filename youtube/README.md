@@ -54,7 +54,7 @@ ffmpeg が無い場合も `imageio-ffmpeg` で自動的に動きます（Mac な
 2. 「API とサービス」で **YouTube Data API v3** と **Google Drive API** を有効化
 3. 「OAuth 同意画面」を作成し、ご自身の Google アカウントをテストユーザーに追加
 4. 「認証情報」→「OAuth クライアント ID」→ 種類 **デスクトップアプリ** で作成し、JSON を `pipeline/client_secret.json` として保存
-5. `config.yaml` の `drive_folder_id` に収録用フォルダの ID を記入
+5. `config.yaml` の `drive_folder_id` に収録用フォルダの ID を記入（チャンネルID `UC-kcA2XcHQJuUcBxQEcTwdw` は設定済み。別アカウントでログインした場合はアップロード前に自動で停止します）
 6. 初回実行時にブラウザが開くので、**チャンネルを所有するアカウント**でログイン
 
 ### 3. 日本語字幕の翻訳（Claude API）

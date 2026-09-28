@@ -35,6 +35,8 @@ schedule:
   shorts_time_jst: "22:00"           # ショートは月〜日の毎日この時刻
 
 youtube:
+  # BUSHIDO JAPAN チャンネル。別アカウントでログインしてしまった場合はアップロード前に停止します
+  channel_id: "UC-kcA2XcHQJuUcBxQEcTwdw"
   category_id: "19"                  # 19 = Travel & Events
   privacy_if_past: public            # 予約時刻を過ぎてからアップする場合の公開設定
   # YouTube API の1日の上限（初期値 10,000ユニット）で1日に上げられるのは約5本。
