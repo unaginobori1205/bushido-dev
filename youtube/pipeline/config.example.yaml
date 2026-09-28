@@ -1,0 +1,52 @@
+# BUSHIDO JAPAN パイプライン設定
+# このファイルを config.yaml にコピーして編集してください（config.yaml は Git に含めません）。
+
+google:
+  # Google Cloud Console で作成した OAuth クライアント（デスクトップアプリ）の JSON
+  client_secret_file: client_secret.json
+  # 初回ログイン後に自動生成されるトークン（Git に含めない）
+  token_file: token.json
+  # 収録動画を入れる Google ドライブのフォルダ ID
+  # （フォルダを開いた URL の https://drive.google.com/drive/folders/<ここ> の部分）
+  drive_folder_id: "PUT_YOUR_FOLDER_ID_HERE"
+
+whisper:
+  # 英語専用モデルが高精度。GPU が無い Mac/PC なら "small.en"（速い）〜 "medium.en"（高精度）
+  model: medium.en
+  device: auto
+  compute_type: default
+
+claude:
+  # 日本語字幕の翻訳に使うモデル（環境変数 ANTHROPIC_API_KEY が必要）
+  model: claude-sonnet-5
+  batch_size: 40
+
+subtitle_style:
+  en_font: Montserrat ExtraBold      # 本編の英語字幕
+  ja_font: Noto Sans CJK JP          # 日本語字幕
+  short_font: Anton                  # ショートの大きな英語テロップ
+  ja_color: "&H008AE0FF"             # 日本語字幕の色 = 淡い金 #FFE08A（ASS形式 &HAABBGGRR）
+  highlight_color: "&H004DD3FF"      # キーワード強調色 = 山吹 #FFD34D
+
+schedule:
+  # 海外の旅行代理店の業務時間に届く 22:00 JST（= 米東部 9:00 / 欧州中部 15:00 夏時間）
+  main_day_offset: 0                 # 0 = 週の月曜日
+  main_time_jst: "21:00"
+  shorts_time_jst: "22:00"           # ショートは月〜日の毎日この時刻
+
+youtube:
+  # BUSHIDO JAPAN チャンネル。別アカウントでログインしてしまった場合はアップロード前に停止します
+  channel_id: "UC-kcA2XcHQJuUcBxQEcTwdw"
+  category_id: "19"                  # 19 = Travel & Events
+  privacy_if_past: public            # 予約時刻を過ぎてからアップする場合の公開設定
+  # YouTube API の1日の上限（初期値 10,000ユニット）で1日に上げられるのは約5本。
+  # 1回の実行で上げる本数の上限です。残りは翌日もう一度 upload を実行すれば続きから上がります。
+  uploads_per_run: 5
+  caption_tracks_for_shorts: false   # ショートは字幕を焼き込み済みなので通常は不要
+
+encode:
+  preset: medium
+  crf: 18
+
+# Wikimedia Commons の利用規約で連絡先入りの User-Agent が求められます
+wikimedia_user_agent: "BushidoJapanPipeline/1.0 (contact: your-email@example.com)"
