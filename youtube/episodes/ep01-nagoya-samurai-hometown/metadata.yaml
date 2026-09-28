@@ -1,0 +1,267 @@
+# EP01 制作データ
+# このファイル1つで「字幕・画像差し込み・ショート切り出し・YouTube予約投稿」がすべて決まります。
+# 毎週このファイルをコピーして内容を書き換えるだけで、同じ品質の動画が作れます。
+
+episode:
+  id: ep01
+  slug: nagoya-samurai-hometown
+  # 本編を公開する週の月曜日（JST）。ショートはこの日から7日間、毎日1本ずつ公開されます。
+  week_start: 2026-10-05
+  # Google ドライブ上の収録ファイル名に含まれる文字列（例: "ep01_raw.mp4"）
+  drive_filename_contains: ep01
+
+# 字幕で色付き強調するキーワード（本編・ショート共通）
+keywords:
+  - Nagoya
+  - BUSHIDO JAPAN
+  - Bushido
+  - Kyudo
+  - samurai
+  - Nobunaga
+  - Hideyoshi
+  - Ieyasu
+  - Kinshachi
+  - Atsuta Shrine
+  - Kusanagi
+  - Okehazama
+  - Seisha hitchu
+  - bamboo bows
+  - alive
+  - Ichigo ichie
+  - Hitsumabushi
+  - seven virtues
+
+# 翻訳時の用語集（英語 → 日本語字幕で必ずこの表記を使う）
+glossary:
+  Bushido: 武士道
+  Kyudo: 弓道
+  San-eiketsu: 三英傑
+  Sengoku period: 戦国時代
+  Kinshachi: 金鯱
+  Hommaru Palace: 本丸御殿
+  Atsuta Shrine: 熱田神宮
+  Kusanagi: 草薙剣
+  Battle of Okehazama: 桶狭間の戦い
+  Seisha hitchu: 正射必中
+  Ichigo ichie: 一期一会
+  Hitsumabushi: ひつまぶし
+  Tokugawa Art Museum: 徳川美術館
+  Gi: 義
+  Yu: 勇
+  Jin: 仁
+  Rei: 礼
+  Makoto: 誠
+  Meiyo: 名誉
+  Chugi: 忠義
+
+# 自動生成する図・テキストカード（assets/ に PNG として作られます）
+graphics:
+  - id: title
+    type: title
+    kicker: "BUSHIDO JAPAN  |  EP01"
+    title: "Nagoya"
+    subtitle: "The Hometown of the Samurai"
+  - id: three-unifiers
+    type: columns
+    title: "The Three Great Unifiers"
+    columns:
+      - head: "Oda Nobunaga"
+        sub: "1534-1582"
+        body: "Bold & fast\nBorn in Owari"
+      - head: "Toyotomi Hideyoshi"
+        sub: "1537-1598"
+        body: "Rags to riches\nBorn in Nakamura, Nagoya"
+      - head: "Tokugawa Ieyasu"
+        sub: "1543-1616"
+        body: "Patient\nBorn in Okazaki"
+  - id: hototogisu
+    type: list
+    title: "If the bird does not sing..."
+    items:
+      - "Nobunaga:  Kill it."
+      - "Hideyoshi:  Make it want to sing."
+      - "Ieyasu:  Wait until it sings."
+  - id: seven-virtues
+    type: grid
+    title: "The 7 Virtues of Bushido"
+    items:
+      - ["義", "Gi", "Rightness"]
+      - ["勇", "Yu", "Courage"]
+      - ["仁", "Jin", "Compassion"]
+      - ["礼", "Rei", "Respect"]
+      - ["誠", "Makoto", "Sincerity"]
+      - ["名誉", "Meiyo", "Honor"]
+      - ["忠義", "Chugi", "Loyalty"]
+  - id: seisha-hitchu
+    type: quote
+    jp: "正射必中"
+    en: "A correct shot will naturally hit the target."
+  - id: access-map
+    type: route
+    title: "Nagoya: Right Between Tokyo and Kyoto"
+    stops: ["Tokyo", "Nagoya", "Kyoto"]
+    legs: ["Shinkansen  approx. 1h40m", "approx. 35 min"]
+    highlight: 1
+  - id: itinerary
+    type: list
+    title: "1-Day Samurai Itinerary in Nagoya"
+    items:
+      - "Morning:  Nagoya Castle & Hommaru Palace"
+      - "Lunch:  Hitsumabushi (grilled eel)"
+      - "Afternoon:  Atsuta Shrine"
+      - "Evening:  Kyudo experience"
+  - id: ichigo-ichie
+    type: quote
+    jp: "一期一会"
+    en: "One time, one meeting."
+  - id: outro
+    type: title
+    kicker: "Thank you for watching"
+    title: "BUSHIDO JAPAN"
+    subtitle: "New episode every Monday  /  Shorts every day"
+
+# 写真素材。file が assets/ に無い場合は Wikimedia Commons から search で自動取得を試み、
+# それも無理なら同名のテキストカードで代用します（レンダリングが止まることはありません）。
+# ※ 取得した写真のクレジットは自動で概要欄に追記されます。
+photos:
+  - id: nagoya-castle
+    file: nagoya-castle.jpg
+    search: "Nagoya Castle golden shachihoko"
+    caption: "Nagoya Castle"
+  - id: hommaru-palace
+    file: hommaru-palace.jpg
+    search: "Hommaru Palace Nagoya interior"
+    caption: "Hommaru Palace"
+  - id: nitobe-bushido
+    file: nitobe-bushido.jpg
+    search: "Bushido The Soul of Japan Nitobe 1900"
+    caption: "Bushido: The Soul of Japan (1900)"
+  - id: atsuta-shrine
+    file: atsuta-shrine.jpg
+    search: "Atsuta Shrine torii"
+    caption: "Atsuta Shrine"
+  - id: nobunaga-wall
+    file: nobunaga-wall.jpg
+    search: "Nobunaga-bei Atsuta"
+    caption: "Nobunaga's Wall (Nobunaga-bei)"
+  - id: kyudo
+    file: kyudo.jpg
+    search: "Kyudo archer"
+    caption: "Kyudo"
+  - id: bamboo-bow
+    file: bamboo-bow.jpg
+    search: "Japanese yumi bamboo bow"
+    caption: "Bamboo bow (take-yumi)"
+  - id: hitsumabushi
+    file: hitsumabushi.jpg
+    search: "Hitsumabushi"
+    caption: "Hitsumabushi"
+  - id: tokugawa-museum
+    file: tokugawa-museum.jpg
+    search: "Tokugawa Art Museum Nagoya"
+    caption: "Tokugawa Art Museum"
+
+# どのセリフのときに、どの画像を何秒出すか。
+# at: 話し始めのフレーズ（字幕から自動検索） / show: 表示秒数 / layout: full=全画面, side=右側ワイプ
+visuals:
+  - { at: "welcome to BUSHIDO JAPAN", asset: title, show: 5, layout: full }
+  - { at: "three great leaders appeared", asset: three-unifiers, show: 9, layout: full }
+  - { at: "Imagine a little bird", asset: hototogisu, show: 18, layout: side }
+  - { at: "Look at the roof of Nagoya Castle", asset: nagoya-castle, show: 10, layout: side }
+  - { at: "my recommendation for your clients", asset: hommaru-palace, show: 10, layout: side }
+  - { at: "a Japanese man named Nitobe Inazo", asset: nitobe-bushido, show: 8, layout: side }
+  - { at: "with seven virtues", asset: seven-virtues, show: 25, layout: full }
+  - { at: "a very special place in Nagoya", asset: atsuta-shrine, show: 10, layout: side }
+  - { at: "Nobunaga gave the shrine a wall", asset: nobunaga-wall, show: 7, layout: side }
+  - { at: "We have a saying", asset: seisha-hitchu, show: 8, layout: full }
+  - { at: "I visited a workshop", asset: bamboo-bow, show: 10, layout: side }
+  - { at: "Nagoya is right between Tokyo and Kyoto", asset: access-map, show: 10, layout: full }
+  - { at: "Here is a simple one-day plan", asset: itinerary, show: 14, layout: side }
+  - { at: "try Hitsumabushi", asset: hitsumabushi, show: 5, layout: side }
+  - { at: "try a Kyudo experience", asset: kyudo, show: 7, layout: side }
+  - { at: "Tokugawa Art Museum", asset: tokugawa-museum, show: 6, layout: side }
+  - { at: "we say Ichigo ichie", asset: ichigo-ichie, show: 8, layout: full }
+  - { at: "Thank you so much for watching", asset: outro, show: 8, layout: full }
+
+# ===== YouTube 投稿データ =====
+main:
+  title: "Why Nagoya Is the Real Hometown of the Samurai | BUSHIDO JAPAN EP01"
+  description: |
+    Where is the true hometown of the samurai? Not Kyoto. Not Tokyo. It is NAGOYA.
+
+    In this first episode of BUSHIDO JAPAN, a Kyudo practitioner living in Japan introduces:
+    00:00 Welcome to BUSHIDO JAPAN
+    {chapters}
+
+    This channel is made for travel professionals who plan trips to Japan.
+    Every Monday: a new episode about Nagoya, Bushido, Japanese spirituality and Kyudo.
+    Every day: a short story you can share with your clients.
+
+    ▼ Planning a samurai or Kyudo experience in Nagoya for your clients?
+    Please leave a comment or contact us.
+
+    日本語字幕あり / English & Japanese subtitles
+
+    #Nagoya #Bushido #Samurai #JapanTravel #Kyudo
+  tags: [Nagoya, Bushido, Samurai, Japan travel, Kyudo, Nagoya Castle, Atsuta Shrine,
+         Oda Nobunaga, Tokugawa Ieyasu, Japan tour planning, travel agent, Japanese culture,
+         Japanese spirituality, 名古屋, 武士道, 弓道]
+  # サムネイル: 収録映像の1コマ（frame_at のセリフの瞬間）に大きな文字を重ねます
+  thumbnail:
+    frame_at: "It is Nagoya"
+    text: "THE REAL\nSAMURAI\nHOMETOWN?"
+    accent: "NAGOYA"
+  # 目次（チャプター）は at のフレーズから自動で時刻を計算
+  chapters:
+    - { at: "About 450 years ago", label: "The Three Great Unifiers" }
+    - { at: "Look at the roof of Nagoya Castle", label: "Nagoya Castle & the Golden Shachi" }
+    - { at: "what is Bushido", label: "What is Bushido?" }
+    - { at: "a very special place in Nagoya", label: "Atsuta Shrine & the Sacred Sword" }
+    - { at: "something very close to my heart", label: "Kyudo: A Bow That Is Alive" }
+    - { at: "a practical message", label: "1-Day Samurai Itinerary for Your Clients" }
+    - { at: "we say Ichigo ichie", label: "Ichigo Ichie" }
+
+shorts:
+  - n: 1
+    start: "Hello, and welcome to BUSHIDO JAPAN"
+    end: "It is Nagoya"
+    title: "The REAL Hometown of the Samurai Is NOT Kyoto"
+    hook: "Where is the samurai's hometown?"
+  - n: 2
+    start: "About 450 years ago"
+    end: "around Nagoya"
+    title: "3 Samurai Who United Japan Came From ONE City"
+    hook: "3 heroes. 1 city."
+  - n: 3
+    start: "Look at the roof of Nagoya Castle"
+    end: "manhole covers"
+    title: "Why Nagoya Castle Has Golden Fish on the Roof"
+    hook: "Golden fish on a castle?"
+  - n: 4
+    start: "Bushido is often explained"
+    end: "is not simple at all"
+    title: "The 7 Virtues of Bushido in 40 Seconds"
+    hook: "7 words of the samurai"
+  - n: 5
+    start: "In 1560, Oda Nobunaga had a very small army"
+    end: "is still standing today"
+    title: "The Samurai Who Prayed Before an Impossible Battle"
+    hook: "He was sure to lose..."
+  - n: 6
+    start: "I visited a workshop"
+    end: "to polish your heart"
+    title: "This Japanese Bow Is ALIVE"
+    hook: "A bow that is alive"
+  - n: 7
+    start: "In Japan, we say Ichigo ichie"
+    end: "in the travel business, too"
+    title: "The Japanese Secret of Great Hospitality: Ichigo Ichie"
+    hook: "One time. One meeting."
+
+# 全ショート共通の説明文とタグ（{main_url} は本編URLに自動置換）
+shorts_common:
+  description: |
+    Full episode: {main_url}
+    BUSHIDO JAPAN — Nagoya, Bushido, Japanese spirituality and Kyudo, for travel professionals.
+    #Shorts #Japan #Samurai #Bushido #Nagoya #JapanTravel
+  tags: [Shorts, Japan, Samurai, Bushido, Nagoya, Japan travel, Kyudo]
