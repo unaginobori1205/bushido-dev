@@ -83,7 +83,7 @@ TELOPS = [
 CAPTIONS = [
     (24.6, 38.0, "2027年7月26日（月）〜28日（水）2泊3日　名古屋の小中学生と、外国にルーツを持つ小中学生 40名"),
     (52.4, 63.6, "ご協賛の使い道：参加費の減免枠・通訳の配置　／　剰余金は次年度へ繰り越し、収支報告は公開"),
-    (65.4, 79.4, "株式会社鯱バス：名古屋⇄伊勢の貸切バス（往復）のご提供／合気道研修の指導（英語）"),
+    (65.4, 79.4, "株式会社鯱バス：名古屋・伊勢間の貸切バス（往復）のご提供／合気道研修の指導（英語）"),
 ]
 
 END_START = 80.0
@@ -297,11 +297,11 @@ def main():
         ms = int(start * 1000)
         chain.append(f"[{a0 + j}:a]aresample=48000,adelay={ms}|{ms}[a{j}]")
     chain.append("".join(f"[a{j}]" for j in range(len(narr)))
-                 + f"amix=inputs={len(narr)}:normalize=0,apad,atrim=0:{TOTAL},loudnorm=I=-16:TP=-1.5:LRA=11[aout]")
+                 + f"amix=inputs={len(narr)}:normalize=0,apad,atrim=0:{TOTAL},loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000[aout]")
 
     final = out / "partner_video_90s.mp4"
     run(["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(chain), "-map", "[vout]", "-map", "[aout]",
-         "-t", f"{TOTAL}", "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p",
+         "-t", f"{TOTAL}", "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
          "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(final)])
 
     narr_report = [{"start": s, "end": round(s + d, 2)} for s, _, d in narr]
