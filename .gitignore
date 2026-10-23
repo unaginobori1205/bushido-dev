@@ -7,3 +7,7 @@ build/package-lock.json
 build/*.b64
 build/t.txt
 build/test.html
+build/partner_video/photos/
+build/partner_video/out/
+build/partner_video/fonts/
+build/partner_video/__pycache__/
